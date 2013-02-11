@@ -8,7 +8,10 @@
 
 #import <UIKit/UIKit.h>
 #import <AddressBookUI/AddressBookUI.h>
+#import "Colleague.h"
 
 @interface ContactIndexController : UITableViewController <ABPeoplePickerNavigationControllerDelegate>
-- (IBAction)addNewContact;
+- (IBAction)showPeoplePicker;
+@property (strong, nonatomic) IBOutlet UITableView *addressesTable;
+@property (nonatomic, copy) NSMutableArray *colleagues;
 @end

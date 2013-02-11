@@ -14,39 +14,50 @@
 @end
 
 @implementation ContactIndexController
+
+@synthesize colleagues;
+@synthesize addressesTable;
+
 - (void)viewDidLoad{
     [super viewDidLoad];
     self.navigationItem.hidesBackButton = YES;
+    colleagues =[[NSMutableArray alloc] init];
 }
 
 # pragma mark - Table List
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return 5;
+    return [colleagues count];
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     
     ContactInfoCell *cell = (ContactInfoCell *)[tableView dequeueReusableCellWithIdentifier:@"contactInfoCell"];
     
+    int index = [indexPath indexAtPosition:1];
+    Colleague *colleague = [colleagues objectAtIndex:index];
+    
+    NSString *fullName = [NSString stringWithFormat:@"%@ %@", colleague.firstName, colleague.lastName];
+    
+    [[cell textLabel] setText:fullName];
+    
     return cell;
 }
 
 # pragma mark - Adding a Contact
 
-- (IBAction)addNewContact {
+- (IBAction)showPeoplePicker
+{
     ABPeoplePickerNavigationController *picker = [[ABPeoplePickerNavigationController alloc] init];
     picker.peoplePickerDelegate = self;
     
     [self presentViewController:picker animated:YES completion:nil];
 }
-- (void)peoplePickerNavigationControllerDidCancel:
-(ABPeoplePickerNavigationController *)peoplePicker
+- (void)peoplePickerNavigationControllerDidCancel: (ABPeoplePickerNavigationController *)peoplePicker
 {
     [self dismissViewControllerAnimated:YES completion:nil];
 }
-- (BOOL)peoplePickerNavigationController:
-(ABPeoplePickerNavigationController *)peoplePicker
+- (BOOL)peoplePickerNavigationController: (ABPeoplePickerNavigationController *)peoplePicker
       shouldContinueAfterSelectingPerson:(ABRecordRef)person {
     
     [self displayPerson:person];
@@ -55,8 +66,7 @@
     return NO;
 }
 
-- (BOOL)peoplePickerNavigationController:
-(ABPeoplePickerNavigationController *)peoplePicker
+- (BOOL)peoplePickerNavigationController: (ABPeoplePickerNavigationController *)peoplePicker
       shouldContinueAfterSelectingPerson:(ABRecordRef)person
                                 property:(ABPropertyID)property
                               identifier:(ABMultiValueIdentifier)identifier
@@ -68,9 +78,12 @@
     NSString *firstName = (__bridge_transfer NSString*)ABRecordCopyValue(person, kABPersonFirstNameProperty);
     NSString *lastName = (__bridge_transfer NSString*)ABRecordCopyValue(person, kABPersonLastNameProperty);
     
-    NSString *name = [NSString stringWithFormat:@"%@ %@", firstName, lastName];
+    Colleague *new_colleague = [[Colleague alloc] init];
+    new_colleague.firstName = firstName;
+    new_colleague.lastName = lastName;
     
-    NSLog(@"%@", name);
+    [colleagues addObject:new_colleague];
+    [addressesTable reloadData];
     
 //
 //    NSData  *imgData = (__bridge_transfer NSData *) ABPersonCopyImageDataWithFormat(person, kABPersonImageFormatThumbnail);
