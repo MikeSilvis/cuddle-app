@@ -106,16 +106,33 @@
                         <rect key="frame" x="0.0" y="64" width="320" height="504"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
-                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Viewing Mike Silvis'" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3tN-1o-gKN">
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="mH8-HY-Epc">
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="159" id="Uem-IG-RuF"/>
+                                </constraints>
+                            </imageView>
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Contact History" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="kc8-5J-fwN">
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="9fx-Xz-Ucw">
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="322" id="MBZ-UD-PiA"/>
+                                    <constraint firstAttribute="height" constant="194" id="rci-Tt-u2S"/>
+                                </constraints>
+                            </tableView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="3tN-1o-gKN" firstAttribute="centerX" secondItem="VTy-F0-tze" secondAttribute="centerX" type="default" id="M7n-BA-dJl"/>
-                            <constraint firstItem="3tN-1o-gKN" firstAttribute="top" secondItem="VTy-F0-tze" secondAttribute="top" constant="20" symbolic="YES" type="default" id="Zjg-dC-aPt"/>
+                            <constraint firstItem="9fx-Xz-Ucw" firstAttribute="top" secondItem="kc8-5J-fwN" secondAttribute="bottom" constant="8" symbolic="YES" type="default" id="3J6-rC-i4v"/>
+                            <constraint firstItem="kc8-5J-fwN" firstAttribute="leading" secondItem="VTy-F0-tze" secondAttribute="leading" constant="8" id="6Nr-Ea-hYb"/>
+                            <constraint firstItem="9fx-Xz-Ucw" firstAttribute="bottom" secondItem="VTy-F0-tze" secondAttribute="bottom" type="default" id="Dnl-Y2-nF5"/>
+                            <constraint firstItem="mH8-HY-Epc" firstAttribute="top" secondItem="VTy-F0-tze" secondAttribute="top" type="default" id="FJ9-OW-6Rz"/>
+                            <constraint firstItem="mH8-HY-Epc" firstAttribute="trailing" secondItem="VTy-F0-tze" secondAttribute="trailing" type="default" id="Wmp-wx-e1d"/>
+                            <constraint firstItem="mH8-HY-Epc" firstAttribute="leading" secondItem="VTy-F0-tze" secondAttribute="leading" type="default" id="YAO-QB-jzg"/>
+                            <constraint firstItem="9fx-Xz-Ucw" firstAttribute="trailing" secondItem="VTy-F0-tze" secondAttribute="trailing" type="default" id="kTo-De-AYM"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="Mike Silvis" id="iUl-rV-A9J"/>
