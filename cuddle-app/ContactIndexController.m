@@ -37,9 +37,7 @@
     int index = [indexPath indexAtPosition:1];
     Colleague *colleague = [colleagues objectAtIndex:index];
     
-    NSString *fullName = [NSString stringWithFormat:@"%@ %@", colleague.firstName, colleague.lastName];
-    
-    [[cell textLabel] setText:fullName];
+    [[cell textLabel] setText:colleague.fullName];
     
     return cell;
 }
