@@ -7,13 +7,23 @@
 //
 
 #import "ContactIndexController.h"
+#import "ContactInfoCell.h"
+
+@interface ContactIndexController ()
+
+@end
 
 @implementation ContactIndexController
-- (void)viewDidLoad
-{
-    [super viewDidLoad];
-    NSLog(@"In here");
-    self.navigationItem.hidesBackButton = YES;
+
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
+    return 5;
+}
+
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
+    
+    ContactInfoCell *cell = (ContactInfoCell *)[tableView dequeueReusableCellWithIdentifier:@"contactInfoCell"];
+    
+    return cell;
 }
 - (IBAction)addNewContact {
     NSLog(@"Add Newww Clicked");
