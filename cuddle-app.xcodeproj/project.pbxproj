@@ -29,7 +29,7 @@
 		36FFBF7A16C85DDF00CC3140 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 36FFBF5216C85DDF00CC3140 /* Foundation.framework */; };
 		36FFBF8216C85DDF00CC3140 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 36FFBF8016C85DDF00CC3140 /* InfoPlist.strings */; };
 		36FFBF8516C85DDF00CC3140 /* cuddle_appTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 36FFBF8416C85DDF00CC3140 /* cuddle_appTests.m */; };
-		DA2DDDBF16C88E9F00052251 /* AddressBook.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DA2DDDBE16C88E9F00052251 /* AddressBook.framework */; settings = {ATTRIBUTES = (Required, ); }; };
+		DA58A56F16C8BFD6006D7F55 /* Colleague.m in Sources */ = {isa = PBXBuildFile; fileRef = DA58A56E16C8BFD6006D7F55 /* Colleague.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -74,7 +74,8 @@
 		36FFBF8116C85DDF00CC3140 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		36FFBF8316C85DDF00CC3140 /* cuddle_appTests.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = cuddle_appTests.h; sourceTree = "<group>"; };
 		36FFBF8416C85DDF00CC3140 /* cuddle_appTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = cuddle_appTests.m; sourceTree = "<group>"; };
-		DA2DDDBE16C88E9F00052251 /* AddressBook.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AddressBook.framework; path = System/Library/Frameworks/AddressBook.framework; sourceTree = SDKROOT; };
+		DA58A56D16C8BFD6006D7F55 /* Colleague.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Colleague.h; sourceTree = "<group>"; };
+		DA58A56E16C8BFD6006D7F55 /* Colleague.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Colleague.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -115,6 +116,8 @@
 		362D55F616C8667400A3423D /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				DA58A56D16C8BFD6006D7F55 /* Colleague.h */,
+				DA58A56E16C8BFD6006D7F55 /* Colleague.m */,
 			);
 			name = Models;
 			sourceTree = "<group>";
@@ -329,6 +332,7 @@
 				362D55FA16C866B000A3423D /* ContactInfoCell.m in Sources */,
 				362D55FD16C8674B00A3423D /* ContactIndexController.m in Sources */,
 				362D560016C86FD400A3423D /* ContactShowViewController.m in Sources */,
+				DA58A56F16C8BFD6006D7F55 /* Colleague.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
