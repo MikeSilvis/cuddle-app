@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="2.0" toolsVersion="3084" systemVersion="12C60" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="UKG-1i-6ey">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="2.0" toolsVersion="3084" systemVersion="12C60" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="RzY-qC-cMf">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="2083"/>
     </dependencies>
@@ -28,16 +28,16 @@
                                 </state>
                                 <connections>
                                     <action selector="login:" destination="2" eventType="touchUpInside" id="v4L-Yy-S54"/>
-                                    <segue destination="b8Q-sT-juJ" kind="push" id="1Es-Yl-PkL"/>
+                                    <segue destination="b8Q-sT-juJ" kind="push" id="hMz-rF-g3C"/>
                                 </connections>
                             </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="z6Y-mp-mKW" firstAttribute="centerX" secondItem="3" secondAttribute="centerX" type="default" id="ADQ-14-XP4"/>
-                            <constraint firstItem="IEP-vB-Y1L" firstAttribute="leading" secondItem="z6Y-mp-mKW" secondAttribute="leading" type="default" id="hOW-8F-zOb"/>
+                            <constraint firstAttribute="bottom" secondItem="IEP-vB-Y1L" secondAttribute="bottom" constant="20" symbolic="YES" type="default" id="lCE-F2-Dc4"/>
+                            <constraint firstItem="IEP-vB-Y1L" firstAttribute="centerX" secondItem="3" secondAttribute="centerX" type="default" id="ond-wj-NOr"/>
                             <constraint firstItem="z6Y-mp-mKW" firstAttribute="top" secondItem="3" secondAttribute="top" constant="59" id="pLh-bs-7jR"/>
-                            <constraint firstAttribute="bottom" secondItem="IEP-vB-Y1L" secondAttribute="bottom" constant="73" id="wBs-bs-zc5"/>
+                            <constraint firstItem="IEP-vB-Y1L" firstAttribute="centerX" secondItem="z6Y-mp-mKW" secondAttribute="centerX" type="default" id="xNh-js-gYb"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="caE-O3-Zjl"/>
@@ -45,9 +45,9 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="4" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="847" y="69"/>
+            <point key="canvasLocation" x="1315" y="66"/>
         </scene>
-        <!--Contact View Controller-->
+        <!--Contact View Controller - Cuddle-->
         <scene sceneID="YVJ-2D-0Bb">
             <objects>
                 <tableViewController id="b8Q-sT-juJ" customClass="ContactViewController" sceneMemberID="viewController">
@@ -56,14 +56,28 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <prototypes>
-                            <tableViewCell contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" id="yXU-3v-h7F">
+                            <tableViewCell contentMode="scaleToFill" selectionStyle="blue" accessoryType="disclosureIndicator" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" id="yXU-3v-h7F">
                                 <rect key="frame" x="0.0" y="22" width="320" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
-                                    <rect key="frame" x="0.0" y="0.0" width="320" height="43"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="300" height="43"/>
                                     <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Mike Silvis" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="RgP-7B-e6Q">
+                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                            <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                            <color key="highlightedColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        </label>
+                                    </subviews>
                                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 </view>
+                                <constraints>
+                                    <constraint firstItem="RgP-7B-e6Q" firstAttribute="leading" secondItem="yXU-3v-h7F" secondAttribute="leading" constant="46" id="Cr2-JG-tLp"/>
+                                    <constraint firstItem="RgP-7B-e6Q" firstAttribute="top" secondItem="yXU-3v-h7F" secondAttribute="top" constant="11" id="dz0-JF-8lB"/>
+                                </constraints>
+                                <connections>
+                                    <segue destination="Z9q-Du-0x5" kind="push" id="5QD-II-XKi"/>
+                                </connections>
                             </tableViewCell>
                         </prototypes>
                         <connections>
@@ -71,34 +85,77 @@
                             <outlet property="delegate" destination="b8Q-sT-juJ" id="5fA-QW-KhD"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" id="76f-0R-blL">
+                    <navigationItem key="navigationItem" title="Cuddle" id="76f-0R-blL">
                         <barButtonItem key="rightBarButtonItem" systemItem="add" id="wXg-I3-lFD"/>
                     </navigationItem>
                     <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" barStyle="blackOpaque" prompted="NO"/>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="AES-uZ-hag" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1295" y="66"/>
+            <point key="canvasLocation" x="1863" y="66"/>
+        </scene>
+        <!--Contact Show View Controller - Mike Silvis-->
+        <scene sceneID="PSb-Y5-NJK">
+            <objects>
+                <viewController id="Z9q-Du-0x5" customClass="ContactShowViewController" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="VTy-F0-tze">
+                        <rect key="frame" x="0.0" y="64" width="320" height="504"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <subviews>
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Viewing Mike Silvis'" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3tN-1o-gKN">
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="3tN-1o-gKN" firstAttribute="centerX" secondItem="VTy-F0-tze" secondAttribute="centerX" type="default" id="M7n-BA-dJl"/>
+                            <constraint firstItem="3tN-1o-gKN" firstAttribute="top" secondItem="VTy-F0-tze" secondAttribute="top" constant="20" symbolic="YES" type="default" id="Zjg-dC-aPt"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" title="Mike Silvis" id="iUl-rV-A9J"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="wrS-B9-Js3" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2370" y="66"/>
         </scene>
         <!--Navigation Controller-->
-        <scene sceneID="2s6-9X-04y">
+        <scene sceneID="qZb-Dj-bPu">
             <objects>
-                <navigationController id="UKG-1i-6ey" sceneMemberID="viewController">
+                <navigationController id="RzY-qC-cMf" sceneMemberID="viewController">
                     <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="qYR-TM-jlR">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="ZMK-Oo-X7Y">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
                     <nil name="viewControllers"/>
                     <connections>
-                        <segue destination="2" kind="relationship" relationship="rootViewController" id="FDw-IJ-HgU"/>
+                        <segue destination="2" kind="relationship" relationship="rootViewController" id="ioi-4T-Su6"/>
                     </connections>
                 </navigationController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="Wwk-NN-8KO" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="7pP-Hq-km1" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="319" y="69"/>
+            <point key="canvasLocation" x="789" y="66"/>
         </scene>
     </scenes>
+    <classes>
+        <class className="ContactShowViewController" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/ContactShowViewController.h"/>
+        </class>
+        <class className="ContactViewController" superclassName="UITableViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/ContactViewController.h"/>
+        </class>
+        <class className="LoginViewController" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/LoginViewController.h"/>
+            <relationships>
+                <relationship kind="action" name="login:"/>
+            </relationships>
+        </class>
+        <class className="NSLayoutConstraint" superclassName="NSObject">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/NSLayoutConstraint.h"/>
+        </class>
+    </classes>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
         <simulatedStatusBarMetrics key="statusBar"/>
         <simulatedOrientationMetrics key="orientation"/>
