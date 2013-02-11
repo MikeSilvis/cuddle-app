@@ -9,4 +9,5 @@
 #import <UIKit/UIKit.h>
 
 @interface ContactIndexController : UITableViewController
+    - (IBAction)addNewContact;
 @end

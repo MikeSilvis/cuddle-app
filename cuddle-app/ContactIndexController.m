@@ -15,5 +15,7 @@
     NSLog(@"In here");
     self.navigationItem.hidesBackButton = YES;
 }
-
+- (IBAction)addNewContact {
+    NSLog(@"Add Newww Clicked");
+}
 @end
