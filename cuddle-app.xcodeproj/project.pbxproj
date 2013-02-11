@@ -10,6 +10,8 @@
 		362D55FA16C866B000A3423D /* ContactInfoCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 362D55F916C866B000A3423D /* ContactInfoCell.m */; };
 		362D55FD16C8674B00A3423D /* ContactIndexController.m in Sources */ = {isa = PBXBuildFile; fileRef = 362D55FC16C8674B00A3423D /* ContactIndexController.m */; };
 		362D560016C86FD400A3423D /* ContactShowViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 362D55FF16C86FD400A3423D /* ContactShowViewController.m */; };
+		36A9EBE516C8A1CE000E084C /* AddressBook.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 36A9EBE416C8A1CE000E084C /* AddressBook.framework */; };
+		36A9EBE716C8A1D1000E084C /* AddressBookUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 36A9EBE616C8A1D1000E084C /* AddressBookUI.framework */; };
 		36FFBF5116C85DDF00CC3140 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 36FFBF5016C85DDF00CC3140 /* UIKit.framework */; };
 		36FFBF5316C85DDF00CC3140 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 36FFBF5216C85DDF00CC3140 /* Foundation.framework */; };
 		36FFBF5516C85DDF00CC3140 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 36FFBF5416C85DDF00CC3140 /* CoreGraphics.framework */; };
@@ -46,6 +48,8 @@
 		362D55FC16C8674B00A3423D /* ContactIndexController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ContactIndexController.m; sourceTree = "<group>"; };
 		362D55FE16C86FD400A3423D /* ContactShowViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ContactShowViewController.h; sourceTree = "<group>"; };
 		362D55FF16C86FD400A3423D /* ContactShowViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ContactShowViewController.m; sourceTree = "<group>"; };
+		36A9EBE416C8A1CE000E084C /* AddressBook.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AddressBook.framework; path = System/Library/Frameworks/AddressBook.framework; sourceTree = SDKROOT; };
+		36A9EBE616C8A1D1000E084C /* AddressBookUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AddressBookUI.framework; path = System/Library/Frameworks/AddressBookUI.framework; sourceTree = SDKROOT; };
 		36FFBF4D16C85DDF00CC3140 /* cuddle-app.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "cuddle-app.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		36FFBF5016C85DDF00CC3140 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		36FFBF5216C85DDF00CC3140 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -76,6 +80,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				36A9EBE716C8A1D1000E084C /* AddressBookUI.framework in Frameworks */,
+				36A9EBE516C8A1CE000E084C /* AddressBook.framework in Frameworks */,
 				36FFBF5116C85DDF00CC3140 /* UIKit.framework in Frameworks */,
 				36FFBF5316C85DDF00CC3140 /* Foundation.framework in Frameworks */,
 				36FFBF5516C85DDF00CC3140 /* CoreGraphics.framework in Frameworks */,
@@ -146,6 +152,8 @@
 		36FFBF4F16C85DDF00CC3140 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				36A9EBE616C8A1D1000E084C /* AddressBookUI.framework */,
+				36A9EBE416C8A1CE000E084C /* AddressBook.framework */,
 				36FFBF5016C85DDF00CC3140 /* UIKit.framework */,
 				36FFBF5216C85DDF00CC3140 /* Foundation.framework */,
 				36FFBF5416C85DDF00CC3140 /* CoreGraphics.framework */,

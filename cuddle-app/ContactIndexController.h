@@ -7,7 +7,8 @@
 //
 
 #import <UIKit/UIKit.h>
+#import <AddressBookUI/AddressBookUI.h>
 
-@interface ContactIndexController : UITableViewController
+@interface ContactIndexController : UITableViewController <ABPeoplePickerNavigationControllerDelegate>
 - (IBAction)addNewContact;
 @end
