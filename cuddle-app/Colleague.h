@@ -12,6 +12,8 @@
 
 @property NSString *firstName;
 @property NSString *lastName;
-@property NSString *fullName;
+//@property NSString *fullName;
+
+- (NSString *) fullName;
 
 @end
