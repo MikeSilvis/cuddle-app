@@ -9,9 +9,14 @@
 #import <UIKit/UIKit.h>
 #import <AddressBookUI/AddressBookUI.h>
 #import "Colleague.h"
+#import <Parse/Parse.h>
 
-@interface ContactIndexController : UITableViewController <ABPeoplePickerNavigationControllerDelegate>
+@interface ContactIndexController : PFQueryTableViewController <ABPeoplePickerNavigationControllerDelegate>
+
 - (IBAction)showPeoplePicker;
+
 @property (strong, nonatomic) IBOutlet UITableView *addressesTable;
 @property (nonatomic, copy) NSMutableArray *colleagues;
+@property PFFile *imageFile;
+
 @end

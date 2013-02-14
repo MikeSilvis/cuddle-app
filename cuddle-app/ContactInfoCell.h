@@ -7,12 +7,11 @@
 //
 
 #import <UIKit/UIKit.h>
+#import <Parse/Parse.h>
 
 @interface ContactInfoCell : UITableViewCell
 
 @property (weak, nonatomic) IBOutlet UILabel *userName;
-@property (weak, nonatomic) IBOutlet UILabel *lastContact;
-@property (weak, nonatomic) IBOutlet UIImageView *userPicture;
-@property (weak, nonatomic) IBOutlet UIImageView *contactMethod;
+@property (weak, nonatomic) IBOutlet PFImageView *userPicture;
 
 @end
