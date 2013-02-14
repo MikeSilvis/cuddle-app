@@ -29,6 +29,7 @@
 		36FFBF7A16C85DDF00CC3140 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 36FFBF5216C85DDF00CC3140 /* Foundation.framework */; };
 		36FFBF8216C85DDF00CC3140 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 36FFBF8016C85DDF00CC3140 /* InfoPlist.strings */; };
 		36FFBF8516C85DDF00CC3140 /* cuddle_appTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 36FFBF8416C85DDF00CC3140 /* cuddle_appTests.m */; };
+		DA36C78F16CB5D6F001D7889 /* RegisterViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DA36C78E16CB5D6F001D7889 /* RegisterViewController.m */; };
 		DA58A56F16C8BFD6006D7F55 /* Colleague.m in Sources */ = {isa = PBXBuildFile; fileRef = DA58A56E16C8BFD6006D7F55 /* Colleague.m */; };
 		DAD3EBEB16CA19C900E56737 /* Parse.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DAD3EBEA16CA19C900E56737 /* Parse.framework */; };
 		DAD3EBED16CA19FF00E56737 /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DAD3EBEC16CA19FF00E56737 /* AudioToolbox.framework */; };
@@ -88,6 +89,8 @@
 		36FFBF8116C85DDF00CC3140 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		36FFBF8316C85DDF00CC3140 /* cuddle_appTests.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = cuddle_appTests.h; sourceTree = "<group>"; };
 		36FFBF8416C85DDF00CC3140 /* cuddle_appTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = cuddle_appTests.m; sourceTree = "<group>"; };
+		DA36C78D16CB5D6E001D7889 /* RegisterViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RegisterViewController.h; sourceTree = "<group>"; };
+		DA36C78E16CB5D6F001D7889 /* RegisterViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RegisterViewController.m; sourceTree = "<group>"; };
 		DA58A56D16C8BFD6006D7F55 /* Colleague.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Colleague.h; sourceTree = "<group>"; };
 		DA58A56E16C8BFD6006D7F55 /* Colleague.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Colleague.m; sourceTree = "<group>"; };
 		DAD3EBEA16CA19C900E56737 /* Parse.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Parse.framework; sourceTree = "<group>"; };
@@ -173,6 +176,8 @@
 				36FFBF6F16C85DDF00CC3140 /* LoginViewController.m */,
 				362D55FB16C8674B00A3423D /* ContactIndexController.h */,
 				362D55FC16C8674B00A3423D /* ContactIndexController.m */,
+				DA36C78D16CB5D6E001D7889 /* RegisterViewController.h */,
+				DA36C78E16CB5D6F001D7889 /* RegisterViewController.m */,
 			);
 			name = Controllers;
 			sourceTree = "<group>";
@@ -389,6 +394,7 @@
 				362D55FD16C8674B00A3423D /* ContactIndexController.m in Sources */,
 				362D560016C86FD400A3423D /* ContactShowViewController.m in Sources */,
 				DA58A56F16C8BFD6006D7F55 /* Colleague.m in Sources */,
+				DA36C78F16CB5D6F001D7889 /* RegisterViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

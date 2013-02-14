@@ -18,26 +18,29 @@
 @synthesize colleagues;
 @synthesize addressesTable;
 
+- (id)initWithCoder:(NSCoder *)aCoder {
+    self = [super initWithCoder:aCoder];
+    if (self) {
+        self.className = @"Colleague";
+        self.pullToRefreshEnabled = YES;
+        self.paginationEnabled = YES;
+        self.objectsPerPage = 25;
+    }
+    return self;
+}
+
 - (void)viewDidLoad{
     [super viewDidLoad];
     self.navigationItem.hidesBackButton = YES;
-    colleagues =[[NSMutableArray alloc] init];
 }
 
 # pragma mark - Table List
 
-- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return [colleagues count];
-}
-
-- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath object:(PFObject *)object {
     
     ContactInfoCell *cell = (ContactInfoCell *)[tableView dequeueReusableCellWithIdentifier:@"contactInfoCell"];
-    
-    int index = [indexPath indexAtPosition:1];
-    Colleague *colleague = [colleagues objectAtIndex:index];
-    
-    [[cell textLabel] setText:colleague.fullName];
+    cell.userName.text = [object objectForKey:@"name"];
+    cell.userPicture.file = (PFFile *)[object objectForKey:@"photo"];
     
     return cell;
 }
@@ -75,31 +78,42 @@
 {
     NSString *firstName = (__bridge_transfer NSString*)ABRecordCopyValue(person, kABPersonFirstNameProperty);
     NSString *lastName = (__bridge_transfer NSString*)ABRecordCopyValue(person, kABPersonLastNameProperty);
+    NSString *name = [NSString stringWithFormat:@"%@ %@", firstName, lastName];
+    NSData  *imgABData = (__bridge_transfer NSData *) ABPersonCopyImageDataWithFormat(person, kABPersonImageFormatThumbnail);
     
-    Colleague *new_colleague = [[Colleague alloc] init];
-    new_colleague.firstName = firstName;
-    new_colleague.lastName = lastName;
+    self.imageFile = [PFFile fileWithData:imgABData];
+    [self.imageFile saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
+        if (succeeded){
+            PFObject *newColleague = [[PFObject alloc] initWithClassName:@"Colleague"];
+            [newColleague setObject:self.imageFile forKey:@"photo"];
+            [newColleague setObject:name forKey:@"name"];
+            [newColleague saveEventually];
+        }
+    }];
     
-    [colleagues addObject:new_colleague];
+    NSString* phone = nil;
+    ABMultiValueRef phoneNumbers = ABRecordCopyValue(person, kABPersonPhoneProperty);
+    
+    if (ABMultiValueGetCount(phoneNumbers) > 0) {
+        phone = (__bridge_transfer NSString*)
+        ABMultiValueCopyValueAtIndex(phoneNumbers, 0);
+    } else {
+        phone = @"[None]";
+    }
+    
+    CFRelease(phoneNumbers);
+    NSLog(@"%@", phone);
+    
+//    Colleague *newColleague = [[Colleague alloc] init];
+//    newColleague.firstName = firstName;
+//    newColleague.lastName = lastName;
+//    newColleague.photo = [UIImage imageWithData:imgData];
+//    newColleague.phoneNumber = (__bridge NSString *)(phoneNumbers);
+    
+//    [colleagues addObject:newColleague];
+//    [newColleague setObject:phoneNumbers forKey:@"phoneNumbers"];
+    
     [addressesTable reloadData];
-    
-//
-//    NSData  *imgData = (__bridge_transfer NSData *) ABPersonCopyImageDataWithFormat(person, kABPersonImageFormatThumbnail);
-//    
-//    self.userPhoto.image = [UIImage imageWithData:imgData];
-//    self.firstName.text = name;
-//    
-//    NSString* phone = nil;
-//    ABMultiValueRef phoneNumbers = ABRecordCopyValue(person,
-//                                                     kABPersonPhoneProperty);
-//    if (ABMultiValueGetCount(phoneNumbers) > 0) {
-//        phone = (__bridge_transfer NSString*)
-//        ABMultiValueCopyValueAtIndex(phoneNumbers, 0);
-//    } else {
-//        phone = @"[None]";
-//    }
-//    self.phoneNumber.text = phone;
-//    CFRelease(phoneNumbers);
 }
 
 @end
