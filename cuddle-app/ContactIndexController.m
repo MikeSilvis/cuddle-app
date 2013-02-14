@@ -40,7 +40,8 @@
     
     ContactInfoCell *cell = (ContactInfoCell *)[tableView dequeueReusableCellWithIdentifier:@"contactInfoCell"];
     cell.userName.text = [object objectForKey:@"name"];
-    cell.userPicture.file = (PFFile *)[object objectForKey:@"photo"];
+    cell.userPicture.file = [object objectForKey:@"photo"];
+    [cell.userPicture loadInBackground];
     
     return cell;
 }

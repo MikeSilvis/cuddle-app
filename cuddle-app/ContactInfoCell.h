@@ -9,7 +9,7 @@
 #import <UIKit/UIKit.h>
 #import <Parse/Parse.h>
 
-@interface ContactInfoCell : UITableViewCell
+@interface ContactInfoCell : PFTableViewCell
 
 @property (weak, nonatomic) IBOutlet UILabel *userName;
 @property (weak, nonatomic) IBOutlet PFImageView *userPicture;
