@@ -8,9 +8,11 @@
 
 #import <UIKit/UIKit.h>
 
-@interface RegisterViewController : UIViewController
+@interface RegisterViewController : UIViewController <UITextFieldDelegate>
+
 @property (weak, nonatomic) IBOutlet UITextField *emailField;
 @property (weak, nonatomic) IBOutlet UITextField *passwordField;
-
+- (IBAction)editingEmailField:(id)sender;
+- (IBAction)editingPasswordField:(id)sender;
 
 @end

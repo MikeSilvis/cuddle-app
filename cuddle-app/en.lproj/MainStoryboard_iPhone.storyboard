@@ -91,7 +91,7 @@
                                     <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
-                                    <segue destination="b8Q-sT-juJ" kind="push" id="RTM-Bu-y0i"/>
+                                    <segue destination="b8Q-sT-juJ" kind="push" identifier="signUpSegue" id="RTM-Bu-y0i"/>
                                 </connections>
                             </button>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" usesAttributedText="YES" borderStyle="roundedRect" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="KdB-Aj-4Mx">
@@ -100,11 +100,17 @@
                                 </constraints>
                                 <attributedString key="attributedText"/>
                                 <textInputTraits key="textInputTraits" autocorrectionType="no" returnKeyType="next"/>
+                                <connections>
+                                    <action selector="editingEmailField:" destination="kDV-Vv-6JX" eventType="editingDidBegin" id="qEy-nI-SF5"/>
+                                </connections>
                             </textField>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="bcV-cF-oB4">
                                 <nil key="textColor"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                 <textInputTraits key="textInputTraits" autocorrectionType="no" returnKeyType="join" secureTextEntry="YES"/>
+                                <connections>
+                                    <action selector="editingPasswordField:" destination="kDV-Vv-6JX" eventType="editingDidBegin" id="rl9-tt-e20"/>
+                                </connections>
                             </textField>
                             <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Email" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="CJs-x6-eUq">
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
@@ -307,6 +313,8 @@
         <class className="RegisterViewController" superclassName="UIViewController">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/RegisterViewController.h"/>
             <relationships>
+                <relationship kind="action" name="editingEmailField:"/>
+                <relationship kind="action" name="editingPasswordField:"/>
                 <relationship kind="outlet" name="emailField" candidateClass="UITextField"/>
                 <relationship kind="outlet" name="passwordField" candidateClass="UITextField"/>
             </relationships>
