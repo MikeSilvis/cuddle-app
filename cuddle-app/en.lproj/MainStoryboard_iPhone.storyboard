@@ -187,7 +187,7 @@
                                 <connections>
                                     <outlet property="userName" destination="RgP-7B-e6Q" id="K3c-DW-3s2"/>
                                     <outlet property="userPicture" destination="b8w-7C-eFG" id="pnj-UO-1lL"/>
-                                    <segue destination="Z9q-Du-0x5" kind="push" id="5QD-II-XKi"/>
+                                    <segue destination="Z9q-Du-0x5" kind="push" identifier="contactShowSegue" id="5QD-II-XKi"/>
                                 </connections>
                             </tableViewCell>
                         </prototypes>

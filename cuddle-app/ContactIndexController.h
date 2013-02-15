@@ -9,6 +9,7 @@
 #import <UIKit/UIKit.h>
 #import <AddressBookUI/AddressBookUI.h>
 #import "Colleague.h"
+#import "SVProgressHUD.h"
 #import <Parse/Parse.h>
 
 @interface ContactIndexController : PFQueryTableViewController <ABPeoplePickerNavigationControllerDelegate>

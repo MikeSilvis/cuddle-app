@@ -32,6 +32,10 @@
 - (void)viewDidLoad{
     [super viewDidLoad];
     self.navigationItem.hidesBackButton = YES;
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(onContactAdded:)
+                                                 name:@"ContactAdded"
+                                               object:nil];
 }
 
 # pragma mark - Table List
@@ -82,13 +86,23 @@
     NSString *name = [NSString stringWithFormat:@"%@ %@", firstName, lastName];
     NSData  *imgABData = (__bridge_transfer NSData *) ABPersonCopyImageDataWithFormat(person, kABPersonImageFormatThumbnail);
     
+    [SVProgressHUD showWithStatus:@"Saving Contact"];
     self.imageFile = [PFFile fileWithData:imgABData];
     [self.imageFile saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
         if (succeeded){
             PFObject *newColleague = [[PFObject alloc] initWithClassName:@"Colleague"];
             [newColleague setObject:self.imageFile forKey:@"photo"];
             [newColleague setObject:name forKey:@"name"];
-            [newColleague saveEventually];
+            [newColleague saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
+                if (succeeded){
+                    [SVProgressHUD dismiss];
+                    [[NSNotificationCenter defaultCenter] postNotificationName:@"ContactAdded" object:self];
+                } else {
+                    NSLog(@"Contact failed to upload");
+                    [SVProgressHUD showErrorWithStatus:@"Sorry there was an error. Try again"];
+                }
+             
+            }];
         }
     }];
     
@@ -103,7 +117,6 @@
     }
     
     CFRelease(phoneNumbers);
-    NSLog(@"%@", phone);
     
 //    Colleague *newColleague = [[Colleague alloc] init];
 //    newColleague.firstName = firstName;
@@ -116,5 +129,14 @@
     
     [addressesTable reloadData];
 }
-
+- (void)onContactAdded:(NSNotification *)notification {
+    [self loadObjects];
+}
+-(void) prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender{
+    if([segue.identifier isEqualToString:@"contactShowSegue"]){
+        NSLog(@"%@", sender);
+        NSLog(@"I need to pass information into contactShowSegue to determine the person i am on");
+//        NSLog(@"%@", selectedRow);
+    }
+}
 @end
