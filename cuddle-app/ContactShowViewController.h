@@ -11,5 +11,6 @@
 
 @interface ContactShowViewController : UIViewController
 @property (weak, nonatomic) IBOutlet PFImageView *contactPhoto;
+- (IBAction)handleSwipe:(UISwipeGestureRecognizer *)sender;
 @property (strong, nonatomic) IBOutlet PFObject *contact;
 @end

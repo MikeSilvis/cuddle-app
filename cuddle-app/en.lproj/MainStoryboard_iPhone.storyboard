@@ -205,7 +205,7 @@
                                             <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                             <color key="highlightedColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         </label>
-                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="b8w-7C-eFG" customClass="PFImageView">
+                                        <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" translatesAutoresizingMaskIntoConstraints="NO" id="b8w-7C-eFG" customClass="PFImageView">
                                             <constraints>
                                                 <constraint firstAttribute="height" constant="70" id="JbF-7Z-BXU"/>
                                                 <constraint firstAttribute="width" constant="70" id="cLW-L2-JP5"/>
@@ -256,7 +256,7 @@
                         <rect key="frame" x="0.0" y="64" width="320" height="504"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="mH8-HY-Epc" customClass="PFImageView">
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" translatesAutoresizingMaskIntoConstraints="NO" id="mH8-HY-Epc" customClass="PFImageView">
                                 <constraints>
                                     <constraint firstAttribute="width" constant="100" id="9ZN-u8-Sor"/>
                                     <constraint firstAttribute="height" constant="100" id="hHC-Mm-Xyu"/>
@@ -274,12 +274,16 @@
                             </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                        <gestureRecognizers/>
                         <constraints>
                             <constraint firstItem="Diu-DS-2jy" firstAttribute="centerX" secondItem="VTy-F0-tze" secondAttribute="centerX" type="default" id="1Sa-eW-teL"/>
                             <constraint firstItem="mH8-HY-Epc" firstAttribute="top" secondItem="VTy-F0-tze" secondAttribute="top" constant="20" symbolic="YES" type="default" id="WkK-mQ-TJ5"/>
                             <constraint firstItem="mH8-HY-Epc" firstAttribute="leading" secondItem="VTy-F0-tze" secondAttribute="leading" constant="20" symbolic="YES" type="default" id="cDx-gY-9cy"/>
                             <constraint firstAttribute="bottom" secondItem="Diu-DS-2jy" secondAttribute="bottom" constant="20" symbolic="YES" type="default" id="rCH-fG-czJ"/>
                         </constraints>
+                        <connections>
+                            <outletCollection property="gestureRecognizers" destination="cwY-Ai-8Ns" appends="YES" id="9M9-ky-wiZ"/>
+                        </connections>
                     </view>
                     <navigationItem key="navigationItem" title="Mike Silvis" id="iUl-rV-A9J"/>
                     <connections>
@@ -287,6 +291,11 @@
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="wrS-B9-Js3" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <swipeGestureRecognizer direction="right" id="cwY-Ai-8Ns">
+                    <connections>
+                        <action selector="handleSwipe:" destination="Z9q-Du-0x5" id="uoz-OI-BQ9"/>
+                    </connections>
+                </swipeGestureRecognizer>
             </objects>
             <point key="canvasLocation" x="2522" y="90"/>
         </scene>
@@ -328,6 +337,7 @@
         <class className="ContactShowViewController" superclassName="UIViewController">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/ContactShowViewController.h"/>
             <relationships>
+                <relationship kind="action" name="handleSwipe:" candidateClass="UISwipeGestureRecognizer"/>
                 <relationship kind="outlet" name="contact" candidateClass="PFObject"/>
                 <relationship kind="outlet" name="contactPhoto" candidateClass="PFImageView"/>
             </relationships>

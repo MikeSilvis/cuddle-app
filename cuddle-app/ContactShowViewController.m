@@ -28,4 +28,7 @@
 //    }];
 }
 
+- (IBAction)handleSwipe:(UISwipeGestureRecognizer *)sender {
+    [self.navigationController popViewControllerAnimated:YES];
+}
 @end
