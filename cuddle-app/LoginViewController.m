@@ -7,6 +7,8 @@
 //
 
 #import "LoginViewController.h"
+#import <Parse/Parse.h>
+#import "SVProgressHUD.h"
 
 @interface LoginViewController ()
 
@@ -17,6 +19,7 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    [self userCheck];
 }
 
 - (void)didReceiveMemoryWarning
@@ -26,5 +29,11 @@
 
 - (IBAction)login:(id)sender {
 //    NSLog(@"Login Clicked");
+}
+- (void)userCheck{
+    PFUser *currentUser = [PFUser currentUser];
+    if (currentUser) {
+        [self performSegueWithIdentifier:@"userLoginSegue" sender:self];
+    }
 }
 @end

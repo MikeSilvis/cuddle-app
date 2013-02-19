@@ -8,6 +8,7 @@
 
 #import "ContactIndexController.h"
 #import "ContactInfoCell.h"
+#import "ContactShowViewController.h"
 
 @interface ContactIndexController ()
 
@@ -66,7 +67,7 @@
 - (BOOL)peoplePickerNavigationController: (ABPeoplePickerNavigationController *)peoplePicker
       shouldContinueAfterSelectingPerson:(ABRecordRef)person {
     
-    [self displayPerson:person];
+    [self addPerson:person];
     [self dismissViewControllerAnimated:YES completion:nil];
     
     return NO;
@@ -79,12 +80,20 @@
 {
     return NO;
 }
-- (void)displayPerson:(ABRecordRef)person
+- (void)addPerson:(ABRecordRef)person
 {
     NSString *firstName = (__bridge_transfer NSString*)ABRecordCopyValue(person, kABPersonFirstNameProperty);
     NSString *lastName = (__bridge_transfer NSString*)ABRecordCopyValue(person, kABPersonLastNameProperty);
     NSString *name = [NSString stringWithFormat:@"%@ %@", firstName, lastName];
     NSData  *imgABData = (__bridge_transfer NSData *) ABPersonCopyImageDataWithFormat(person, kABPersonImageFormatThumbnail);
+
+    NSString* phone = nil;
+    ABMultiValueRef phoneNumbers = ABRecordCopyValue(person, kABPersonPhoneProperty);
+    
+    if (ABMultiValueGetCount(phoneNumbers) > 0) {
+        phone = (__bridge_transfer NSString*)
+        ABMultiValueCopyValueAtIndex(phoneNumbers, 0);
+    }
     
     [SVProgressHUD showWithStatus:@"Saving Contact"];
     self.imageFile = [PFFile fileWithData:imgABData];
@@ -92,6 +101,7 @@
         if (succeeded){
             PFObject *newColleague = [[PFObject alloc] initWithClassName:@"Colleague"];
             [newColleague setObject:self.imageFile forKey:@"photo"];
+            [newColleague setObject:phone forKey:@"primary number"];
             [newColleague setObject:name forKey:@"name"];
             [newColleague saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
                 if (succeeded){
@@ -106,26 +116,7 @@
         }
     }];
     
-    NSString* phone = nil;
-    ABMultiValueRef phoneNumbers = ABRecordCopyValue(person, kABPersonPhoneProperty);
-    
-    if (ABMultiValueGetCount(phoneNumbers) > 0) {
-        phone = (__bridge_transfer NSString*)
-        ABMultiValueCopyValueAtIndex(phoneNumbers, 0);
-    } else {
-        phone = @"[None]";
-    }
-    
     CFRelease(phoneNumbers);
-    
-//    Colleague *newColleague = [[Colleague alloc] init];
-//    newColleague.firstName = firstName;
-//    newColleague.lastName = lastName;
-//    newColleague.photo = [UIImage imageWithData:imgData];
-//    newColleague.phoneNumber = (__bridge NSString *)(phoneNumbers);
-    
-//    [colleagues addObject:newColleague];
-//    [newColleague setObject:phoneNumbers forKey:@"phoneNumbers"];
     
     [addressesTable reloadData];
 }
@@ -134,9 +125,9 @@
 }
 -(void) prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender{
     if([segue.identifier isEqualToString:@"contactShowSegue"]){
-        NSLog(@"%@", sender);
-        NSLog(@"I need to pass information into contactShowSegue to determine the person i am on");
-//        NSLog(@"%@", selectedRow);
+        NSIndexPath *indexPath = [self.tableView indexPathForSelectedRow];
+        ContactShowViewController *destViewController = segue.destinationViewController;
+        destViewController.contact = [self.objects objectAtIndex:indexPath.row];
     }
 }
 @end

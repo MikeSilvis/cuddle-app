@@ -10,9 +10,22 @@
 
 @implementation ContactShowViewController
 
+@synthesize contact;
+
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    self.title = [contact objectForKey:@"name"];
+    self.contactPhoto.file = [contact objectForKey:@"photo"];
+    [self loadContactHistory];
+}
+
+- (void)loadContactHistory{
+//    PFObject *history = [contact objectForKey:@"parent"];
+//    [history fetchIfNeededInBackgroundWithBlock:^(PFObject *object, NSError *error) {
+////        NSString *title = [post objectForKey:@"title"];
+//        NSLog(@"%@", history);
+//    }];
 }
 
 @end

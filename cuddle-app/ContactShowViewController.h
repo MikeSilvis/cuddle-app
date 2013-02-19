@@ -7,7 +7,9 @@
 //
 
 #import <UIKit/UIKit.h>
+#import <Parse/Parse.h>
 
 @interface ContactShowViewController : UIViewController
-
+@property (weak, nonatomic) IBOutlet PFImageView *contactPhoto;
+@property (strong, nonatomic) IBOutlet PFObject *contact;
 @end
