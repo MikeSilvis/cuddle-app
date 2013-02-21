@@ -7,8 +7,7 @@
 //
 
 #import "ContactIndexController.h"
-#import "ContactInfoCell.h"
-#import "ContactShowViewController.h"
+
 
 @interface ContactIndexController ()
 
@@ -44,8 +43,14 @@
     
     ContactInfoCell *cell = (ContactInfoCell *)[tableView dequeueReusableCellWithIdentifier:@"contactInfoCell"];
     cell.userName.text = [object objectForKey:@"name"];
-    cell.userPicture.file = [object objectForKey:@"photo"];
-    [cell.userPicture loadInBackground];
+    PFFile *photo = [object objectForKey:@"photo"];
+    
+    if (photo){
+        cell.userPicture.file = photo;
+        [cell.userPicture loadInBackground];
+    } else{
+      cell.userPicture.image = [UIImage imageNamed:@"contact_without_image@2x.png"];
+    }
     
     return cell;
 }
@@ -81,6 +86,7 @@
 }
 - (void)addPerson:(ABRecordRef)person
 {
+    // All of this should be in Colleague.h
     NSString *firstName = (__bridge_transfer NSString*)ABRecordCopyValue(person, kABPersonFirstNameProperty);
     NSString *lastName = (__bridge_transfer NSString*)ABRecordCopyValue(person, kABPersonLastNameProperty);
     NSString *name = [NSString stringWithFormat:@"%@ %@", firstName, lastName];
@@ -95,25 +101,43 @@
     }
     
     [SVProgressHUD showWithStatus:@"Saving Contact"];
-    self.imageFile = [PFFile fileWithData:imgABData];
-    [self.imageFile saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
-        if (succeeded){
-            PFObject *newColleague = [[PFObject alloc] initWithClassName:@"Colleague"];
-            [newColleague setObject:self.imageFile forKey:@"photo"];
-            [newColleague setObject:phone forKey:@"number"];
-            [newColleague setObject:name forKey:@"name"];
-            [newColleague saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
-                if (succeeded){
-                    [SVProgressHUD dismiss];
-                    [[NSNotificationCenter defaultCenter] postNotificationName:@"ContactAdded" object:self];
-                } else {
-                    NSLog(@"Contact failed to upload");
-                    [SVProgressHUD showErrorWithStatus:@"Sorry there was an error. Try again"];
-                }
-             
-            }];
-        }
-    }];
+    UIImage *image = [UIImage imageWithData:imgABData];
+    // If there is not an image greater then 140 we dont want to upload it to parse
+    if (image.size.width > 140){
+        self.imageFile = [PFFile fileWithData:imgABData];
+        [self.imageFile saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
+            if (succeeded){
+                PFObject *newColleague = [[PFObject alloc] initWithClassName:@"Colleague"];
+                [newColleague setObject:self.imageFile forKey:@"photo"]; // This is causing an error now
+                [newColleague setObject:phone forKey:@"number"];
+                [newColleague setObject:name forKey:@"name"];
+                [newColleague saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
+                    if (succeeded){
+                        [SVProgressHUD dismiss];
+                        [[NSNotificationCenter defaultCenter] postNotificationName:@"ContactAdded" object:self];
+                    } else {
+                        NSLog(@"Contact failed to upload");
+                        [SVProgressHUD showErrorWithStatus:@"Sorry there was an error. Try again"];
+                    }
+                    
+                }];
+            }
+        }];
+    } else {
+        PFObject *newColleague = [[PFObject alloc] initWithClassName:@"Colleague"];
+        [newColleague setObject:phone forKey:@"number"];
+        [newColleague setObject:name forKey:@"name"];
+        [newColleague saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
+            if (succeeded){
+                [SVProgressHUD dismiss];
+                [[NSNotificationCenter defaultCenter] postNotificationName:@"ContactAdded" object:self];
+            } else {
+                NSLog(@"Contact failed to upload");
+                [SVProgressHUD showErrorWithStatus:@"Sorry there was an error. Try again"];
+            }
+         
+        }];
+    }
     
     CFRelease(phoneNumbers);
     
