@@ -11,6 +11,8 @@
 #import "Colleague.h"
 #import "SVProgressHUD.h"
 #import <Parse/Parse.h>
+#import "ContactInfoCell.h"
+#import "ContactShowViewController.h"
 
 @interface ContactIndexController : PFQueryTableViewController <ABPeoplePickerNavigationControllerDelegate>
 

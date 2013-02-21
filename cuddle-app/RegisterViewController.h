@@ -8,6 +8,7 @@
 
 #import <UIKit/UIKit.h>
 #import "SVProgressHUD.h"
+#import <Parse/Parse.h>
 
 @interface RegisterViewController : UIViewController <UITextFieldDelegate>
 

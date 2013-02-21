@@ -13,6 +13,13 @@
 - (NSString *) fullName {
     return [NSString stringWithFormat:@"%@ %@", self.firstName, self.lastName];
 }
-
+- (id)initWithABPerson:(ABRecordRef *)abPerson {
+    self = [super init];
+    
+    if (self) {
+    }
+    
+    return self;
+}
 
 @end

@@ -27,8 +27,7 @@
                                     <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
-                                    <action selector="login:" destination="2" eventType="touchUpInside" id="v4L-Yy-S54"/>
-                                    <segue destination="b8Q-sT-juJ" kind="push" identifier="userLoginSegue" id="hMz-rF-g3C"/>
+                                    <action selector="login:" destination="2" eventType="touchUpInside" id="p0S-0x-m7B"/>
                                 </connections>
                             </button>
                             <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="New User?" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="QVV-0J-X2a">
@@ -64,31 +63,37 @@
                                     <constraint firstAttribute="width" constant="193" id="Ke7-xc-dz4"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits"/>
+                                <textInputTraits key="textInputTraits" returnKeyType="next"/>
+                                <connections>
+                                    <action selector="editingEmailField:" destination="2" eventType="editingDidBegin" id="grq-D8-qeD"/>
+                                </connections>
                             </textField>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="rOq-ji-7M9">
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits" secureTextEntry="YES"/>
+                                <textInputTraits key="textInputTraits" returnKeyType="go" secureTextEntry="YES"/>
+                                <connections>
+                                    <action selector="editingPasswordField:" destination="2" eventType="editingDidBegin" id="rNv-EN-X3V"/>
+                                </connections>
                             </textField>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstAttribute="bottom" secondItem="IEP-vB-Y1L" secondAttribute="bottom" constant="91" id="21Y-I4-VEo"/>
                             <constraint firstItem="z6Y-mp-mKW" firstAttribute="centerX" secondItem="IEP-vB-Y1L" secondAttribute="centerX" type="default" id="5DW-WD-k8g"/>
                             <constraint firstAttribute="trailing" secondItem="5Mh-Oj-KiN" secondAttribute="trailing" constant="20" symbolic="YES" type="default" id="AtQ-aw-XqX"/>
-                            <constraint firstItem="rOq-ji-7M9" firstAttribute="top" secondItem="3" secondAttribute="top" constant="183" id="BpE-vT-WbO"/>
                             <constraint firstItem="5Mh-Oj-KiN" firstAttribute="leading" secondItem="rOq-ji-7M9" secondAttribute="leading" type="default" id="Cfw-T6-xgP"/>
-                            <constraint firstItem="5Mh-Oj-KiN" firstAttribute="top" secondItem="3" secondAttribute="top" constant="129" id="Esh-Rg-bld"/>
                             <constraint firstItem="d5D-NR-Z0Y" firstAttribute="baseline" secondItem="rOq-ji-7M9" secondAttribute="baseline" type="default" id="RtG-8O-jQ5"/>
                             <constraint firstItem="QVV-0J-X2a" firstAttribute="centerY" secondItem="V72-pt-nFd" secondAttribute="centerY" type="default" id="TSj-Ba-d0X"/>
+                            <constraint firstItem="z6Y-mp-mKW" firstAttribute="top" secondItem="3" secondAttribute="top" constant="9" id="WPf-nC-djP"/>
                             <constraint firstAttribute="trailing" secondItem="rOq-ji-7M9" secondAttribute="trailing" constant="20" symbolic="YES" type="default" id="WnP-X2-NlS"/>
                             <constraint firstItem="QVV-0J-X2a" firstAttribute="leading" secondItem="3" secondAttribute="leading" constant="44" id="b09-co-fYb"/>
                             <constraint firstAttribute="trailing" secondItem="V72-pt-nFd" secondAttribute="trailing" constant="39" id="bRc-Qf-acR"/>
                             <constraint firstItem="d5D-NR-Z0Y" firstAttribute="leading" secondItem="3" secondAttribute="leading" constant="20" symbolic="YES" type="default" id="bUr-OU-F8o"/>
+                            <constraint firstItem="rOq-ji-7M9" firstAttribute="top" secondItem="3" secondAttribute="top" constant="92" id="dOr-wo-24n"/>
+                            <constraint firstItem="IEP-vB-Y1L" firstAttribute="top" secondItem="3" secondAttribute="top" constant="151" id="fbM-Ag-rkl"/>
                             <constraint firstItem="5Mh-Oj-KiN" firstAttribute="baseline" secondItem="gCS-P3-Zub" secondAttribute="baseline" type="default" id="hiw-O7-ILu"/>
+                            <constraint firstItem="5Mh-Oj-KiN" firstAttribute="top" secondItem="z6Y-mp-mKW" secondAttribute="bottom" constant="8" symbolic="YES" type="default" id="hyP-1S-PTq"/>
                             <constraint firstItem="gCS-P3-Zub" firstAttribute="leading" secondItem="3" secondAttribute="leading" constant="20" symbolic="YES" type="default" id="mvn-Zw-bcB"/>
                             <constraint firstAttribute="trailing" secondItem="IEP-vB-Y1L" secondAttribute="trailing" constant="20" symbolic="YES" type="default" id="nZX-Iq-hQc"/>
-                            <constraint firstItem="z6Y-mp-mKW" firstAttribute="top" secondItem="3" secondAttribute="top" constant="59" id="pLh-bs-7jR"/>
                             <constraint firstItem="IEP-vB-Y1L" firstAttribute="leading" secondItem="3" secondAttribute="leading" constant="20" symbolic="YES" type="default" id="uG7-di-VTY"/>
                             <constraint firstAttribute="bottom" secondItem="V72-pt-nFd" secondAttribute="bottom" constant="20" symbolic="YES" type="default" id="za9-Q5-2iB"/>
                         </constraints>
@@ -100,6 +105,7 @@
                     <connections>
                         <outlet property="emailField" destination="5Mh-Oj-KiN" id="gju-xu-Ygv"/>
                         <outlet property="passwordField" destination="rOq-ji-7M9" id="kSF-rg-5VG"/>
+                        <segue destination="b8Q-sT-juJ" kind="push" identifier="loginSuccessSegue" id="Wjc-Q4-u8w"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="4" sceneMemberID="firstResponder"/>
@@ -178,6 +184,7 @@
                     <connections>
                         <outlet property="emailField" destination="KdB-Aj-4Mx" id="uIB-RB-oDp"/>
                         <outlet property="passwordField" destination="bcV-cF-oB4" id="Yhf-au-ifA"/>
+                        <segue destination="b8Q-sT-juJ" kind="push" identifier="registerSuccessSegue" id="kwV-ey-FKD"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="XH6-vD-PVL" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -205,10 +212,10 @@
                                             <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                             <color key="highlightedColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         </label>
-                                        <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" translatesAutoresizingMaskIntoConstraints="NO" id="b8w-7C-eFG" customClass="PFImageView">
+                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" image="contact_without_image@2x.png" translatesAutoresizingMaskIntoConstraints="NO" id="b8w-7C-eFG" customClass="PFImageView">
                                             <constraints>
-                                                <constraint firstAttribute="height" constant="70" id="JbF-7Z-BXU"/>
-                                                <constraint firstAttribute="width" constant="70" id="cLW-L2-JP5"/>
+                                                <constraint firstAttribute="width" constant="70" id="eEX-fd-UfM"/>
+                                                <constraint firstAttribute="height" constant="70" id="ole-ig-xOf"/>
                                             </constraints>
                                         </imageView>
                                     </subviews>
@@ -319,6 +326,9 @@
             <point key="canvasLocation" x="733" y="90"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="contact_without_image@2x.png" width="140" height="140"/>
+    </resources>
     <classes>
         <class className="ContactIndexController" superclassName="PFQueryTableViewController">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/ContactIndexController.h"/>
@@ -345,6 +355,8 @@
         <class className="LoginViewController" superclassName="UIViewController">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/LoginViewController.h"/>
             <relationships>
+                <relationship kind="action" name="editingEmailField:"/>
+                <relationship kind="action" name="editingPasswordField:"/>
                 <relationship kind="action" name="login:"/>
                 <relationship kind="outlet" name="emailField" candidateClass="UITextField"/>
                 <relationship kind="outlet" name="passwordField" candidateClass="UITextField"/>
@@ -381,4 +393,7 @@
         <simulatedOrientationMetrics key="orientation"/>
         <simulatedScreenMetrics key="destination" type="retina4"/>
     </simulatedMetricsContainer>
+    <inferredMetricsTieBreakers>
+        <segue reference="Wjc-Q4-u8w"/>
+    </inferredMetricsTieBreakers>
 </document>
