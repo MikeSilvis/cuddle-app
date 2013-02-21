@@ -9,6 +9,8 @@
 /* Begin PBXBuildFile section */
 		362183E416D5A92500AB261A /* contact_without_image.png in Resources */ = {isa = PBXBuildFile; fileRef = 362183E216D5A92500AB261A /* contact_without_image.png */; };
 		362183E516D5A92500AB261A /* contact_without_image@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 362183E316D5A92500AB261A /* contact_without_image@2x.png */; };
+		36246E8816D65C1C0018E1CC /* background.png in Resources */ = {isa = PBXBuildFile; fileRef = 36246E8716D65C1C0018E1CC /* background.png */; };
+		36246E8B16D65D3D0018E1CC /* LonelyCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 36246E8A16D65D3D0018E1CC /* LonelyCell.m */; };
 		362D55FA16C866B000A3423D /* ContactInfoCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 362D55F916C866B000A3423D /* ContactInfoCell.m */; };
 		362D55FD16C8674B00A3423D /* ContactIndexController.m in Sources */ = {isa = PBXBuildFile; fileRef = 362D55FC16C8674B00A3423D /* ContactIndexController.m */; };
 		362D560016C86FD400A3423D /* ContactShowViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 362D55FF16C86FD400A3423D /* ContactShowViewController.m */; };
@@ -63,6 +65,9 @@
 /* Begin PBXFileReference section */
 		362183E216D5A92500AB261A /* contact_without_image.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = contact_without_image.png; sourceTree = "<group>"; };
 		362183E316D5A92500AB261A /* contact_without_image@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "contact_without_image@2x.png"; sourceTree = "<group>"; };
+		36246E8716D65C1C0018E1CC /* background.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = background.png; sourceTree = "<group>"; };
+		36246E8916D65D3D0018E1CC /* LonelyCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LonelyCell.h; sourceTree = "<group>"; };
+		36246E8A16D65D3D0018E1CC /* LonelyCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LonelyCell.m; sourceTree = "<group>"; };
 		362D55F816C866B000A3423D /* ContactInfoCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ContactInfoCell.h; sourceTree = "<group>"; };
 		362D55F916C866B000A3423D /* ContactInfoCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ContactInfoCell.m; sourceTree = "<group>"; };
 		362D55FB16C8674B00A3423D /* ContactIndexController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ContactIndexController.h; sourceTree = "<group>"; };
@@ -160,6 +165,7 @@
 		362183E116D5A90E00AB261A /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				36246E8716D65C1C0018E1CC /* background.png */,
 				362183E216D5A92500AB261A /* contact_without_image.png */,
 				362183E316D5A92500AB261A /* contact_without_image@2x.png */,
 			);
@@ -194,6 +200,8 @@
 			isa = PBXGroup;
 			children = (
 				362D55F816C866B000A3423D /* ContactInfoCell.h */,
+				36246E8916D65D3D0018E1CC /* LonelyCell.h */,
+				36246E8A16D65D3D0018E1CC /* LonelyCell.m */,
 				362D55F916C866B000A3423D /* ContactInfoCell.m */,
 			);
 			name = Cells;
@@ -376,6 +384,7 @@
 				36FFBF6D16C85DDF00CC3140 /* MainStoryboard_iPad.storyboard in Resources */,
 				362183E416D5A92500AB261A /* contact_without_image.png in Resources */,
 				362183E516D5A92500AB261A /* contact_without_image@2x.png in Resources */,
+				36246E8816D65C1C0018E1CC /* background.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -432,6 +441,7 @@
 				362D560016C86FD400A3423D /* ContactShowViewController.m in Sources */,
 				DA58A56F16C8BFD6006D7F55 /* Colleague.m in Sources */,
 				DA36C78F16CB5D6F001D7889 /* RegisterViewController.m in Sources */,
+				36246E8B16D65D3D0018E1CC /* LonelyCell.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

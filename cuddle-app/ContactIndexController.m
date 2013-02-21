@@ -30,6 +30,7 @@
 
 - (void)viewDidLoad{
     [super viewDidLoad];
+    self.view.backgroundColor = [UIColor colorWithPatternImage: [UIImage imageNamed:@"background.png"]];
     self.navigationItem.hidesBackButton = YES;
     [[NSNotificationCenter defaultCenter] addObserver:self
                                              selector:@selector(onContactAdded:)

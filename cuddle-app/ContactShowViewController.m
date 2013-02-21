@@ -17,6 +17,7 @@
     [super viewDidLoad];
     self.title = [contact objectForKey:@"name"];
     self.contactPhoto.file = [contact objectForKey:@"photo"];
+    self.view.backgroundColor = [UIColor colorWithPatternImage: [UIImage imageNamed:@"background.png"]];
     [self loadContactHistory];
 }
 

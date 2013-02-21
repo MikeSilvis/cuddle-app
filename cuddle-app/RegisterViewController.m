@@ -14,6 +14,7 @@
 - (void)viewDidLoad{
     [super viewDidLoad];
     self.title = @"Register";
+    self.view.backgroundColor = [UIColor colorWithPatternImage: [UIImage imageNamed:@"background.png"]];
 }
 - (BOOL)textFieldShouldReturn:(UITextField *)textField
 {

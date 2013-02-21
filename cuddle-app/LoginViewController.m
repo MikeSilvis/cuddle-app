@@ -17,6 +17,7 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    self.view.backgroundColor = [UIColor colorWithPatternImage: [UIImage imageNamed:@"background.png"]];
     [self userCheck];
 }
 - (BOOL)textFieldShouldReturn:(UITextField *)textField

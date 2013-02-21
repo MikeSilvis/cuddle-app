@@ -233,6 +233,27 @@
                                     <segue destination="Z9q-Du-0x5" kind="push" identifier="contactShowSegue" id="5QD-II-XKi"/>
                                 </connections>
                             </tableViewCell>
+                            <tableViewCell contentMode="scaleToFill" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="blankCell" rowHeight="80" id="Wn6-Fa-OS7" customClass="ContactInfoCell">
+                                <rect key="frame" x="0.0" y="102" width="320" height="80"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
+                                    <rect key="frame" x="0.0" y="0.0" width="320" height="79"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="tji-UL-1vB">
+                                            <constraints>
+                                                <constraint firstAttribute="height" constant="40" id="n8n-cx-j0c"/>
+                                                <constraint firstAttribute="width" constant="160" id="sqn-ys-bze"/>
+                                            </constraints>
+                                        </imageView>
+                                    </subviews>
+                                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                </view>
+                                <constraints>
+                                    <constraint firstItem="tji-UL-1vB" firstAttribute="leading" secondItem="Wn6-Fa-OS7" secondAttribute="leading" constant="64" id="FMV-Kf-3IR"/>
+                                    <constraint firstItem="tji-UL-1vB" firstAttribute="top" secondItem="Wn6-Fa-OS7" secondAttribute="top" constant="19" id="tat-Ha-4oQ"/>
+                                </constraints>
+                            </tableViewCell>
                         </prototypes>
                         <connections>
                             <outlet property="dataSource" destination="b8Q-sT-juJ" id="AL3-eg-OUZ"/>
