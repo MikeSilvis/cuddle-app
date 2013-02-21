@@ -16,7 +16,6 @@
 
 @implementation ContactIndexController
 
-@synthesize colleagues;
 @synthesize addressesTable;
 
 - (id)initWithCoder:(NSCoder *)aCoder {
@@ -101,7 +100,7 @@
         if (succeeded){
             PFObject *newColleague = [[PFObject alloc] initWithClassName:@"Colleague"];
             [newColleague setObject:self.imageFile forKey:@"photo"];
-            [newColleague setObject:phone forKey:@"primary number"];
+            [newColleague setObject:phone forKey:@"number"];
             [newColleague setObject:name forKey:@"name"];
             [newColleague saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
                 if (succeeded){

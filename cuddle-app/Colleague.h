@@ -7,6 +7,9 @@
 //
 
 #import <Foundation/Foundation.h>
+#import <AddressBookUI/AddressBookUI.h>
+#import <Parse/Parse.h>
+#import "SVProgressHUD.h"
 
 @interface Colleague : NSObject
 
@@ -16,5 +19,6 @@
 @property UIImage *photo;
 
 - (NSString *) fullName;
+- (id)initWithAbPerson;
 
 @end

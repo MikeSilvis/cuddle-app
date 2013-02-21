@@ -7,7 +7,7 @@
 //
 
 #import "RegisterViewController.h"
-#import <Parse/Parse.h>
+
 
 @implementation RegisterViewController
 
@@ -20,7 +20,6 @@
     if (textField == self.emailField){
         [self.passwordField becomeFirstResponder];
     } else if (textField == self.passwordField){
-//        [self performSegueWithIdentifier:@"signUpSegue" sender:self];
         [self signUpUser];
     }
     
@@ -45,6 +44,7 @@
         [user signUpInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
             if (succeeded) {
                 [SVProgressHUD dismiss];
+                [self performSegueWithIdentifier:@"registerSuccessSegue" sender:self];
             } else {
                 NSLog(@"registration failed");
                 [SVProgressHUD showErrorWithStatus:@"Sorry there was an error. Try again"];
