@@ -62,6 +62,9 @@
     cell.userName.text = [object objectForKey:@"name"];
     PFFile *photo = [object objectForKey:@"photo"];
     
+    cell.userPicture.layer.cornerRadius = 5;
+    cell.userPicture.clipsToBounds = YES;
+    
     if (photo){
         cell.userPicture.file = photo;
         [cell.userPicture loadInBackground];
