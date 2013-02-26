@@ -233,27 +233,6 @@
                                     <segue destination="Z9q-Du-0x5" kind="push" identifier="contactShowSegue" id="5QD-II-XKi"/>
                                 </connections>
                             </tableViewCell>
-                            <tableViewCell contentMode="scaleToFill" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="blankCell" rowHeight="80" id="Wn6-Fa-OS7" customClass="ContactInfoCell">
-                                <rect key="frame" x="0.0" y="102" width="320" height="80"/>
-                                <autoresizingMask key="autoresizingMask"/>
-                                <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
-                                    <rect key="frame" x="0.0" y="0.0" width="320" height="79"/>
-                                    <autoresizingMask key="autoresizingMask"/>
-                                    <subviews>
-                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="tji-UL-1vB">
-                                            <constraints>
-                                                <constraint firstAttribute="height" constant="40" id="n8n-cx-j0c"/>
-                                                <constraint firstAttribute="width" constant="160" id="sqn-ys-bze"/>
-                                            </constraints>
-                                        </imageView>
-                                    </subviews>
-                                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-                                </view>
-                                <constraints>
-                                    <constraint firstItem="tji-UL-1vB" firstAttribute="leading" secondItem="Wn6-Fa-OS7" secondAttribute="leading" constant="64" id="FMV-Kf-3IR"/>
-                                    <constraint firstItem="tji-UL-1vB" firstAttribute="top" secondItem="Wn6-Fa-OS7" secondAttribute="top" constant="19" id="tat-Ha-4oQ"/>
-                                </constraints>
-                            </tableViewCell>
                         </prototypes>
                         <connections>
                             <outlet property="dataSource" destination="b8Q-sT-juJ" id="AL3-eg-OUZ"/>
@@ -270,11 +249,36 @@
                     <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" barStyle="blackOpaque" prompted="NO"/>
                     <connections>
                         <outlet property="addressesTable" destination="Edb-cn-l04" id="qla-gY-wlG"/>
+                        <segue destination="lQ5-KZ-oi9" kind="custom" identifier="lonelySegue" customClass="LonelySegue" id="U7p-aW-0RZ"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="AES-uZ-hag" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="2015" y="90"/>
+        </scene>
+        <!--View Controller-->
+        <scene sceneID="ikj-Qb-UEX">
+            <objects>
+                <viewController id="lQ5-KZ-oi9" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="Iwe-IT-fyb">
+                        <rect key="frame" x="0.0" y="20" width="320" height="548"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <subviews>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" image="lonely.png" translatesAutoresizingMaskIntoConstraints="NO" id="p52-u8-PR1"/>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="p52-u8-PR1" firstAttribute="trailing" secondItem="Iwe-IT-fyb" secondAttribute="trailing" type="default" id="JIn-GG-eD9"/>
+                            <constraint firstItem="p52-u8-PR1" firstAttribute="bottom" secondItem="Iwe-IT-fyb" secondAttribute="bottom" type="default" id="MAG-BT-6YP"/>
+                            <constraint firstItem="p52-u8-PR1" firstAttribute="top" secondItem="Iwe-IT-fyb" secondAttribute="top" type="default" id="rw5-Tn-OdF"/>
+                            <constraint firstItem="p52-u8-PR1" firstAttribute="leading" secondItem="Iwe-IT-fyb" secondAttribute="leading" type="default" id="uwb-Gr-xUg"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" id="fBF-lB-AaE"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="ocX-aj-Ys6" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2522" y="-634"/>
         </scene>
         <!--Contact Show View Controller - Mike Silvis-->
         <scene sceneID="PSb-Y5-NJK">
@@ -325,7 +329,7 @@
                     </connections>
                 </swipeGestureRecognizer>
             </objects>
-            <point key="canvasLocation" x="2522" y="90"/>
+            <point key="canvasLocation" x="3004" y="90"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="qZb-Dj-bPu">
@@ -349,6 +353,7 @@
     </scenes>
     <resources>
         <image name="contact_without_image@2x.png" width="140" height="140"/>
+        <image name="lonely.png" width="640" height="960"/>
     </resources>
     <classes>
         <class className="ContactIndexController" superclassName="PFQueryTableViewController">

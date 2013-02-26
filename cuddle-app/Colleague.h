@@ -20,5 +20,6 @@
 
 - (NSString *) fullName;
 - (id)initWithAbPerson;
+- (void)myMethod:(NSString *)string withOtherMethod:(NSString *)otherString nameParam:(UIImage *)myImage nameP2aram:(UIImage *)myImage namePa3ram:(UIImage *)myImage;
 
 @end

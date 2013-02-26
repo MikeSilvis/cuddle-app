@@ -37,6 +37,12 @@
                                                  name:@"ContactAdded"
                                                object:nil];
 }
+- (void)objectsDidLoad:(NSError *)error{
+    if ([addressesTable numberOfRowsInSection:0] == 0){
+        [self performSegueWithIdentifier:@"lonelySegue" sender:self];
+    }
+    [super objectsDidLoad:error];    
+}
 
 # pragma mark - Table List
 
@@ -60,6 +66,7 @@
 
 - (IBAction)showPeoplePicker
 {
+    self.view = addressesTable;
     ABPeoplePickerNavigationController *picker = [[ABPeoplePickerNavigationController alloc] init];
     picker.peoplePickerDelegate = self;
     
