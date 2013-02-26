@@ -10,6 +10,9 @@
 
 @implementation LonelySegue
 - (void)perform {
-    [self.sourceViewController presentModalViewController:self.destinationViewController animated:NO];
+    UIViewController *src = (UIViewController *) self.sourceViewController;
+    UIViewController *dst = (UIViewController *) self.destinationViewController;
+
+    [src.navigationController pushViewController:dst animated:NO];
 }
 @end

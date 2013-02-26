@@ -8,10 +8,13 @@
 
 #import <UIKit/UIKit.h>
 #import <Parse/Parse.h>
+#import <QuartzCore/QuartzCore.h>
 
 @interface ContactInfoCell : PFTableViewCell
 
 @property (weak, nonatomic) IBOutlet UILabel *userName;
 @property (weak, nonatomic) IBOutlet PFImageView *userPicture;
+@property (weak, nonatomic) IBOutlet UILabel *userLastContact;
+@property (weak, nonatomic) IBOutlet UIImageView *backgroundImage;
 
 @end

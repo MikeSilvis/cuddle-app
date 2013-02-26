@@ -10,7 +10,6 @@
 
 @implementation LonelyController
 -(void)viewDidLoad{
-}
-- (IBAction)showPeoplePicker:(id)sender {
+    self.navigationItem.hidesBackButton = YES;
 }
 @end

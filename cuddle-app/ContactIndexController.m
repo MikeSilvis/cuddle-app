@@ -32,6 +32,7 @@
     [super viewDidLoad];
     self.view.backgroundColor = [UIColor colorWithPatternImage: [UIImage imageNamed:@"background.png"]];
     self.navigationItem.hidesBackButton = YES;
+
     [[NSNotificationCenter defaultCenter] addObserver:self
                                              selector:@selector(contactSaved:)
                                                  name:@"ContactSaved"
@@ -40,12 +41,17 @@
                                              selector:@selector(contactFailed:)
                                                  name:@"ContactFailed"
                                                object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(selectPersonFromPicker:)
+                                                 name:@"PeoplePicker"
+                                               object:nil];
 }
 - (void)objectsDidLoad:(NSError *)error{
+    [super objectsDidLoad:error]; 
     if ([addressesTable numberOfRowsInSection:0] == 0){
         [self performSegueWithIdentifier:@"lonelySegue" sender:self];
     }
-    [super objectsDidLoad:error];    
+
 }
 
 # pragma mark - Table List
@@ -68,16 +74,19 @@
 
 # pragma mark - Adding a Contact
 
-- (IBAction)showPeoplePicker
-{
+- (IBAction)showPeoplePicker{
+    [self selectPersonFromPicker];
+}
+
+- (void)selectPersonFromPicker{
     self.view = addressesTable;
     ABPeoplePickerNavigationController *picker = [[ABPeoplePickerNavigationController alloc] init];
     picker.peoplePickerDelegate = self;
     
     [self presentViewController:picker animated:YES completion:nil];
 }
-- (void)peoplePickerNavigationControllerDidCancel: (ABPeoplePickerNavigationController *)peoplePicker
-{
+
+- (void)peoplePickerNavigationControllerDidCancel: (ABPeoplePickerNavigationController *)peoplePicker {
     [self dismissViewControllerAnimated:YES completion:nil];
 }
 - (BOOL)peoplePickerNavigationController: (ABPeoplePickerNavigationController *)peoplePicker

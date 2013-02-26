@@ -54,6 +54,7 @@
 - (IBAction)login:(id)sender {
     [self loginUser];
 }
+
 - (void)userCheck{
     PFUser *currentUser = [PFUser currentUser];
     if (currentUser) {
