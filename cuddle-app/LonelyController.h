@@ -7,7 +7,9 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "User.h"
 
-@interface LonelyController : UITableViewCell
+@interface LonelyController : UIViewController
+- (IBAction)showPeoplePicker:(id)sender;
 
 @end

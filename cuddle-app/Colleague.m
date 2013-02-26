@@ -10,15 +10,49 @@
 
 @implementation Colleague
 
-- (NSString *) fullName {
-    return [NSString stringWithFormat:@"%@ %@", self.firstName, self.lastName];
-}
-- (id)initWithABPerson:(ABRecordRef *)abPerson {
+- (id)initWithABPerson:(ABRecordRef)abPerson {
     self = [super init];
-    
     if (self) {
+        NSString *firstName = (__bridge_transfer NSString*)ABRecordCopyValue(abPerson, kABPersonFirstNameProperty);
+        NSString *lastName = (__bridge_transfer NSString*)ABRecordCopyValue(abPerson, kABPersonLastNameProperty);
+        self.name = [NSString stringWithFormat:@"%@ %@", firstName, lastName];
+        
+        ABMultiValueRef phoneNumbers = ABRecordCopyValue(abPerson, kABPersonPhoneProperty);
+        if (ABMultiValueGetCount(phoneNumbers) > 0) {
+            self.phoneNumber = (__bridge_transfer NSString*) ABMultiValueCopyValueAtIndex(phoneNumbers, 0);
+        }
+        
+        NSData  *imgABData = (__bridge_transfer NSData *) ABPersonCopyImageDataWithFormat(abPerson, kABPersonImageFormatThumbnail);
+        UIImage *image = [UIImage imageWithData:imgABData];
+        if (image.size.width > 140){
+            self.photo = [PFFile fileWithData:imgABData];
+            [self.photo saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
+                if (succeeded){
+                    [self saveColleague];
+                }
+            }];
+        } else {
+            [self saveColleague];
+        }
     }
-    
+
     return self;
 }
+- (void)saveColleague{
+    PFObject *newColleague = [[PFObject alloc] initWithClassName:@"Colleague"];
+    if (self.photo){
+        [newColleague setObject:self.photo forKey:@"photo"];
+    }
+    [newColleague setObject:self.name forKey:@"name"];
+    [newColleague setObject:self.phoneNumber forKey:@"number"];
+    [newColleague saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
+        if (succeeded){
+            [[NSNotificationCenter defaultCenter] postNotificationName:@"ContactSaved" object:self];
+        } else {
+            [[NSNotificationCenter defaultCenter] postNotificationName:@"ContactFailed" object:self];
+        }
+        
+    }];
+}
+
 @end

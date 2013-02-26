@@ -13,6 +13,7 @@
 		362D55FA16C866B000A3423D /* ContactInfoCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 362D55F916C866B000A3423D /* ContactInfoCell.m */; };
 		362D55FD16C8674B00A3423D /* ContactIndexController.m in Sources */ = {isa = PBXBuildFile; fileRef = 362D55FC16C8674B00A3423D /* ContactIndexController.m */; };
 		362D560016C86FD400A3423D /* ContactShowViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 362D55FF16C86FD400A3423D /* ContactShowViewController.m */; };
+		365D019F16DC38780091CBA6 /* User.m in Sources */ = {isa = PBXBuildFile; fileRef = 365D019E16DC38780091CBA6 /* User.m */; };
 		366917D516D711DD00DF21E9 /* lonely.png in Resources */ = {isa = PBXBuildFile; fileRef = 366917D416D711DD00DF21E9 /* lonely.png */; };
 		366917D816D7143500DF21E9 /* LonelyController.m in Sources */ = {isa = PBXBuildFile; fileRef = 366917D716D7143500DF21E9 /* LonelyController.m */; };
 		366917DD16D714E600DF21E9 /* LonelySegue.m in Sources */ = {isa = PBXBuildFile; fileRef = 366917DC16D714E600DF21E9 /* LonelySegue.m */; };
@@ -74,6 +75,8 @@
 		362D55FC16C8674B00A3423D /* ContactIndexController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ContactIndexController.m; sourceTree = "<group>"; };
 		362D55FE16C86FD400A3423D /* ContactShowViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ContactShowViewController.h; sourceTree = "<group>"; };
 		362D55FF16C86FD400A3423D /* ContactShowViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ContactShowViewController.m; sourceTree = "<group>"; };
+		365D019D16DC38780091CBA6 /* User.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = User.h; sourceTree = "<group>"; };
+		365D019E16DC38780091CBA6 /* User.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = User.m; sourceTree = "<group>"; };
 		366917D416D711DD00DF21E9 /* lonely.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = lonely.png; sourceTree = "<group>"; };
 		366917D616D7143500DF21E9 /* LonelyController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LonelyController.h; sourceTree = "<group>"; };
 		366917D716D7143500DF21E9 /* LonelyController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LonelyController.m; sourceTree = "<group>"; };
@@ -183,6 +186,8 @@
 			children = (
 				DA58A56D16C8BFD6006D7F55 /* Colleague.h */,
 				DA58A56E16C8BFD6006D7F55 /* Colleague.m */,
+				365D019D16DC38780091CBA6 /* User.h */,
+				365D019E16DC38780091CBA6 /* User.m */,
 			);
 			name = Models;
 			sourceTree = "<group>";
@@ -460,6 +465,7 @@
 				DA36C78F16CB5D6F001D7889 /* RegisterViewController.m in Sources */,
 				366917D816D7143500DF21E9 /* LonelyController.m in Sources */,
 				366917DD16D714E600DF21E9 /* LonelySegue.m in Sources */,
+				365D019F16DC38780091CBA6 /* User.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -11,15 +11,13 @@
 #import <Parse/Parse.h>
 #import "SVProgressHUD.h"
 
-@interface Colleague : NSObject
+@interface Colleague : PFObject
 
-@property NSString *firstName;
-@property NSString *lastName;
-@property NSString *phoneNumber;
-@property UIImage *photo;
+@property (nonatomic, retain) NSString *name;
+@property (nonatomic, retain) NSString *phoneNumber;
+@property (nonatomic, retain) PFObject *photo;
 
-- (NSString *) fullName;
-- (id)initWithAbPerson;
-- (void)myMethod:(NSString *)string withOtherMethod:(NSString *)otherString nameParam:(UIImage *)myImage nameP2aram:(UIImage *)myImage namePa3ram:(UIImage *)myImage;
+- (id)initWithABPerson:(ABRecordRef)abPerson;
+- (void)saveColleague;
 
 @end

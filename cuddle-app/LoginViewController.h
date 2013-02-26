@@ -10,13 +10,16 @@
 #import <SVProgressHUD.h>
 #import <Parse/Parse.h>
 
-@interface LoginViewController : UIViewController
+@interface LoginViewController : UIViewController <UITextFieldDelegate>
 
 - (IBAction)login:(id)sender;
+
 @property (weak, nonatomic) IBOutlet UITextField *emailField;
 @property (weak, nonatomic) IBOutlet UITextField *passwordField;
+
 - (IBAction)editingEmailField:(id)sender;
 - (IBAction)editingPasswordField:(id)sender;
+
 - (void)loginUser;
 
 @end

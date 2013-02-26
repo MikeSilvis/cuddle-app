@@ -33,8 +33,12 @@
     self.view.backgroundColor = [UIColor colorWithPatternImage: [UIImage imageNamed:@"background.png"]];
     self.navigationItem.hidesBackButton = YES;
     [[NSNotificationCenter defaultCenter] addObserver:self
-                                             selector:@selector(onContactAdded:)
-                                                 name:@"ContactAdded"
+                                             selector:@selector(contactSaved:)
+                                                 name:@"ContactSaved"
+                                               object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(contactFailed:)
+                                                 name:@"ContactFailed"
                                                object:nil];
 }
 - (void)objectsDidLoad:(NSError *)error{
@@ -79,7 +83,8 @@
 - (BOOL)peoplePickerNavigationController: (ABPeoplePickerNavigationController *)peoplePicker
       shouldContinueAfterSelectingPerson:(ABRecordRef)person {
     
-    [self addPerson:person];
+    [SVProgressHUD showWithStatus:@"Saving Contact"];
+    [[Colleague alloc] initWithABPerson:person];
     [self dismissViewControllerAnimated:YES completion:nil];
     
     return NO;
@@ -92,68 +97,18 @@
 {
     return NO;
 }
-- (void)addPerson:(ABRecordRef)person
-{
-    // All of this should be in Colleague.h
-    NSString *firstName = (__bridge_transfer NSString*)ABRecordCopyValue(person, kABPersonFirstNameProperty);
-    NSString *lastName = (__bridge_transfer NSString*)ABRecordCopyValue(person, kABPersonLastNameProperty);
-    NSString *name = [NSString stringWithFormat:@"%@ %@", firstName, lastName];
-    NSData  *imgABData = (__bridge_transfer NSData *) ABPersonCopyImageDataWithFormat(person, kABPersonImageFormatThumbnail);
 
-    NSString* phone = nil;
-    ABMultiValueRef phoneNumbers = ABRecordCopyValue(person, kABPersonPhoneProperty);
-    
-    if (ABMultiValueGetCount(phoneNumbers) > 0) {
-        phone = (__bridge_transfer NSString*)
-        ABMultiValueCopyValueAtIndex(phoneNumbers, 0);
-    }
-    
-    [SVProgressHUD showWithStatus:@"Saving Contact"];
-    UIImage *image = [UIImage imageWithData:imgABData];
-    // If there is not an image greater then 140 we dont want to upload it to parse
-    if (image.size.width > 140){
-        self.imageFile = [PFFile fileWithData:imgABData];
-        [self.imageFile saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
-            if (succeeded){
-                PFObject *newColleague = [[PFObject alloc] initWithClassName:@"Colleague"];
-                [newColleague setObject:self.imageFile forKey:@"photo"]; // This is causing an error now
-                [newColleague setObject:phone forKey:@"number"];
-                [newColleague setObject:name forKey:@"name"];
-                [newColleague saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
-                    if (succeeded){
-                        [SVProgressHUD dismiss];
-                        [[NSNotificationCenter defaultCenter] postNotificationName:@"ContactAdded" object:self];
-                    } else {
-                        NSLog(@"Contact failed to upload");
-                        [SVProgressHUD showErrorWithStatus:@"Sorry there was an error. Try again"];
-                    }
-                    
-                }];
-            }
-        }];
-    } else {
-        PFObject *newColleague = [[PFObject alloc] initWithClassName:@"Colleague"];
-        [newColleague setObject:phone forKey:@"number"];
-        [newColleague setObject:name forKey:@"name"];
-        [newColleague saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
-            if (succeeded){
-                [SVProgressHUD dismiss];
-                [[NSNotificationCenter defaultCenter] postNotificationName:@"ContactAdded" object:self];
-            } else {
-                NSLog(@"Contact failed to upload");
-                [SVProgressHUD showErrorWithStatus:@"Sorry there was an error. Try again"];
-            }
-         
-        }];
-    }
-    
-    CFRelease(phoneNumbers);
-    
+- (void)contactSaved:(NSNotification *)notification {
+    [SVProgressHUD dismiss];
     [addressesTable reloadData];
-}
-- (void)onContactAdded:(NSNotification *)notification {
     [self loadObjects];
 }
+
+- (void)contactFailed:(NSNotification *)notification{
+    [SVProgressHUD showErrorWithStatus:@"Sorry there was an error. Try again"];
+    NSLog(@"contact failed");
+}
+
 -(void) prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender{
     if([segue.identifier isEqualToString:@"contactShowSegue"]){
         NSIndexPath *indexPath = [self.tableView indexPathForSelectedRow];
