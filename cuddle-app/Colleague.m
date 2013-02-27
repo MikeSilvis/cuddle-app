@@ -15,6 +15,9 @@
     if (self) {
         NSString *firstName = (__bridge_transfer NSString*)ABRecordCopyValue(abPerson, kABPersonFirstNameProperty);
         NSString *lastName = (__bridge_transfer NSString*)ABRecordCopyValue(abPerson, kABPersonLastNameProperty);
+//        self.facebook = (__bridge_transfer NSString*)ABRecordCopyValue(abPerson,kABPersonSocialProfileServiceFacebook);
+//        self.twitter = (__bridge_transfer NSString*)ABRecordCopyValue(abPerson, kABPersonSocialProfileServiceTwitter);
+        
         self.name = [NSString stringWithFormat:@"%@ %@", firstName, lastName];
         
         ABMultiValueRef phoneNumbers = ABRecordCopyValue(abPerson, kABPersonPhoneProperty);
@@ -43,8 +46,10 @@
     if (self.photo){
         [newColleague setObject:self.photo forKey:@"photo"];
     }
+    if (self.phoneNumber){
+        [newColleague setObject:self.phoneNumber forKey:@"number"];
+    }
     [newColleague setObject:self.name forKey:@"name"];
-    [newColleague setObject:self.phoneNumber forKey:@"number"];
     [newColleague saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
         if (succeeded){
             [[NSNotificationCenter defaultCenter] postNotificationName:@"ContactSaved" object:self];

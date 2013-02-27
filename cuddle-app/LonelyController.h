@@ -10,5 +10,6 @@
 #import "User.h"
 
 @interface LonelyController : UIViewController
+- (IBAction)showPeoplePicker:(id)sender;
 
 @end

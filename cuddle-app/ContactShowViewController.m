@@ -32,4 +32,7 @@
 - (IBAction)handleSwipe:(UISwipeGestureRecognizer *)sender {
     [self.navigationController popViewControllerAnimated:YES];
 }
+- (IBAction)callContact:(id)sender {
+    NSLog(@"call contact fired");
+}
 @end

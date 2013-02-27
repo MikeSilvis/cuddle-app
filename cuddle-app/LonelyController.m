@@ -12,4 +12,7 @@
 -(void)viewDidLoad{
     self.navigationItem.hidesBackButton = YES;
 }
+- (IBAction)showPeoplePicker:(id)sender {
+    [[NSNotificationCenter defaultCenter] postNotificationName:@"PeoplePicker" object:self];
+}
 @end

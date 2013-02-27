@@ -13,4 +13,5 @@
 @property (weak, nonatomic) IBOutlet PFImageView *contactPhoto;
 - (IBAction)handleSwipe:(UISwipeGestureRecognizer *)sender;
 @property (strong, nonatomic) IBOutlet PFObject *contact;
+- (IBAction)callContact:(id)sender;
 @end

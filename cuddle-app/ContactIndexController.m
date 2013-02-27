@@ -82,7 +82,8 @@
 }
 
 - (void)selectPersonFromPicker{
-    self.view = addressesTable;
+  NSLog(@"you are being called");
+//    self.view = addressesTable;
     ABPeoplePickerNavigationController *picker = [[ABPeoplePickerNavigationController alloc] init];
     picker.peoplePickerDelegate = self;
     

@@ -15,6 +15,8 @@
 
 @property (nonatomic, retain) NSString *name;
 @property (nonatomic, retain) NSString *phoneNumber;
+@property (nonatomic, retain) NSString *facebook;
+@property (nonatomic, retain) NSString *twitter;
 @property (nonatomic, retain) PFObject *photo;
 
 - (id)initWithABPerson:(ABRecordRef)abPerson;

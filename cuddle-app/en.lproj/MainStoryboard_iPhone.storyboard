@@ -279,10 +279,10 @@
             </objects>
             <point key="canvasLocation" x="2015" y="90"/>
         </scene>
-        <!--View Controller-->
+        <!--Lonely Controller-->
         <scene sceneID="ikj-Qb-UEX">
             <objects>
-                <viewController id="lQ5-KZ-oi9" sceneMemberID="viewController">
+                <viewController id="lQ5-KZ-oi9" customClass="LonelyController" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="Iwe-IT-fyb">
                         <rect key="frame" x="0.0" y="64" width="320" height="504"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -300,7 +300,7 @@
                     <navigationItem key="navigationItem" id="fBF-lB-AaE">
                         <barButtonItem key="rightBarButtonItem" systemItem="add" id="iSD-Nb-6se">
                             <connections>
-                                <action selector="showPeoplePicker:" destination="lQ5-KZ-oi9" id="az1-6x-WHM"/>
+                                <action selector="showPeoplePicker:" destination="lQ5-KZ-oi9" id="qcd-U7-rrg"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
@@ -326,7 +326,7 @@
                             </imageView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Diu-DS-2jy">
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
-                                <state key="normal" title="Contact">
+                                <state key="normal" title="Call">
                                     <color key="titleColor" red="0.19607843459999999" green="0.30980393290000002" blue="0.52156865600000002" alpha="1" colorSpace="calibratedRGB"/>
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
@@ -391,67 +391,6 @@
         <image name="list-item-bg.png" width="320" height="67"/>
         <image name="lonely@2x.png" width="640" height="1136"/>
     </resources>
-    <classes>
-        <class className="ContactIndexController" superclassName="PFQueryTableViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/ContactIndexController.h"/>
-            <relationships>
-                <relationship kind="action" name="showPeoplePicker"/>
-                <relationship kind="outlet" name="addressesTable" candidateClass="UITableView"/>
-            </relationships>
-        </class>
-        <class className="ContactInfoCell" superclassName="PFTableViewCell">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/ContactInfoCell.h"/>
-            <relationships>
-                <relationship kind="outlet" name="backgroundImage" candidateClass="UIImageView"/>
-                <relationship kind="outlet" name="userLastContact" candidateClass="UILabel"/>
-                <relationship kind="outlet" name="userName" candidateClass="UILabel"/>
-                <relationship kind="outlet" name="userPicture" candidateClass="PFImageView"/>
-            </relationships>
-        </class>
-        <class className="ContactShowViewController" superclassName="UIViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/ContactShowViewController.h"/>
-            <relationships>
-                <relationship kind="action" name="handleSwipe:" candidateClass="UISwipeGestureRecognizer"/>
-                <relationship kind="outlet" name="contact" candidateClass="PFObject"/>
-                <relationship kind="outlet" name="contactPhoto" candidateClass="PFImageView"/>
-            </relationships>
-        </class>
-        <class className="LoginViewController" superclassName="UIViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/LoginViewController.h"/>
-            <relationships>
-                <relationship kind="action" name="editingEmailField:"/>
-                <relationship kind="action" name="editingPasswordField:"/>
-                <relationship kind="action" name="login:"/>
-                <relationship kind="outlet" name="emailField" candidateClass="UITextField"/>
-                <relationship kind="outlet" name="passwordField" candidateClass="UITextField"/>
-            </relationships>
-        </class>
-        <class className="NSLayoutConstraint" superclassName="NSObject">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/NSLayoutConstraint.h"/>
-        </class>
-        <class className="PFImageView" superclassName="UIImageView">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/PFImageView.h"/>
-        </class>
-        <class className="PFObject" superclassName="NSObject">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/PFObject.h"/>
-        </class>
-        <class className="PFQueryTableViewController" superclassName="UITableViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/PFQueryTableViewController.h"/>
-        </class>
-        <class className="PFTableViewCell" superclassName="UITableViewCell">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/PFTableViewCell.h"/>
-        </class>
-        <class className="RegisterViewController" superclassName="UIViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/RegisterViewController.h"/>
-            <relationships>
-                <relationship kind="action" name="editingEmailField:"/>
-                <relationship kind="action" name="editingPasswordField:"/>
-                <relationship kind="action" name="registerUserButton:"/>
-                <relationship kind="outlet" name="emailField" candidateClass="UITextField"/>
-                <relationship kind="outlet" name="passwordField" candidateClass="UITextField"/>
-            </relationships>
-        </class>
-    </classes>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
         <simulatedStatusBarMetrics key="statusBar"/>
         <simulatedOrientationMetrics key="orientation"/>
