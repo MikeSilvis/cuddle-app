@@ -45,7 +45,5 @@
       [UIFont fontWithName:@"Avenir-Heavy" size:20.0],
       UITextAttributeFont,
       nil]];
-    
-//    Avenir Medium 24.0
 }
 @end

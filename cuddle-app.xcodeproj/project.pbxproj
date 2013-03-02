@@ -18,12 +18,13 @@
 		36232B4216E281640029A175 /* tabbar.png in Resources */ = {isa = PBXBuildFile; fileRef = 36232B4016E281640029A175 /* tabbar.png */; };
 		36232B4316E281640029A175 /* tabbar@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 36232B4116E281640029A175 /* tabbar@2x.png */; };
 		36232B4516E286390029A175 /* MessageUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 36232B4416E286390029A175 /* MessageUI.framework */; };
-		36232B5616E28E3C0029A175 /* email.png in Resources */ = {isa = PBXBuildFile; fileRef = 36232B5016E28E3C0029A175 /* email.png */; };
-		36232B5716E28E3C0029A175 /* email@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 36232B5116E28E3C0029A175 /* email@2x.png */; };
-		36232B5816E28E3C0029A175 /* phone.png in Resources */ = {isa = PBXBuildFile; fileRef = 36232B5216E28E3C0029A175 /* phone.png */; };
-		36232B5916E28E3C0029A175 /* phone@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 36232B5316E28E3C0029A175 /* phone@2x.png */; };
-		36232B5A16E28E3C0029A175 /* sms.png in Resources */ = {isa = PBXBuildFile; fileRef = 36232B5416E28E3C0029A175 /* sms.png */; };
-		36232B5B16E28E3C0029A175 /* sms@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 36232B5516E28E3C0029A175 /* sms@2x.png */; };
+		36232B6416E2AA7C0029A175 /* email.png in Resources */ = {isa = PBXBuildFile; fileRef = 36232B5E16E2AA7C0029A175 /* email.png */; };
+		36232B6516E2AA7C0029A175 /* email@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 36232B5F16E2AA7C0029A175 /* email@2x.png */; };
+		36232B6616E2AA7C0029A175 /* phone.png in Resources */ = {isa = PBXBuildFile; fileRef = 36232B6016E2AA7C0029A175 /* phone.png */; };
+		36232B6716E2AA7C0029A175 /* phone@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 36232B6116E2AA7C0029A175 /* phone@2x.png */; };
+		36232B6816E2AA7C0029A175 /* sms.png in Resources */ = {isa = PBXBuildFile; fileRef = 36232B6216E2AA7C0029A175 /* sms.png */; };
+		36232B6916E2AA7C0029A175 /* sms@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 36232B6316E2AA7C0029A175 /* sms@2x.png */; };
+		36232B6C16E2B3FA0029A175 /* ContactHistoryCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 36232B6B16E2B3FA0029A175 /* ContactHistoryCell.m */; };
 		36246E8816D65C1C0018E1CC /* background.png in Resources */ = {isa = PBXBuildFile; fileRef = 36246E8716D65C1C0018E1CC /* background.png */; };
 		362D55FA16C866B000A3423D /* ContactInfoCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 362D55F916C866B000A3423D /* ContactInfoCell.m */; };
 		362D55FD16C8674B00A3423D /* ContactIndexController.m in Sources */ = {isa = PBXBuildFile; fileRef = 362D55FC16C8674B00A3423D /* ContactIndexController.m */; };
@@ -116,12 +117,14 @@
 		36232B4016E281640029A175 /* tabbar.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = tabbar.png; sourceTree = "<group>"; };
 		36232B4116E281640029A175 /* tabbar@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "tabbar@2x.png"; sourceTree = "<group>"; };
 		36232B4416E286390029A175 /* MessageUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MessageUI.framework; path = System/Library/Frameworks/MessageUI.framework; sourceTree = SDKROOT; };
-		36232B5016E28E3C0029A175 /* email.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = email.png; path = "../../untitled folder/email.png"; sourceTree = "<group>"; };
-		36232B5116E28E3C0029A175 /* email@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "email@2x.png"; path = "../../untitled folder/email@2x.png"; sourceTree = "<group>"; };
-		36232B5216E28E3C0029A175 /* phone.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = phone.png; path = "../../untitled folder/phone.png"; sourceTree = "<group>"; };
-		36232B5316E28E3C0029A175 /* phone@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "phone@2x.png"; path = "../../untitled folder/phone@2x.png"; sourceTree = "<group>"; };
-		36232B5416E28E3C0029A175 /* sms.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = sms.png; path = "../../untitled folder/sms.png"; sourceTree = "<group>"; };
-		36232B5516E28E3C0029A175 /* sms@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "sms@2x.png"; path = "../../untitled folder/sms@2x.png"; sourceTree = "<group>"; };
+		36232B5E16E2AA7C0029A175 /* email.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = email.png; sourceTree = "<group>"; };
+		36232B5F16E2AA7C0029A175 /* email@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "email@2x.png"; sourceTree = "<group>"; };
+		36232B6016E2AA7C0029A175 /* phone.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = phone.png; sourceTree = "<group>"; };
+		36232B6116E2AA7C0029A175 /* phone@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "phone@2x.png"; sourceTree = "<group>"; };
+		36232B6216E2AA7C0029A175 /* sms.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = sms.png; sourceTree = "<group>"; };
+		36232B6316E2AA7C0029A175 /* sms@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "sms@2x.png"; sourceTree = "<group>"; };
+		36232B6A16E2B3FA0029A175 /* ContactHistoryCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ContactHistoryCell.h; sourceTree = "<group>"; };
+		36232B6B16E2B3FA0029A175 /* ContactHistoryCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ContactHistoryCell.m; sourceTree = "<group>"; };
 		36246E8716D65C1C0018E1CC /* background.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = background.png; sourceTree = "<group>"; };
 		362D55F816C866B000A3423D /* ContactInfoCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ContactInfoCell.h; sourceTree = "<group>"; };
 		362D55F916C866B000A3423D /* ContactInfoCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ContactInfoCell.m; sourceTree = "<group>"; };
@@ -253,12 +256,12 @@
 		362183E116D5A90E00AB261A /* Resources */ = {
 			isa = PBXGroup;
 			children = (
-				36232B5016E28E3C0029A175 /* email.png */,
-				36232B5116E28E3C0029A175 /* email@2x.png */,
-				36232B5216E28E3C0029A175 /* phone.png */,
-				36232B5316E28E3C0029A175 /* phone@2x.png */,
-				36232B5416E28E3C0029A175 /* sms.png */,
-				36232B5516E28E3C0029A175 /* sms@2x.png */,
+				36232B5E16E2AA7C0029A175 /* email.png */,
+				36232B5F16E2AA7C0029A175 /* email@2x.png */,
+				36232B6016E2AA7C0029A175 /* phone.png */,
+				36232B6116E2AA7C0029A175 /* phone@2x.png */,
+				36232B6216E2AA7C0029A175 /* sms.png */,
+				36232B6316E2AA7C0029A175 /* sms@2x.png */,
 				36232B4016E281640029A175 /* tabbar.png */,
 				36232B4116E281640029A175 /* tabbar@2x.png */,
 				36232B3C16E280D70029A175 /* menubar.png */,
@@ -330,6 +333,8 @@
 		3647A8E216D31C6900602D54 /* Cells */ = {
 			isa = PBXGroup;
 			children = (
+				36232B6A16E2B3FA0029A175 /* ContactHistoryCell.h */,
+				36232B6B16E2B3FA0029A175 /* ContactHistoryCell.m */,
 				362D55F816C866B000A3423D /* ContactInfoCell.h */,
 				362D55F916C866B000A3423D /* ContactInfoCell.m */,
 			);
@@ -357,14 +362,15 @@
 		36FFBF4416C85DDF00CC3140 = {
 			isa = PBXGroup;
 			children = (
-				36232B4416E286390029A175 /* MessageUI.framework */,
 				36FFBF5616C85DDF00CC3140 /* cuddle-app */,
 				36FFBF7D16C85DDF00CC3140 /* cuddle-appTests */,
 				36FFBF4F16C85DDF00CC3140 /* Frameworks */,
 				36FFBF4E16C85DDF00CC3140 /* Products */,
 				66500968D5FC435493127319 /* Pods.xcconfig */,
 			);
+			indentWidth = 2;
 			sourceTree = "<group>";
+			tabWidth = 2;
 		};
 		36FFBF4E16C85DDF00CC3140 /* Products */ = {
 			isa = PBXGroup;
@@ -378,6 +384,7 @@
 		36FFBF4F16C85DDF00CC3140 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				36232B4416E286390029A175 /* MessageUI.framework */,
 				DAD3EC0416CA1A6600E56737 /* SystemConfiguration.framework */,
 				DAD3EC0216CA1A6100E56737 /* StoreKit.framework */,
 				DAD3EC0016CA1A5B00E56737 /* Social.framework */,
@@ -568,12 +575,12 @@
 				36232B3F16E280D70029A175 /* menubar@2x.png in Resources */,
 				36232B4216E281640029A175 /* tabbar.png in Resources */,
 				36232B4316E281640029A175 /* tabbar@2x.png in Resources */,
-				36232B5616E28E3C0029A175 /* email.png in Resources */,
-				36232B5716E28E3C0029A175 /* email@2x.png in Resources */,
-				36232B5816E28E3C0029A175 /* phone.png in Resources */,
-				36232B5916E28E3C0029A175 /* phone@2x.png in Resources */,
-				36232B5A16E28E3C0029A175 /* sms.png in Resources */,
-				36232B5B16E28E3C0029A175 /* sms@2x.png in Resources */,
+				36232B6416E2AA7C0029A175 /* email.png in Resources */,
+				36232B6516E2AA7C0029A175 /* email@2x.png in Resources */,
+				36232B6616E2AA7C0029A175 /* phone.png in Resources */,
+				36232B6716E2AA7C0029A175 /* phone@2x.png in Resources */,
+				36232B6816E2AA7C0029A175 /* sms.png in Resources */,
+				36232B6916E2AA7C0029A175 /* sms@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -634,6 +641,7 @@
 				366917DD16D714E600DF21E9 /* LonelySegue.m in Sources */,
 				365D019F16DC38780091CBA6 /* User.m in Sources */,
 				36F7E59616E05A62007BB7A6 /* CuddleNavBar.m in Sources */,
+				36232B6C16E2B3FA0029A175 /* ContactHistoryCell.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -753,11 +761,6 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 66500968D5FC435493127319 /* Pods.xcconfig */;
 			buildSettings = {
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(inherited)",
-					"\"$(SRCROOT)/cuddle-app/lib\"",
-					"\"$(SRCROOT)\"",
-				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "cuddle-app/cuddle-app-Prefix.pch";
 				INFOPLIST_FILE = "cuddle-app/cuddle-app-Info.plist";
@@ -771,11 +774,6 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 66500968D5FC435493127319 /* Pods.xcconfig */;
 			buildSettings = {
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(inherited)",
-					"\"$(SRCROOT)/cuddle-app/lib\"",
-					"\"$(SRCROOT)\"",
-				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "cuddle-app/cuddle-app-Prefix.pch";
 				INFOPLIST_FILE = "cuddle-app/cuddle-app-Info.plist";

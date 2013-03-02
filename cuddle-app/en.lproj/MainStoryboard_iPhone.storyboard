@@ -321,16 +321,77 @@
                         <rect key="frame" x="0.0" y="64" width="320" height="504"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" translatesAutoresizingMaskIntoConstraints="NO" id="mH8-HY-Epc" customClass="PFImageView">
+                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" translatesAutoresizingMaskIntoConstraints="NO" id="nmL-hf-AGH">
+                                <subviews>
+                                    <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" translatesAutoresizingMaskIntoConstraints="NO" id="mH8-HY-Epc" customClass="PFImageView">
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="320" id="NJr-5U-bQy"/>
+                                            <constraint firstAttribute="height" constant="320" id="lud-Ry-Nmk"/>
+                                        </constraints>
+                                    </imageView>
+                                    <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" allowsSelection="NO" rowHeight="33" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="5i1-Jz-Pxk">
+                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="130" id="YaH-oD-1Qe"/>
+                                        </constraints>
+                                        <prototypes>
+                                            <tableViewCell contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="contactHistoryCell" rowHeight="40" id="wkO-7L-jwQ" customClass="ContactHistoryCell">
+                                                <rect key="frame" x="0.0" y="22" width="320" height="40"/>
+                                                <autoresizingMask key="autoresizingMask"/>
+                                                <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
+                                                    <rect key="frame" x="0.0" y="0.0" width="320" height="39"/>
+                                                    <autoresizingMask key="autoresizingMask"/>
+                                                    <subviews>
+                                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" image="list-item-bg.png" highlightedImage="ipad-list-item-selected.png" translatesAutoresizingMaskIntoConstraints="NO" id="W4w-3d-6wi"/>
+                                                        <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="15 days ago" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="I3p-mj-wfQ">
+                                                            <constraints>
+                                                                <constraint firstAttribute="height" constant="21" id="Fqe-ZD-1SD"/>
+                                                                <constraint firstAttribute="width" constant="133" id="rCT-O0-ove"/>
+                                                            </constraints>
+                                                            <fontDescription key="fontDescription" name="Avenir-Medium" family="Avenir" pointSize="20"/>
+                                                            <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                            <color key="highlightedColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                        </label>
+                                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="KqV-pL-FB5">
+                                                            <constraints>
+                                                                <constraint firstAttribute="width" constant="24" id="ikN-MG-bWP"/>
+                                                            </constraints>
+                                                        </imageView>
+                                                    </subviews>
+                                                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                                </view>
+                                                <constraints>
+                                                    <constraint firstItem="W4w-3d-6wi" firstAttribute="leading" secondItem="wkO-7L-jwQ" secondAttribute="leading" type="default" id="0qc-Qc-gRk"/>
+                                                    <constraint firstItem="I3p-mj-wfQ" firstAttribute="leading" secondItem="KqV-pL-FB5" secondAttribute="trailing" constant="8" symbolic="YES" type="default" id="9zy-tH-S0H"/>
+                                                    <constraint firstItem="KqV-pL-FB5" firstAttribute="top" secondItem="wkO-7L-jwQ" secondAttribute="top" constant="10" id="CZv-Eb-OXK"/>
+                                                    <constraint firstItem="W4w-3d-6wi" firstAttribute="bottom" secondItem="wkO-7L-jwQ" secondAttribute="bottom" type="default" id="jqR-vh-eLi"/>
+                                                    <constraint firstItem="I3p-mj-wfQ" firstAttribute="centerY" secondItem="KqV-pL-FB5" secondAttribute="centerY" type="default" id="k1i-bK-Rux"/>
+                                                    <constraint firstItem="I3p-mj-wfQ" firstAttribute="bottom" secondItem="KqV-pL-FB5" secondAttribute="bottom" type="default" id="uaf-nY-Pqc"/>
+                                                    <constraint firstItem="KqV-pL-FB5" firstAttribute="leading" secondItem="wkO-7L-jwQ" secondAttribute="leading" constant="5" id="wuN-tM-rbv"/>
+                                                    <constraint firstItem="W4w-3d-6wi" firstAttribute="top" secondItem="wkO-7L-jwQ" secondAttribute="top" type="default" id="yd9-6Z-l6r"/>
+                                                </constraints>
+                                                <connections>
+                                                    <outlet property="contactHistory" destination="I3p-mj-wfQ" id="sVm-6d-G6g"/>
+                                                    <outlet property="lastContacted" destination="I3p-mj-wfQ" id="oxZ-on-eF9"/>
+                                                    <outlet property="typeOfContact" destination="KqV-pL-FB5" id="6RO-Ta-CLi"/>
+                                                </connections>
+                                            </tableViewCell>
+                                        </prototypes>
+                                        <sections/>
+                                    </tableView>
+                                </subviews>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="320" id="lud-Ry-Nmk"/>
+                                    <constraint firstItem="mH8-HY-Epc" firstAttribute="trailing" secondItem="5i1-Jz-Pxk" secondAttribute="trailing" type="default" id="Cv8-fF-g6l"/>
+                                    <constraint firstItem="mH8-HY-Epc" firstAttribute="leading" secondItem="nmL-hf-AGH" secondAttribute="leading" type="default" id="Sg3-Dx-Hxb"/>
+                                    <constraint firstItem="5i1-Jz-Pxk" firstAttribute="leading" secondItem="nmL-hf-AGH" secondAttribute="leading" type="default" id="V31-JE-6ba"/>
+                                    <constraint firstItem="mH8-HY-Epc" firstAttribute="top" secondItem="nmL-hf-AGH" secondAttribute="top" type="default" id="XM6-Ch-04f"/>
+                                    <constraint firstItem="5i1-Jz-Pxk" firstAttribute="top" secondItem="mH8-HY-Epc" secondAttribute="bottom" constant="8" symbolic="YES" type="default" id="Z1e-9U-gIc"/>
+                                    <constraint firstItem="5i1-Jz-Pxk" firstAttribute="bottom" secondItem="nmL-hf-AGH" secondAttribute="bottom" type="default" id="lUE-xG-ZxY"/>
+                                    <constraint firstAttribute="trailing" secondItem="mH8-HY-Epc" secondAttribute="trailing" constant="40" id="uhO-zP-5zT"/>
                                 </constraints>
-                            </imageView>
+                            </scrollView>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" image="tabbar.png" translatesAutoresizingMaskIntoConstraints="NO" id="gKm-ys-X8O"/>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="0Qe-Ut-wND">
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="22" id="mnp-fx-MTb"/>
-                                </constraints>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
                                 <state key="normal" image="sms.png">
                                     <color key="titleColor" red="0.19607843459999999" green="0.30980393290000002" blue="0.52156865600000002" alpha="1" colorSpace="calibratedRGB"/>
@@ -357,6 +418,9 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="wUd-ko-Uob">
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="22" id="HnN-ql-zwb"/>
+                                </constraints>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
                                 <state key="normal" image="phone.png">
                                     <color key="titleColor" red="0.19607843459999999" green="0.30980393290000002" blue="0.52156865600000002" alpha="1" colorSpace="calibratedRGB"/>
@@ -373,20 +437,20 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <gestureRecognizers/>
                         <constraints>
-                            <constraint firstAttribute="trailing" secondItem="krb-8b-mg4" secondAttribute="trailing" constant="41" id="0Rk-HZ-dMn"/>
+                            <constraint firstItem="wUd-ko-Uob" firstAttribute="leading" secondItem="VTy-F0-tze" secondAttribute="leading" constant="40" id="0iR-je-xsD"/>
                             <constraint firstItem="0Qe-Ut-wND" firstAttribute="leading" secondItem="VTy-F0-tze" secondAttribute="leading" constant="150" id="1Ym-Yy-DRu"/>
+                            <constraint firstItem="nmL-hf-AGH" firstAttribute="leading" secondItem="VTy-F0-tze" secondAttribute="leading" type="default" id="3oy-mP-GDD"/>
                             <constraint firstItem="gKm-ys-X8O" firstAttribute="bottom" secondItem="VTy-F0-tze" secondAttribute="bottom" type="default" id="5Qi-7b-ZcZ"/>
-                            <constraint firstItem="mH8-HY-Epc" firstAttribute="top" secondItem="VTy-F0-tze" secondAttribute="top" type="default" id="60i-LC-dp2"/>
-                            <constraint firstItem="0Qe-Ut-wND" firstAttribute="baseline" secondItem="wUd-ko-Uob" secondAttribute="baseline" type="default" id="ANk-jU-nhQ"/>
-                            <constraint firstItem="0Qe-Ut-wND" firstAttribute="top" secondItem="krb-8b-mg4" secondAttribute="top" type="default" id="KF6-98-2iv"/>
-                            <constraint firstItem="0Qe-Ut-wND" firstAttribute="bottom" secondItem="krb-8b-mg4" secondAttribute="bottom" type="default" id="Ph0-5Z-Dbj"/>
-                            <constraint firstItem="0Qe-Ut-wND" firstAttribute="top" secondItem="VTy-F0-tze" secondAttribute="top" constant="470" id="Qrb-lt-5AP"/>
-                            <constraint firstItem="mH8-HY-Epc" firstAttribute="leading" secondItem="VTy-F0-tze" secondAttribute="leading" type="default" id="RvA-dv-WJl"/>
-                            <constraint firstItem="0Qe-Ut-wND" firstAttribute="bottom" secondItem="wUd-ko-Uob" secondAttribute="bottom" type="default" id="W0f-Cg-TcL"/>
+                            <constraint firstItem="nmL-hf-AGH" firstAttribute="top" secondItem="VTy-F0-tze" secondAttribute="top" type="default" id="IMv-EY-WP3"/>
+                            <constraint firstAttribute="bottom" secondItem="nmL-hf-AGH" secondAttribute="bottom" constant="46" id="VKa-Bu-Pih"/>
+                            <constraint firstAttribute="trailing" secondItem="nmL-hf-AGH" secondAttribute="trailing" constant="-40" id="WEf-yZ-VnX"/>
+                            <constraint firstItem="wUd-ko-Uob" firstAttribute="baseline" secondItem="0Qe-Ut-wND" secondAttribute="baseline" type="default" id="Zok-V1-JmX"/>
+                            <constraint firstItem="krb-8b-mg4" firstAttribute="bottom" secondItem="0Qe-Ut-wND" secondAttribute="bottom" type="default" id="gHb-iL-nNe"/>
+                            <constraint firstAttribute="bottom" secondItem="wUd-ko-Uob" secondAttribute="bottom" constant="12" id="h68-70-AfU"/>
                             <constraint firstItem="gKm-ys-X8O" firstAttribute="leading" secondItem="VTy-F0-tze" secondAttribute="leading" type="default" id="iTq-z8-WyT"/>
+                            <constraint firstItem="krb-8b-mg4" firstAttribute="top" secondItem="0Qe-Ut-wND" secondAttribute="top" type="default" id="mzH-Tr-OYo"/>
+                            <constraint firstAttribute="trailing" secondItem="krb-8b-mg4" secondAttribute="trailing" constant="41" id="nAj-Bs-QAw"/>
                             <constraint firstItem="0Qe-Ut-wND" firstAttribute="top" secondItem="wUd-ko-Uob" secondAttribute="top" type="default" id="ogI-hC-Sex"/>
-                            <constraint firstItem="mH8-HY-Epc" firstAttribute="trailing" secondItem="VTy-F0-tze" secondAttribute="trailing" type="default" id="q9J-Hv-OcL"/>
-                            <constraint firstItem="wUd-ko-Uob" firstAttribute="leading" secondItem="VTy-F0-tze" secondAttribute="leading" constant="40" id="xhF-wh-4df"/>
                         </constraints>
                         <connections>
                             <outletCollection property="gestureRecognizers" destination="cwY-Ai-8Ns" appends="YES" id="9M9-ky-wiZ"/>
@@ -394,6 +458,7 @@
                     </view>
                     <navigationItem key="navigationItem" title="Mike Silvis" id="iUl-rV-A9J"/>
                     <connections>
+                        <outlet property="contactHistoryTable" destination="5i1-Jz-Pxk" id="3ne-0P-hCi"/>
                         <outlet property="contactPhoto" destination="mH8-HY-Epc" id="qk5-6l-aV2"/>
                     </connections>
                 </viewController>
@@ -440,67 +505,6 @@
         <image name="sms.png" width="24" height="22"/>
         <image name="tabbar.png" width="320" height="48"/>
     </resources>
-    <classes>
-        <class className="ContactIndexController" superclassName="PFQueryTableViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/ContactIndexController.h"/>
-            <relationships>
-                <relationship kind="action" name="showPeoplePicker"/>
-                <relationship kind="outlet" name="addressesTable" candidateClass="UITableView"/>
-            </relationships>
-        </class>
-        <class className="ContactInfoCell" superclassName="PFTableViewCell">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/ContactInfoCell.h"/>
-            <relationships>
-                <relationship kind="outlet" name="backgroundImage" candidateClass="UIImageView"/>
-                <relationship kind="outlet" name="userLastContact" candidateClass="UILabel"/>
-                <relationship kind="outlet" name="userName" candidateClass="UILabel"/>
-                <relationship kind="outlet" name="userPicture" candidateClass="PFImageView"/>
-            </relationships>
-        </class>
-        <class className="ContactShowViewController" superclassName="UIViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/ContactShowViewController.h"/>
-            <relationships>
-                <relationship kind="action" name="callButton:"/>
-                <relationship kind="action" name="emailButton:"/>
-                <relationship kind="action" name="handleSwipe:" candidateClass="UISwipeGestureRecognizer"/>
-                <relationship kind="action" name="textButton:"/>
-                <relationship kind="outlet" name="contact" candidateClass="PFObject"/>
-                <relationship kind="outlet" name="contactPhoto" candidateClass="PFImageView"/>
-            </relationships>
-        </class>
-        <class className="CuddleNavBar" superclassName="UINavigationBar">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/CuddleNavBar.h"/>
-        </class>
-        <class className="LoginViewController" superclassName="UIViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/LoginViewController.h"/>
-            <relationships>
-                <relationship kind="action" name="editingEmailField:"/>
-                <relationship kind="action" name="editingPasswordField:"/>
-                <relationship kind="action" name="login:"/>
-                <relationship kind="outlet" name="emailField" candidateClass="UITextField"/>
-                <relationship kind="outlet" name="passwordField" candidateClass="UITextField"/>
-            </relationships>
-        </class>
-        <class className="LonelyController" superclassName="UIViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/LonelyController.h"/>
-            <relationships>
-                <relationship kind="action" name="showPeoplePicker:"/>
-            </relationships>
-        </class>
-        <class className="NSLayoutConstraint" superclassName="NSObject">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/NSLayoutConstraint.h"/>
-        </class>
-        <class className="RegisterViewController" superclassName="UIViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/RegisterViewController.h"/>
-            <relationships>
-                <relationship kind="action" name="editingEmailField:"/>
-                <relationship kind="action" name="editingPasswordField:"/>
-                <relationship kind="action" name="registerUserButton:"/>
-                <relationship kind="outlet" name="emailField" candidateClass="UITextField"/>
-                <relationship kind="outlet" name="passwordField" candidateClass="UITextField"/>
-            </relationships>
-        </class>
-    </classes>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
         <simulatedStatusBarMetrics key="statusBar"/>
         <simulatedOrientationMetrics key="orientation"/>

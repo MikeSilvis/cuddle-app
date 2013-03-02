@@ -16,9 +16,6 @@
 {
     self = [super initWithStyle:style reuseIdentifier:reuseIdentifier];
     if (self) {
-//        self.userPicture.layer.cornerRadius = 30;
-//        self.clipsToBounds = YES;
-        NSLog(@"heyo");
     }
     return self;
 }
