@@ -320,8 +320,7 @@
                         <subviews>
                             <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" translatesAutoresizingMaskIntoConstraints="NO" id="mH8-HY-Epc" customClass="PFImageView">
                                 <constraints>
-                                    <constraint firstAttribute="width" constant="100" id="9ZN-u8-Sor"/>
-                                    <constraint firstAttribute="height" constant="100" id="hHC-Mm-Xyu"/>
+                                    <constraint firstAttribute="height" constant="320" id="lud-Ry-Nmk"/>
                                 </constraints>
                             </imageView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Diu-DS-2jy">
@@ -338,9 +337,10 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <gestureRecognizers/>
                         <constraints>
-                            <constraint firstItem="Diu-DS-2jy" firstAttribute="centerX" secondItem="VTy-F0-tze" secondAttribute="centerX" type="default" id="1Sa-eW-teL"/>
-                            <constraint firstItem="mH8-HY-Epc" firstAttribute="top" secondItem="VTy-F0-tze" secondAttribute="top" constant="20" symbolic="YES" type="default" id="WkK-mQ-TJ5"/>
-                            <constraint firstItem="mH8-HY-Epc" firstAttribute="leading" secondItem="VTy-F0-tze" secondAttribute="leading" constant="20" symbolic="YES" type="default" id="cDx-gY-9cy"/>
+                            <constraint firstItem="mH8-HY-Epc" firstAttribute="top" secondItem="VTy-F0-tze" secondAttribute="top" type="default" id="60i-LC-dp2"/>
+                            <constraint firstItem="Diu-DS-2jy" firstAttribute="centerX" secondItem="mH8-HY-Epc" secondAttribute="centerX" type="default" id="7zE-tG-JFQ"/>
+                            <constraint firstItem="mH8-HY-Epc" firstAttribute="leading" secondItem="VTy-F0-tze" secondAttribute="leading" type="default" id="RvA-dv-WJl"/>
+                            <constraint firstItem="mH8-HY-Epc" firstAttribute="trailing" secondItem="VTy-F0-tze" secondAttribute="trailing" type="default" id="q9J-Hv-OcL"/>
                             <constraint firstAttribute="bottom" secondItem="Diu-DS-2jy" secondAttribute="bottom" constant="20" symbolic="YES" type="default" id="rCH-fG-czJ"/>
                         </constraints>
                         <connections>
@@ -391,6 +391,77 @@
         <image name="list-item-bg.png" width="320" height="67"/>
         <image name="lonely@2x.png" width="640" height="1136"/>
     </resources>
+    <classes>
+        <class className="ContactIndexController" superclassName="PFQueryTableViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/ContactIndexController.h"/>
+            <relationships>
+                <relationship kind="action" name="showPeoplePicker"/>
+                <relationship kind="outlet" name="addressesTable" candidateClass="UITableView"/>
+            </relationships>
+        </class>
+        <class className="ContactInfoCell" superclassName="PFTableViewCell">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/ContactInfoCell.h"/>
+            <relationships>
+                <relationship kind="outlet" name="backgroundImage" candidateClass="UIImageView"/>
+                <relationship kind="outlet" name="userLastContact" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="userName" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="userPicture" candidateClass="PFImageView"/>
+            </relationships>
+        </class>
+        <class className="ContactShowViewController" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/ContactShowViewController.h"/>
+            <relationships>
+                <relationship kind="action" name="callContact:"/>
+                <relationship kind="action" name="handleSwipe:" candidateClass="UISwipeGestureRecognizer"/>
+                <relationship kind="outlet" name="contact" candidateClass="PFObject"/>
+                <relationship kind="outlet" name="contactPhoto" candidateClass="PFImageView"/>
+            </relationships>
+        </class>
+        <class className="CuddleNavBar" superclassName="UINavigationBar">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/CuddleNavBar.h"/>
+        </class>
+        <class className="LoginViewController" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/LoginViewController.h"/>
+            <relationships>
+                <relationship kind="action" name="editingEmailField:"/>
+                <relationship kind="action" name="editingPasswordField:"/>
+                <relationship kind="action" name="login:"/>
+                <relationship kind="outlet" name="emailField" candidateClass="UITextField"/>
+                <relationship kind="outlet" name="passwordField" candidateClass="UITextField"/>
+            </relationships>
+        </class>
+        <class className="LonelyController" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/LonelyController.h"/>
+            <relationships>
+                <relationship kind="action" name="showPeoplePicker:"/>
+            </relationships>
+        </class>
+        <class className="NSLayoutConstraint" superclassName="NSObject">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/NSLayoutConstraint.h"/>
+        </class>
+        <class className="PFImageView" superclassName="UIImageView">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/PFImageView.h"/>
+        </class>
+        <class className="PFObject" superclassName="NSObject">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/PFObject.h"/>
+        </class>
+        <class className="PFQueryTableViewController" superclassName="UITableViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/PFQueryTableViewController.h"/>
+        </class>
+        <class className="PFTableViewCell" superclassName="UITableViewCell">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/PFTableViewCell.h"/>
+        </class>
+        <class className="RegisterViewController" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/RegisterViewController.h"/>
+            <relationships>
+                <relationship kind="action" name="editingEmailField:"/>
+                <relationship kind="action" name="editingPasswordField:"/>
+                <relationship kind="action" name="registerUserButton:"/>
+                <relationship kind="outlet" name="emailField" candidateClass="UITextField"/>
+                <relationship kind="outlet" name="passwordField" candidateClass="UITextField"/>
+            </relationships>
+        </class>
+    </classes>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
         <simulatedStatusBarMetrics key="statusBar"/>
         <simulatedOrientationMetrics key="orientation"/>

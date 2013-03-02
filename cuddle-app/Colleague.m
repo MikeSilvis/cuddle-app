@@ -15,17 +15,29 @@
     if (self) {
         NSString *firstName = (__bridge_transfer NSString*)ABRecordCopyValue(abPerson, kABPersonFirstNameProperty);
         NSString *lastName = (__bridge_transfer NSString*)ABRecordCopyValue(abPerson, kABPersonLastNameProperty);
-//        self.facebook = (__bridge_transfer NSString*)ABRecordCopyValue(abPerson,kABPersonSocialProfileServiceFacebook);
-//        self.twitter = (__bridge_transfer NSString*)ABRecordCopyValue(abPerson, kABPersonSocialProfileServiceTwitter);
         
+        
+        //// This does not work.
+        ABMultiValueRef socialMulti = ABRecordCopyValue(abPerson, kABPersonSocialProfileProperty);
+//        NSMutableArray* twitterHandlesArray = [[NSMutableArray alloc] initWithCapacity:ABMultiValueGetCount(socialMulti)];
+        for (CFIndex i = 0; i < ABMultiValueGetCount(socialMulti); i++) {
+            NSDictionary* social = (__bridge NSDictionary*)ABMultiValueCopyValueAtIndex(socialMulti, i);
+            if ([social[@"service"] isEqualToString:(__bridge NSString*)kABPersonSocialProfileServiceFacebook]) {
+                NSString* username = (NSString*)social[@"username"];
+                NSLog(@"we got a facebook. username is %@", username);
+                
+//                [twitterHandlesArray addObject:[[username conditionedAsTwitterHandle] SHA2Digest]];
+            }
+            NSLog(@"looping through services");
+        }
+
         self.name = [NSString stringWithFormat:@"%@ %@", firstName, lastName];
         
         ABMultiValueRef phoneNumbers = ABRecordCopyValue(abPerson, kABPersonPhoneProperty);
         if (ABMultiValueGetCount(phoneNumbers) > 0) {
             self.phoneNumber = (__bridge_transfer NSString*) ABMultiValueCopyValueAtIndex(phoneNumbers, 0);
         }
-        
-        NSData  *imgABData = (__bridge_transfer NSData *) ABPersonCopyImageDataWithFormat(abPerson, kABPersonImageFormatThumbnail);
+        NSData  *imgABData = (__bridge_transfer NSData *) ABPersonCopyImageDataWithFormat(abPerson, kABPersonImageFormatOriginalSize);
         UIImage *image = [UIImage imageWithData:imgABData];
         if (image.size.width > 140){
             self.photo = [PFFile fileWithData:imgABData];
@@ -59,5 +71,4 @@
         
     }];
 }
-
 @end

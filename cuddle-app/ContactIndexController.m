@@ -27,7 +27,6 @@
     }
     return self;
 }
-
 - (void)viewDidLoad{
     [super viewDidLoad];
     self.view.backgroundColor = [UIColor colorWithPatternImage: [UIImage imageNamed:@"background.png"]];
@@ -45,6 +44,7 @@
                                              selector:@selector(selectPersonFromPicker:)
                                                  name:@"PeoplePicker"
                                                object:nil];
+  self.navigationItem.titleView = [self titleView];
 }
 - (void)objectsDidLoad:(NSError *)error{
     [super objectsDidLoad:error]; 
@@ -53,7 +53,24 @@
     }
 
 }
-
+- (UIView *)titleView {
+  CGFloat navBarHeight = self.navigationController.navigationBar.frame.size.height;
+  CGFloat width = 0.95 * self.view.frame.size.width;
+  UIView *containerView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, width, navBarHeight)];
+  
+  UIImage *logo = [UIImage imageNamed:@"logo.png"];
+  
+  UIButton *logoButton = [UIButton buttonWithType:UIButtonTypeCustom];
+  CGFloat logoY = floorf((navBarHeight - logo.size.height) / 2.0f);
+  CGFloat centerPosition = floorf((width - logo.size.width) / 2.0f);
+  
+  [logoButton setFrame:CGRectMake(centerPosition, logoY, logo.size.width, logo.size.height)];
+  [logoButton setImage:logo forState:UIControlStateNormal];
+  
+  [containerView addSubview:logoButton];
+  
+  return containerView;
+}
 # pragma mark - Table List
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath object:(PFObject *)object {
     
