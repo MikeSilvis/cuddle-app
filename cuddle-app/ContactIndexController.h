@@ -20,5 +20,5 @@
 
 @property (strong, nonatomic) IBOutlet UITableView *addressesTable;
 @property PFFile *imageFile;
-
+@property (nonatomic, assign) BOOL parseDidLoad;
 @end

@@ -8,10 +8,16 @@
 
 #import <UIKit/UIKit.h>
 #import <Parse/Parse.h>
+#import <MessageUI/MessageUI.h>
+#import <MessageUI/MFMailComposeViewController.h>
 
-@interface ContactShowViewController : UIViewController
+@interface ContactShowViewController : UIViewController  <MFMailComposeViewControllerDelegate, MFMessageComposeViewControllerDelegate> 
 @property (weak, nonatomic) IBOutlet PFImageView *contactPhoto;
 - (IBAction)handleSwipe:(UISwipeGestureRecognizer *)sender;
 @property (strong, nonatomic) IBOutlet PFObject *contact;
-- (IBAction)callContact:(id)sender;
+
+- (IBAction)emailButton:(id)sender;
+- (IBAction)textButton:(id)sender;
+- (IBAction)callButton:(id)sender;
+
 @end

@@ -27,6 +27,11 @@
     }
     return self;
 }
+- (PFQuery *)queryForTable {
+  PFQuery *query = [PFQuery queryWithClassName:@"Colleague"];
+  [query whereKey:@"user" equalTo:[PFUser currentUser]];  
+  return query;
+}
 - (void)viewDidLoad{
     [super viewDidLoad];
     self.view.backgroundColor = [UIColor colorWithPatternImage: [UIImage imageNamed:@"background.png"]];
@@ -41,17 +46,17 @@
                                                  name:@"ContactFailed"
                                                object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self
-                                             selector:@selector(selectPersonFromPicker:)
+                                             selector:@selector(selectPersonFromPicker)
                                                  name:@"PeoplePicker"
                                                object:nil];
   self.navigationItem.titleView = [self titleView];
 }
 - (void)objectsDidLoad:(NSError *)error{
-    [super objectsDidLoad:error]; 
-    if ([addressesTable numberOfRowsInSection:0] == 0){
+    [super objectsDidLoad:error];
+    if (([addressesTable numberOfRowsInSection:0] == 0) && (self.parseDidLoad == false)){
         [self performSegueWithIdentifier:@"lonelySegue" sender:self];
+        [self setParseDidLoad:YES];
     }
-
 }
 - (UIView *)titleView {
   CGFloat navBarHeight = self.navigationController.navigationBar.frame.size.height;
@@ -98,7 +103,6 @@
 }
 
 - (void)selectPersonFromPicker{
-  NSLog(@"you are being called");
 //    self.view = addressesTable;
     ABPeoplePickerNavigationController *picker = [[ABPeoplePickerNavigationController alloc] init];
     picker.peoplePickerDelegate = self;

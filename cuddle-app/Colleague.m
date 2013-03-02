@@ -55,6 +55,7 @@
 }
 - (void)saveColleague{
     PFObject *newColleague = [[PFObject alloc] initWithClassName:@"Colleague"];
+    [newColleague setObject:[PFUser currentUser] forKey:@"user"];
     if (self.photo){
         [newColleague setObject:self.photo forKey:@"photo"];
     }

@@ -14,5 +14,6 @@
 }
 - (IBAction)showPeoplePicker:(id)sender {
     [[NSNotificationCenter defaultCenter] postNotificationName:@"PeoplePicker" object:self];
+    [self.navigationController popViewControllerAnimated:YES];
 }
 @end
