@@ -191,7 +191,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="XH6-vD-PVL" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1649" y="785"/>
+            <point key="canvasLocation" x="1729" y="945"/>
         </scene>
         <!--Contact Index Controller - Cuddle-->
         <scene sceneID="YVJ-2D-0Bb">
@@ -277,7 +277,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="AES-uZ-hag" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2015" y="90"/>
+            <point key="canvasLocation" x="2343" y="90"/>
         </scene>
         <!--Lonely Controller-->
         <scene sceneID="ikj-Qb-UEX">
@@ -308,7 +308,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ocX-aj-Ys6" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2522" y="-634"/>
+            <point key="canvasLocation" x="3004" y="-658"/>
         </scene>
         <!--Contact Show View Controller - Mike Silvis-->
         <scene sceneID="PSb-Y5-NJK">
@@ -368,7 +368,7 @@
                     <toolbarItems/>
                     <simulatedStatusBarMetrics key="simulatedStatusBarMetrics" statusBarStyle="blackOpaque"/>
                     <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" barStyle="blackOpaque" prompted="NO"/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" barStyle="blackOpaque" id="ZMK-Oo-X7Y">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" barStyle="blackOpaque" id="ZMK-Oo-X7Y" customClass="CuddleNavBar">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
