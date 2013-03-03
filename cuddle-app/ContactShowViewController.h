@@ -22,6 +22,9 @@
 - (IBAction)emailButton:(id)sender;
 - (IBAction)textButton:(id)sender;
 - (IBAction)callButton:(id)sender;
-@property (weak, nonatomic) IBOutlet UITableView *contactHistoryTable;
+
+@property (weak, nonatomic) IBOutlet UILabel *lastContacted;
+@property (weak, nonatomic) IBOutlet UIImageView *lastContactedImage;
+@property (weak, nonatomic) IBOutlet UIButton *lastContactedButton;
 
 @end

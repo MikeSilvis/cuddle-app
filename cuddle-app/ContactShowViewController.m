@@ -24,10 +24,23 @@
 - (void)loadContactHistory{
   PFQuery *query = [PFQuery queryWithClassName:@"ContactHistory"];
   [query whereKey:@"colleague" equalTo:self.contact];
-  [query findObjectsInBackgroundWithBlock:^(NSArray *object, NSError *error) {
-    if (!error) {
-      [self.contactHistoryTable reloadData];
-      NSLog(@"Successfully retrieved %d scores.", object.count);
+  [query getFirstObjectInBackgroundWithBlock:^(PFObject *object, NSError *error) {
+    if (object) {
+      NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
+      [formatter setDateFormat:@"MMM d"];
+      NSString *stringFromDate = [formatter stringFromDate:object.createdAt];
+      self.lastContacted.text = stringFromDate;
+      if ([[object objectForKey:@"method"] isEqual: @"call"]){
+        self.lastContactedImage.image = [UIImage imageNamed:@"phone-gray.png"];
+      } else if ([[object objectForKey:@"method"] isEqual: @"sms"]){
+        self.lastContactedImage.image = [UIImage imageNamed:@"sms-gray.png"];
+      } else if([[object objectForKey:@"method"] isEqual: @"email"]){
+        self.lastContactedImage.image = [UIImage imageNamed:@"envelope-gray.png"];
+      }
+    } else {
+      self.lastContactedButton.hidden = YES;
+      self.lastContacted.hidden = YES;
+      self.lastContactedImage.hidden = YES;
     }
   }];
 }
@@ -40,7 +53,7 @@
     {
         MFMailComposeViewController* emailCntrl = [[MFMailComposeViewController alloc] init];
         emailCntrl.mailComposeDelegate = self;
-        [emailCntrl setToRecipients:[NSArray arrayWithObject:@"user@gmail.com"]];
+        [emailCntrl setToRecipients:[NSArray arrayWithObject:[contact objectForKey:@"email"]]];
         [self presentViewController:emailCntrl animated:YES completion:nil];
     }
     else
@@ -59,16 +72,15 @@
 	MFMessageComposeViewController *smsCntrl = [[MFMessageComposeViewController alloc] init];
 	if([MFMessageComposeViewController canSendText])
 	{
-		smsCntrl.body = @"Hello Friends this is sample text message.";
-		smsCntrl.recipients = [NSArray arrayWithObjects:@"+8145746139", nil];
+		smsCntrl.recipients = [NSArray arrayWithObjects:[contact objectForKey:@"number"], nil];
 		smsCntrl.messageComposeDelegate = self;
         [self presentViewController:smsCntrl animated:YES completion:nil];
 	}
 }
 
 - (IBAction)callButton:(id)sender {
-    [self saveCommunication:@"call"];
-	[[UIApplication sharedApplication] openURL:[NSURL URLWithString:@"+8145746139"]];
+  [self saveCommunication:@"call"];
+	[[UIApplication sharedApplication] openURL:[NSURL URLWithString:[contact objectForKey:@"number"]]];
 }
 
 #pragma mark - MFMailComposeController delegate
@@ -125,32 +137,5 @@
 //	}
 	
     [self dismissViewControllerAnimated:YES completion:nil];
-}
-//- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-////  return self.beers.count;
-//}
-- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-  return 3;
-}
-- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath object:(PFObject *)object {
-  NSLog(@"never here");
-  ContactHistoryCell *cell = (ContactHistoryCell *)[tableView dequeueReusableCellWithIdentifier:@"contactHistoryCell"];
-  cell.lastContacted.text = @"HEYO";
-  cell.typeOfContact.image = [UIImage imageNamed:@"sms.png"];
-//  ContactInfoCell *cell = (ContactInfoCell *)[tableView dequeueReusableCellWithIdentifier:@"contactInfoCell"];
-//  cell.userName.text = [object objectForKey:@"name"];
-//  PFFile *photo = [object objectForKey:@"photo"];
-//  
-//  cell.userPicture.layer.cornerRadius = 5;
-//  cell.userPicture.clipsToBounds = YES;
-//  
-//  if (photo){
-//    cell.userPicture.file = photo;
-//    [cell.userPicture loadInBackground];
-//  } else{
-//    cell.userPicture.image = [UIImage imageNamed:@"contact_without_image@2x.png"];
-//  }
-  
-  return cell;
 }
 @end

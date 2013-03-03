@@ -15,6 +15,7 @@
     if (self) {
         NSString *firstName = (__bridge_transfer NSString*)ABRecordCopyValue(abPerson, kABPersonFirstNameProperty);
         NSString *lastName = (__bridge_transfer NSString*)ABRecordCopyValue(abPerson, kABPersonLastNameProperty);
+        self.email = (__bridge_transfer NSString*)ABRecordCopyValue(abPerson, kABPersonEmailProperty);
         
         
         //// This does not work.
@@ -61,6 +62,9 @@
     }
     if (self.phoneNumber){
         [newColleague setObject:self.phoneNumber forKey:@"number"];
+    }
+    if (self.email){
+          [newColleague setObject:self.email forKey:@"email"];
     }
     [newColleague setObject:self.name forKey:@"name"];
     [newColleague saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
