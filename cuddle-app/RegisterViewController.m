@@ -126,7 +126,7 @@
                 [self performSegueWithIdentifier:@"registerSuccessSegue" sender:self];
             } else {
                 NSLog(@"registration failed");
-                [SVProgressHUD showErrorWithStatus:@"Sorry there was an error. Try again"];
+                [SVProgressHUD showErrorWithStatus:@"Sorry that email address is already taken."];
             }
         }];
     } else {

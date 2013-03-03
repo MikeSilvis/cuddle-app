@@ -222,7 +222,7 @@
                                             <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                             <color key="highlightedColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         </label>
-                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" image="contact_without_image@2x.png" translatesAutoresizingMaskIntoConstraints="NO" id="b8w-7C-eFG" customClass="PFImageView">
+                                        <imageView userInteractionEnabled="NO" contentMode="redraw" image="contact_without_image@2x.png" translatesAutoresizingMaskIntoConstraints="NO" id="b8w-7C-eFG" customClass="PFImageView">
                                             <constraints>
                                                 <constraint firstAttribute="height" constant="70" id="ZWt-Vi-VUm"/>
                                                 <constraint firstAttribute="width" constant="70" id="h3a-Rd-dxS"/>
@@ -231,7 +231,7 @@
                                         <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Called 30 days ago" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="R6O-Gw-ozs">
                                             <constraints>
                                                 <constraint firstAttribute="height" constant="32" id="PB8-k4-t4n"/>
-                                                <constraint firstAttribute="width" constant="124" id="rRa-O3-Niw"/>
+                                                <constraint firstAttribute="width" constant="217" id="w3s-UG-8o8"/>
                                             </constraints>
                                             <fontDescription key="fontDescription" name="AvenirNext-Italic" family="Avenir Next" pointSize="14"/>
                                             <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
@@ -244,7 +244,7 @@
                                     <constraint firstItem="RgP-7B-e6Q" firstAttribute="leading" secondItem="b8w-7C-eFG" secondAttribute="trailing" constant="8" symbolic="YES" type="default" id="Me6-rr-NjM"/>
                                     <constraint firstItem="Uws-Po-WDE" firstAttribute="top" secondItem="yXU-3v-h7F" secondAttribute="top" type="default" id="Myg-7n-0uB"/>
                                     <constraint firstItem="RgP-7B-e6Q" firstAttribute="top" secondItem="b8w-7C-eFG" secondAttribute="top" type="default" id="Ojk-k0-4OS"/>
-                                    <constraint firstItem="b8w-7C-eFG" firstAttribute="leading" secondItem="yXU-3v-h7F" secondAttribute="leading" constant="5" id="dpL-MZ-d8o"/>
+                                    <constraint firstAttribute="trailing" secondItem="R6O-Gw-ozs" secondAttribute="trailing" constant="20" type="default" id="aAO-dk-kCL"/>
                                     <constraint firstItem="R6O-Gw-ozs" firstAttribute="top" secondItem="yXU-3v-h7F" secondAttribute="top" constant="35" id="hcg-Ep-Chi"/>
                                     <constraint firstItem="Uws-Po-WDE" firstAttribute="bottom" secondItem="yXU-3v-h7F" secondAttribute="bottom" type="default" id="o2P-BQ-yfI"/>
                                     <constraint firstItem="b8w-7C-eFG" firstAttribute="centerY" secondItem="Uws-Po-WDE" secondAttribute="centerY" type="default" id="q3B-Lw-B10"/>
@@ -321,26 +321,18 @@
                         <rect key="frame" x="0.0" y="64" width="320" height="504"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
+                            <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" image="contact-show-image-background.png" translatesAutoresizingMaskIntoConstraints="NO" id="p5M-yi-Kdo"/>
                             <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" image="contact_without_image.png" translatesAutoresizingMaskIntoConstraints="NO" id="mH8-HY-Epc" customClass="PFImageView">
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="320" id="0lT-91-iNp"/>
+                                    <constraint firstAttribute="width" constant="238" id="Xwj-4r-syn"/>
+                                    <constraint firstAttribute="height" constant="238" id="sm0-Eo-AFD"/>
                                 </constraints>
                             </imageView>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" image="tabbar.png" translatesAutoresizingMaskIntoConstraints="NO" id="gKm-ys-X8O"/>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="0Qe-Ut-wND">
-                                <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
-                                <state key="normal" image="sms.png">
-                                    <color key="titleColor" red="0.19607843459999999" green="0.30980393290000002" blue="0.52156865600000002" alpha="1" colorSpace="calibratedRGB"/>
-                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                </state>
-                                <state key="highlighted">
-                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                </state>
-                                <connections>
-                                    <action selector="textButton:" destination="Z9q-Du-0x5" eventType="touchUpInside" id="AyP-Az-ISS"/>
-                                </connections>
-                            </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="krb-8b-mg4">
+                            <button opaque="NO" contentMode="center" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="krb-8b-mg4">
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="50" id="ZCG-49-F9V"/>
+                                </constraints>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
                                 <state key="normal" image="email.png">
                                     <color key="titleColor" red="0.19607843459999999" green="0.30980393290000002" blue="0.52156865600000002" alpha="1" colorSpace="calibratedRGB"/>
@@ -353,9 +345,35 @@
                                     <action selector="emailButton:" destination="Z9q-Du-0x5" eventType="touchUpInside" id="2ek-mf-ueI"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="wUd-ko-Uob">
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Called Aug 30th" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="H7r-nU-hGc">
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="22" id="HnN-ql-zwb"/>
+                                    <constraint firstAttribute="height" constant="43" id="8wk-pG-k0M"/>
+                                    <constraint firstAttribute="width" constant="238" id="NyG-RZ-Rny"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" name="AvenirNextCondensed-Medium" family="Avenir Next Condensed" pointSize="20"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <button opaque="NO" contentMode="center" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="LXE-xa-lL6">
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="50" id="Qgy-VR-Xwz"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
+                                <state key="normal" image="sms.png">
+                                    <color key="titleColor" red="0.19607843459999999" green="0.30980393290000002" blue="0.52156865600000002" alpha="1" colorSpace="calibratedRGB"/>
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <state key="highlighted">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="textButton:" destination="Z9q-Du-0x5" eventType="touchUpInside" id="8eb-us-NzN"/>
+                                </connections>
+                            </button>
+                            <button contentMode="center" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="nui-1u-cCe">
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="50" id="0Qi-hk-0eD"/>
+                                    <constraint firstAttribute="width" constant="50" id="saI-EP-D7b"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
                                 <state key="normal" image="phone.png">
@@ -366,59 +384,41 @@
                                     <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
-                                    <action selector="callButton:" destination="Z9q-Du-0x5" eventType="touchUpInside" id="hQ8-Xd-atw"/>
+                                    <action selector="callButton:" destination="Z9q-Du-0x5" eventType="touchUpInside" id="hwg-Sr-v05"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="GEu-SE-MPm">
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Last Contacted:" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="B8w-aw-JZ6">
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="44" id="eyC-0D-yoL"/>
-                                    <constraint firstAttribute="width" constant="151" id="wgc-AX-VJn"/>
+                                    <constraint firstAttribute="width" constant="229" id="BFg-83-0ki"/>
                                 </constraints>
-                                <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
-                                <state key="normal" image="ipad-button-grey.png">
-                                    <color key="titleColor" red="0.19607843459999999" green="0.30980393290000002" blue="0.52156865600000002" alpha="1" colorSpace="calibratedRGB"/>
-                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                </state>
-                                <state key="highlighted">
-                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                </state>
-                            </button>
-                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Aug 30th" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="H7r-nU-hGc">
-                                <constraints>
-                                    <constraint firstAttribute="width" constant="121" id="4Oe-NG-hvQ"/>
-                                </constraints>
-                                <fontDescription key="fontDescription" name="AvenirNext-Medium" family="Avenir Next" pointSize="17"/>
+                                <fontDescription key="fontDescription" name="Avenir-Medium" family="Avenir" pointSize="22"/>
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" image="phone-gray.png" translatesAutoresizingMaskIntoConstraints="NO" id="8bu-Sy-Jx7">
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="22" id="MA1-p7-XiZ"/>
-                                </constraints>
-                            </imageView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <gestureRecognizers/>
                         <constraints>
-                            <constraint firstItem="wUd-ko-Uob" firstAttribute="leading" secondItem="VTy-F0-tze" secondAttribute="leading" constant="40" id="0iR-je-xsD"/>
+                            <constraint firstItem="B8w-aw-JZ6" firstAttribute="top" secondItem="mH8-HY-Epc" secondAttribute="bottom" constant="8" symbolic="YES" type="default" id="4Ib-ir-gbs"/>
+                            <constraint firstItem="p5M-yi-Kdo" firstAttribute="top" secondItem="VTy-F0-tze" secondAttribute="top" constant="20" symbolic="YES" type="default" id="4kJ-lW-ATR"/>
                             <constraint firstItem="gKm-ys-X8O" firstAttribute="bottom" secondItem="VTy-F0-tze" secondAttribute="bottom" type="default" id="5Qi-7b-ZcZ"/>
-                            <constraint firstItem="mH8-HY-Epc" firstAttribute="trailing" secondItem="VTy-F0-tze" secondAttribute="trailing" type="default" id="DHA-kF-cbe"/>
+                            <constraint firstItem="LXE-xa-lL6" firstAttribute="bottom" secondItem="nui-1u-cCe" secondAttribute="bottom" type="default" id="86s-UX-zhO"/>
+                            <constraint firstItem="B8w-aw-JZ6" firstAttribute="centerX" secondItem="p5M-yi-Kdo" secondAttribute="centerX" type="default" id="D15-Hw-YGc"/>
+                            <constraint firstItem="nui-1u-cCe" firstAttribute="baseline" secondItem="LXE-xa-lL6" secondAttribute="baseline" type="default" id="DwU-zq-Vw8"/>
+                            <constraint firstItem="H7r-nU-hGc" firstAttribute="centerX" secondItem="gKm-ys-X8O" secondAttribute="centerX" type="default" id="FGH-Ja-JrG"/>
+                            <constraint firstItem="p5M-yi-Kdo" firstAttribute="bottom" secondItem="H7r-nU-hGc" secondAttribute="bottom" type="default" id="GUl-vw-lk3"/>
+                            <constraint firstItem="LXE-xa-lL6" firstAttribute="top" secondItem="nui-1u-cCe" secondAttribute="top" type="default" id="I4G-YC-LcK"/>
                             <constraint firstItem="gKm-ys-X8O" firstAttribute="leading" secondItem="VTy-F0-tze" secondAttribute="leading" type="default" id="M79-HG-xM9"/>
-                            <constraint firstAttribute="bottom" secondItem="GEu-SE-MPm" secondAttribute="bottom" constant="48" id="MXv-PD-NJi"/>
-                            <constraint firstItem="8bu-Sy-Jx7" firstAttribute="leading" secondItem="VTy-F0-tze" secondAttribute="leading" constant="89" id="UYH-hn-ETG"/>
-                            <constraint firstItem="wUd-ko-Uob" firstAttribute="baseline" secondItem="0Qe-Ut-wND" secondAttribute="baseline" type="default" id="Zok-V1-JmX"/>
-                            <constraint firstItem="krb-8b-mg4" firstAttribute="bottom" secondItem="0Qe-Ut-wND" secondAttribute="bottom" type="default" id="gHb-iL-nNe"/>
-                            <constraint firstAttribute="bottom" secondItem="wUd-ko-Uob" secondAttribute="bottom" constant="12" id="h68-70-AfU"/>
-                            <constraint firstItem="8bu-Sy-Jx7" firstAttribute="centerY" secondItem="H7r-nU-hGc" secondAttribute="centerY" type="default" id="iHl-Xr-mug"/>
-                            <constraint firstItem="mH8-HY-Epc" firstAttribute="leading" secondItem="VTy-F0-tze" secondAttribute="leading" type="default" id="jCm-si-vVG"/>
-                            <constraint firstItem="krb-8b-mg4" firstAttribute="top" secondItem="0Qe-Ut-wND" secondAttribute="top" type="default" id="mzH-Tr-OYo"/>
-                            <constraint firstItem="GEu-SE-MPm" firstAttribute="leading" secondItem="VTy-F0-tze" secondAttribute="leading" constant="78" id="oay-0s-j9l"/>
-                            <constraint firstItem="0Qe-Ut-wND" firstAttribute="top" secondItem="wUd-ko-Uob" secondAttribute="top" type="default" id="ogI-hC-Sex"/>
-                            <constraint firstItem="mH8-HY-Epc" firstAttribute="top" secondItem="VTy-F0-tze" secondAttribute="top" type="default" id="qfw-3b-vRr"/>
-                            <constraint firstItem="0Qe-Ut-wND" firstAttribute="leading" secondItem="VTy-F0-tze" secondAttribute="leading" constant="150" id="qyC-DE-eqM"/>
-                            <constraint firstAttribute="bottom" secondItem="H7r-nU-hGc" secondAttribute="bottom" constant="59" id="r1P-Gh-aFs"/>
-                            <constraint firstAttribute="trailing" secondItem="krb-8b-mg4" secondAttribute="trailing" constant="41" id="shJ-ws-IY9"/>
-                            <constraint firstItem="H7r-nU-hGc" firstAttribute="trailing" secondItem="GEu-SE-MPm" secondAttribute="trailing" type="default" id="y3n-aV-oMh"/>
+                            <constraint firstItem="krb-8b-mg4" firstAttribute="leading" secondItem="VTy-F0-tze" secondAttribute="leading" constant="245" id="Obl-Bj-0kz"/>
+                            <constraint firstItem="krb-8b-mg4" firstAttribute="bottom" secondItem="LXE-xa-lL6" secondAttribute="bottom" type="default" id="Srl-Jo-0eP"/>
+                            <constraint firstItem="mH8-HY-Epc" firstAttribute="top" secondItem="VTy-F0-tze" secondAttribute="top" constant="23" id="Tza-rw-aIP"/>
+                            <constraint firstItem="p5M-yi-Kdo" firstAttribute="leading" secondItem="VTy-F0-tze" secondAttribute="leading" constant="32" id="WCt-Oy-uHn"/>
+                            <constraint firstItem="nui-1u-cCe" firstAttribute="baseline" secondItem="krb-8b-mg4" secondAttribute="baseline" type="default" id="a7o-h8-gyp"/>
+                            <constraint firstItem="krb-8b-mg4" firstAttribute="centerY" secondItem="gKm-ys-X8O" secondAttribute="centerY" type="default" id="eDe-9v-XdD"/>
+                            <constraint firstItem="mH8-HY-Epc" firstAttribute="leading" secondItem="VTy-F0-tze" secondAttribute="leading" constant="39" id="jXU-ge-s1P"/>
+                            <constraint firstItem="krb-8b-mg4" firstAttribute="top" secondItem="LXE-xa-lL6" secondAttribute="top" type="default" id="mFw-j1-Thp"/>
+                            <constraint firstItem="LXE-xa-lL6" firstAttribute="centerX" secondItem="gKm-ys-X8O" secondAttribute="centerX" type="default" id="qbw-sO-bFv"/>
+                            <constraint firstItem="nui-1u-cCe" firstAttribute="leading" secondItem="VTy-F0-tze" secondAttribute="leading" constant="25" id="sGr-SF-VSO"/>
                         </constraints>
                         <connections>
                             <outletCollection property="gestureRecognizers" destination="cwY-Ai-8Ns" appends="YES" id="9M9-ky-wiZ"/>
@@ -426,10 +426,11 @@
                     </view>
                     <navigationItem key="navigationItem" title="Mike Silvis" id="iUl-rV-A9J"/>
                     <connections>
+                        <outlet property="call" destination="nui-1u-cCe" id="aFy-6y-hma"/>
                         <outlet property="contactPhoto" destination="mH8-HY-Epc" id="qk5-6l-aV2"/>
+                        <outlet property="email" destination="krb-8b-mg4" id="jlM-ah-sn7"/>
                         <outlet property="lastContacted" destination="H7r-nU-hGc" id="Raj-z8-b7c"/>
-                        <outlet property="lastContactedButton" destination="GEu-SE-MPm" id="6Dk-t2-rvU"/>
-                        <outlet property="lastContactedImage" destination="8bu-Sy-Jx7" id="klB-VO-ebw"/>
+                        <outlet property="text" destination="LXE-xa-lL6" id="RT3-wA-f70"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="wrS-B9-Js3" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -463,6 +464,7 @@
         </scene>
     </scenes>
     <resources>
+        <image name="contact-show-image-background.png" width="251" height="334"/>
         <image name="contact_without_image.png" width="70" height="70"/>
         <image name="contact_without_image@2x.png" width="140" height="140"/>
         <image name="email.png" width="24" height="16"/>
@@ -472,7 +474,6 @@
         <image name="ipad-text-input.png" width="327" height="41"/>
         <image name="list-item-bg.png" width="320" height="67"/>
         <image name="lonely@2x.png" width="640" height="1136"/>
-        <image name="phone-gray.png" width="24" height="24"/>
         <image name="phone.png" width="24" height="24"/>
         <image name="sms.png" width="24" height="22"/>
         <image name="tabbar.png" width="320" height="48"/>
@@ -501,11 +502,13 @@
                 <relationship kind="action" name="emailButton:"/>
                 <relationship kind="action" name="handleSwipe:" candidateClass="UISwipeGestureRecognizer"/>
                 <relationship kind="action" name="textButton:"/>
+                <relationship kind="outlet" name="call" candidateClass="UIButton"/>
                 <relationship kind="outlet" name="contact" candidateClass="PFObject"/>
                 <relationship kind="outlet" name="contactPhoto" candidateClass="PFImageView"/>
+                <relationship kind="outlet" name="email" candidateClass="UIButton"/>
                 <relationship kind="outlet" name="lastContacted" candidateClass="UILabel"/>
-                <relationship kind="outlet" name="lastContactedButton" candidateClass="UIButton"/>
                 <relationship kind="outlet" name="lastContactedImage" candidateClass="UIImageView"/>
+                <relationship kind="outlet" name="text" candidateClass="UIButton"/>
             </relationships>
         </class>
         <class className="CuddleNavBar" superclassName="UINavigationBar">
@@ -529,15 +532,6 @@
         </class>
         <class className="NSLayoutConstraint" superclassName="NSObject">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/NSLayoutConstraint.h"/>
-        </class>
-        <class className="PFImageView" superclassName="UIImageView">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/PFImageView.h"/>
-        </class>
-        <class className="PFQueryTableViewController" superclassName="UITableViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/PFQueryTableViewController.h"/>
-        </class>
-        <class className="PFTableViewCell" superclassName="UITableViewCell">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/PFTableViewCell.h"/>
         </class>
         <class className="RegisterViewController" superclassName="UIViewController">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/RegisterViewController.h"/>

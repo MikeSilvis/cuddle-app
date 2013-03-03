@@ -24,7 +24,8 @@
 - (IBAction)callButton:(id)sender;
 
 @property (weak, nonatomic) IBOutlet UILabel *lastContacted;
-@property (weak, nonatomic) IBOutlet UIImageView *lastContactedImage;
-@property (weak, nonatomic) IBOutlet UIButton *lastContactedButton;
+@property (weak, nonatomic) IBOutlet UIButton *call;
+@property (weak, nonatomic) IBOutlet UIButton *text;
+@property (weak, nonatomic) IBOutlet UIButton *email;
 
 @end

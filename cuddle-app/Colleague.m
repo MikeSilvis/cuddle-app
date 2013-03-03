@@ -15,21 +15,18 @@
     if (self) {
         NSString *firstName = (__bridge_transfer NSString*)ABRecordCopyValue(abPerson, kABPersonFirstNameProperty);
         NSString *lastName = (__bridge_transfer NSString*)ABRecordCopyValue(abPerson, kABPersonLastNameProperty);
-        self.email = (__bridge_transfer NSString*)ABRecordCopyValue(abPerson, kABPersonEmailProperty);
-        
-        
-        //// This does not work.
+      
+        ABMultiValueRef emails = ABRecordCopyValue(abPerson, kABPersonEmailProperty);
+        self.email = (__bridge NSString *)(ABMultiValueCopyValueAtIndex(emails, 0));
+
         ABMultiValueRef socialMulti = ABRecordCopyValue(abPerson, kABPersonSocialProfileProperty);
-//        NSMutableArray* twitterHandlesArray = [[NSMutableArray alloc] initWithCapacity:ABMultiValueGetCount(socialMulti)];
         for (CFIndex i = 0; i < ABMultiValueGetCount(socialMulti); i++) {
             NSDictionary* social = (__bridge NSDictionary*)ABMultiValueCopyValueAtIndex(socialMulti, i);
             if ([social[@"service"] isEqualToString:(__bridge NSString*)kABPersonSocialProfileServiceFacebook]) {
-                NSString* username = (NSString*)social[@"username"];
-                NSLog(@"we got a facebook. username is %@", username);
-                
-//                [twitterHandlesArray addObject:[[username conditionedAsTwitterHandle] SHA2Digest]];
+                self.facebook = (NSString*)social[@"username"];
+            } else if ([social[@"service"] isEqualToString:(__bridge NSString*)kABPersonSocialProfileServiceTwitter]) {
+              self.twitter = (NSString*)social[@"username"];
             }
-            NSLog(@"looping through services");
         }
 
         self.name = [NSString stringWithFormat:@"%@ %@", firstName, lastName];
@@ -40,7 +37,7 @@
         }
         NSData  *imgABData = (__bridge_transfer NSData *) ABPersonCopyImageDataWithFormat(abPerson, kABPersonImageFormatOriginalSize);
         UIImage *image = [UIImage imageWithData:imgABData];
-        if (image.size.width > 140){
+        if (image.size.width > 1){
             self.photo = [PFFile fileWithData:imgABData];
             [self.photo saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
                 if (succeeded){
@@ -65,6 +62,12 @@
     }
     if (self.email){
           [newColleague setObject:self.email forKey:@"email"];
+    }
+    if (self.twitter){
+      [newColleague setObject:self.twitter forKey:@"twitter"];
+    }
+    if (self.facebook){
+      [newColleague setObject:self.facebook forKey:@"facebook"];
     }
     [newColleague setObject:self.name forKey:@"name"];
     [newColleague saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {

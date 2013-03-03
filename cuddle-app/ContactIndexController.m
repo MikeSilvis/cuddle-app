@@ -29,9 +29,15 @@
 }
 - (PFQuery *)queryForTable {
   PFQuery *query = [PFQuery queryWithClassName:@"Colleague"];
-  [query whereKey:@"user" equalTo:[PFUser currentUser]];  
+  [query whereKey:@"user" equalTo:[PFUser currentUser]];
+  [query orderByAscending:@"updatedAt"];
   return query;
 }
+
+- (void)viewDidAppear:(BOOL)animated{
+    [self loadObjects];
+}
+
 - (void)viewDidLoad{
     [super viewDidLoad];
     self.view.backgroundColor = [UIColor colorWithPatternImage: [UIImage imageNamed:@"background.png"]];
@@ -90,10 +96,22 @@
     if (photo){
         cell.userPicture.file = photo;
         [cell.userPicture loadInBackground];
-    } else{
+    } else if ([object objectForKey:@"facebook"] != nil) {
+        NSString *facebookImageURL = [NSString stringWithFormat:@"http://graph.facebook.com/%@/picture?type=large", [object objectForKey:@"facebook"]];
+        NSData *facebookImgData = [[NSData alloc] initWithContentsOfURL: [NSURL URLWithString:facebookImageURL]];
+        cell.userPicture.image = [UIImage imageWithData: facebookImgData];
+    } else {
       cell.userPicture.image = [UIImage imageNamed:@"contact_without_image@2x.png"];
     }
-    
+    if ([[object objectForKey:@"methodOfLastContact"] isEqual:@"call"]) {
+      cell.userLastContact.text = [@"Called on " stringByAppendingString:[self formatDate:object.createdAt]];;
+    } else if ([[object objectForKey:@"methodOfLastContact"] isEqual:@"sms"]) {
+      cell.userLastContact.text = [@"Texted on " stringByAppendingString:[self formatDate:object.createdAt]];;
+    } else if ([[object objectForKey:@"methodOfLastContact"] isEqual:@"email"]) {
+      cell.userLastContact.text = [@"Emailed on " stringByAppendingString:[self formatDate:object.createdAt]];;
+    } else {
+      cell.userLastContact.text = @"Never contacted from Cuddle";
+    }
     return cell;
 }
 
@@ -149,5 +167,20 @@
         ContactShowViewController *destViewController = segue.destinationViewController;
         destViewController.contact = [self.objects objectAtIndex:indexPath.row];
     }
+}
+- (NSString *)formatDate:(NSDate *)date{
+  NSDateFormatter *prefixDateFormatter = [[NSDateFormatter alloc] init];
+  [prefixDateFormatter setFormatterBehavior:NSDateFormatterBehavior10_4];
+  [prefixDateFormatter setDateFormat:@"MMMM d"];
+  NSString *prefixDateString = [prefixDateFormatter stringFromDate:date];
+  NSDateFormatter *monthDayFormatter = [[NSDateFormatter alloc] init];
+  [monthDayFormatter setFormatterBehavior:NSDateFormatterBehavior10_4];
+  [monthDayFormatter setDateFormat:@"d"];
+  int date_day = [[monthDayFormatter stringFromDate:date] intValue];
+  NSString *suffix_string = @"|st|nd|rd|th|th|th|th|th|th|th|th|th|th|th|th|th|th|th|th|th|st|nd|rd|th|th|th|th|th|th|th|st";
+  NSArray *suffixes = [suffix_string componentsSeparatedByString: @"|"];
+  NSString *suffix = [suffixes objectAtIndex:date_day];
+  NSString *dateString = [prefixDateString stringByAppendingString:suffix];
+  return dateString;
 }
 @end
