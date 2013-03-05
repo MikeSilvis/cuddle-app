@@ -10,7 +10,7 @@
 #import <Parse/Parse.h>
 
 @interface ContactHistoryCell : PFTableViewCell
-@property (weak, nonatomic) IBOutlet UILabel *lastContacted;
-@property (weak, nonatomic) IBOutlet UIImageView *typeOfContact;
+@property (weak, nonatomic) IBOutlet UILabel *lastContact;
+@property (weak, nonatomic) IBOutlet UIImageView *lastContactImage;
 
 @end

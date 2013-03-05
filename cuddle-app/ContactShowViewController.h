@@ -7,7 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "ContactHistoryCell.h"
+#import "ContactHistoryController.h"
 #import <Parse/Parse.h>
 #import <MessageUI/MessageUI.h>
 #import <MessageUI/MFMailComposeViewController.h>

@@ -183,4 +183,14 @@
   NSString *dateString = [prefixDateString stringByAppendingString:suffix];
   return dateString;
 }
+- (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath {
+  if (editingStyle == UITableViewCellEditingStyleDelete) {
+    [SVProgressHUD showWithStatus:@"Removing Contact..."];
+    PFObject *object = [self.objects objectAtIndex:indexPath.row];
+    [object deleteInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
+      [SVProgressHUD dismiss];
+      [self loadObjects];
+    }];
+  }
+}
 @end

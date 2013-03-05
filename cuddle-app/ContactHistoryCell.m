@@ -17,20 +17,4 @@
   }
   return self;
 }
-
-- (void)setSelected:(BOOL)selected animated:(BOOL)animated
-{
-  if(selected)
-  {
-//    [userName setTextColor:[UIColor whiteColor]];
-//    [userLastContact setTextColor:[UIColor whiteColor]];
-  }
-  else
-  {
-//    [userName setTextColor:[UIColor colorWithRed:0.0 green:68.0/255 blue:118.0/255 alpha:1.0]];
-//    [userLastContact setTextColor:[UIColor colorWithRed:113.0/255 green:133.0/255 blue:148.0/255 alpha:1.0]];
-  }
-  [super setSelected:selected animated:animated];
-}
-
 @end

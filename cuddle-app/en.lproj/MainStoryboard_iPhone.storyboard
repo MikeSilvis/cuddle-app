@@ -321,104 +321,114 @@
                         <rect key="frame" x="0.0" y="64" width="320" height="504"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
-                            <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" image="contact-show-image-background.png" translatesAutoresizingMaskIntoConstraints="NO" id="p5M-yi-Kdo"/>
+                            <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" image="contact-show-image-background.png" translatesAutoresizingMaskIntoConstraints="NO" id="p5M-yi-Kdo">
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="300" id="DEC-Lu-Ovm"/>
+                                </constraints>
+                            </imageView>
                             <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" image="contact_without_image.png" translatesAutoresizingMaskIntoConstraints="NO" id="mH8-HY-Epc" customClass="PFImageView">
                                 <constraints>
-                                    <constraint firstAttribute="width" constant="238" id="Xwj-4r-syn"/>
+                                    <constraint firstAttribute="width" constant="238" id="kGB-W9-kDz"/>
                                     <constraint firstAttribute="height" constant="238" id="sm0-Eo-AFD"/>
                                 </constraints>
                             </imageView>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" image="tabbar.png" translatesAutoresizingMaskIntoConstraints="NO" id="gKm-ys-X8O"/>
-                            <button opaque="NO" contentMode="center" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="krb-8b-mg4">
-                                <constraints>
-                                    <constraint firstAttribute="width" constant="50" id="ZCG-49-F9V"/>
-                                </constraints>
-                                <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
-                                <state key="normal" image="email.png">
-                                    <color key="titleColor" red="0.19607843459999999" green="0.30980393290000002" blue="0.52156865600000002" alpha="1" colorSpace="calibratedRGB"/>
-                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                </state>
-                                <state key="highlighted">
-                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                </state>
-                                <connections>
-                                    <action selector="emailButton:" destination="Z9q-Du-0x5" eventType="touchUpInside" id="2ek-mf-ueI"/>
-                                </connections>
-                            </button>
                             <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Called Aug 30th" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="H7r-nU-hGc">
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="43" id="8wk-pG-k0M"/>
-                                    <constraint firstAttribute="width" constant="238" id="NyG-RZ-Rny"/>
+                                    <constraint firstAttribute="height" constant="33" id="BDE-sS-nbb"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" name="AvenirNextCondensed-Medium" family="Avenir Next Condensed" pointSize="20"/>
-                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <color key="textColor" white="0.38574931569999998" alpha="1" colorSpace="calibratedWhite"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <button opaque="NO" contentMode="center" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="LXE-xa-lL6">
-                                <constraints>
-                                    <constraint firstAttribute="width" constant="50" id="Qgy-VR-Xwz"/>
-                                </constraints>
-                                <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
-                                <state key="normal" image="sms.png">
-                                    <color key="titleColor" red="0.19607843459999999" green="0.30980393290000002" blue="0.52156865600000002" alpha="1" colorSpace="calibratedRGB"/>
-                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                </state>
-                                <state key="highlighted">
-                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                </state>
-                                <connections>
-                                    <action selector="textButton:" destination="Z9q-Du-0x5" eventType="touchUpInside" id="8eb-us-NzN"/>
-                                </connections>
-                            </button>
-                            <button contentMode="center" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="nui-1u-cCe">
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="50" id="0Qi-hk-0eD"/>
-                                    <constraint firstAttribute="width" constant="50" id="saI-EP-D7b"/>
-                                </constraints>
-                                <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
-                                <state key="normal" image="phone.png">
-                                    <color key="titleColor" red="0.19607843459999999" green="0.30980393290000002" blue="0.52156865600000002" alpha="1" colorSpace="calibratedRGB"/>
-                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                </state>
-                                <state key="highlighted">
-                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                </state>
-                                <connections>
-                                    <action selector="callButton:" destination="Z9q-Du-0x5" eventType="touchUpInside" id="hwg-Sr-v05"/>
-                                </connections>
-                            </button>
                             <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Last Contacted:" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="B8w-aw-JZ6">
                                 <constraints>
                                     <constraint firstAttribute="width" constant="229" id="BFg-83-0ki"/>
+                                    <constraint firstAttribute="height" constant="31" id="xlo-rI-eff"/>
                                 </constraints>
-                                <fontDescription key="fontDescription" name="Avenir-Medium" family="Avenir" pointSize="22"/>
+                                <fontDescription key="fontDescription" name="Avenir-Medium" family="Avenir" pointSize="20"/>
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="yMf-4R-SWU">
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
+                                <state key="normal" backgroundImage="phone.png">
+                                    <color key="titleColor" red="0.19607843459999999" green="0.30980393290000002" blue="0.52156865600000002" alpha="1" colorSpace="calibratedRGB"/>
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <state key="highlighted">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="callButton:" destination="Z9q-Du-0x5" eventType="touchUpInside" id="noT-h7-8xS"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Ouo-Ts-9yz">
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
+                                <state key="normal" backgroundImage="sms.png">
+                                    <color key="titleColor" red="0.19607843459999999" green="0.30980393290000002" blue="0.52156865600000002" alpha="1" colorSpace="calibratedRGB"/>
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <state key="highlighted">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="textButton:" destination="Z9q-Du-0x5" eventType="touchUpInside" id="DIW-3F-l6u"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="2pW-ob-mUq">
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
+                                <state key="normal" backgroundImage="email.png">
+                                    <color key="titleColor" red="0.19607843459999999" green="0.30980393290000002" blue="0.52156865600000002" alpha="1" colorSpace="calibratedRGB"/>
+                                </state>
+                                <state key="highlighted">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="emailButton:" destination="Z9q-Du-0x5" eventType="touchUpInside" id="gEK-Nc-OfS"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="g1C-j8-RdX">
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="236" id="MUN-v5-1lb"/>
+                                    <constraint firstAttribute="height" constant="44" id="hHJ-aU-l8c"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" name="Avenir-Medium" family="Avenir" pointSize="16"/>
+                                <state key="normal" title="Contact History" backgroundImage="ipad-button-green.png">
+                                    <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <state key="highlighted">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <segue destination="Ems-Cb-ec9" kind="push" identifier="contactHistorySegue" id="Uzo-hG-Xfo"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <gestureRecognizers/>
                         <constraints>
-                            <constraint firstItem="B8w-aw-JZ6" firstAttribute="top" secondItem="mH8-HY-Epc" secondAttribute="bottom" constant="8" symbolic="YES" type="default" id="4Ib-ir-gbs"/>
-                            <constraint firstItem="p5M-yi-Kdo" firstAttribute="top" secondItem="VTy-F0-tze" secondAttribute="top" constant="20" symbolic="YES" type="default" id="4kJ-lW-ATR"/>
+                            <constraint firstItem="Ouo-Ts-9yz" firstAttribute="centerX" secondItem="gKm-ys-X8O" secondAttribute="centerX" type="default" id="0A9-o1-tqG"/>
+                            <constraint firstItem="Ouo-Ts-9yz" firstAttribute="top" secondItem="yMf-4R-SWU" secondAttribute="top" type="default" id="4It-LQ-s8n"/>
                             <constraint firstItem="gKm-ys-X8O" firstAttribute="bottom" secondItem="VTy-F0-tze" secondAttribute="bottom" type="default" id="5Qi-7b-ZcZ"/>
-                            <constraint firstItem="LXE-xa-lL6" firstAttribute="bottom" secondItem="nui-1u-cCe" secondAttribute="bottom" type="default" id="86s-UX-zhO"/>
-                            <constraint firstItem="B8w-aw-JZ6" firstAttribute="centerX" secondItem="p5M-yi-Kdo" secondAttribute="centerX" type="default" id="D15-Hw-YGc"/>
-                            <constraint firstItem="nui-1u-cCe" firstAttribute="baseline" secondItem="LXE-xa-lL6" secondAttribute="baseline" type="default" id="DwU-zq-Vw8"/>
-                            <constraint firstItem="H7r-nU-hGc" firstAttribute="centerX" secondItem="gKm-ys-X8O" secondAttribute="centerX" type="default" id="FGH-Ja-JrG"/>
-                            <constraint firstItem="p5M-yi-Kdo" firstAttribute="bottom" secondItem="H7r-nU-hGc" secondAttribute="bottom" type="default" id="GUl-vw-lk3"/>
-                            <constraint firstItem="LXE-xa-lL6" firstAttribute="top" secondItem="nui-1u-cCe" secondAttribute="top" type="default" id="I4G-YC-LcK"/>
+                            <constraint firstItem="Ouo-Ts-9yz" firstAttribute="centerX" secondItem="B8w-aw-JZ6" secondAttribute="centerX" type="default" id="7Li-D1-yaL"/>
+                            <constraint firstItem="g1C-j8-RdX" firstAttribute="top" secondItem="p5M-yi-Kdo" secondAttribute="bottom" constant="8" symbolic="YES" type="default" id="CJ2-n6-6PE"/>
+                            <constraint firstItem="mH8-HY-Epc" firstAttribute="top" secondItem="VTy-F0-tze" secondAttribute="top" constant="7" id="DAZ-LC-JR6"/>
+                            <constraint firstAttribute="bottom" secondItem="2pW-ob-mUq" secondAttribute="bottom" constant="18" id="Ed0-UZ-Khd"/>
+                            <constraint firstItem="g1C-j8-RdX" firstAttribute="leading" secondItem="H7r-nU-hGc" secondAttribute="leading" type="default" id="KCI-K2-ZVo"/>
                             <constraint firstItem="gKm-ys-X8O" firstAttribute="leading" secondItem="VTy-F0-tze" secondAttribute="leading" type="default" id="M79-HG-xM9"/>
-                            <constraint firstItem="krb-8b-mg4" firstAttribute="leading" secondItem="VTy-F0-tze" secondAttribute="leading" constant="245" id="Obl-Bj-0kz"/>
-                            <constraint firstItem="krb-8b-mg4" firstAttribute="bottom" secondItem="LXE-xa-lL6" secondAttribute="bottom" type="default" id="Srl-Jo-0eP"/>
-                            <constraint firstItem="mH8-HY-Epc" firstAttribute="top" secondItem="VTy-F0-tze" secondAttribute="top" constant="23" id="Tza-rw-aIP"/>
-                            <constraint firstItem="p5M-yi-Kdo" firstAttribute="leading" secondItem="VTy-F0-tze" secondAttribute="leading" constant="32" id="WCt-Oy-uHn"/>
-                            <constraint firstItem="nui-1u-cCe" firstAttribute="baseline" secondItem="krb-8b-mg4" secondAttribute="baseline" type="default" id="a7o-h8-gyp"/>
-                            <constraint firstItem="krb-8b-mg4" firstAttribute="centerY" secondItem="gKm-ys-X8O" secondAttribute="centerY" type="default" id="eDe-9v-XdD"/>
-                            <constraint firstItem="mH8-HY-Epc" firstAttribute="leading" secondItem="VTy-F0-tze" secondAttribute="leading" constant="39" id="jXU-ge-s1P"/>
-                            <constraint firstItem="krb-8b-mg4" firstAttribute="top" secondItem="LXE-xa-lL6" secondAttribute="top" type="default" id="mFw-j1-Thp"/>
-                            <constraint firstItem="LXE-xa-lL6" firstAttribute="centerX" secondItem="gKm-ys-X8O" secondAttribute="centerX" type="default" id="qbw-sO-bFv"/>
-                            <constraint firstItem="nui-1u-cCe" firstAttribute="leading" secondItem="VTy-F0-tze" secondAttribute="leading" constant="25" id="sGr-SF-VSO"/>
+                            <constraint firstAttribute="trailing" secondItem="2pW-ob-mUq" secondAttribute="trailing" constant="31" id="NsF-si-uG2"/>
+                            <constraint firstItem="H7r-nU-hGc" firstAttribute="leading" secondItem="mH8-HY-Epc" secondAttribute="leading" type="default" id="QWg-ZL-16e"/>
+                            <constraint firstItem="yMf-4R-SWU" firstAttribute="leading" secondItem="p5M-yi-Kdo" secondAttribute="leading" type="default" id="UvA-v6-oyP"/>
+                            <constraint firstItem="p5M-yi-Kdo" firstAttribute="top" secondItem="VTy-F0-tze" secondAttribute="top" constant="3" id="WFx-jT-i3b"/>
+                            <constraint firstItem="B8w-aw-JZ6" firstAttribute="top" secondItem="VTy-F0-tze" secondAttribute="top" constant="243" id="eKY-AB-fuv"/>
+                            <constraint firstItem="Ouo-Ts-9yz" firstAttribute="bottom" secondItem="yMf-4R-SWU" secondAttribute="bottom" type="default" id="eb0-dE-jmc"/>
+                            <constraint firstItem="H7r-nU-hGc" firstAttribute="trailing" secondItem="mH8-HY-Epc" secondAttribute="trailing" type="default" id="f3I-2y-Tzq"/>
+                            <constraint firstItem="g1C-j8-RdX" firstAttribute="top" secondItem="H7r-nU-hGc" secondAttribute="bottom" constant="8" symbolic="YES" type="default" id="ip1-Z6-pQZ"/>
+                            <constraint firstItem="g1C-j8-RdX" firstAttribute="centerX" secondItem="p5M-yi-Kdo" secondAttribute="centerX" type="default" id="lMz-Ub-Rfx"/>
+                            <constraint firstItem="g1C-j8-RdX" firstAttribute="trailing" secondItem="B8w-aw-JZ6" secondAttribute="trailing" type="default" id="obG-Qx-qlX"/>
+                            <constraint firstItem="Ouo-Ts-9yz" firstAttribute="centerY" secondItem="gKm-ys-X8O" secondAttribute="centerY" type="default" id="zod-5c-yGa"/>
                         </constraints>
                         <connections>
                             <outletCollection property="gestureRecognizers" destination="cwY-Ai-8Ns" appends="YES" id="9M9-ky-wiZ"/>
@@ -426,11 +436,11 @@
                     </view>
                     <navigationItem key="navigationItem" title="Mike Silvis" id="iUl-rV-A9J"/>
                     <connections>
-                        <outlet property="call" destination="nui-1u-cCe" id="aFy-6y-hma"/>
+                        <outlet property="call" destination="yMf-4R-SWU" id="zk5-zi-RHS"/>
                         <outlet property="contactPhoto" destination="mH8-HY-Epc" id="qk5-6l-aV2"/>
-                        <outlet property="email" destination="krb-8b-mg4" id="jlM-ah-sn7"/>
+                        <outlet property="email" destination="2pW-ob-mUq" id="oet-Or-SUH"/>
                         <outlet property="lastContacted" destination="H7r-nU-hGc" id="Raj-z8-b7c"/>
-                        <outlet property="text" destination="LXE-xa-lL6" id="RT3-wA-f70"/>
+                        <outlet property="text" destination="Ouo-Ts-9yz" id="Qgd-YM-RvE"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="wrS-B9-Js3" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -441,6 +451,67 @@
                 </swipeGestureRecognizer>
             </objects>
             <point key="canvasLocation" x="3004" y="90"/>
+        </scene>
+        <!--Contact History Controller-->
+        <scene sceneID="BbZ-7Z-dgv">
+            <objects>
+                <tableViewController id="Ems-Cb-ec9" customClass="ContactHistoryController" sceneMemberID="viewController">
+                    <tableView key="view" opaque="NO" clipsSubviews="YES" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" allowsSelection="NO" rowHeight="50" sectionHeaderHeight="22" sectionFooterHeight="22" id="PkR-qk-WtO">
+                        <rect key="frame" x="0.0" y="64" width="320" height="504"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <prototypes>
+                            <tableViewCell contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="contactHistoryCell" rowHeight="50" id="SGx-O4-xvN" customClass="ContactHistoryCell">
+                                <rect key="frame" x="0.0" y="22" width="320" height="50"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
+                                    <rect key="frame" x="0.0" y="0.0" width="320" height="49"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" image="list-item-bg.png" translatesAutoresizingMaskIntoConstraints="NO" id="ulu-aG-26p"/>
+                                        <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Called on March 3rd" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qYH-MH-sjn">
+                                            <constraints>
+                                                <constraint firstAttribute="width" constant="274" id="UU6-Sj-Mhj"/>
+                                            </constraints>
+                                            <fontDescription key="fontDescription" name="Avenir-Medium" family="Avenir" pointSize="20"/>
+                                            <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                            <color key="highlightedColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        </label>
+                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="peJ-HH-hQA">
+                                            <constraints>
+                                                <constraint firstAttribute="width" constant="24" id="7Na-2U-ezw"/>
+                                                <constraint firstAttribute="height" constant="24" id="FLK-5f-fX4"/>
+                                            </constraints>
+                                        </imageView>
+                                    </subviews>
+                                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                </view>
+                                <constraints>
+                                    <constraint firstItem="qYH-MH-sjn" firstAttribute="centerY" secondItem="peJ-HH-hQA" secondAttribute="centerY" type="default" id="8Nh-Qb-IQy"/>
+                                    <constraint firstItem="peJ-HH-hQA" firstAttribute="centerY" secondItem="ulu-aG-26p" secondAttribute="centerY" type="default" id="9XV-aM-fHv"/>
+                                    <constraint firstItem="peJ-HH-hQA" firstAttribute="leading" secondItem="SGx-O4-xvN" secondAttribute="leading" constant="5" id="Ckr-zy-SXl"/>
+                                    <constraint firstItem="ulu-aG-26p" firstAttribute="leading" secondItem="SGx-O4-xvN" secondAttribute="leading" type="default" id="EW6-Jc-7O4"/>
+                                    <constraint firstItem="qYH-MH-sjn" firstAttribute="bottom" secondItem="ulu-aG-26p" secondAttribute="bottom" type="default" id="Iq6-0G-bxU"/>
+                                    <constraint firstItem="qYH-MH-sjn" firstAttribute="trailing" secondItem="SGx-O4-xvN" secondAttribute="trailing" type="default" id="aWI-QD-1YI"/>
+                                    <constraint firstItem="qYH-MH-sjn" firstAttribute="bottom" secondItem="SGx-O4-xvN" secondAttribute="bottom" type="default" id="e4L-Gi-ovk"/>
+                                    <constraint firstItem="peJ-HH-hQA" firstAttribute="centerY" secondItem="SGx-O4-xvN" secondAttribute="centerY" type="default" id="lqI-dz-Esk"/>
+                                </constraints>
+                                <connections>
+                                    <outlet property="lastContact" destination="qYH-MH-sjn" id="KgN-Gb-kdv"/>
+                                    <outlet property="lastContactImage" destination="peJ-HH-hQA" id="Jk6-N1-VHd"/>
+                                </connections>
+                            </tableViewCell>
+                        </prototypes>
+                        <connections>
+                            <outlet property="dataSource" destination="Ems-Cb-ec9" id="j2O-6Q-01l"/>
+                            <outlet property="delegate" destination="Ems-Cb-ec9" id="6ME-3r-oU2"/>
+                        </connections>
+                    </tableView>
+                    <navigationItem key="navigationItem" id="GDe-ch-rcW"/>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Box-2l-Ely" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="3537" y="90"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="qZb-Dj-bPu">
@@ -464,11 +535,12 @@
         </scene>
     </scenes>
     <resources>
-        <image name="contact-show-image-background.png" width="251" height="334"/>
+        <image name="contact-show-image-background.png" width="251" height="302"/>
         <image name="contact_without_image.png" width="70" height="70"/>
         <image name="contact_without_image@2x.png" width="140" height="140"/>
         <image name="email.png" width="24" height="16"/>
         <image name="ipad-button-blue.png" width="157" height="49"/>
+        <image name="ipad-button-green.png" width="159" height="51"/>
         <image name="ipad-button-grey.png" width="159" height="51"/>
         <image name="ipad-list-item-selected.png" width="319" height="67"/>
         <image name="ipad-text-input.png" width="327" height="41"/>
@@ -479,6 +551,19 @@
         <image name="tabbar.png" width="320" height="48"/>
     </resources>
     <classes>
+        <class className="ContactHistoryCell" superclassName="PFTableViewCell">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/ContactHistoryCell.h"/>
+            <relationships>
+                <relationship kind="outlet" name="lastContact" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="lastContactImage" candidateClass="UIImageView"/>
+            </relationships>
+        </class>
+        <class className="ContactHistoryController" superclassName="PFQueryTableViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/ContactHistoryController.h"/>
+            <relationships>
+                <relationship kind="outlet" name="contact" candidateClass="PFObject"/>
+            </relationships>
+        </class>
         <class className="ContactIndexController" superclassName="PFQueryTableViewController">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/ContactIndexController.h"/>
             <relationships>
@@ -507,7 +592,6 @@
                 <relationship kind="outlet" name="contactPhoto" candidateClass="PFImageView"/>
                 <relationship kind="outlet" name="email" candidateClass="UIButton"/>
                 <relationship kind="outlet" name="lastContacted" candidateClass="UILabel"/>
-                <relationship kind="outlet" name="lastContactedImage" candidateClass="UIImageView"/>
                 <relationship kind="outlet" name="text" candidateClass="UIButton"/>
             </relationships>
         </class>
@@ -550,6 +634,6 @@
         <simulatedScreenMetrics key="destination" type="retina4"/>
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
-        <segue reference="Wjc-Q4-u8w"/>
+        <segue reference="kwV-ey-FKD"/>
     </inferredMetricsTieBreakers>
 </document>
