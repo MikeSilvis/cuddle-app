@@ -110,7 +110,7 @@
                     <connections>
                         <outlet property="emailField" destination="5Mh-Oj-KiN" id="gju-xu-Ygv"/>
                         <outlet property="passwordField" destination="rOq-ji-7M9" id="kSF-rg-5VG"/>
-                        <segue destination="b8Q-sT-juJ" kind="push" identifier="loginSuccessSegue" id="Wjc-Q4-u8w"/>
+                        <segue destination="b8Q-sT-juJ" kind="custom" identifier="loginSuccessSegue" customClass="LonelySegue" id="Wjc-Q4-u8w"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="4" sceneMemberID="firstResponder"/>
@@ -189,7 +189,7 @@
                     <connections>
                         <outlet property="emailField" destination="KdB-Aj-4Mx" id="uIB-RB-oDp"/>
                         <outlet property="passwordField" destination="bcV-cF-oB4" id="Yhf-au-ifA"/>
-                        <segue destination="b8Q-sT-juJ" kind="push" identifier="registerSuccessSegue" id="kwV-ey-FKD"/>
+                        <segue destination="b8Q-sT-juJ" kind="custom" identifier="registerSuccessSegue" customClass="LonelySegue" id="kwV-ey-FKD"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="XH6-vD-PVL" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -280,7 +280,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="AES-uZ-hag" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2343" y="90"/>
+            <point key="canvasLocation" x="2455" y="90"/>
         </scene>
         <!--Lonely Controller-->
         <scene sceneID="ikj-Qb-UEX">
@@ -634,6 +634,6 @@
         <simulatedScreenMetrics key="destination" type="retina4"/>
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
-        <segue reference="kwV-ey-FKD"/>
+        <segue reference="Wjc-Q4-u8w"/>
     </inferredMetricsTieBreakers>
 </document>
