@@ -17,7 +17,12 @@
                                     <outlet property="delegate" destination="h2x-IE-8pD" id="97u-Rp-zKR"/>
                                 </connections>
                             </scrollView>
-                            <pageControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" numberOfPages="3" translatesAutoresizingMaskIntoConstraints="NO" id="jSk-2N-sWh">
+                            <pageControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" numberOfPages="4" translatesAutoresizingMaskIntoConstraints="NO" id="jSk-2N-sWh">
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="38" id="Yr4-hV-Lak"/>
+                                </constraints>
+                                <color key="pageIndicatorTintColor" red="0.0" green="0.50196081399917603" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                <color key="currentPageIndicatorTintColor" red="1" green="0.40000000596046448" blue="0.40000000596046448" alpha="1" colorSpace="calibratedRGB"/>
                                 <connections>
                                     <action selector="pageChanged:" destination="h2x-IE-8pD" eventType="valueChanged" id="sND-Ad-cdg"/>
                                 </connections>
@@ -37,11 +42,12 @@
                     <connections>
                         <outlet property="pageControl" destination="jSk-2N-sWh" id="AcD-Qx-fP1"/>
                         <outlet property="scrollView" destination="woN-f0-Orl" id="oCb-9f-dmQ"/>
+                        <segue destination="kDV-Vv-6JX" kind="push" identifier="registerSegue" id="aEE-PH-xuH"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="csh-m8-Yf4" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="908" y="-690"/>
+            <point key="canvasLocation" x="668" y="98"/>
         </scene>
         <!--Login View Controller - Login-->
         <scene sceneID="5">
@@ -65,32 +71,6 @@
                                 </state>
                                 <connections>
                                     <action selector="login:" destination="2" eventType="touchUpInside" id="p0S-0x-m7B"/>
-                                </connections>
-                            </button>
-                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Don't have an account? " lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="QVV-0J-X2a">
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="21" id="S9T-n0-4Vf"/>
-                                    <constraint firstAttribute="width" constant="177" id="X5A-43-qaw"/>
-                                </constraints>
-                                <fontDescription key="fontDescription" name="Avenir-Medium" family="Avenir" pointSize="16"/>
-                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="V72-pt-nFd">
-                                <constraints>
-                                    <constraint firstAttribute="width" constant="279" id="EFr-sT-3Nl"/>
-                                    <constraint firstAttribute="height" constant="44" id="qV8-55-4Lw"/>
-                                </constraints>
-                                <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
-                                <state key="normal" title="Sign up" backgroundImage="ipad-button-grey.png">
-                                    <color key="titleColor" red="0.19607843459999999" green="0.30980393290000002" blue="0.52156865600000002" alpha="1" colorSpace="calibratedRGB"/>
-                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                </state>
-                                <state key="highlighted">
-                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                </state>
-                                <connections>
-                                    <segue destination="kDV-Vv-6JX" kind="push" id="CP8-CV-nfr"/>
                                 </connections>
                             </button>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Email" textAlignment="center" minimumFontSize="17" background="ipad-text-input.png" translatesAutoresizingMaskIntoConstraints="NO" id="5Mh-Oj-KiN">
@@ -126,13 +106,9 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstItem="5Mh-Oj-KiN" firstAttribute="top" secondItem="3" secondAttribute="top" constant="82" id="74U-1J-5za"/>
-                            <constraint firstAttribute="bottom" secondItem="QVV-0J-X2a" secondAttribute="bottom" constant="52" id="8kD-PU-I1J"/>
                             <constraint firstItem="IEP-vB-Y1L" firstAttribute="top" secondItem="3" secondAttribute="top" constant="207" id="8xA-rX-9qv"/>
-                            <constraint firstItem="V72-pt-nFd" firstAttribute="leading" secondItem="3" secondAttribute="leading" constant="20" symbolic="YES" type="default" id="9lj-7U-jE7"/>
                             <constraint firstItem="7RP-DB-6jC" firstAttribute="centerX" secondItem="5Mh-Oj-KiN" secondAttribute="centerX" type="default" id="CN4-qG-9dh"/>
-                            <constraint firstAttribute="bottom" secondItem="V72-pt-nFd" secondAttribute="bottom" constant="8" id="DZd-Ro-gPb"/>
                             <constraint firstAttribute="trailing" secondItem="IEP-vB-Y1L" secondAttribute="trailing" constant="20" symbolic="YES" type="default" id="MS7-lI-gCd"/>
-                            <constraint firstItem="V72-pt-nFd" firstAttribute="centerX" secondItem="QVV-0J-X2a" secondAttribute="centerX" type="default" id="P3G-HA-AFc"/>
                             <constraint firstAttribute="trailing" secondItem="rOq-ji-7M9" secondAttribute="trailing" constant="20" symbolic="YES" type="default" id="Xx5-qt-lYf"/>
                             <constraint firstItem="7RP-DB-6jC" firstAttribute="top" secondItem="3" secondAttribute="top" constant="20" symbolic="YES" type="default" id="ZLU-q0-dNT"/>
                             <constraint firstItem="rOq-ji-7M9" firstAttribute="leading" secondItem="3" secondAttribute="leading" constant="20" symbolic="YES" type="default" id="cek-wa-AgU"/>
@@ -149,12 +125,11 @@
                     <connections>
                         <outlet property="emailField" destination="5Mh-Oj-KiN" id="gju-xu-Ygv"/>
                         <outlet property="passwordField" destination="rOq-ji-7M9" id="kSF-rg-5VG"/>
-                        <segue destination="b8Q-sT-juJ" kind="custom" identifier="loginSuccessSegue" customClass="LonelySegue" id="Wjc-Q4-u8w"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="4" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1261" y="90"/>
+            <point key="canvasLocation" x="1156" y="814"/>
         </scene>
         <!--Register View Controller - Register-->
         <scene sceneID="KdO-vS-vje">
@@ -208,13 +183,37 @@
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Already have an account?" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="v0W-L7-Gw8">
+                                <fontDescription key="fontDescription" name="Avenir-Medium" family="Avenir" pointSize="16"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="9oQ-a7-jka">
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="44" id="v4O-YQ-1Tm"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
+                                <state key="normal" title="Login" backgroundImage="ipad-button-grey.png">
+                                    <color key="titleColor" red="0.19607843459999999" green="0.30980393290000002" blue="0.52156865600000002" alpha="1" colorSpace="calibratedRGB"/>
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <state key="highlighted">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <segue destination="2" kind="push" id="COU-Jr-zcR"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <constraints>
+                            <constraint firstItem="v0W-L7-Gw8" firstAttribute="centerX" secondItem="irt-8E-uoQ" secondAttribute="centerX" type="default" id="9Dp-nm-hdH"/>
                             <constraint firstAttribute="trailing" secondItem="bcV-cF-oB4" secondAttribute="trailing" constant="20" symbolic="YES" type="default" id="JAS-d7-aZm"/>
                             <constraint firstItem="T0x-KA-F6C" firstAttribute="centerX" secondItem="KdB-Aj-4Mx" secondAttribute="centerX" type="default" id="MVz-bh-c7C"/>
                             <constraint firstItem="T0x-KA-F6C" firstAttribute="top" secondItem="IYM-Pm-Gia" secondAttribute="top" constant="25" id="MxX-ph-EvJ"/>
+                            <constraint firstItem="v0W-L7-Gw8" firstAttribute="centerX" secondItem="9oQ-a7-jka" secondAttribute="centerX" type="default" id="OhO-PD-Oyi"/>
                             <constraint firstItem="irt-8E-uoQ" firstAttribute="leading" secondItem="IYM-Pm-Gia" secondAttribute="leading" constant="20" symbolic="YES" type="default" id="UU2-g0-ruD"/>
+                            <constraint firstAttribute="bottom" secondItem="v0W-L7-Gw8" secondAttribute="bottom" constant="53" id="UUj-l6-faU"/>
                             <constraint firstAttribute="trailing" secondItem="KdB-Aj-4Mx" secondAttribute="trailing" constant="20" symbolic="YES" type="default" id="cDg-aN-B0c"/>
                             <constraint firstItem="bcV-cF-oB4" firstAttribute="top" secondItem="KdB-Aj-4Mx" secondAttribute="bottom" constant="8" symbolic="YES" type="default" id="cPm-8y-CCv"/>
                             <constraint firstItem="bcV-cF-oB4" firstAttribute="leading" secondItem="IYM-Pm-Gia" secondAttribute="leading" constant="20" symbolic="YES" type="default" id="ccZ-ZB-WP0"/>
@@ -222,6 +221,8 @@
                             <constraint firstAttribute="trailing" secondItem="irt-8E-uoQ" secondAttribute="trailing" constant="20" symbolic="YES" type="default" id="eGv-s2-n58"/>
                             <constraint firstItem="KdB-Aj-4Mx" firstAttribute="leading" secondItem="IYM-Pm-Gia" secondAttribute="leading" constant="20" symbolic="YES" type="default" id="rRs-JG-tPp"/>
                             <constraint firstItem="irt-8E-uoQ" firstAttribute="top" secondItem="IYM-Pm-Gia" secondAttribute="top" constant="207" id="saP-z6-E7e"/>
+                            <constraint firstAttribute="trailing" secondItem="9oQ-a7-jka" secondAttribute="trailing" constant="20" symbolic="YES" type="default" id="uaX-Qk-z0o"/>
+                            <constraint firstAttribute="bottom" secondItem="9oQ-a7-jka" secondAttribute="bottom" constant="9" id="yIy-xb-u5B"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="Register" id="zsW-hQ-ewu"/>
@@ -233,7 +234,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="XH6-vD-PVL" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1800" y="792"/>
+            <point key="canvasLocation" x="1156" y="98"/>
         </scene>
         <!--Contact Index Controller-->
         <scene sceneID="YVJ-2D-0Bb">
@@ -570,7 +571,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="7pP-Hq-km1" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="425" y="-690"/>
+            <point key="canvasLocation" x="185" y="98"/>
         </scene>
     </scenes>
     <resources>
@@ -680,7 +681,4 @@
         <simulatedOrientationMetrics key="orientation"/>
         <simulatedScreenMetrics key="destination" type="retina4"/>
     </simulatedMetricsContainer>
-    <inferredMetricsTieBreakers>
-        <segue reference="Wjc-Q4-u8w"/>
-    </inferredMetricsTieBreakers>
 </document>

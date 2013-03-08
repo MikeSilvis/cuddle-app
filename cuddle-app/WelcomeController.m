@@ -22,16 +22,17 @@
   
   UIImageView *firstImage = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"logo@2x.png"]];
   UIImageView *secondImage = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"ipad-button-red.png"]];
-  UIImageView *thirdImage = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"ipad-button-grey@"]];
+  UIImageView *thirdImage = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"ipad-button-grey.png"]];
+  UIImageView *fourthImage = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"ipad-button-grey.png"]];
   
-  NSArray *images = [NSArray arrayWithObjects:firstImage, secondImage, thirdImage, nil];
+  NSArray *images = [NSArray arrayWithObjects:firstImage, secondImage, thirdImage, fourthImage, nil];
   for (int i =0; i < images.count; i++) {
 		CGRect frame;
 		frame.origin.x = self.scrollView.frame.size.width * i;
 		frame.origin.y = 0;
 		frame.size = self.scrollView.frame.size;
-		
 		UIView *subview = [[UIView alloc] initWithFrame:frame];
+    [subview addSubview:images[i]];
 		[self.scrollView addSubview:subview];
   }
 	
@@ -50,11 +51,17 @@
 	}
 }
 
-- (void)scrollViewWillBeginDragging:(UIScrollView *)scrollView {
+- (void)scrollViewWillBeginDragging:(UIScrollView *)currentScrollView {
 	pageControlBeingUsed = NO;
+  CGFloat pageWidth = currentScrollView.frame.size.width;
+  float fractionalPage = currentScrollView.contentOffset.x / pageWidth;
+  NSInteger page = lround(fractionalPage);
+  if (page == 2){
+    [self performSegueWithIdentifier:@"registerSegue" sender:self];
+  }
 }
 
-- (void)scrollViewDidEndDecelerating:(UIScrollView *)scrollView {
+- (void)scrollViewDidEndDecelerating:(UIScrollView *)currentScrollView {
 	pageControlBeingUsed = NO;
 }
 - (IBAction)pageChanged:(id)sender {

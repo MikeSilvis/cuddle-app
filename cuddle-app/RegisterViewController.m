@@ -20,6 +20,7 @@
                                    action:@selector(dismissKeyboard)];
     
     [self.view addGestureRecognizer:tap];
+//    self.navigationItem.backBarButtonItem
 }
 - (BOOL)textFieldShouldReturn:(UITextField *)textField
 {
