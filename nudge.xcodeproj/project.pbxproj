@@ -78,6 +78,7 @@
 		36D7A87516E060B7003FE516 /* back.png in Resources */ = {isa = PBXBuildFile; fileRef = 36D7A87316E060B7003FE516 /* back.png */; };
 		36D7A87616E060B7003FE516 /* back@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 36D7A87416E060B7003FE516 /* back@2x.png */; };
 		36F7E59616E05A62007BB7A6 /* CuddleNavBar.m in Sources */ = {isa = PBXBuildFile; fileRef = 36F7E59516E05A62007BB7A6 /* CuddleNavBar.m */; };
+		36FDEF5B16EA9C2F00488113 /* WelcomeController.m in Sources */ = {isa = PBXBuildFile; fileRef = 36FDEF5A16EA9C2F00488113 /* WelcomeController.m */; };
 		36FFBF5116C85DDF00CC3140 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 36FFBF5016C85DDF00CC3140 /* UIKit.framework */; };
 		36FFBF5316C85DDF00CC3140 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 36FFBF5216C85DDF00CC3140 /* Foundation.framework */; };
 		36FFBF5516C85DDF00CC3140 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 36FFBF5416C85DDF00CC3140 /* CoreGraphics.framework */; };
@@ -201,6 +202,8 @@
 		36D7A87416E060B7003FE516 /* back@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "back@2x.png"; sourceTree = "<group>"; };
 		36F7E59416E05A62007BB7A6 /* CuddleNavBar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CuddleNavBar.h; sourceTree = "<group>"; };
 		36F7E59516E05A62007BB7A6 /* CuddleNavBar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CuddleNavBar.m; sourceTree = "<group>"; };
+		36FDEF5916EA9C2F00488113 /* WelcomeController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WelcomeController.h; sourceTree = "<group>"; };
+		36FDEF5A16EA9C2F00488113 /* WelcomeController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WelcomeController.m; sourceTree = "<group>"; };
 		36FFBF4D16C85DDF00CC3140 /* nudge.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = nudge.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		36FFBF5016C85DDF00CC3140 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		36FFBF5216C85DDF00CC3140 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -375,6 +378,8 @@
 		362D55F716C8667F00A3423D /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				36FDEF5916EA9C2F00488113 /* WelcomeController.h */,
+				36FDEF5A16EA9C2F00488113 /* WelcomeController.m */,
 				36A6605016E457F5003D3C99 /* ContactHistoryController.h */,
 				36A6605116E457F5003D3C99 /* ContactHistoryController.m */,
 				362D55FE16C86FD400A3423D /* ContactShowViewController.h */,
@@ -720,6 +725,7 @@
 				36F7E59616E05A62007BB7A6 /* CuddleNavBar.m in Sources */,
 				36232B6C16E2B3FA0029A175 /* ContactHistoryCell.m in Sources */,
 				36A6605216E457F5003D3C99 /* ContactHistoryController.m in Sources */,
+				36FDEF5B16EA9C2F00488113 /* WelcomeController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

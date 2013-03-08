@@ -4,6 +4,41 @@
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="2083"/>
     </dependencies>
     <scenes>
+        <!--Welcome Controller-->
+        <scene sceneID="pkK-7M-uAi">
+            <objects>
+                <viewController id="h2x-IE-8pD" customClass="WelcomeController" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="Jhb-ai-Iqz">
+                        <rect key="frame" x="0.0" y="64" width="320" height="504"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <subviews>
+                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" pagingEnabled="YES" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" translatesAutoresizingMaskIntoConstraints="NO" id="woN-f0-Orl"/>
+                            <pageControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" numberOfPages="3" translatesAutoresizingMaskIntoConstraints="NO" id="jSk-2N-sWh">
+                                <connections>
+                                    <action selector="pageChanged:" destination="h2x-IE-8pD" eventType="valueChanged" id="sND-Ad-cdg"/>
+                                </connections>
+                            </pageControl>
+                        </subviews>
+                        <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="woN-f0-Orl" firstAttribute="trailing" secondItem="Jhb-ai-Iqz" secondAttribute="trailing" type="default" id="3cl-da-ElA"/>
+                            <constraint firstItem="jSk-2N-sWh" firstAttribute="bottom" secondItem="Jhb-ai-Iqz" secondAttribute="bottom" type="default" id="MPi-Of-F6p"/>
+                            <constraint firstItem="jSk-2N-sWh" firstAttribute="centerX" secondItem="woN-f0-Orl" secondAttribute="centerX" type="default" id="UPz-uJ-cQG"/>
+                            <constraint firstItem="jSk-2N-sWh" firstAttribute="top" secondItem="woN-f0-Orl" secondAttribute="bottom" constant="8" symbolic="YES" type="default" id="Utg-3e-crt"/>
+                            <constraint firstItem="woN-f0-Orl" firstAttribute="leading" secondItem="Jhb-ai-Iqz" secondAttribute="leading" type="default" id="cmi-8B-OsB"/>
+                            <constraint firstItem="woN-f0-Orl" firstAttribute="top" secondItem="Jhb-ai-Iqz" secondAttribute="top" type="default" id="fAC-Z9-KZc"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" id="wkx-ed-Icb"/>
+                    <connections>
+                        <outlet property="pageControl" destination="jSk-2N-sWh" id="AcD-Qx-fP1"/>
+                        <outlet property="scrollView" destination="woN-f0-Orl" id="oCb-9f-dmQ"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="csh-m8-Yf4" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="908" y="-690"/>
+        </scene>
         <!--Login View Controller - Login-->
         <scene sceneID="5">
             <objects>
@@ -526,12 +561,12 @@
                     </navigationBar>
                     <nil name="viewControllers"/>
                     <connections>
-                        <segue destination="2" kind="relationship" relationship="rootViewController" id="ioi-4T-Su6"/>
+                        <segue destination="h2x-IE-8pD" kind="relationship" relationship="rootViewController" id="H3m-t3-jZ9"/>
                     </connections>
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="7pP-Hq-km1" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="733" y="90"/>
+            <point key="canvasLocation" x="425" y="-690"/>
         </scene>
     </scenes>
     <resources>
@@ -561,7 +596,6 @@
         <class className="ContactHistoryController" superclassName="PFQueryTableViewController">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/ContactHistoryController.h"/>
             <relationships>
-                <relationship kind="action" name="handleSwipe:" candidateClass="UISwipeGestureRecognizer"/>
                 <relationship kind="outlet" name="contact" candidateClass="PFObject"/>
             </relationships>
         </class>
@@ -618,18 +652,6 @@
         <class className="NSLayoutConstraint" superclassName="NSObject">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/NSLayoutConstraint.h"/>
         </class>
-        <class className="PFImageView" superclassName="UIImageView">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/PFImageView.h"/>
-        </class>
-        <class className="PFObject" superclassName="NSObject">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/PFObject.h"/>
-        </class>
-        <class className="PFQueryTableViewController" superclassName="UITableViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/PFQueryTableViewController.h"/>
-        </class>
-        <class className="PFTableViewCell" superclassName="UITableViewCell">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/PFTableViewCell.h"/>
-        </class>
         <class className="RegisterViewController" superclassName="UIViewController">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/RegisterViewController.h"/>
             <relationships>
@@ -638,6 +660,14 @@
                 <relationship kind="action" name="registerUserButton:"/>
                 <relationship kind="outlet" name="emailField" candidateClass="UITextField"/>
                 <relationship kind="outlet" name="passwordField" candidateClass="UITextField"/>
+            </relationships>
+        </class>
+        <class className="WelcomeController" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/WelcomeController.h"/>
+            <relationships>
+                <relationship kind="action" name="pageChanged:"/>
+                <relationship kind="outlet" name="pageControl" candidateClass="UIPageControl"/>
+                <relationship kind="outlet" name="scrollView" candidateClass="UIScrollView"/>
             </relationships>
         </class>
     </classes>
