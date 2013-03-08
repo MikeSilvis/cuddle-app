@@ -12,7 +12,11 @@
                         <rect key="frame" x="0.0" y="64" width="320" height="504"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
-                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" pagingEnabled="YES" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" translatesAutoresizingMaskIntoConstraints="NO" id="woN-f0-Orl"/>
+                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" pagingEnabled="YES" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" minimumZoomScale="0.0" maximumZoomScale="0.0" bouncesZoom="NO" translatesAutoresizingMaskIntoConstraints="NO" id="woN-f0-Orl">
+                                <connections>
+                                    <outlet property="delegate" destination="h2x-IE-8pD" id="97u-Rp-zKR"/>
+                                </connections>
+                            </scrollView>
                             <pageControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" numberOfPages="3" translatesAutoresizingMaskIntoConstraints="NO" id="jSk-2N-sWh">
                                 <connections>
                                     <action selector="pageChanged:" destination="h2x-IE-8pD" eventType="valueChanged" id="sND-Ad-cdg"/>
@@ -24,9 +28,9 @@
                             <constraint firstItem="woN-f0-Orl" firstAttribute="trailing" secondItem="Jhb-ai-Iqz" secondAttribute="trailing" type="default" id="3cl-da-ElA"/>
                             <constraint firstItem="jSk-2N-sWh" firstAttribute="bottom" secondItem="Jhb-ai-Iqz" secondAttribute="bottom" type="default" id="MPi-Of-F6p"/>
                             <constraint firstItem="jSk-2N-sWh" firstAttribute="centerX" secondItem="woN-f0-Orl" secondAttribute="centerX" type="default" id="UPz-uJ-cQG"/>
-                            <constraint firstItem="jSk-2N-sWh" firstAttribute="top" secondItem="woN-f0-Orl" secondAttribute="bottom" constant="8" symbolic="YES" type="default" id="Utg-3e-crt"/>
                             <constraint firstItem="woN-f0-Orl" firstAttribute="leading" secondItem="Jhb-ai-Iqz" secondAttribute="leading" type="default" id="cmi-8B-OsB"/>
                             <constraint firstItem="woN-f0-Orl" firstAttribute="top" secondItem="Jhb-ai-Iqz" secondAttribute="top" type="default" id="fAC-Z9-KZc"/>
+                            <constraint firstItem="woN-f0-Orl" firstAttribute="bottom" secondItem="Jhb-ai-Iqz" secondAttribute="bottom" type="default" id="kbe-hJ-suG"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="wkx-ed-Icb"/>

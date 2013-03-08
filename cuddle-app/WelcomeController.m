@@ -17,23 +17,28 @@
   [super viewDidLoad];
 	
 	pageControlBeingUsed = NO;
-	
-	NSArray *colors = [NSArray arrayWithObjects:[UIColor redColor], [UIColor greenColor], [UIColor blueColor], nil];
-	for (int i = 0; i < colors.count; i++) {
+  self.scrollView.frame = self.view.bounds;
+  self.view.backgroundColor = [UIColor colorWithPatternImage: [UIImage imageNamed:@"background.png"]];
+  
+  UIImageView *firstImage = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"logo@2x.png"]];
+  UIImageView *secondImage = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"ipad-button-red.png"]];
+  UIImageView *thirdImage = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"ipad-button-grey@"]];
+  
+  NSArray *images = [NSArray arrayWithObjects:firstImage, secondImage, thirdImage, nil];
+  for (int i =0; i < images.count; i++) {
 		CGRect frame;
 		frame.origin.x = self.scrollView.frame.size.width * i;
 		frame.origin.y = 0;
 		frame.size = self.scrollView.frame.size;
 		
 		UIView *subview = [[UIView alloc] initWithFrame:frame];
-		subview.backgroundColor = [colors objectAtIndex:i];
 		[self.scrollView addSubview:subview];
-	}
+  }
 	
-	self.scrollView.contentSize = CGSizeMake(self.scrollView.frame.size.width * colors.count, self.scrollView.frame.size.height);
+	self.scrollView.contentSize = CGSizeMake(self.scrollView.frame.size.width * images.count, self.scrollView.frame.size.height);
 	
 	self.pageControl.currentPage = 0;
-	self.pageControl.numberOfPages = colors.count;
+	self.pageControl.numberOfPages = images.count;
 }
 
 - (void)scrollViewDidScroll:(UIScrollView *)sender {
