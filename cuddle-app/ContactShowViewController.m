@@ -91,6 +91,7 @@
   NSString *URLString = [@"tel://" stringByAppendingString:cleanedNumber];
   NSURL *URL = [NSURL URLWithString:URLString];
   [[UIApplication sharedApplication] openURL:URL];
+  [self saveCommunication:@"call"];
 }
 
 #pragma mark - MFMailComposeController delegate

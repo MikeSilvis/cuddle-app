@@ -73,7 +73,7 @@
   
   UIButton *logoButton = [UIButton buttonWithType:UIButtonTypeCustom];
   [logoButton setEnabled:NO];
-  CGFloat logoY = floorf((navBarHeight - logo.size.height) / 2.0f);
+  CGFloat logoY = floorf((navBarHeight - logo.size.height) / 2.0f) + 3;
   CGFloat centerPosition = floorf((width - logo.size.width) / 2.0f);
   
   [logoButton setFrame:CGRectMake(centerPosition, logoY, logo.size.width, logo.size.height)];
