@@ -1,0 +1,13 @@
+source 'https://rubygems.org'
+gem 'parse-ruby-client'
+gem 'hashie'
+gem 'iron_worker_ng'
+
+#group :test do
+  #gem 'shoulda-context'
+  #gem 'shoulda'
+  #gem 'shoulda-matchers', '1.4.1'
+  #gem 'minitest'
+  #gem 'vcr'
+  #gem 'webmock', '1.8.0'
+#end

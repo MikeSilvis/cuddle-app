@@ -1,0 +1,32 @@
+GEM
+  remote: https://rubygems.org/
+  specs:
+    hashie (2.0.2)
+    iron_core (0.5.2)
+      rest (>= 2.2.0)
+    iron_mq (3.1.0)
+      iron_core (>= 0.5.1)
+    iron_worker_ng (0.15.3)
+      bundler (>= 1.2.0)
+      iron_core (>= 0.5.1)
+      rubyzip (>= 0.9.9)
+    mime-types (1.21)
+    net-http-persistent (2.8)
+    parse-ruby-client (0.1.14)
+      iron_mq
+      patron
+    patron (0.4.18)
+    rest (2.2.0)
+      net-http-persistent
+      rest-client (>= 0.3.0)
+    rest-client (1.6.7)
+      mime-types (>= 1.16)
+    rubyzip (0.9.9)
+
+PLATFORMS
+  ruby
+
+DEPENDENCIES
+  hashie
+  iron_worker_ng
+  parse-ruby-client

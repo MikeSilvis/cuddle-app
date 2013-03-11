@@ -1,0 +1,8 @@
+runtime "ruby"
+
+file 'push_worker.rb'
+remote
+gemfile 'Gemfile'
+file 'Gemfile'
+dir 'lib'
+exec "push_worker.rb"

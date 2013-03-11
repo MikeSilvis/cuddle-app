@@ -1,0 +1,249 @@
+---
+http_interactions:
+- request:
+    method: post
+    uri: https://api.parse.com/1/push
+    body:
+      encoding: UTF-8
+      string: ! '{"data":{"alert":"You haven''t contacted Trevor Taylor since March
+        11."},"channel":"bKQ4rNeSqp","type":"ios"}'
+    headers:
+      Content-Type:
+      - application/json
+      Accept:
+      - application/json
+      User-Agent:
+      - Parse for Ruby, 0.0
+      X-Parse-Master-Key:
+      - ''
+      X-Parse-Rest-Api-Key:
+      - HZza9DiUFY46POu1cfNB9uD06KSKzPVsPMFncRHa
+      X-Parse-Application-Id:
+      - 7qRCV3hz4fajvJovE942RlmEyIbkp6f82NUwrQCW
+      X-Parse-Session-Token:
+      - ''
+      Expect:
+      - ''
+  response:
+    status:
+      code: 200
+      message: !binary |-
+        T0s=
+    headers:
+      !binary "QWNjZXNzLUNvbnRyb2wtQWxsb3ctT3JpZ2lu":
+      - !binary |-
+        Kg==
+      !binary "QWNjZXNzLUNvbnRyb2wtUmVxdWVzdC1NZXRob2Q=":
+      - !binary |-
+        Kg==
+      !binary "Q2FjaGUtQ29udHJvbA==":
+      - !binary |-
+        bWF4LWFnZT0wLCBwcml2YXRlLCBtdXN0LXJldmFsaWRhdGU=
+      !binary "Q29udGVudC1UeXBl":
+      - !binary |-
+        YXBwbGljYXRpb24vanNvbjsgY2hhcnNldD11dGYtOA==
+      !binary "RGF0ZQ==":
+      - !binary |-
+        TW9uLCAxMSBNYXIgMjAxMyAwNTo0MToxNyBHTVQ=
+      !binary "RXRhZw==":
+      - !binary |-
+        IjUyOWNhYzA1ZTJhNTNmZDg3OTRlYjllNTY5OWQ5NzQwIg==
+      !binary "U2VydmVy":
+      - !binary |-
+        bmdpbngvMS4yLjI=
+      !binary "U2V0LUNvb2tpZQ==":
+      - !binary |-
+        X3BhcnNlX3Nlc3Npb249QkFoN0Jra2lEM05sYzNOcGIyNWZhV1FHT2daRlJp
+        SWxabUUxT0dRd01qRTVaRGM1TTJaaE1qbGtOakF3WVRBMk5qSXhOemt6TnpN
+        JTNELS1iNDlmMTgyMmY2YWU0Nzc1ZWI5MTk3NGQ2NzY0MmNlOGJiMzBjZmZj
+        OyBkb21haW49LnBhcnNlLmNvbTsgcGF0aD0vOyBleHBpcmVzPVNhdCwgMTEt
+        TWFyLTIwMjMgMDU6NDE6MTcgR01UOyBzZWN1cmU7IEh0dHBPbmx5
+      !binary "U3RhdHVz":
+      - !binary |-
+        MjAwIE9L
+      !binary "WC1SdW50aW1l":
+      - !binary |-
+        MC4wMjU3OTA=
+      !binary "WC1VYS1Db21wYXRpYmxl":
+      - !binary |-
+        SUU9RWRnZSxjaHJvbWU9MQ==
+      !binary "Q29udGVudC1MZW5ndGg=":
+      - !binary |-
+        MTU=
+      !binary "Q29ubmVjdGlvbg==":
+      - !binary |-
+        a2VlcC1hbGl2ZQ==
+    body:
+      encoding: ASCII-8BIT
+      string: !binary |-
+        eyJyZXN1bHQiOnRydWV9
+    http_version: 
+  recorded_at: Mon, 11 Mar 2013 05:41:17 GMT
+- request:
+    method: get
+    uri: https://api.parse.com/1/classes/Colleague/SP1BjXf06b
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      Content-Type:
+      - application/json
+      Accept:
+      - application/json
+      User-Agent:
+      - Parse for Ruby, 0.0
+      X-Parse-Master-Key:
+      - ''
+      X-Parse-Rest-Api-Key:
+      - HZza9DiUFY46POu1cfNB9uD06KSKzPVsPMFncRHa
+      X-Parse-Application-Id:
+      - 7qRCV3hz4fajvJovE942RlmEyIbkp6f82NUwrQCW
+      X-Parse-Session-Token:
+      - ''
+      Expect:
+      - ''
+  response:
+    status:
+      code: 200
+      message: !binary |-
+        T0s=
+    headers:
+      !binary "QWNjZXNzLUNvbnRyb2wtQWxsb3ctT3JpZ2lu":
+      - !binary |-
+        Kg==
+      !binary "QWNjZXNzLUNvbnRyb2wtUmVxdWVzdC1NZXRob2Q=":
+      - !binary |-
+        Kg==
+      !binary "Q2FjaGUtQ29udHJvbA==":
+      - !binary |-
+        bWF4LWFnZT0wLCBwcml2YXRlLCBtdXN0LXJldmFsaWRhdGU=
+      !binary "Q29udGVudC1UeXBl":
+      - !binary |-
+        YXBwbGljYXRpb24vanNvbjsgY2hhcnNldD11dGYtOA==
+      !binary "RGF0ZQ==":
+      - !binary |-
+        TW9uLCAxMSBNYXIgMjAxMyAwNTo0MToxNyBHTVQ=
+      !binary "RXRhZw==":
+      - !binary |-
+        IjhjMDQ0NTE3MTI4M2ZlYzg3YWExNTc0NWM5ZTVlZjU3Ig==
+      !binary "U2VydmVy":
+      - !binary |-
+        bmdpbngvMS4yLjI=
+      !binary "U2V0LUNvb2tpZQ==":
+      - !binary |-
+        X3BhcnNlX3Nlc3Npb249QkFoN0Jra2lEM05sYzNOcGIyNWZhV1FHT2daRlJp
+        SWxNV0kwTTJaak1ETTJPRGt5TkdOaU4yUmtOR0psTmpKaE5XRmlNRGszTnpV
+        JTNELS04ZDU1YTljZmM3NGUzNWUyZDY5NzQxNWE5NzM0YzY4YzhjY2IzMTg0
+        OyBkb21haW49LnBhcnNlLmNvbTsgcGF0aD0vOyBleHBpcmVzPVNhdCwgMTEt
+        TWFyLTIwMjMgMDU6NDE6MTcgR01UOyBzZWN1cmU7IEh0dHBPbmx5
+      !binary "U3RhdHVz":
+      - !binary |-
+        MjAwIE9L
+      !binary "WC1SdW50aW1l":
+      - !binary |-
+        MC4wMjIxNTU=
+      !binary "WC1VYS1Db21wYXRpYmxl":
+      - !binary |-
+        SUU9RWRnZSxjaHJvbWU9MQ==
+      !binary "Q29udGVudC1MZW5ndGg=":
+      - !binary |-
+        NDY5
+      !binary "Q29ubmVjdGlvbg==":
+      - !binary |-
+        a2VlcC1hbGl2ZQ==
+    body:
+      encoding: ASCII-8BIT
+      string: !binary |-
+        eyJ1c2VyIjp7Il9fdHlwZSI6IlBvaW50ZXIiLCJjbGFzc05hbWUiOiJfVXNl
+        ciIsIm9iamVjdElkIjoiYktRNHJOZVNxcCJ9LCJmYWNlYm9vayI6InRyZXZv
+        ci50YXlsb3IuMTI1IiwibWV0aG9kT2ZMYXN0Q29udGFjdCI6ImNhbGwiLCJu
+        YW1lIjoiVHJldm9yIFRheWxvciIsIm51bWJlciI6IisxODE0NTc0MjY5NyIs
+        InBob3RvIjp7Il9fdHlwZSI6IkZpbGUiLCJuYW1lIjoiNmM5OWIyNjYtZmQ4
+        Ni00OTY1LTkwMGQtZjg5ZWNiMTNiYzBhLWZpbGUiLCJ1cmwiOiJodHRwOi8v
+        ZmlsZXMucGFyc2UuY29tL2Y5NDU5NDc1LTY4ZDYtNDY5NC1hYzAzLWFlZDlh
+        ZjQ1OGQ3Yi82Yzk5YjI2Ni1mZDg2LTQ5NjUtOTAwZC1mODllY2IxM2JjMGEt
+        ZmlsZSJ9LCJjcmVhdGVkQXQiOiIyMDEzLTAzLTA2VDE4OjI3OjE1LjEzM1oi
+        LCJ1cGRhdGVkQXQiOiIyMDEzLTAzLTExVDA1OjQwOjU5Ljg3M1oiLCJvYmpl
+        Y3RJZCI6IlNQMUJqWGYwNmIifQ==
+    http_version: 
+  recorded_at: Mon, 11 Mar 2013 05:41:17 GMT
+- request:
+    method: put
+    uri: https://api.parse.com/1/classes/Colleague/SP1BjXf06b
+    body:
+      encoding: UTF-8
+      string: ! '{"user":{"__type":"Pointer","className":"_User","objectId":"bKQ4rNeSqp"},"facebook":"trevor.taylor.125","methodOfLastContact":"call","name":"Trevor
+        Taylor","number":"+18145742697","notifiedSincePush":{"__op":"Delete"}}'
+    headers:
+      Content-Type:
+      - application/json
+      Accept:
+      - application/json
+      User-Agent:
+      - Parse for Ruby, 0.0
+      X-Parse-Master-Key:
+      - ''
+      X-Parse-Rest-Api-Key:
+      - HZza9DiUFY46POu1cfNB9uD06KSKzPVsPMFncRHa
+      X-Parse-Application-Id:
+      - 7qRCV3hz4fajvJovE942RlmEyIbkp6f82NUwrQCW
+      X-Parse-Session-Token:
+      - ''
+      Expect:
+      - ''
+  response:
+    status:
+      code: 200
+      message: !binary |-
+        T0s=
+    headers:
+      !binary "QWNjZXNzLUNvbnRyb2wtQWxsb3ctT3JpZ2lu":
+      - !binary |-
+        Kg==
+      !binary "QWNjZXNzLUNvbnRyb2wtUmVxdWVzdC1NZXRob2Q=":
+      - !binary |-
+        Kg==
+      !binary "Q2FjaGUtQ29udHJvbA==":
+      - !binary |-
+        bWF4LWFnZT0wLCBwcml2YXRlLCBtdXN0LXJldmFsaWRhdGU=
+      !binary "Q29udGVudC1UeXBl":
+      - !binary |-
+        YXBwbGljYXRpb24vanNvbjsgY2hhcnNldD11dGYtOA==
+      !binary "RGF0ZQ==":
+      - !binary |-
+        TW9uLCAxMSBNYXIgMjAxMyAwNTo0MToxNyBHTVQ=
+      !binary "RXRhZw==":
+      - !binary |-
+        IjUzNWI2ZGZhMmRjZjdhZTlhYjk4Nzk2MTQzZDg4OTZmIg==
+      !binary "U2VydmVy":
+      - !binary |-
+        bmdpbngvMS4yLjI=
+      !binary "U2V0LUNvb2tpZQ==":
+      - !binary |-
+        X3BhcnNlX3Nlc3Npb249QkFoN0Jra2lEM05sYzNOcGIyNWZhV1FHT2daRlJp
+        SWxNRFU1TmpaallqbGpOamxqTVRVeE16Z3haVFJpTVRZME56Wm1ZalF5T0RJ
+        JTNELS1lMDRkZDcxYTEyOGI1MzYyOGYwZDRkMzU5MTEzNjc4MzI0N2FjODVh
+        OyBkb21haW49LnBhcnNlLmNvbTsgcGF0aD0vOyBleHBpcmVzPVNhdCwgMTEt
+        TWFyLTIwMjMgMDU6NDE6MTcgR01UOyBzZWN1cmU7IEh0dHBPbmx5
+      !binary "U3RhdHVz":
+      - !binary |-
+        MjAwIE9L
+      !binary "WC1SdW50aW1l":
+      - !binary |-
+        MC4wMjIyMjc=
+      !binary "WC1VYS1Db21wYXRpYmxl":
+      - !binary |-
+        SUU9RWRnZSxjaHJvbWU9MQ==
+      !binary "Q29udGVudC1MZW5ndGg=":
+      - !binary |-
+        NDA=
+      !binary "Q29ubmVjdGlvbg==":
+      - !binary |-
+        a2VlcC1hbGl2ZQ==
+    body:
+      encoding: ASCII-8BIT
+      string: !binary |-
+        eyJ1cGRhdGVkQXQiOiIyMDEzLTAzLTExVDA1OjQxOjE3LjQ5N1oifQ==
+    http_version: 
+  recorded_at: Mon, 11 Mar 2013 05:41:17 GMT
+recorded_with: VCR 2.4.0
