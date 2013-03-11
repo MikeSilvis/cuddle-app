@@ -75,6 +75,7 @@
 		365D01D016DC5E880091CBA6 /* ipad-list-item-selected@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 365D01CE16DC5E880091CBA6 /* ipad-list-item-selected@2x.png */; };
 		366917D816D7143500DF21E9 /* LonelyController.m in Sources */ = {isa = PBXBuildFile; fileRef = 366917D716D7143500DF21E9 /* LonelyController.m */; };
 		366917DD16D714E600DF21E9 /* LonelySegue.m in Sources */ = {isa = PBXBuildFile; fileRef = 366917DC16D714E600DF21E9 /* LonelySegue.m */; };
+		367EB9C816EE4CDA006828BE /* Crashlytics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 367EB9C716EE4CDA006828BE /* Crashlytics.framework */; };
 		36940A5816ECE663008CFBAC /* import.png in Resources */ = {isa = PBXBuildFile; fileRef = 36940A5216ECE663008CFBAC /* import.png */; };
 		36940A5916ECE663008CFBAC /* import@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 36940A5316ECE663008CFBAC /* import@2x.png */; };
 		36940A5A16ECE663008CFBAC /* register.png in Resources */ = {isa = PBXBuildFile; fileRef = 36940A5416ECE663008CFBAC /* register.png */; };
@@ -213,6 +214,7 @@
 		366917D716D7143500DF21E9 /* LonelyController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LonelyController.m; sourceTree = "<group>"; };
 		366917DB16D714E600DF21E9 /* LonelySegue.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LonelySegue.h; sourceTree = "<group>"; };
 		366917DC16D714E600DF21E9 /* LonelySegue.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LonelySegue.m; sourceTree = "<group>"; };
+		367EB9C716EE4CDA006828BE /* Crashlytics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Crashlytics.framework; sourceTree = "<group>"; };
 		36940A5216ECE663008CFBAC /* import.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = import.png; sourceTree = "<group>"; };
 		36940A5316ECE663008CFBAC /* import@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "import@2x.png"; sourceTree = "<group>"; };
 		36940A5416ECE663008CFBAC /* register.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = register.png; sourceTree = "<group>"; };
@@ -304,6 +306,7 @@
 				36FFBF5116C85DDF00CC3140 /* UIKit.framework in Frameworks */,
 				36FFBF5316C85DDF00CC3140 /* Foundation.framework in Frameworks */,
 				4D73DBD968F944939BD8D053 /* libPods.a in Frameworks */,
+				367EB9C816EE4CDA006828BE /* Crashlytics.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -515,6 +518,7 @@
 		36FFBF4F16C85DDF00CC3140 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				367EB9C716EE4CDA006828BE /* Crashlytics.framework */,
 				36232B4416E286390029A175 /* MessageUI.framework */,
 				DAD3EC0416CA1A6600E56737 /* SystemConfiguration.framework */,
 				DAD3EC0216CA1A6100E56737 /* StoreKit.framework */,
@@ -606,6 +610,7 @@
 				36FFBF4A16C85DDF00CC3140 /* Frameworks */,
 				36FFBF4B16C85DDF00CC3140 /* Resources */,
 				70B8F35BA243472BB50A70E2 /* Copy Pods Resources */,
+				367EB9C616EE4CA3006828BE /* ShellScript */,
 			);
 			buildRules = (
 			);
@@ -758,6 +763,19 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
+		367EB9C616EE4CA3006828BE /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "./Crashlytics.framework/run 2c4de91dd9eef6b63fa865a54c345433bebc795a";
+		};
 		36FFBF7416C85DDF00CC3140 /* ShellScript */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -900,6 +918,10 @@
 			buildSettings = {
 				CODE_SIGN_IDENTITY = "iPhone Developer: Michael Silvis (JG99G662W3)";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Michael Silvis (JG99G662W3)";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SRCROOT)\"",
+				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "cuddle-app/nudge-Prefix.pch";
 				INFOPLIST_FILE = "cuddle-app/nudge-Info.plist";
@@ -998,6 +1020,10 @@
 			buildSettings = {
 				CODE_SIGN_IDENTITY = "iPhone Developer: Michael Silvis (JG99G662W3)";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Michael Silvis (JG99G662W3)";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SRCROOT)\"",
+				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "cuddle-app/nudge-Prefix.pch";
 				INFOPLIST_FILE = "cuddle-app/nudge-Info.plist";
@@ -1015,6 +1041,10 @@
 			buildSettings = {
 				CODE_SIGN_IDENTITY = "iPhone Developer: Michael Silvis (JG99G662W3)";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Michael Silvis (JG99G662W3)";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SRCROOT)\"",
+				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "cuddle-app/nudge-Prefix.pch";
 				INFOPLIST_FILE = "cuddle-app/nudge-Info.plist";

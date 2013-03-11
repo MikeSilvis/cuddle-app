@@ -8,11 +8,13 @@
 
 #import "AppDelegate.h"
 #import <Parse/Parse.h>
+#import <Crashlytics/Crashlytics.h>
 
 @implementation AppDelegate
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
+    [Crashlytics startWithAPIKey:@"2c4de91dd9eef6b63fa865a54c345433bebc795a"];
     [Parse setApplicationId:@"7qRCV3hz4fajvJovE942RlmEyIbkp6f82NUwrQCW"
                   clientKey:@"DHhqhSc8mhGhrIGdR9K5s7qKoCLUeodCPQk4jkJy"];
   
