@@ -7,6 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
+#import  <QuartzCore/QuartzCore.h> 
 #import <AddressBookUI/AddressBookUI.h>
 #import "Colleague.h"
 #import "SVProgressHUD.h"
@@ -22,4 +23,6 @@
 @property (strong, nonatomic) IBOutlet UITableView *addressesTable;
 @property PFFile *imageFile;
 @property (nonatomic, assign) BOOL parseDidLoad;
+
+@property (strong, nonatomic) IBOutlet PFObject *lastAddedColleague;
 @end

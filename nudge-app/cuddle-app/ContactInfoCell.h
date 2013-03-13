@@ -16,5 +16,6 @@
 @property (weak, nonatomic) IBOutlet PFImageView *userPicture;
 @property (weak, nonatomic) IBOutlet UILabel *userLastContact;
 @property (weak, nonatomic) IBOutlet UIImageView *backgroundImage;
+@property (weak, nonatomic) IBOutlet UIImageView *contactTypeImage;
 
 @end

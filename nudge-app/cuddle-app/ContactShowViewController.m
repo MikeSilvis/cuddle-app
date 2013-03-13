@@ -10,33 +10,35 @@
 
 @implementation ContactShowViewController
 
-@synthesize contact;
+@synthesize contact, started;
 
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    self.title = [contact objectForKey:@"name"];
+
     self.view.backgroundColor = [UIColor colorWithPatternImage: [UIImage imageNamed:@"background.png"]];
+  
     [self loadContactPhoto];
-    [self loadContactHistory];
     [self disableButtonsWithoutInfo];
-    [self addShadowToBackground];
-    [self addStylesToHistory];
-    [self queryParseHistory];
+    [self loadStyles];
+    [self loadContactHistory];
     self.contactName.text = [contact objectForKey:@"name"];
+
 }
-- (void)addStylesToHistory {
-  self.contactHistoryView.layer.borderColor = [UIColor whiteColor].CGColor;
-  self.contactHistoryView.layer.cornerRadius = 5;
-  self.contactHistoryView.layer.borderWidth = 2.0;
-  self.contactHistoryView.clipsToBounds = YES;
-}
-- (void)addShadowToBackground{
+- (void)loadStyles{
   self.contactBackground.layer.shadowColor = [UIColor blackColor].CGColor;
   self.contactBackground.layer.shadowOffset = CGSizeMake(0, 1);
   self.contactBackground.layer.shadowOpacity = 1;
   self.contactBackground.layer.shadowRadius = 5.0;
   self.contactBackground.clipsToBounds = NO;
+  self.contactHistoryView.layer.borderColor = [UIColor whiteColor].CGColor;
+  self.contactHistoryView.layer.cornerRadius = 5;
+  self.contactHistoryView.layer.borderWidth = 2.0;
+  self.contactHistoryView.clipsToBounds = YES;
+  self.contactPhoto.layer.borderColor = [UIColor whiteColor].CGColor;
+  self.contactPhoto.layer.cornerRadius = 5;
+  self.contactPhoto.clipsToBounds = YES;
+  self.contactPhoto.layer.borderWidth = 2.0;
 }
 - (void)loadContactPhoto{
   if ([contact objectForKey:@"photo"] != nil){
@@ -46,41 +48,82 @@
     NSData *facebookImgData = [[NSData alloc] initWithContentsOfURL: [NSURL URLWithString:facebookImageURL]];
     self.contactPhoto.image = [UIImage imageWithData: facebookImgData];
   }
-  self.contactPhoto.layer.borderColor = [UIColor whiteColor].CGColor;
-  self.contactPhoto.layer.cornerRadius = 5;
-  self.contactPhoto.clipsToBounds = YES;
-  self.contactPhoto.layer.borderWidth = 2.0;
 }
 - (void)disableButtonsWithoutInfo{
   if (([contact objectForKey:@"number"] == nil) || ([[contact objectForKey:@"number"] isEqual: @""])){
-    self.call.enabled= NO;
-    self.text.enabled= NO;
+    self.call.enabled = NO;
+    self.text.enabled = NO;
   }
   if (([contact objectForKey:@"email"] == nil) || ([[contact objectForKey:@"email"] isEqual: @""])){
-    self.email.enabled= NO;
+    self.email.enabled = NO;
   }
 }
 - (void)loadContactHistory{
-  if ([[contact objectForKey:@"methodOfLastContact"] isEqual:@"call"]) {
-    self.lastContacted.text = [@"Called on " stringByAppendingString:[self formatDate:contact.createdAt]];
-  } else if ([[contact objectForKey:@"methodOfLastContact"] isEqual:@"sms"]) {
-    self.lastContacted.text = [@"Texted on " stringByAppendingString:[self formatDate:contact.createdAt]];
-  } else if ([[contact objectForKey:@"methodOfLastContact"] isEqual:@"email"]) {
-    self.lastContacted.text = [@"Emailed on " stringByAppendingString:[self formatDate:contact.createdAt]];
-  } else if ([[contact objectForKey:@"methodOfLastContact"] isEqual:@"contacted"]) {
-    self.lastContacted.text = [@"Contacted on " stringByAppendingString:[self formatDate:contact.createdAt]];
+  if (([contact objectForKey:@"methodOfLastContact"] == nil) || ([[contact objectForKey:@"methodOfLastContact"] isEqual: @""])){
+    self.lastContactedTime.text = @" ";
+    self.lastContactedText.hidden = YES;
+    [self addGettingStarted];
   } else {
-    self.lastContacted.text = @" ";
-    self.tableView.hidden = YES;
-    self.seeMore.hidden = YES;
-    UIImageView *started = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"started"]];
-    [self.contactHistoryView addSubview:started];
+    self.lastContactedTime.text = [self formatDate:contact.updatedAt];
   }
+
+//  if ([[contact objectForKey:@"methodOfLastContact"] isEqual:@"call"]) {
+//    self.lastContactedTime.text = [@"Called on " stringByAppendingString:[self formatDate:contact.updatedAt]];
+//  } else if ([[contact objectForKey:@"methodOfLastContact"] isEqual:@"sms"]) {
+//    self.lastContactedTime.text = [@"Texted on " stringByAppendingString:[self formatDate:contact.updatedAt]];
+//  } else if ([[contact objectForKey:@"methodOfLastContact"] isEqual:@"email"]) {
+//    self.lastContactedTime.text = [@"Emailed on " stringByAppendingString:[self formatDate:contact.updatedAt]];
+//  } else if ([[contact objectForKey:@"methodOfLastContact"] isEqual:@"contacted"]) {
+//    self.lastContactedTime.text = [@"Contacted on " stringByAppendingString:[self formatDate:contact.updatedAt]];
+//  } else {
+//    self.lastContactedTime.text = @" ";
+//    self.lastContactedText.hidden = YES;
+//    [self addGettingStarted];
+//  }
+  [self queryParseHistory];
+}
+
+- (void)addGettingStarted{
+  self.tableView.hidden = YES;
+  self.seeMore.hidden = YES;
+  self.contactHistoryView.hidden = YES;
+  [self addShadowToActions:self.call];
+  [self addShadowToActions:self.text];
+  [self addShadowToActions:self.email];
+  [self addShadowToActions:self.plus];
+//  [self.contactHistoryView addSubview:self.started];
+}
+- (void)addShadowToActions:(UIButton *)button{
+  if (button.enabled){
+    button.layer.shadowColor = [UIColor colorWithRed:74/255.0f green:149/255.0f blue:203/255.0f alpha:1.0f].CGColor;
+    button.layer.shadowOffset = CGSizeMake(0, 0);
+    button.layer.shadowRadius = 5.0;
+    
+    CABasicAnimation *anim = [CABasicAnimation animationWithKeyPath:@"shadowOpacity"];
+    anim.fromValue = [NSNumber numberWithFloat:0.0];
+    anim.toValue = [NSNumber numberWithFloat:1.0];
+    anim.duration = 3.0;
+    [button.layer addAnimation:anim forKey:@"shadowOpacity"];
+    button.layer.shadowOpacity = 1.0;
+  }
+}
+- (UIImageView *)started{
+  if (started == nil){
+    started = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"started"]];
+  }
+  return started;
+}
+
+- (void)removeGettingStarted{
+  self.tableView.hidden = NO;
+  self.seeMore.hidden = NO;
+  self.started.hidden = YES;
 }
 
 - (IBAction)handleSwipe:(UISwipeGestureRecognizer *)sender {
     [self.navigationController popViewControllerAnimated:YES];
 }
+
 - (IBAction)emailButton:(id)sender {
     if ([MFMailComposeViewController canSendMail])
     {
@@ -89,16 +132,6 @@
         [emailCntrl setToRecipients:[NSArray arrayWithObject:[contact objectForKey:@"email"]]];
         [self presentViewController:emailCntrl animated:YES completion:nil];
     }
-    else
-    {
-        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Failure"
-                                                        message:@"Your device doesn't support the composer sheet"
-                                                       delegate:nil
-                                              cancelButtonTitle:@"OK"
-                                              otherButtonTitles: nil];
-        [alert show];
-    }
-
 }
 
 - (IBAction)textButton:(id)sender {
@@ -125,15 +158,20 @@
     [self saveCommunication:@"contacted"];
 }
 
-#pragma mark - MFMailComposeController delegate
-
-- (void)mailComposeController:(MFMailComposeViewController*)controller didFinishWithResult:(MFMailComposeResult)result error:(NSError*)error
-{
-    if (result == MFMailComposeResultSent){
-      [self saveCommunication:@"email"];
-    }
-    [self dismissViewControllerAnimated:YES completion:nil];
+- (void)mailComposeController:(MFMailComposeViewController*)controller didFinishWithResult:(MFMailComposeResult)result error:(NSError*)error {
+  if (result == MFMailComposeResultSent){
+    [self saveCommunication:@"email"];
+  }
+  [self dismissViewControllerAnimated:YES completion:nil];
 }
+- (void)messageComposeViewController:(MFMessageComposeViewController *)controller didFinishWithResult:(MessageComposeResult)result {
+	
+  if (result == MessageComposeResultSent){
+    [self saveCommunication:@"sms"];
+  }
+  [self dismissViewControllerAnimated:YES completion:nil];
+}
+
 - (void)saveCommunication:(NSString *)methodOfContact{
   
     // Save the relationship
@@ -152,32 +190,13 @@
     [contact saveEventually];
 
     // Update the app to respect todays communication
-    self.lastContacted.text = [self formatDate:[NSDate date]];
-    self.lastContacted.hidden = NO;
+    [self loadContactHistory];
+    self.lastContactedText.hidden = NO;
+    self.lastContactedTime.hidden = NO;
     [SVProgressHUD showSuccessWithStatus:@"Great job at keeping in touch!"];
 }
-- (NSString *)formatDate:(NSDate *)date{
-  NSDateFormatter *prefixDateFormatter = [[NSDateFormatter alloc] init];
-  [prefixDateFormatter setFormatterBehavior:NSDateFormatterBehavior10_4];
-  [prefixDateFormatter setDateFormat:@"MMMM d"];
-  NSString *prefixDateString = [prefixDateFormatter stringFromDate:date];
-  NSDateFormatter *monthDayFormatter = [[NSDateFormatter alloc] init];
-  [monthDayFormatter setFormatterBehavior:NSDateFormatterBehavior10_4];
-  [monthDayFormatter setDateFormat:@"d"];
-  int date_day = [[monthDayFormatter stringFromDate:date] intValue];
-  NSString *suffix_string = @"|st|nd|rd|th|th|th|th|th|th|th|th|th|th|th|th|th|th|th|th|th|st|nd|rd|th|th|th|th|th|th|th|st";
-  NSArray *suffixes = [suffix_string componentsSeparatedByString: @"|"];
-  NSString *suffix = [suffixes objectAtIndex:date_day];
-  NSString *dateString = [prefixDateString stringByAppendingString:suffix];
-  return dateString;
-}
-- (void)messageComposeViewController:(MFMessageComposeViewController *)controller didFinishWithResult:(MessageComposeResult)result {
-	
-    if (result == MessageComposeResultSent){
-        [self saveCommunication:@"sms"];
-    }
-    [self dismissViewControllerAnimated:YES completion:nil];
-}
+
+
 -(void) prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender{
   if([segue.identifier isEqualToString:@"contactHistorySegue"]){
     ContactHistoryController *destViewController = segue.destinationViewController;
@@ -195,9 +214,10 @@
       if (objects.count == 0){
         self.tableView.hidden = YES;
         self.seeMore.hidden = YES;
-        self.contactHistoryView.hidden = YES;
+        [self addGettingStarted];
       } else {
         self.contactHistory = objects;
+        [self removeGettingStarted];
         [self.tableView reloadData];
       }
     }
@@ -233,5 +253,20 @@
 //  cell.imageView.image = [UIImage imageNamed:@"email-gray.png"];
   cell.backgroundView =  [[UIImageView alloc] initWithImage:[[UIImage imageNamed:@"list-item-bg.png"] stretchableImageWithLeftCapWidth:0.0 topCapHeight:5.0]];
   return cell;
+}
+- (NSString *)formatDate:(NSDate *)date{
+  NSDateFormatter *prefixDateFormatter = [[NSDateFormatter alloc] init];
+  [prefixDateFormatter setFormatterBehavior:NSDateFormatterBehavior10_4];
+  [prefixDateFormatter setDateFormat:@"MMMM d"];
+  NSString *prefixDateString = [prefixDateFormatter stringFromDate:date];
+  NSDateFormatter *monthDayFormatter = [[NSDateFormatter alloc] init];
+  [monthDayFormatter setFormatterBehavior:NSDateFormatterBehavior10_4];
+  [monthDayFormatter setDateFormat:@"d"];
+  int date_day = [[monthDayFormatter stringFromDate:date] intValue];
+  NSString *suffix_string = @"|st|nd|rd|th|th|th|th|th|th|th|th|th|th|th|th|th|th|th|th|th|st|nd|rd|th|th|th|th|th|th|th|st";
+  NSArray *suffixes = [suffix_string componentsSeparatedByString: @"|"];
+  NSString *suffix = [suffixes objectAtIndex:date_day];
+  NSString *dateString = [prefixDateString stringByAppendingString:suffix];
+  return dateString;
 }
 @end

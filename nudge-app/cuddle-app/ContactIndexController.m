@@ -21,7 +21,6 @@
     self = [super initWithCoder:aCoder];
     if (self) {
         self.className = @"Colleague";
-        self.pullToRefreshEnabled = YES;
         self.paginationEnabled = YES;
         self.objectsPerPage = 25;
     }
@@ -101,6 +100,7 @@
     
     cell.userPicture.layer.cornerRadius = 5;
     cell.userPicture.clipsToBounds = YES;
+    cell.userLastContact.text = [object.updatedAt timeAgo];
   
     if (photo){
         cell.userPicture.file = photo;
@@ -109,20 +109,28 @@
         NSString *facebookImageURL = [NSString stringWithFormat:@"http://graph.facebook.com/%@/picture?type=large", [object objectForKey:@"facebook"]];
         NSData *facebookImgData = [[NSData alloc] initWithContentsOfURL: [NSURL URLWithString:facebookImageURL]];
         cell.userPicture.image = [UIImage imageWithData: facebookImgData];
-    } else {
-      cell.userPicture.image = [UIImage imageNamed:@"contact_without_image@2x.png"];
     }
+
     if ([[object objectForKey:@"methodOfLastContact"] isEqual:@"call"]) {
-      cell.userLastContact.text = [@"Called " stringByAppendingString:[object.createdAt timeAgo]];
+//      cell.contactTypeImage.image = [UIimage ]
+      cell.contactTypeImage.image = [UIImage imageNamed:@"phone-gray.png"];
+//      cell.userLastContact.text = [@"Called " stringByAppendingString:[object.updatedAt timeAgo]];
     } else if ([[object objectForKey:@"methodOfLastContact"] isEqual:@"sms"]) {
-      cell.userLastContact.text = [@"Texted " stringByAppendingString:[object.createdAt timeAgo]];
+            cell.contactTypeImage.image = [UIImage imageNamed:@"sms-gray.png"];
+//      cell.userLastContact.text = [@"Texted " stringByAppendingString:[object.updatedAt timeAgo]];
     } else if ([[object objectForKey:@"methodOfLastContact"] isEqual:@"email"]) {
-      cell.userLastContact.text = [@"Emailed " stringByAppendingString:[object.createdAt timeAgo]];
+            cell.contactTypeImage.image = [UIImage imageNamed:@"email-gray.png"];
+//      cell.userLastContact.text = [@"Emailed " stringByAppendingString:[object.updatedAt timeAgo]];
     } else if ([[object objectForKey:@"methodOfLastContact"] isEqual:@"contacted"]) {
-      cell.userLastContact.text = [@"Contacted " stringByAppendingString:[object.createdAt timeAgo]];
+            cell.contactTypeImage.image = [UIImage imageNamed:@"checkmark-gray.png"];
+//      cell.userLastContact.text = [@"Contacted " stringByAppendingString:[object.updatedAt timeAgo]];
     } else {
+      cell.contactTypeImage.layer.hidden = YES;
       cell.userLastContact.text = @"Never contacted from nudge";
     }
+  
+
+  
     return cell;
 }
 
@@ -146,7 +154,9 @@
       shouldContinueAfterSelectingPerson:(ABRecordRef)person {
     
     [SVProgressHUD showWithStatus:@"Saving Contact"];
+  
     [[Colleague alloc] initWithABPerson:person];
+  
     [self dismissViewControllerAnimated:YES completion:nil];
     
     return NO;
@@ -162,8 +172,8 @@
 
 - (void)contactSaved:(NSNotification *)notification {
     [SVProgressHUD dismiss];
-    [addressesTable reloadData];
-    [self loadObjects];
+    self.lastAddedColleague = [[notification userInfo] objectForKey:@"contact"];
+    [self performSegueWithIdentifier:@"contactShowSegue" sender:self];
 }
 
 - (void)contactFailed:(NSNotification *)notification{
@@ -175,7 +185,11 @@
     if([segue.identifier isEqualToString:@"contactShowSegue"]){
         NSIndexPath *indexPath = [self.tableView indexPathForSelectedRow];
         ContactShowViewController *destViewController = segue.destinationViewController;
-        destViewController.contact = [self.objects objectAtIndex:indexPath.row];
+        if (indexPath){
+          destViewController.contact = [self.objects objectAtIndex:indexPath.row];
+        } else if (self.lastAddedColleague != nil){
+          destViewController.contact = self.lastAddedColleague;
+        }
     }
 }
 - (NSString *)formatDate:(NSDate *)date{

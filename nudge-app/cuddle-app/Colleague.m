@@ -48,7 +48,7 @@
             [self saveColleague];
         }
     }
-
+  
     return self;
 }
 - (void)saveColleague{
@@ -72,7 +72,9 @@
     [newColleague setObject:self.name forKey:@"name"];
     [newColleague saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
         if (succeeded){
-            [[NSNotificationCenter defaultCenter] postNotificationName:@"ContactSaved" object:self];
+            NSMutableDictionary *userData = [NSMutableDictionary dictionary];
+            [userData setObject:newColleague forKey:@"contact"];
+            [[NSNotificationCenter defaultCenter] postNotificationName:@"ContactSaved" object:self userInfo:userData];
         } else {
             [[NSNotificationCenter defaultCenter] postNotificationName:@"ContactFailed" object:self];
         }

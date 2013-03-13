@@ -14,6 +14,7 @@
 #import <MessageUI/MFMessageComposeViewController.h>
 #import "SVProgressHUD.h"
 #import  <QuartzCore/QuartzCore.h> 
+#import <QuartzCore/CAAnimation.h>
 
 @interface ContactShowViewController : UIViewController  <MFMailComposeViewControllerDelegate, MFMessageComposeViewControllerDelegate, UITableViewDataSource, UITableViewDelegate, UITableViewDataSource, UITableViewDelegate>
 @property (weak, nonatomic) IBOutlet PFImageView *contactPhoto;
@@ -25,16 +26,21 @@
 - (IBAction)callButton:(id)sender;
 - (IBAction)markButton:(id)sender;
 
-@property (weak, nonatomic) IBOutlet UILabel *lastContacted;
+
 @property (weak, nonatomic) IBOutlet UIButton *call;
 @property (weak, nonatomic) IBOutlet UIButton *text;
 @property (weak, nonatomic) IBOutlet UIButton *email;
+@property (weak, nonatomic) IBOutlet UIButton *plus;
 @property (weak, nonatomic) IBOutlet UIImageView *contactBackground;
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 @property (weak, nonatomic) IBOutlet UIView *contactHistoryView;
 @property (weak, nonatomic) IBOutlet UILabel *contactName;
 
+@property (weak, nonatomic) IBOutlet UILabel *lastContactedTime;
+@property (weak, nonatomic) IBOutlet UILabel *lastContactedText;
+
 @property (nonatomic, retain) NSArray *contactHistory;
 @property (weak, nonatomic) IBOutlet UIButton *seeMore;
 
+@property (strong, nonatomic) IBOutlet UIImageView *started;
 @end
