@@ -38,7 +38,7 @@
     
     [[UIBarButtonItem appearance] setBackgroundImage:barButton forState:UIControlStateNormal
                                           barMetrics:UIBarMetricsDefault];
-    
+  
     [[UINavigationBar appearance] setTitleTextAttributes: [NSDictionary dictionaryWithObjectsAndKeys:
       [UIColor colorWithRed:255.0/255.0 green:255.0/255.0 blue:255.0/255.0 alpha:1.0],
       UITextAttributeTextColor,

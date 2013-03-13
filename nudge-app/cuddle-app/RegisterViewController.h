@@ -20,5 +20,6 @@
 - (BOOL)isValidEmail:(NSString *)canidate;
 - (void)signUpUser;
 - (IBAction)registerUserButton:(id)sender;
+- (IBAction)backToIntro:(id)sender;
 
 @end

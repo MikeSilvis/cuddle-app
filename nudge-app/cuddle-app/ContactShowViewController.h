@@ -16,7 +16,7 @@
 #import  <QuartzCore/QuartzCore.h> 
 #import <QuartzCore/CAAnimation.h>
 
-@interface ContactShowViewController : UIViewController  <MFMailComposeViewControllerDelegate, MFMessageComposeViewControllerDelegate, UITableViewDataSource, UITableViewDelegate, UITableViewDataSource, UITableViewDelegate>
+@interface ContactShowViewController : UIViewController  <MFMailComposeViewControllerDelegate, MFMessageComposeViewControllerDelegate, UITableViewDataSource, UITableViewDelegate, UITableViewDataSource, UITableViewDelegate, UIActionSheetDelegate>
 @property (weak, nonatomic) IBOutlet PFImageView *contactPhoto;
 - (IBAction)handleSwipe:(UISwipeGestureRecognizer *)sender;
 @property (strong, nonatomic) IBOutlet PFObject *contact;
@@ -36,10 +36,8 @@
 @property (weak, nonatomic) IBOutlet UIView *contactHistoryView;
 @property (weak, nonatomic) IBOutlet UILabel *contactName;
 
-@property (weak, nonatomic) IBOutlet UILabel *lastContactedTime;
-@property (weak, nonatomic) IBOutlet UILabel *lastContactedText;
-
 @property (nonatomic, retain) NSArray *contactHistory;
+@property (weak, nonatomic) IBOutlet UILabel *contactHistoryText;
 @property (weak, nonatomic) IBOutlet UIButton *seeMore;
 
 @property (strong, nonatomic) IBOutlet UIImageView *started;

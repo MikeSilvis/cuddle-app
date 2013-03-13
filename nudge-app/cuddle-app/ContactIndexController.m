@@ -20,6 +20,7 @@
 - (id)initWithCoder:(NSCoder *)aCoder {
     self = [super initWithCoder:aCoder];
     if (self) {
+        self.pullToRefreshEnabled = NO;
         self.className = @"Colleague";
         self.paginationEnabled = YES;
         self.objectsPerPage = 25;
@@ -112,24 +113,17 @@
     }
 
     if ([[object objectForKey:@"methodOfLastContact"] isEqual:@"call"]) {
-//      cell.contactTypeImage.image = [UIimage ]
       cell.contactTypeImage.image = [UIImage imageNamed:@"phone-gray.png"];
-//      cell.userLastContact.text = [@"Called " stringByAppendingString:[object.updatedAt timeAgo]];
     } else if ([[object objectForKey:@"methodOfLastContact"] isEqual:@"sms"]) {
             cell.contactTypeImage.image = [UIImage imageNamed:@"sms-gray.png"];
-//      cell.userLastContact.text = [@"Texted " stringByAppendingString:[object.updatedAt timeAgo]];
     } else if ([[object objectForKey:@"methodOfLastContact"] isEqual:@"email"]) {
-            cell.contactTypeImage.image = [UIImage imageNamed:@"email-gray.png"];
-//      cell.userLastContact.text = [@"Emailed " stringByAppendingString:[object.updatedAt timeAgo]];
+            cell.contactTypeImage.image = [UIImage imageNamed:@"envelope-gray.png"];
     } else if ([[object objectForKey:@"methodOfLastContact"] isEqual:@"contacted"]) {
             cell.contactTypeImage.image = [UIImage imageNamed:@"checkmark-gray.png"];
-//      cell.userLastContact.text = [@"Contacted " stringByAppendingString:[object.updatedAt timeAgo]];
     } else {
       cell.contactTypeImage.layer.hidden = YES;
       cell.userLastContact.text = @"Never contacted from nudge";
     }
-  
-
   
     return cell;
 }

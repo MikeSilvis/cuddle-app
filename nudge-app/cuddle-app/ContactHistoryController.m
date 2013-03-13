@@ -36,7 +36,7 @@
 - (PFQuery *)queryForTable {
   PFQuery *query = [PFQuery queryWithClassName:@"ContactHistory"];
   [query whereKey:@"colleague" equalTo:self.contact];
-  [query orderByAscending:@"createdAt"];
+  [query orderByDescending:@"updatedAt"];
   return query;
 }
 - (void)handleSwipeRight:(UISwipeGestureRecognizer *)gestureRecognizer {
@@ -53,7 +53,7 @@
     cell.lastContactImage.image = [UIImage imageNamed:@"sms-gray.png"];
   } else if ([[object objectForKey:@"method"] isEqual:@"email"]) {
     cell.lastContact.text = [@"Emailed on " stringByAppendingString:[self formatDate:object.createdAt]];
-    cell.lastContactImage.image = [UIImage imageNamed:@"email-gray.png"];
+    cell.lastContactImage.image = [UIImage imageNamed:@"envelope-gray.png"];
   } else if ([[object objectForKey:@"method"] isEqual:@"contacted"]) {
     cell.lastContact.text = [@"Contacted on " stringByAppendingString:[self formatDate:object.createdAt]];
     cell.lastContactImage.image = [UIImage imageNamed:@"checkmark-gray.png"];

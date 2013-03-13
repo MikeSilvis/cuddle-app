@@ -21,5 +21,6 @@
 - (IBAction)editingPasswordField:(id)sender;
 
 - (void)loginUser;
+- (IBAction)goToRegister:(id)sender;
 
 @end

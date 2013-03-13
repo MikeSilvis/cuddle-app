@@ -58,17 +58,22 @@
 
 - (void)scrollViewWillBeginDragging:(UIScrollView *)currentScrollView {
 	pageControlBeingUsed = NO;
-  CGFloat pageWidth = currentScrollView.frame.size.width;
-  float fractionalPage = currentScrollView.contentOffset.x / pageWidth;
-  NSInteger page = lround(fractionalPage);
-  if (page == 2){
-    [self performSegueWithIdentifier:@"registerSegue" sender:self];
-  }
 }
 
 - (void)scrollViewDidEndDecelerating:(UIScrollView *)currentScrollView {
 	pageControlBeingUsed = NO;
+  CGFloat pageWidth = currentScrollView.frame.size.width;
+  float fractionalPage = currentScrollView.contentOffset.x / pageWidth;
+  NSInteger page = lround(fractionalPage);
+  if (page == 3){
+    CGRect frame = scrollView.frame;
+    frame.origin.x = frame.size.width * 2;
+    frame.origin.y = 0;
+    [scrollView scrollRectToVisible:frame animated:YES];
+    [self performSegueWithIdentifier:@"registerSegue" sender:self];
+  }
 }
+
 - (IBAction)pageChanged:(id)sender {
 	CGRect frame;
 	frame.origin.x = self.scrollView.frame.size.width * self.pageControl.currentPage;
