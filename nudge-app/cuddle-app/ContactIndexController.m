@@ -50,21 +50,27 @@
     [self.navigationController setNavigationBarHidden:NO];
     self.view.backgroundColor = [UIColor colorWithPatternImage: [UIImage imageNamed:@"background.png"]];
     self.navigationItem.hidesBackButton = YES;
-
-    [[NSNotificationCenter defaultCenter] addObserver:self
-                                             selector:@selector(contactSaved:)
-                                                 name:@"ContactSaved"
-                                               object:nil];
-    [[NSNotificationCenter defaultCenter] addObserver:self
-                                             selector:@selector(contactFailed:)
-                                                 name:@"ContactFailed"
-                                               object:nil];
-    [[NSNotificationCenter defaultCenter] addObserver:self
-                                             selector:@selector(selectPersonFromPicker)
-                                                 name:@"PeoplePicker"
-                                               object:nil];
-  self.navigationItem.titleView = [self titleView];
-  [self savePushChannel];
+    [self watchNotifications];
+    self.navigationItem.titleView = [self titleView];
+    [self savePushChannel];
+}
+- (void)watchNotifications{
+  [[NSNotificationCenter defaultCenter] addObserver:self
+                                           selector:@selector(contactSaved:)
+                                               name:@"ContactSaved"
+                                             object:nil];
+  [[NSNotificationCenter defaultCenter] addObserver:self
+                                           selector:@selector(contactFailed:)
+                                               name:@"ContactFailed"
+                                             object:nil];
+  [[NSNotificationCenter defaultCenter] addObserver:self
+                                           selector:@selector(selectPersonFromPicker)
+                                               name:@"PeoplePicker"
+                                             object:nil];
+  [[NSNotificationCenter defaultCenter] addObserver:self
+                                           selector:@selector(OpenedFromPush:)
+                                               name:@"OpenedFromPush"
+                                             object:nil];
 }
 - (void)objectsDidLoad:(NSError *)error{
     [super objectsDidLoad:error];
@@ -110,6 +116,8 @@
         NSString *facebookImageURL = [NSString stringWithFormat:@"http://graph.facebook.com/%@/picture?type=large", [object objectForKey:@"facebook"]];
         NSData *facebookImgData = [[NSData alloc] initWithContentsOfURL: [NSURL URLWithString:facebookImageURL]];
         cell.userPicture.image = [UIImage imageWithData: facebookImgData];
+    } else {
+        cell.userPicture.image= [UIImage imageNamed:@"contact_without_image.png"];
     }
 
     if ([[object objectForKey:@"methodOfLastContact"] isEqual:@"call"]) {
@@ -168,6 +176,10 @@
     [SVProgressHUD dismiss];
     self.lastAddedColleague = [[notification userInfo] objectForKey:@"contact"];
     [self performSegueWithIdentifier:@"contactShowSegue" sender:self];
+}
+- (void)openedFromPush:(NSNotification *)notification{
+//  self.lastAddedColleague = [[notification userInfo] objectForKey:@"contact"];
+//  [self performSegueWithIdentifier:@"contactShowSegue" sender:self];
 }
 
 - (void)contactFailed:(NSNotification *)notification{

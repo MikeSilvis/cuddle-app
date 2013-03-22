@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="2.0" toolsVersion="3084" systemVersion="12C60" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="RzY-qC-cMf">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="2.0" toolsVersion="3084" systemVersion="12D78" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="RzY-qC-cMf">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="2083"/>
     </dependencies>
@@ -94,10 +94,10 @@
                                     <action selector="editingPasswordField:" destination="2" eventType="editingDidBegin" id="rNv-EN-X3V"/>
                                 </connections>
                             </textField>
-                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Nice to see you again." lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7RP-DB-6jC">
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Nice to see you again." lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bC1-XY-2Le">
                                 <constraints>
-                                    <constraint firstAttribute="width" constant="249" id="G6R-Rz-KO2"/>
-                                    <constraint firstAttribute="height" constant="28" id="z6T-DU-2C7"/>
+                                    <constraint firstAttribute="height" constant="28" id="9rA-3n-qZf"/>
+                                    <constraint firstAttribute="width" constant="249" id="kdD-iw-5ZD"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" name="Avenir-Medium" family="Avenir" pointSize="24"/>
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
@@ -109,12 +109,12 @@
                         <constraints>
                             <constraint firstItem="5Mh-Oj-KiN" firstAttribute="top" secondItem="3" secondAttribute="top" constant="82" id="74U-1J-5za"/>
                             <constraint firstItem="IEP-vB-Y1L" firstAttribute="top" secondItem="3" secondAttribute="top" constant="207" id="8xA-rX-9qv"/>
-                            <constraint firstItem="7RP-DB-6jC" firstAttribute="centerX" secondItem="5Mh-Oj-KiN" secondAttribute="centerX" type="default" id="CN4-qG-9dh"/>
                             <constraint firstAttribute="trailing" secondItem="IEP-vB-Y1L" secondAttribute="trailing" constant="20" symbolic="YES" type="default" id="MS7-lI-gCd"/>
+                            <constraint firstItem="bC1-XY-2Le" firstAttribute="leading" secondItem="3" secondAttribute="leading" constant="46" id="TZu-kG-JeK"/>
                             <constraint firstAttribute="trailing" secondItem="rOq-ji-7M9" secondAttribute="trailing" constant="20" symbolic="YES" type="default" id="Xx5-qt-lYf"/>
-                            <constraint firstItem="7RP-DB-6jC" firstAttribute="top" secondItem="3" secondAttribute="top" constant="20" symbolic="YES" type="default" id="ZLU-q0-dNT"/>
                             <constraint firstItem="rOq-ji-7M9" firstAttribute="leading" secondItem="3" secondAttribute="leading" constant="20" symbolic="YES" type="default" id="cek-wa-AgU"/>
                             <constraint firstItem="rOq-ji-7M9" firstAttribute="top" secondItem="5Mh-Oj-KiN" secondAttribute="bottom" constant="8" symbolic="YES" type="default" id="dz0-AP-zys"/>
+                            <constraint firstItem="bC1-XY-2Le" firstAttribute="top" secondItem="3" secondAttribute="top" constant="30" id="kEw-jT-eKX"/>
                             <constraint firstItem="5Mh-Oj-KiN" firstAttribute="leading" secondItem="3" secondAttribute="leading" constant="20" symbolic="YES" type="default" id="kj3-d6-zUf"/>
                             <constraint firstAttribute="trailing" secondItem="5Mh-Oj-KiN" secondAttribute="trailing" constant="20" symbolic="YES" type="default" id="sQb-RX-NlX"/>
                             <constraint firstItem="IEP-vB-Y1L" firstAttribute="leading" secondItem="3" secondAttribute="leading" constant="20" symbolic="YES" type="default" id="uG7-di-VTY"/>
@@ -283,12 +283,7 @@
                                             <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                             <color key="highlightedColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         </label>
-                                        <imageView userInteractionEnabled="NO" contentMode="redraw" image="contact_without_image@2x.png" translatesAutoresizingMaskIntoConstraints="NO" id="b8w-7C-eFG" customClass="PFImageView">
-                                            <constraints>
-                                                <constraint firstAttribute="height" constant="70" id="bDN-jg-JUb"/>
-                                                <constraint firstAttribute="width" constant="70" id="h3a-Rd-dxS"/>
-                                            </constraints>
-                                        </imageView>
+                                        <imageView userInteractionEnabled="NO" contentMode="center" image="contact_without_image.png" translatesAutoresizingMaskIntoConstraints="NO" id="b8w-7C-eFG" customClass="PFImageView"/>
                                         <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="never contacted from nudge" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="R6O-Gw-ozs">
                                             <constraints>
                                                 <constraint firstAttribute="width" constant="204" id="4ZP-U0-tZh"/>
@@ -352,6 +347,73 @@
             </objects>
             <point key="canvasLocation" x="2455" y="90"/>
         </scene>
+        <!--Frequency Picker Controller-->
+        <scene sceneID="4rF-kX-Dqe">
+            <objects>
+                <viewController id="ch2-x5-YvJ" customClass="FrequencyPickerController" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="b0K-bu-NZD">
+                        <rect key="frame" x="0.0" y="20" width="320" height="548"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <subviews>
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2aP-dh-Qrb">
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <pickerView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="snR-LV-JZk">
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="216" id="hSV-41-5bT"/>
+                                </constraints>
+                                <connections>
+                                    <outlet property="delegate" destination="ch2-x5-YvJ" id="mgJ-UF-xGM"/>
+                                </connections>
+                            </pickerView>
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" editable="NO" text="How often do you want to be reminded to keep in touch?" textAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="bfu-hi-Hh5">
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="227" id="Qbj-AZ-h3g"/>
+                                    <constraint firstAttribute="height" constant="148" id="rfX-O3-V5I"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" name="Avenir-Medium" family="Avenir" pointSize="24"/>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                            </textView>
+                            <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" barStyle="blackTranslucent" translatesAutoresizingMaskIntoConstraints="NO" id="XVX-Uy-4RN">
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="330" id="cqu-UA-xMq"/>
+                                </constraints>
+                                <items>
+                                    <barButtonItem width="240" style="plain" systemItem="fixedSpace" id="qKX-ci-r8l"/>
+                                    <barButtonItem systemItem="save" id="ct7-tJ-cTr">
+                                        <connections>
+                                            <action selector="saveFrequency:" destination="ch2-x5-YvJ" id="cKh-r8-jPz"/>
+                                        </connections>
+                                    </barButtonItem>
+                                </items>
+                            </toolbar>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="snR-LV-JZk" firstAttribute="trailing" secondItem="b0K-bu-NZD" secondAttribute="trailing" type="default" id="2qy-jJ-GcH"/>
+                            <constraint firstItem="2aP-dh-Qrb" firstAttribute="leading" secondItem="b0K-bu-NZD" secondAttribute="leading" constant="-52" id="2yA-Fw-Dhz"/>
+                            <constraint firstItem="XVX-Uy-4RN" firstAttribute="centerX" secondItem="bfu-hi-Hh5" secondAttribute="centerX" type="default" id="6yz-8v-Bkv"/>
+                            <constraint firstItem="2aP-dh-Qrb" firstAttribute="top" secondItem="b0K-bu-NZD" secondAttribute="top" constant="70" id="EDn-8q-5WY"/>
+                            <constraint firstItem="XVX-Uy-4RN" firstAttribute="bottom" secondItem="b0K-bu-NZD" secondAttribute="bottom" type="default" id="GdY-7c-5eD"/>
+                            <constraint firstItem="bfu-hi-Hh5" firstAttribute="top" secondItem="2aP-dh-Qrb" secondAttribute="top" type="default" id="NhC-Bf-PUB"/>
+                            <constraint firstItem="XVX-Uy-4RN" firstAttribute="centerX" secondItem="snR-LV-JZk" secondAttribute="centerX" type="default" id="UUq-Du-8dG"/>
+                            <constraint firstItem="snR-LV-JZk" firstAttribute="bottom" secondItem="b0K-bu-NZD" secondAttribute="bottom" type="default" id="kE2-9E-YOi"/>
+                            <constraint firstItem="snR-LV-JZk" firstAttribute="leading" secondItem="b0K-bu-NZD" secondAttribute="leading" type="default" id="zkl-Oy-v1A"/>
+                        </constraints>
+                    </view>
+                    <toolbarItems/>
+                    <nil key="simulatedBottomBarMetrics"/>
+                    <connections>
+                        <outlet property="picker" destination="snR-LV-JZk" id="K9Q-1P-ydd"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="5Qg-pf-rkt" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2710" y="885"/>
+        </scene>
         <!--Lonely Controller-->
         <scene sceneID="ikj-Qb-UEX">
             <objects>
@@ -381,7 +443,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ocX-aj-Ys6" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3004" y="-658"/>
+            <point key="canvasLocation" x="3154" y="-666"/>
         </scene>
         <!--Contact Show View Controller - Contact-->
         <scene sceneID="PSb-Y5-NJK">
@@ -564,6 +626,7 @@
                         <outlet property="seeMore" destination="xkN-tp-2dt" id="XnH-i9-S4b"/>
                         <outlet property="tableView" destination="07s-ip-jfe" id="fxi-PR-D2v"/>
                         <outlet property="text" destination="Ouo-Ts-9yz" id="Qgd-YM-RvE"/>
+                        <segue destination="ch2-x5-YvJ" kind="custom" identifier="frequencyPicker" customClass="FrequencySegue" id="MNL-xA-COH"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="wrS-B9-Js3" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -573,7 +636,7 @@
                     </connections>
                 </swipeGestureRecognizer>
             </objects>
-            <point key="canvasLocation" x="3004" y="90"/>
+            <point key="canvasLocation" x="3154" y="82"/>
         </scene>
         <!--Contact History Controller-->
         <scene sceneID="BbZ-7Z-dgv">
@@ -634,7 +697,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Box-2l-Ely" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3537" y="90"/>
+            <point key="canvasLocation" x="3687" y="82"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="qZb-Dj-bPu">
@@ -660,7 +723,6 @@
     <resources>
         <image name="checkmark-icon.png" width="24" height="24"/>
         <image name="contact_without_image.png" width="70" height="70"/>
-        <image name="contact_without_image@2x.png" width="140" height="140"/>
         <image name="email.png" width="24" height="24"/>
         <image name="header.png" width="320" height="150"/>
         <image name="ipad-button-blue.png" width="157" height="49"/>
@@ -732,6 +794,14 @@
         <class className="CuddleNavBar" superclassName="UINavigationBar">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/CuddleNavBar.h"/>
         </class>
+        <class className="FrequencyPickerController" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/FrequencyPickerController.h"/>
+            <relationships>
+                <relationship kind="action" name="saveFrequency:"/>
+                <relationship kind="outlet" name="contact" candidateClass="PFObject"/>
+                <relationship kind="outlet" name="picker" candidateClass="UIPickerView"/>
+            </relationships>
+        </class>
         <class className="LoginViewController" superclassName="UIViewController">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/LoginViewController.h"/>
             <relationships>
@@ -778,6 +848,6 @@
         <simulatedScreenMetrics key="destination" type="retina4"/>
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
-        <segue reference="ejD-em-WSs"/>
+        <segue reference="67z-qR-seE"/>
     </inferredMetricsTieBreakers>
 </document>

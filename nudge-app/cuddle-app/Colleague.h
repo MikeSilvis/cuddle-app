@@ -13,6 +13,7 @@
 
 @interface Colleague : PFObject
 
+@property (nonatomic, retain) NSNumber *recordId;
 @property (nonatomic, retain) NSString *name;
 @property (nonatomic, retain) NSString *email;
 @property (nonatomic, retain) NSString *phoneNumber;

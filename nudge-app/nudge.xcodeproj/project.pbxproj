@@ -49,6 +49,8 @@
 		362D55FA16C866B000A3423D /* ContactInfoCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 362D55F916C866B000A3423D /* ContactInfoCell.m */; };
 		362D55FD16C8674B00A3423D /* ContactIndexController.m in Sources */ = {isa = PBXBuildFile; fileRef = 362D55FC16C8674B00A3423D /* ContactIndexController.m */; };
 		362D560016C86FD400A3423D /* ContactShowViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 362D55FF16C86FD400A3423D /* ContactShowViewController.m */; };
+		3641707B16FA809B001B1893 /* FrequencyPickerController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3641707A16FA809B001B1893 /* FrequencyPickerController.m */; };
+		3641707E16FA83D1001B1893 /* FrequencySegue.m in Sources */ = {isa = PBXBuildFile; fileRef = 3641707D16FA83D1001B1893 /* FrequencySegue.m */; };
 		365D019F16DC38780091CBA6 /* User.m in Sources */ = {isa = PBXBuildFile; fileRef = 365D019E16DC38780091CBA6 /* User.m */; };
 		365D01A316DC4E8C0091CBA6 /* lonely@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 365D01A216DC4E8C0091CBA6 /* lonely@2x.png */; };
 		365D01A916DC51B40091CBA6 /* ipad-button-blue-pressed.png in Resources */ = {isa = PBXBuildFile; fileRef = 365D01A516DC51B40091CBA6 /* ipad-button-blue-pressed.png */; };
@@ -185,6 +187,10 @@
 		362D55FC16C8674B00A3423D /* ContactIndexController.m */ = {isa = PBXFileReference; fileEncoding = 4; indentWidth = 2; lastKnownFileType = sourcecode.c.objc; path = ContactIndexController.m; sourceTree = "<group>"; tabWidth = 2; };
 		362D55FE16C86FD400A3423D /* ContactShowViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ContactShowViewController.h; sourceTree = "<group>"; };
 		362D55FF16C86FD400A3423D /* ContactShowViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ContactShowViewController.m; sourceTree = "<group>"; };
+		3641707916FA809B001B1893 /* FrequencyPickerController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FrequencyPickerController.h; sourceTree = "<group>"; };
+		3641707A16FA809B001B1893 /* FrequencyPickerController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FrequencyPickerController.m; sourceTree = "<group>"; };
+		3641707C16FA83D1001B1893 /* FrequencySegue.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FrequencySegue.h; sourceTree = "<group>"; };
+		3641707D16FA83D1001B1893 /* FrequencySegue.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FrequencySegue.m; sourceTree = "<group>"; };
 		365D019D16DC38780091CBA6 /* User.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = User.h; sourceTree = "<group>"; };
 		365D019E16DC38780091CBA6 /* User.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = User.m; sourceTree = "<group>"; };
 		365D01A216DC4E8C0091CBA6 /* lonely@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "lonely@2x.png"; sourceTree = "<group>"; };
@@ -443,6 +449,8 @@
 				36A6605116E457F5003D3C99 /* ContactHistoryController.m */,
 				362D55FE16C86FD400A3423D /* ContactShowViewController.h */,
 				362D55FF16C86FD400A3423D /* ContactShowViewController.m */,
+				3641707916FA809B001B1893 /* FrequencyPickerController.h */,
+				3641707A16FA809B001B1893 /* FrequencyPickerController.m */,
 				362D55FB16C8674B00A3423D /* ContactIndexController.h */,
 				362D55FC16C8674B00A3423D /* ContactIndexController.m */,
 				36FFBF6E16C85DDF00CC3140 /* LoginViewController.h */,
@@ -471,6 +479,8 @@
 			children = (
 				366917DB16D714E600DF21E9 /* LonelySegue.h */,
 				366917DC16D714E600DF21E9 /* LonelySegue.m */,
+				3641707C16FA83D1001B1893 /* FrequencySegue.h */,
+				3641707D16FA83D1001B1893 /* FrequencySegue.m */,
 			);
 			name = Segue;
 			sourceTree = "<group>";
@@ -826,6 +836,8 @@
 				36A6605216E457F5003D3C99 /* ContactHistoryController.m in Sources */,
 				36FDEF5B16EA9C2F00488113 /* WelcomeController.m in Sources */,
 				36940A6416ECEA12008CFBAC /* NSDateTimeAgo.m in Sources */,
+				3641707B16FA809B001B1893 /* FrequencyPickerController.m in Sources */,
+				3641707E16FA83D1001B1893 /* FrequencySegue.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

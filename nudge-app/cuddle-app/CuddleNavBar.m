@@ -8,7 +8,7 @@
 
 #import "CuddleNavBar.h"
 
-@implementation CuddleNavBar
+@implementation CuddleNavBar 
 + (void)initialize {
     UIImage *backButton = [[UIImage imageNamed:@"back.png"] resizableImageWithCapInsets:UIEdgeInsetsMake(0, 14, 0, 4)];
     

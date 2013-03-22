@@ -3,8 +3,12 @@ require 'bundler'
 Bundler.require
 
 class Push
-  Parse.init :application_id => "7qRCV3hz4fajvJovE942RlmEyIbkp6f82NUwrQCW",
-             :api_key        => "HZza9DiUFY46POu1cfNB9uD06KSKzPVsPMFncRHa"
+  DEV_APPLICATION_ID =  "7TZmoyE9Rdg5KvRTrEX8KctSDJ7NplhH1Oz7DR9H"
+  DEV_API_KEY = "EWx7bYVDHGaUf4SOrEWRcNZ3TJTSDKyxz12NeIL5"
+  PROD_APPLICATION_ID = "7qRCV3hz4fajvJovE942RlmEyIbkp6f82NUwrQCW"
+  PROD_API_KEY = "HZza9DiUFY46POu1cfNB9uD06KSKzPVsPMFncRHa"
+  Parse.init :application_id => DEV_APPLICATION_ID, :api_key => DEV_API_KEY
+  #Parse.init :application_id => PROD_APPLICATION_ID, api_key => PROD_API_KEY
 
   def self.send_notification
     drifting_connections.each do |connection|

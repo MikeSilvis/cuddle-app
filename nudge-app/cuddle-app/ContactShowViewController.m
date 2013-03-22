@@ -15,15 +15,16 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-//  self.navigationItem.backBarButtonItem
     self.view.backgroundColor = [UIColor colorWithPatternImage: [UIImage imageNamed:@"background.png"]];
-  
     [self loadContactPhoto];
     [self disableButtonsWithoutInfo];
     [self loadStyles];
     [self queryParseHistory];
     self.contactName.text = [contact objectForKey:@"name"];
 
+}
+- (void)viewDidAppear:(BOOL)animated{
+  [self checkFrequency];
 }
 - (void)loadStyles{
   self.contactBackground.layer.shadowColor = [UIColor whiteColor].CGColor;
@@ -40,6 +41,11 @@
   self.contactPhoto.layer.cornerRadius = 5;
   self.contactPhoto.clipsToBounds = YES;
   self.contactPhoto.layer.borderWidth = 2.0;
+}
+- (void)checkFrequency{
+  if ([contact objectForKey:@"frequency"] == nil){
+    [self performSegueWithIdentifier:@"frequencyPicker" sender:self];
+  }
 }
 - (void)loadContactPhoto{
   if ([contact objectForKey:@"photo"] != nil){
@@ -194,6 +200,10 @@
 -(void) prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender{
   if([segue.identifier isEqualToString:@"contactHistorySegue"]){
     ContactHistoryController *destViewController = segue.destinationViewController;
+    destViewController.contact = self.contact;
+  }
+  if([segue.identifier isEqualToString:@"frequencyPicker"]){
+    FrequencyPickerController *destViewController = segue.destinationViewController;
     destViewController.contact = self.contact;
   }
 }

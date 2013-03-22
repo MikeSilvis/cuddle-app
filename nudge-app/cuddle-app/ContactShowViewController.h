@@ -13,8 +13,9 @@
 #import <MessageUI/MFMailComposeViewController.h>
 #import <MessageUI/MFMessageComposeViewController.h>
 #import "SVProgressHUD.h"
-#import  <QuartzCore/QuartzCore.h> 
+#import  <QuartzCore/QuartzCore.h>
 #import <QuartzCore/CAAnimation.h>
+#import "FrequencyPickerController.h"
 
 @interface ContactShowViewController : UIViewController  <MFMailComposeViewControllerDelegate, MFMessageComposeViewControllerDelegate, UITableViewDataSource, UITableViewDelegate, UITableViewDataSource, UITableViewDelegate, UIActionSheetDelegate>
 @property (weak, nonatomic) IBOutlet PFImageView *contactPhoto;

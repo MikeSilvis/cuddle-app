@@ -13,6 +13,8 @@
 - (id)initWithABPerson:(ABRecordRef)abPerson {
     self = [super init];
     if (self) {
+        NSInteger recordID  =  ABRecordGetRecordID(abPerson);
+        self.recordId = [NSNumber numberWithInt:recordID];
         NSString *firstName = (__bridge_transfer NSString*)ABRecordCopyValue(abPerson, kABPersonFirstNameProperty);
         NSString *lastName = (__bridge_transfer NSString*)ABRecordCopyValue(abPerson, kABPersonLastNameProperty);
       
@@ -41,15 +43,28 @@
             self.photo = [PFFile fileWithData:imgABData];
             [self.photo saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
                 if (succeeded){
-                    [self saveColleague];
+                    [self verifyNoOtherColleague];
                 }
             }];
         } else {
-            [self saveColleague];
+            [self verifyNoOtherColleague];
         }
     }
-  
     return self;
+}
+- (void)verifyNoOtherColleague{
+  PFQuery *query = [PFQuery queryWithClassName:@"Colleague"];
+  [query whereKey:@"user" equalTo:[PFUser currentUser]];
+  [query whereKey:@"recordId" equalTo:self.recordId];
+  [query findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
+    if (objects.count > 0){
+      NSMutableDictionary *userData = [NSMutableDictionary dictionary];
+      [userData setObject:objects[0] forKey:@"contact"];
+      [[NSNotificationCenter defaultCenter] postNotificationName:@"ContactSaved" object:self userInfo:userData];
+    } else {
+      [self saveColleague];
+    }
+  }];
 }
 - (void)saveColleague{
     PFObject *newColleague = [[PFObject alloc] initWithClassName:@"Colleague"];
@@ -69,6 +84,7 @@
     if (self.facebook){
       [newColleague setObject:self.facebook forKey:@"facebook"];
     }
+    [newColleague setObject:self.recordId forKey:@"recordId"];
     [newColleague setObject:self.name forKey:@"name"];
     [newColleague saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
         if (succeeded){

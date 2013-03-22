@@ -7,19 +7,36 @@
 //
 
 #import "AppDelegate.h"
-#import <Parse/Parse.h>
-#import <Crashlytics/Crashlytics.h>
+
 
 @implementation AppDelegate
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
-    [Crashlytics startWithAPIKey:@"2c4de91dd9eef6b63fa865a54c345433bebc795a"];
-    [Parse setApplicationId:@"7qRCV3hz4fajvJovE942RlmEyIbkp6f82NUwrQCW"
-                  clientKey:@"DHhqhSc8mhGhrIGdR9K5s7qKoCLUeodCPQk4jkJy"];
-  
+  [Crashlytics startWithAPIKey:@"2c4de91dd9eef6b63fa865a54c345433bebc795a"];
+  [Parse setApplicationId:PARSEAPPLICATIONID clientKey:PARSECLIENTKEY];
   [application registerForRemoteNotificationTypes:UIRemoteNotificationTypeAlert|UIRemoteNotificationTypeBadge];
-    return YES;
+  
+//  NSDictionary *notificationPayload = launchOptions[UIApplicationLaunchOptionsRemoteNotificationKey];
+
+//  NSString *colleagueId = [notificationPayload objectForKey:@"c"];
+  NSString *colleagueId = @"Qrp1oPHODA";
+  
+  if (colleagueId){
+    PFObject *targetColleague = [PFObject objectWithoutDataWithClassName:@"Colleague" objectId:colleagueId];
+    
+    [targetColleague fetchIfNeededInBackgroundWithBlock:^(PFObject *object, NSError *error) {
+      if (!error && [PFUser currentUser]) {
+        NSMutableDictionary *userData = [NSMutableDictionary dictionary];
+        [userData setObject:object forKey:@"contact"];
+        [[NSNotificationCenter defaultCenter] postNotificationName:@"OpenedFromPush" object:nil userInfo:userData];
+      }
+    }];
+    
+    //  [PFAnalytics trackAppOpenedWithLaunchOptions:launchOptions];
+  }
+  
+  return YES;
 }
 
 - (void)application:(UIApplication *)application didRegisterForRemoteNotificationsWithDeviceToken:(NSData *)newDeviceToken
@@ -35,9 +52,7 @@
 }
 
 -(void)application:(UIApplication *)application didFailToRegisterForRemoteNotificationsWithError:(NSError *)error{
-  NSLog(@"failed to add push notification");
 }
-
 - (void)applicationWillResignActive:(UIApplication *)application
 {
     // Sent when the application is about to move from active to inactive state. This can occur for certain types of temporary interruptions (such as an incoming phone call or SMS message) or when the user quits the application and it begins the transition to the background state.
@@ -57,6 +72,11 @@
 
 - (void)applicationDidBecomeActive:(UIApplication *)application
 {
+  PFInstallation *currentInstallation = [PFInstallation currentInstallation];
+  if (currentInstallation.badge != 0) {
+    currentInstallation.badge = 0;
+    [currentInstallation saveEventually];
+  }
     // Restart any tasks that were paused (or not yet started) while the application was inactive. If the application was previously in the background, optionally refresh the user interface.
 }
 
