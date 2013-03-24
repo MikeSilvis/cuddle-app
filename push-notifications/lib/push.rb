@@ -23,6 +23,9 @@ class Push
 
   def self.update_push_notified_flag(objectId)
     colleague = Parse.get "Colleague", objectId
+    ## This isn't actually deleting the photo
+    ## It is simply removing it from the array
+    ## Such that when I save it doesnt try to reupload it
     colleague.delete("photo")
     colleague["notifiedSincePush"] = false
     colleague.save
