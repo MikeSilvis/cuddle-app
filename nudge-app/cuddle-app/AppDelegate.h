@@ -11,6 +11,7 @@
 #import "ContactShowViewController.h"
 #import <Parse/Parse.h>
 #import <Crashlytics/Crashlytics.h>
+#import "WelcomeController.h"
 
 #ifdef DEBUG
   #define PARSEAPPLICATIONID @"7TZmoyE9Rdg5KvRTrEX8KctSDJ7NplhH1Oz7DR9H"
@@ -23,5 +24,7 @@
 @interface AppDelegate : UIResponder <UIApplicationDelegate>
 
 @property (strong, nonatomic) UIWindow *window;
+
+@property (nonatomic, retain) NSString *colleagueId;
 
 @end

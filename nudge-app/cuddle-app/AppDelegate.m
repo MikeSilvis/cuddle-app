@@ -17,25 +17,6 @@
   [Parse setApplicationId:PARSEAPPLICATIONID clientKey:PARSECLIENTKEY];
   [application registerForRemoteNotificationTypes:UIRemoteNotificationTypeAlert|UIRemoteNotificationTypeBadge];
   
-//  NSDictionary *notificationPayload = launchOptions[UIApplicationLaunchOptionsRemoteNotificationKey];
-
-//  NSString *colleagueId = [notificationPayload objectForKey:@"c"];
-  NSString *colleagueId = @"Qrp1oPHODA";
-  
-  if (colleagueId){
-    PFObject *targetColleague = [PFObject objectWithoutDataWithClassName:@"Colleague" objectId:colleagueId];
-    
-    [targetColleague fetchIfNeededInBackgroundWithBlock:^(PFObject *object, NSError *error) {
-      if (!error && [PFUser currentUser]) {
-        NSMutableDictionary *userData = [NSMutableDictionary dictionary];
-        [userData setObject:object forKey:@"contact"];
-        [[NSNotificationCenter defaultCenter] postNotificationName:@"OpenedFromPush" object:nil userInfo:userData];
-      }
-    }];
-    
-    //  [PFAnalytics trackAppOpenedWithLaunchOptions:launchOptions];
-  }
-  
   return YES;
 }
 
@@ -48,6 +29,7 @@
 }
 
 - (void)application:(UIApplication *)application didReceiveRemoteNotification:(NSDictionary *)userInfo {
+  self.colleagueId = [userInfo objectForKey:@"c"];
   [PFPush handlePush:userInfo];
 }
 
@@ -72,6 +54,7 @@
 
 - (void)applicationDidBecomeActive:(UIApplication *)application
 {
+
   PFInstallation *currentInstallation = [PFInstallation currentInstallation];
   if (currentInstallation.badge != 0) {
     currentInstallation.badge = 0;

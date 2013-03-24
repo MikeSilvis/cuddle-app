@@ -7,16 +7,18 @@
 //
 
 #import "WelcomeController.h"
+#import "AppDelegate.h"
 
 @implementation WelcomeController
 
 @synthesize scrollView, pageControl, pageControlBeingUsed;
 
 - (void)viewDidLoad {
+  
   [super viewDidLoad];
-  [self userCheck];
   [self.navigationController setNavigationBarHidden:YES];
-	
+	[self userCheck];
+  
 	pageControlBeingUsed = NO;
   self.scrollView.frame = self.view.bounds;
   self.view.backgroundColor = [UIColor colorWithPatternImage: [UIImage imageNamed:@"welcome-background.png"]];
@@ -42,8 +44,7 @@
 	self.pageControl.numberOfPages = images.count;
 }
 - (void)userCheck{
-  PFUser *currentUser = [PFUser currentUser];
-  if (currentUser) {
+  if ([PFUser currentUser]) {
     [self performSegueWithIdentifier:@"alreadySignedIn" sender:self];
   }
 }

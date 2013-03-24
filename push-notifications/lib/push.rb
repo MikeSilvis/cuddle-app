@@ -14,6 +14,7 @@ class Push
     drifting_connections.each do |connection|
       puts "Connection is: #{connection[:contact]}"
       pf_push = Parse::Push.new(push_data(connection[:contact]), connection[:userObjectId])
+      puts "Notification sent as: #{push_data(connection[:contact])} to #{connection[:userObjectId]}"
       pf_push.type = 'ios'
       pf_push.save
       update_push_notified_flag(connection[:contact]["objectId"])
@@ -29,7 +30,8 @@ class Push
 
   def self.push_data(contact)
     {
-      :alert => "You haven't contacted #{contact['name']} since #{contact['updatedAtFormated']}."
+      :alert => "You haven't contacted #{contact['name']} since #{contact['updatedAtFormated']}.",
+      :c => contact['objectId']
     }
   end
 
@@ -64,7 +66,8 @@ class Push
   end
 
   def self.two_weeks_ago
-    Parse::Date.new((Time.now - (60*60*24*14)).to_datetime)
+    #Parse::Date.new((Time.now - (60*60*24*14)).to_datetime)
+    Parse::Date.new((Time.now).to_datetime)
   end
 
 end

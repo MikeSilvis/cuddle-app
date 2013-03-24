@@ -84,6 +84,7 @@
     if (self.facebook){
       [newColleague setObject:self.facebook forKey:@"facebook"];
     }
+    [newColleague setObject:[NSNumber numberWithBool:YES] forKey:@"notifiedSincePush"];
     [newColleague setObject:self.recordId forKey:@"recordId"];
     [newColleague setObject:self.name forKey:@"name"];
     [newColleague saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {

@@ -138,7 +138,6 @@
 }
 
 - (IBAction)markButton:(id)sender {
-//    [self saveCommunication:@"contacted"];
 	UIActionSheet *popupQuery = [[UIActionSheet alloc] initWithTitle:@"Method of Communicaiton"
                                                           delegate:self
                                                  cancelButtonTitle:@"Cancel" destructiveButtonTitle:nil otherButtonTitles:@"Called", @"Texted", @"Emailed", nil];

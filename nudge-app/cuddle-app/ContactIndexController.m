@@ -42,6 +42,7 @@
 }
 
 - (void)viewDidAppear:(BOOL)animated{
+    NSLog(@"yup");
     [self loadObjects];
 }
 
@@ -68,16 +69,34 @@
                                                name:@"PeoplePicker"
                                              object:nil];
   [[NSNotificationCenter defaultCenter] addObserver:self
-                                           selector:@selector(OpenedFromPush:)
-                                               name:@"OpenedFromPush"
+                                           selector:@selector(handleOpenedFromPush:)
+                                               name:UIApplicationWillEnterForegroundNotification
                                              object:nil];
+
 }
 - (void)objectsDidLoad:(NSError *)error{
-    [super objectsDidLoad:error];
-    if (([addressesTable numberOfRowsInSection:0] == 0) && (self.parseDidLoad == false)){
-        [self performSegueWithIdentifier:@"lonelySegue" sender:self];
-        [self setParseDidLoad:YES];
+  [super objectsDidLoad:error];
+  if (self.parseDidLoad == false) {
+    if ([addressesTable numberOfRowsInSection:0] == 0){
+      [self performSegueWithIdentifier:@"lonelySegue" sender:self];
+    }  else {
+//      [self handleOpenedFromPush];
     }
+    [self setParseDidLoad:YES];
+  }
+
+}
+- (AppDelegate *)appDelegate{
+  return (AppDelegate*)[[UIApplication sharedApplication] delegate];
+}
+//- (void)contactSaved:(NSNotification *)notification {
+- (void)handleOpenedFromPush:(NSNotification *)notification{
+  for (PFObject *object in self.objects) {
+    if ([object.objectId isEqualToString:self.appDelegate.colleagueId]){
+      self.lastAddedColleague = object;
+      [self performSegueWithIdentifier:@"contactShowSegue" sender:self];
+    }
+  }
 }
 - (UIView *)titleView {
   CGFloat navBarHeight = self.navigationController.navigationBar.frame.size.height;
@@ -177,11 +196,6 @@
     self.lastAddedColleague = [[notification userInfo] objectForKey:@"contact"];
     [self performSegueWithIdentifier:@"contactShowSegue" sender:self];
 }
-- (void)openedFromPush:(NSNotification *)notification{
-//  self.lastAddedColleague = [[notification userInfo] objectForKey:@"contact"];
-//  [self performSegueWithIdentifier:@"contactShowSegue" sender:self];
-}
-
 - (void)contactFailed:(NSNotification *)notification{
     [SVProgressHUD showErrorWithStatus:@"Sorry there was an error. Try again"];
     NSLog(@"contact failed");

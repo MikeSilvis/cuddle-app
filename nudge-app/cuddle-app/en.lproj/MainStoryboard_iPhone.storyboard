@@ -283,7 +283,12 @@
                                             <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                             <color key="highlightedColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         </label>
-                                        <imageView userInteractionEnabled="NO" contentMode="center" image="contact_without_image.png" translatesAutoresizingMaskIntoConstraints="NO" id="b8w-7C-eFG" customClass="PFImageView"/>
+                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" image="contact_without_image@2x.png" translatesAutoresizingMaskIntoConstraints="NO" id="b8w-7C-eFG" customClass="PFImageView">
+                                            <constraints>
+                                                <constraint firstAttribute="height" constant="70" id="4es-OB-x31"/>
+                                                <constraint firstAttribute="width" constant="70" id="sTU-jE-udJ"/>
+                                            </constraints>
+                                        </imageView>
                                         <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="never contacted from nudge" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="R6O-Gw-ozs">
                                             <constraints>
                                                 <constraint firstAttribute="width" constant="204" id="4ZP-U0-tZh"/>
@@ -723,6 +728,7 @@
     <resources>
         <image name="checkmark-icon.png" width="24" height="24"/>
         <image name="contact_without_image.png" width="70" height="70"/>
+        <image name="contact_without_image@2x.png" width="140" height="140"/>
         <image name="email.png" width="24" height="24"/>
         <image name="header.png" width="320" height="150"/>
         <image name="ipad-button-blue.png" width="157" height="49"/>
@@ -736,118 +742,12 @@
         <image name="sms.png" width="24" height="24"/>
         <image name="tabbar.png" width="320" height="48"/>
     </resources>
-    <classes>
-        <class className="ContactHistoryCell" superclassName="PFTableViewCell">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/ContactHistoryCell.h"/>
-            <relationships>
-                <relationship kind="outlet" name="lastContact" candidateClass="UILabel"/>
-                <relationship kind="outlet" name="lastContactImage" candidateClass="UIImageView"/>
-            </relationships>
-        </class>
-        <class className="ContactHistoryController" superclassName="PFQueryTableViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/ContactHistoryController.h"/>
-            <relationships>
-                <relationship kind="outlet" name="contact" candidateClass="PFObject"/>
-            </relationships>
-        </class>
-        <class className="ContactIndexController" superclassName="PFQueryTableViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/ContactIndexController.h"/>
-            <relationships>
-                <relationship kind="action" name="showPeoplePicker"/>
-                <relationship kind="outlet" name="addressesTable" candidateClass="UITableView"/>
-                <relationship kind="outlet" name="lastAddedColleague" candidateClass="PFObject"/>
-            </relationships>
-        </class>
-        <class className="ContactInfoCell" superclassName="PFTableViewCell">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/ContactInfoCell.h"/>
-            <relationships>
-                <relationship kind="outlet" name="backgroundImage" candidateClass="UIImageView"/>
-                <relationship kind="outlet" name="contactTypeImage" candidateClass="UIImageView"/>
-                <relationship kind="outlet" name="userLastContact" candidateClass="UILabel"/>
-                <relationship kind="outlet" name="userName" candidateClass="UILabel"/>
-                <relationship kind="outlet" name="userPicture" candidateClass="PFImageView"/>
-            </relationships>
-        </class>
-        <class className="ContactShowViewController" superclassName="UIViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/ContactShowViewController.h"/>
-            <relationships>
-                <relationship kind="action" name="callButton:"/>
-                <relationship kind="action" name="emailButton:"/>
-                <relationship kind="action" name="handleSwipe:" candidateClass="UISwipeGestureRecognizer"/>
-                <relationship kind="action" name="markButton:"/>
-                <relationship kind="action" name="textButton:"/>
-                <relationship kind="outlet" name="call" candidateClass="UIButton"/>
-                <relationship kind="outlet" name="contact" candidateClass="PFObject"/>
-                <relationship kind="outlet" name="contactBackground" candidateClass="UIImageView"/>
-                <relationship kind="outlet" name="contactHistoryText" candidateClass="UILabel"/>
-                <relationship kind="outlet" name="contactHistoryView" candidateClass="UIView"/>
-                <relationship kind="outlet" name="contactName" candidateClass="UILabel"/>
-                <relationship kind="outlet" name="contactPhoto" candidateClass="PFImageView"/>
-                <relationship kind="outlet" name="email" candidateClass="UIButton"/>
-                <relationship kind="outlet" name="plus" candidateClass="UIButton"/>
-                <relationship kind="outlet" name="seeMore" candidateClass="UIButton"/>
-                <relationship kind="outlet" name="started" candidateClass="UIImageView"/>
-                <relationship kind="outlet" name="tableView" candidateClass="UITableView"/>
-                <relationship kind="outlet" name="text" candidateClass="UIButton"/>
-            </relationships>
-        </class>
-        <class className="CuddleNavBar" superclassName="UINavigationBar">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/CuddleNavBar.h"/>
-        </class>
-        <class className="FrequencyPickerController" superclassName="UIViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/FrequencyPickerController.h"/>
-            <relationships>
-                <relationship kind="action" name="saveFrequency:"/>
-                <relationship kind="outlet" name="contact" candidateClass="PFObject"/>
-                <relationship kind="outlet" name="picker" candidateClass="UIPickerView"/>
-            </relationships>
-        </class>
-        <class className="LoginViewController" superclassName="UIViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/LoginViewController.h"/>
-            <relationships>
-                <relationship kind="action" name="editingEmailField:"/>
-                <relationship kind="action" name="editingPasswordField:"/>
-                <relationship kind="action" name="goToRegister:"/>
-                <relationship kind="action" name="login:"/>
-                <relationship kind="outlet" name="emailField" candidateClass="UITextField"/>
-                <relationship kind="outlet" name="passwordField" candidateClass="UITextField"/>
-            </relationships>
-        </class>
-        <class className="LonelyController" superclassName="UIViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/LonelyController.h"/>
-            <relationships>
-                <relationship kind="action" name="showPeoplePicker:"/>
-            </relationships>
-        </class>
-        <class className="NSLayoutConstraint" superclassName="NSObject">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/NSLayoutConstraint.h"/>
-        </class>
-        <class className="RegisterViewController" superclassName="UIViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/RegisterViewController.h"/>
-            <relationships>
-                <relationship kind="action" name="backToIntro:"/>
-                <relationship kind="action" name="editingEmailField:"/>
-                <relationship kind="action" name="editingPasswordField:"/>
-                <relationship kind="action" name="registerUserButton:"/>
-                <relationship kind="outlet" name="emailField" candidateClass="UITextField"/>
-                <relationship kind="outlet" name="passwordField" candidateClass="UITextField"/>
-            </relationships>
-        </class>
-        <class className="WelcomeController" superclassName="UIViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/WelcomeController.h"/>
-            <relationships>
-                <relationship kind="action" name="pageChanged:"/>
-                <relationship kind="outlet" name="pageControl" candidateClass="UIPageControl"/>
-                <relationship kind="outlet" name="scrollView" candidateClass="UIScrollView"/>
-            </relationships>
-        </class>
-    </classes>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
         <simulatedStatusBarMetrics key="statusBar"/>
         <simulatedOrientationMetrics key="orientation"/>
         <simulatedScreenMetrics key="destination" type="retina4"/>
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
-        <segue reference="67z-qR-seE"/>
+        <segue reference="ejD-em-WSs"/>
     </inferredMetricsTieBreakers>
 </document>

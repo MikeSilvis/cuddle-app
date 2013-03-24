@@ -15,6 +15,7 @@
 #import "ContactInfoCell.h"
 #import "ContactShowViewController.h"
 #import "NSDateTimeAgo.h"
+#import "AppDelegate.h"
 
 @interface ContactIndexController : PFQueryTableViewController <ABPeoplePickerNavigationControllerDelegate>
 
