@@ -7,9 +7,13 @@
 //
 
 #import "Colleague.h"
+#import <Parse/PFObject+Subclass.h>
 
 @implementation Colleague
 
++ (NSString *)parseClassName {
+  return @"Colleague";
+}
 - (id)initWithABPerson:(ABRecordRef)abPerson {
     self = [super init];
     if (self) {
@@ -67,26 +71,26 @@
   }];
 }
 - (void)saveColleague{
-    PFObject *newColleague = [[PFObject alloc] initWithClassName:@"Colleague"];
-    [newColleague setObject:[PFUser currentUser] forKey:@"user"];
+    Colleague *newColleague = [Colleague object];
+    newColleague.user = [PFUser currentUser];
     if (self.photo){
-        [newColleague setObject:self.photo forKey:@"photo"];
+        newColleague.photo = self.photo;
     }
     if (self.phoneNumber){
-        [newColleague setObject:self.phoneNumber forKey:@"number"];
+        newColleague.phoneNumber = self.phoneNumber;
     }
     if (self.email){
-          [newColleague setObject:self.email forKey:@"email"];
+          newColleague.email = self.email;
     }
     if (self.twitter){
-      [newColleague setObject:self.twitter forKey:@"twitter"];
+      newColleague.twitter = self.twitter;
     }
     if (self.facebook){
-      [newColleague setObject:self.facebook forKey:@"facebook"];
+      newColleague.facebook = self.facebook;
     }
-    [newColleague setObject:[NSNumber numberWithBool:YES] forKey:@"notifiedSincePush"];
-    [newColleague setObject:self.recordId forKey:@"recordId"];
-    [newColleague setObject:self.name forKey:@"name"];
+    newColleague.notifiedSincePush = [NSNumber numberWithBool:YES];
+    newColleague.recordId = self.recordId;
+    newColleague.name = self.name;
     [newColleague saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
         if (succeeded){
             NSMutableDictionary *userData = [NSMutableDictionary dictionary];

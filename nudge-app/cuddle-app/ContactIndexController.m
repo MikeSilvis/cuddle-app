@@ -21,7 +21,7 @@
     self = [super initWithCoder:aCoder];
     if (self) {
         self.pullToRefreshEnabled = NO;
-        self.className = @"Colleague";
+        //self.className = @"Colleague";
         self.paginationEnabled = YES;
         self.objectsPerPage = 25;
     }
