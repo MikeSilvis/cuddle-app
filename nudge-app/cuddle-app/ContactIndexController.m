@@ -42,7 +42,6 @@
 }
 
 - (void)viewDidAppear:(BOOL)animated{
-    NSLog(@"yup");
     [self loadObjects];
 }
 
