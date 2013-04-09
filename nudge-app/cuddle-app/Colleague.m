@@ -23,7 +23,9 @@
         NSString *lastName = (__bridge_transfer NSString*)ABRecordCopyValue(abPerson, kABPersonLastNameProperty);
       
         ABMultiValueRef emails = ABRecordCopyValue(abPerson, kABPersonEmailProperty);
-        self.email = (__bridge NSString *)(ABMultiValueCopyValueAtIndex(emails, 0));
+        NSString* tmp_email = (__bridge NSString *)(ABMultiValueCopyValueAtIndex(emails, 0));
+
+        self.email = (tmp_email == nil) ? @"" : tmp_email;
 
         ABMultiValueRef socialMulti = ABRecordCopyValue(abPerson, kABPersonSocialProfileProperty);
         for (CFIndex i = 0; i < ABMultiValueGetCount(socialMulti); i++) {
