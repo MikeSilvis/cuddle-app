@@ -11,6 +11,16 @@
 
 @implementation Colleague
 
+@synthesize user;
+@synthesize name;
+@synthesize email;
+@synthesize photo;
+@synthesize twitter;
+@synthesize facebook;
+@synthesize recordId;
+@synthesize phoneNumber;
+@synthesize notifiedSincePush;
+
 + (NSString *)parseClassName {
   return @"Colleague";
 }
