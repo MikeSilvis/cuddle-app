@@ -30,6 +30,7 @@
 
 - (void)application:(UIApplication *)application didReceiveRemoteNotification:(NSDictionary *)userInfo {
   self.colleagueId = [userInfo objectForKey:@"c"];
+  [[NSNotificationCenter defaultCenter] postNotificationName:@"openedFromNotification" object:nil userInfo:userInfo];
   [PFPush handlePush:userInfo];
 }
 

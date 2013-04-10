@@ -16,15 +16,19 @@
 {
     [super viewDidLoad];
     self.view.backgroundColor = [UIColor colorWithPatternImage: [UIImage imageNamed:@"background.png"]];
-    [self loadContactPhoto];
     [self disableButtonsWithoutInfo];
     [self loadStyles];
     [self queryParseHistory];
+    [self loadContactPhoto];
     self.contactName.text = [contact objectForKey:@"name"];
-
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                           selector:@selector(handleOpenedFromPush:)
+                                               name:@"openedFromNotification"
+                                             object:nil];
 }
 - (void)viewDidAppear:(BOOL)animated{
   [self checkFrequency];
+  [self loadContactPhoto];
 }
 - (void)loadStyles{
   self.contactBackground.layer.shadowColor = [UIColor whiteColor].CGColor;
@@ -54,6 +58,8 @@
     NSString *facebookImageURL = [NSString stringWithFormat:@"http://graph.facebook.com/%@/picture?type=large", [contact objectForKey:@"facebook"]];
     NSData *facebookImgData = [[NSData alloc] initWithContentsOfURL: [NSURL URLWithString:facebookImageURL]];
     self.contactPhoto.image = [UIImage imageWithData: facebookImgData];
+  } else {
+    self.contactPhoto.image = [UIImage imageNamed:@"contact_without_image.png"];
   }
 }
 - (void)disableButtonsWithoutInfo{
@@ -94,6 +100,10 @@
     started = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"started"]];
   }
   return started;
+}
+
+- (void)handleOpenedFromPush:(NSNotification *)notification{
+  [self.navigationController popViewControllerAnimated:NO];
 }
 
 - (void)removeGettingStarted{

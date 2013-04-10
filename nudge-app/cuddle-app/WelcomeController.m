@@ -16,9 +16,8 @@
 - (void)viewDidLoad {
   
   [super viewDidLoad];
-  [self.navigationController setNavigationBarHidden:YES];
 	[self userCheck];
-  
+  [self.navigationController setNavigationBarHidden:YES];  
 	pageControlBeingUsed = NO;
   self.scrollView.frame = self.view.bounds;
   self.view.backgroundColor = [UIColor colorWithPatternImage: [UIImage imageNamed:@"welcome-background.png"]];
@@ -42,6 +41,9 @@
 	self.scrollView.contentSize = CGSizeMake(self.scrollView.frame.size.width * images.count, (self.scrollView.frame.size.height));
 	self.pageControl.currentPage = 0;
 	self.pageControl.numberOfPages = images.count;
+}
+- (void)viewDidAppear:(BOOL)animated{
+    [self.navigationController setNavigationBarHidden:YES];
 }
 - (void)userCheck{
   if ([PFUser currentUser]) {

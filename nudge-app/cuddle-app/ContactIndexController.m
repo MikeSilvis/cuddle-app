@@ -42,7 +42,9 @@
 }
 
 - (void)viewDidAppear:(BOOL)animated{
+    [self watchNotifications];
     [self loadObjects];
+    [self pushUser];
 }
 
 - (void)viewDidLoad{
@@ -50,7 +52,6 @@
     [self.navigationController setNavigationBarHidden:NO];
     self.view.backgroundColor = [UIColor colorWithPatternImage: [UIImage imageNamed:@"background.png"]];
     self.navigationItem.hidesBackButton = YES;
-    [self watchNotifications];
     self.navigationItem.titleView = [self titleView];
     [self savePushChannel];
 }
@@ -71,6 +72,14 @@
                                            selector:@selector(handleOpenedFromPush:)
                                                name:UIApplicationWillEnterForegroundNotification
                                              object:nil];
+  [[NSNotificationCenter defaultCenter] addObserver:self
+                                           selector:@selector(handleOpenedFromPush:)
+                                               name:@"openedFromNotification"
+                                             object:nil];
+}
+- (void)removeNotifications{
+  [[NSNotificationCenter defaultCenter] removeObserver:self name:@"openedFromNotification" object:nil];
+  [[NSNotificationCenter defaultCenter] removeObserver:self name:UIApplicationWillEnterForegroundNotification object:nil];
 
 }
 - (void)objectsDidLoad:(NSError *)error{
@@ -78,8 +87,6 @@
   if (self.parseDidLoad == false) {
     if ([addressesTable numberOfRowsInSection:0] == 0){
       [self performSegueWithIdentifier:@"lonelySegue" sender:self];
-    }  else {
-//      [self handleOpenedFromPush];
     }
     [self setParseDidLoad:YES];
   }
@@ -88,11 +95,14 @@
 - (AppDelegate *)appDelegate{
   return (AppDelegate*)[[UIApplication sharedApplication] delegate];
 }
-//- (void)contactSaved:(NSNotification *)notification {
 - (void)handleOpenedFromPush:(NSNotification *)notification{
+  [self pushUser];
+}
+- (void)pushUser{
   for (PFObject *object in self.objects) {
     if ([object.objectId isEqualToString:self.appDelegate.colleagueId]){
       self.lastAddedColleague = object;
+      self.appDelegate.colleagueId = nil;
       [self performSegueWithIdentifier:@"contactShowSegue" sender:self];
     }
   }
@@ -204,6 +214,7 @@
     if([segue.identifier isEqualToString:@"contactShowSegue"]){
         NSIndexPath *indexPath = [self.tableView indexPathForSelectedRow];
         ContactShowViewController *destViewController = segue.destinationViewController;
+        [self removeNotifications];
         if (indexPath){
           destViewController.contact = [self.objects objectAtIndex:indexPath.row];
         } else if (self.lastAddedColleague != nil){
