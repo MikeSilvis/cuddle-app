@@ -29,8 +29,9 @@
 }
 - (void)savePushChannel {
   PFInstallation *currentInstallation = [PFInstallation currentInstallation];
-  if (![currentInstallation.channels containsObject:[PFUser currentUser].objectId]){
-    [currentInstallation addUniqueObject:[PFUser currentUser].objectId forKey:@"channels"];
+  NSString *userChannel = [NSString stringWithFormat: @"user_%@", [PFUser currentUser].objectId];
+  if (![currentInstallation.channels containsObject:userChannel]){
+    [currentInstallation addUniqueObject:userChannel forKey:@"channels"];
     [currentInstallation saveInBackground];
   }
 }

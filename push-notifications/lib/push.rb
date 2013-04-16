@@ -7,16 +7,16 @@ class Push
   DEV_API_KEY = "EWx7bYVDHGaUf4SOrEWRcNZ3TJTSDKyxz12NeIL5"
   PROD_APPLICATION_ID = "7qRCV3hz4fajvJovE942RlmEyIbkp6f82NUwrQCW"
   PROD_API_KEY = "HZza9DiUFY46POu1cfNB9uD06KSKzPVsPMFncRHa"
-  Parse.init :application_id => DEV_APPLICATION_ID, :api_key => DEV_API_KEY
-  #Parse.init :application_id => PROD_APPLICATION_ID, api_key => PROD_API_KEY
+  #Parse.init :application_id => DEV_APPLICATION_ID, :api_key => DEV_API_KEY
+  Parse.init :application_id => PROD_APPLICATION_ID, :api_key => PROD_API_KEY
 
   def self.send_notification
     drifting_connections.each do |connection|
       puts "Connection is: #{connection[:contact]}"
-      pf_push = Parse::Push.new(push_data(connection[:contact]), connection[:userObjectId])
-      puts "Notification sent as: #{push_data(connection[:contact])} to #{connection[:userObjectId]}"
+      pf_push = Parse::Push.new(push_data(connection[:contact]), "user_#{connection[:userObjectId]}")
       pf_push.type = 'ios'
       pf_push.save
+      puts "Notification sent as: #{push_data(connection[:contact])} to #{connection[:userObjectId]}"
       update_push_notified_flag(connection[:contact]["objectId"])
     end
   end
@@ -69,8 +69,8 @@ class Push
   end
 
   def self.two_weeks_ago
-    #Parse::Date.new((Time.now - (60*60*24*14)).to_datetime)
-    Parse::Date.new((Time.now).to_datetime)
+    Parse::Date.new((Time.now - (60*60*24*14)).to_datetime)
+    #Parse::Date.new((Time.now).to_datetime)
   end
 
 end
