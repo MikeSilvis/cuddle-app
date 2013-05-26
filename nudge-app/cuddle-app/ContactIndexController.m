@@ -21,7 +21,6 @@
     self = [super initWithCoder:aCoder];
     if (self) {
         self.pullToRefreshEnabled = NO;
-        self.className = @"Colleague";
         self.paginationEnabled = YES;
         self.objectsPerPage = 25;
     }
@@ -58,14 +57,6 @@
 }
 - (void)watchNotifications{
   [[NSNotificationCenter defaultCenter] addObserver:self
-                                           selector:@selector(contactSaved:)
-                                               name:@"ContactSaved"
-                                             object:nil];
-  [[NSNotificationCenter defaultCenter] addObserver:self
-                                           selector:@selector(contactFailed:)
-                                               name:@"ContactFailed"
-                                             object:nil];
-  [[NSNotificationCenter defaultCenter] addObserver:self
                                            selector:@selector(selectPersonFromPicker)
                                                name:@"PeoplePicker"
                                              object:nil];
@@ -100,7 +91,7 @@
   [self pushUser];
 }
 - (void)pushUser{
-  for (PFObject *object in self.objects) {
+  for (Colleague *object in self.objects) {
     if ([object.objectId isEqualToString:self.appDelegate.colleagueId]){
       self.lastAddedColleague = object;
       self.appDelegate.colleagueId = nil;
@@ -128,35 +119,28 @@
   return containerView;
 }
 # pragma mark - Table List
-- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath object:(PFObject *)object {
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath object:(Colleague *)friend {
     
     ContactInfoCell *cell = (ContactInfoCell *)[tableView dequeueReusableCellWithIdentifier:@"contactInfoCell"];
-    cell.userName.text = [object objectForKey:@"name"];
-    PFFile *photo = [object objectForKey:@"photo"];
+    cell.userName.text = friend.name;
     
     cell.userPicture.layer.cornerRadius = 5;
     cell.userPicture.clipsToBounds = YES;
-    cell.userLastContact.text = [object.updatedAt timeAgo];
+    cell.userLastContact.text = [friend.updatedAt timeAgo];
   
-    if (photo){
-        cell.userPicture.file = photo;
+    if (friend.photo){
+        cell.userPicture.file = friend.photo;
         [cell.userPicture loadInBackground];
-    } else if ([object objectForKey:@"facebook"] != nil) {
-        NSString *facebookImageURL = [NSString stringWithFormat:@"http://graph.facebook.com/%@/picture?type=large", [object objectForKey:@"facebook"]];
+    } else if (!!friend.facebook) {
+        NSString *facebookImageURL = [NSString stringWithFormat:@"http://graph.facebook.com/%@/picture?type=large", friend.facebook];
         NSData *facebookImgData = [[NSData alloc] initWithContentsOfURL: [NSURL URLWithString:facebookImageURL]];
         cell.userPicture.image = [UIImage imageWithData: facebookImgData];
     } else {
-        cell.userPicture.image= [UIImage imageNamed:@"contact_without_image.png"];
+        cell.userPicture.image = [UIImage imageNamed:@"contact_without_image.png"];
     }
-
-    if ([[object objectForKey:@"methodOfLastContact"] isEqual:@"call"]) {
-      cell.contactTypeImage.image = [UIImage imageNamed:@"phone-gray.png"];
-    } else if ([[object objectForKey:@"methodOfLastContact"] isEqual:@"sms"]) {
-            cell.contactTypeImage.image = [UIImage imageNamed:@"sms-gray.png"];
-    } else if ([[object objectForKey:@"methodOfLastContact"] isEqual:@"email"]) {
-            cell.contactTypeImage.image = [UIImage imageNamed:@"envelope-gray.png"];
-    } else if ([[object objectForKey:@"methodOfLastContact"] isEqual:@"contacted"]) {
-            cell.contactTypeImage.image = [UIImage imageNamed:@"checkmark-gray.png"];
+  
+    if (friend.methodOfLastContact) {
+      cell.contactTypeImage.image = friend.lastContactImage;
     } else {
       cell.contactTypeImage.layer.hidden = YES;
       cell.userLastContact.text = @"Never contacted from nudge";
@@ -186,7 +170,11 @@
     
     [SVProgressHUD showWithStatus:@"Saving Contact"];
   
-    [[Colleague alloc] initWithABPerson:person];
+    self.lastAddedColleague = [[Colleague alloc] initWithABPerson:person];
+  
+    [self performSegueWithIdentifier:@"contactShowSegue" sender:self];
+  
+    [SVProgressHUD dismiss];
   
     [self dismissViewControllerAnimated:YES completion:nil];
     
@@ -199,16 +187,6 @@
                               identifier:(ABMultiValueIdentifier)identifier
 {
     return NO;
-}
-
-- (void)contactSaved:(NSNotification *)notification {
-    [SVProgressHUD dismiss];
-    self.lastAddedColleague = [[notification userInfo] objectForKey:@"contact"];
-    [self performSegueWithIdentifier:@"contactShowSegue" sender:self];
-}
-- (void)contactFailed:(NSNotification *)notification{
-    [SVProgressHUD showErrorWithStatus:@"Sorry there was an error. Try again"];
-    NSLog(@"contact failed");
 }
 
 -(void) prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender{

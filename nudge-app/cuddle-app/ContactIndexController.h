@@ -25,5 +25,5 @@
 @property PFFile *imageFile;
 @property (nonatomic, assign) BOOL parseDidLoad;
 
-@property (strong, nonatomic) IBOutlet PFObject *lastAddedColleague;
+@property (strong, nonatomic) IBOutlet Colleague *lastAddedColleague;
 @end

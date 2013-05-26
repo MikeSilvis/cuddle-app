@@ -1,17 +1,20 @@
 
 PODS:
-- Parse (1.1.32)
+- Facebook-iOS-SDK (3.2.1)
+- Parse (1.2.3)
 - SVProgressHUD (0.9)
-- TestFlightSDK (1.2.4.beta)
+- TestFlightSDK (1.3.0.beta)
 
 DEPENDENCIES:
+- Facebook-iOS-SDK
 - Parse
 - SVProgressHUD
 - TestFlightSDK
 
 SPEC CHECKSUMS:
-  Parse: 4e937cf1035404787d71f611ef464097d3a034bf
+  Facebook-iOS-SDK: 514dc0d7d43358999267c88c088e4b5b339b7da1
+  Parse: 307158c6a39739a542cd5b8109b99338a29fad0b
   SVProgressHUD: 98935fbafaf0031df4a9cafca3c66eaf3da06967
-  TestFlightSDK: aeec97fd81096753d53b942f030a443520a087f4
+  TestFlightSDK: 76c4d5ef22054ef719ca9743580482764caf9144
 
-COCOAPODS: 0.16.2
+COCOAPODS: 0.16.3

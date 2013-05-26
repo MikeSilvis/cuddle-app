@@ -116,7 +116,6 @@
 		DA36C78F16CB5D6F001D7889 /* RegisterViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DA36C78E16CB5D6F001D7889 /* RegisterViewController.m */; };
 		DA58A56F16C8BFD6006D7F55 /* Colleague.m in Sources */ = {isa = PBXBuildFile; fileRef = DA58A56E16C8BFD6006D7F55 /* Colleague.m */; };
 		DAD3EBED16CA19FF00E56737 /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DAD3EBEC16CA19FF00E56737 /* AudioToolbox.framework */; };
-		DAD3EBEF16CA1A0700E56737 /* Accounts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DAD3EBEE16CA1A0700E56737 /* Accounts.framework */; };
 		DAD3EBF116CA1A0F00E56737 /* AdSupport.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DAD3EBF016CA1A0F00E56737 /* AdSupport.framework */; };
 		DAD3EBF316CA1A1800E56737 /* CFNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DAD3EBF216CA1A1800E56737 /* CFNetwork.framework */; };
 		DAD3EBF516CA1A2800E56737 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DAD3EBF416CA1A2800E56737 /* CoreLocation.framework */; };
@@ -125,7 +124,6 @@
 		DAD3EBFB16CA1A4A00E56737 /* MobileCoreServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DAD3EBFA16CA1A4A00E56737 /* MobileCoreServices.framework */; };
 		DAD3EBFD16CA1A4F00E56737 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DAD3EBFC16CA1A4F00E56737 /* QuartzCore.framework */; };
 		DAD3EBFF16CA1A5600E56737 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DAD3EBFE16CA1A5600E56737 /* Security.framework */; };
-		DAD3EC0116CA1A5B00E56737 /* Social.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DAD3EC0016CA1A5B00E56737 /* Social.framework */; };
 		DAD3EC0316CA1A6100E56737 /* StoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DAD3EC0216CA1A6100E56737 /* StoreKit.framework */; };
 		DAD3EC0516CA1A6600E56737 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DAD3EC0416CA1A6600E56737 /* SystemConfiguration.framework */; };
 /* End PBXBuildFile section */
@@ -295,7 +293,6 @@
 				36232B4516E286390029A175 /* MessageUI.framework in Frameworks */,
 				DAD3EC0516CA1A6600E56737 /* SystemConfiguration.framework in Frameworks */,
 				DAD3EC0316CA1A6100E56737 /* StoreKit.framework in Frameworks */,
-				DAD3EC0116CA1A5B00E56737 /* Social.framework in Frameworks */,
 				DAD3EBFF16CA1A5600E56737 /* Security.framework in Frameworks */,
 				DAD3EBFD16CA1A4F00E56737 /* QuartzCore.framework in Frameworks */,
 				DAD3EBFB16CA1A4A00E56737 /* MobileCoreServices.framework in Frameworks */,
@@ -305,7 +302,6 @@
 				36FFBF5516C85DDF00CC3140 /* CoreGraphics.framework in Frameworks */,
 				DAD3EBF316CA1A1800E56737 /* CFNetwork.framework in Frameworks */,
 				DAD3EBF116CA1A0F00E56737 /* AdSupport.framework in Frameworks */,
-				DAD3EBEF16CA1A0700E56737 /* Accounts.framework in Frameworks */,
 				DAD3EBED16CA19FF00E56737 /* AudioToolbox.framework in Frameworks */,
 				36A9EBE716C8A1D1000E084C /* AddressBookUI.framework in Frameworks */,
 				36A9EBE516C8A1CE000E084C /* AddressBook.framework in Frameworks */,
@@ -1031,7 +1027,7 @@
 			baseConfigurationReference = 66500968D5FC435493127319 /* Pods.xcconfig */;
 			buildSettings = {
 				CODE_SIGN_IDENTITY = "iPhone Developer: Michael Silvis (JG99G662W3)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Michael Silvis (JG99G662W3)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"$(SRCROOT)\"",
@@ -1041,7 +1037,7 @@
 				INFOPLIST_FILE = "cuddle-app/nudge-Info.plist";
 				PRODUCT_NAME = nudge;
 				PROVISIONING_PROFILE = "29A9C8EA-5D0A-4F87-9B01-4792924839FC";
-				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "29A9C8EA-5D0A-4F87-9B01-4792924839FC";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "";
 				TARGETED_DEVICE_FAMILY = 1;
 				WRAPPER_EXTENSION = app;
 			};
