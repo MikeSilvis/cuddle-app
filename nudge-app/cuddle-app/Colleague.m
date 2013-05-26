@@ -7,19 +7,36 @@
 //
 
 #import "Colleague.h"
+#import <Parse/PFObject+Subclass.h>
 
 @implementation Colleague
 
+@dynamic  user;
+@dynamic name;
+@dynamic email;
+@dynamic photo;
+@dynamic twitter;
+@dynamic facebook;
+@dynamic recordId;
+@dynamic phoneNumber;
+@dynamic notifiedSincePush;
+
++ (NSString *)parseClassName {
+  return @"Colleague";
+}
 - (id)initWithABPerson:(ABRecordRef)abPerson {
-    self = [super init];
+    self = [Colleague object];
     if (self) {
+        self.user = [PFUser currentUser];
         NSInteger recordID  =  ABRecordGetRecordID(abPerson);
         self.recordId = [NSNumber numberWithInt:recordID];
         NSString *firstName = (__bridge_transfer NSString*)ABRecordCopyValue(abPerson, kABPersonFirstNameProperty);
         NSString *lastName = (__bridge_transfer NSString*)ABRecordCopyValue(abPerson, kABPersonLastNameProperty);
       
         ABMultiValueRef emails = ABRecordCopyValue(abPerson, kABPersonEmailProperty);
-        self.email = (__bridge NSString *)(ABMultiValueCopyValueAtIndex(emails, 0));
+        NSString* tmp_email = (__bridge NSString *)(ABMultiValueCopyValueAtIndex(emails, 0));
+
+        self.email = (tmp_email == nil) ? @"" : tmp_email;
 
         ABMultiValueRef socialMulti = ABRecordCopyValue(abPerson, kABPersonSocialProfileProperty);
         for (CFIndex i = 0; i < ABMultiValueGetCount(socialMulti); i++) {
@@ -53,7 +70,7 @@
     return self;
 }
 - (void)verifyNoOtherColleague{
-  PFQuery *query = [PFQuery queryWithClassName:@"Colleague"];
+  PFQuery *query = [Colleague query];
   [query whereKey:@"user" equalTo:[PFUser currentUser]];
   [query whereKey:@"recordId" equalTo:self.recordId];
   [query findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
@@ -67,30 +84,11 @@
   }];
 }
 - (void)saveColleague{
-    PFObject *newColleague = [[PFObject alloc] initWithClassName:@"Colleague"];
-    [newColleague setObject:[PFUser currentUser] forKey:@"user"];
-    if (self.photo){
-        [newColleague setObject:self.photo forKey:@"photo"];
-    }
-    if (self.phoneNumber){
-        [newColleague setObject:self.phoneNumber forKey:@"number"];
-    }
-    if (self.email){
-          [newColleague setObject:self.email forKey:@"email"];
-    }
-    if (self.twitter){
-      [newColleague setObject:self.twitter forKey:@"twitter"];
-    }
-    if (self.facebook){
-      [newColleague setObject:self.facebook forKey:@"facebook"];
-    }
-    [newColleague setObject:[NSNumber numberWithBool:YES] forKey:@"notifiedSincePush"];
-    [newColleague setObject:self.recordId forKey:@"recordId"];
-    [newColleague setObject:self.name forKey:@"name"];
-    [newColleague saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
+    self.notifiedSincePush = [NSNumber numberWithBool:YES];
+    [self saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
         if (succeeded){
             NSMutableDictionary *userData = [NSMutableDictionary dictionary];
-            [userData setObject:newColleague forKey:@"contact"];
+            [userData setObject:self forKey:@"contact"];
             [[NSNotificationCenter defaultCenter] postNotificationName:@"ContactSaved" object:self userInfo:userData];
         } else {
             [[NSNotificationCenter defaultCenter] postNotificationName:@"ContactFailed" object:self];

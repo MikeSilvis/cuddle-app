@@ -7,7 +7,8 @@
 //
 
 #import "AppDelegate.h"
-
+#import "Colleague.h"
+#import "User.h"
 
 @implementation AppDelegate
 
@@ -15,6 +16,10 @@
 {
   [Crashlytics startWithAPIKey:@"2c4de91dd9eef6b63fa865a54c345433bebc795a"];
   [Parse setApplicationId:PARSEAPPLICATIONID clientKey:PARSECLIENTKEY];
+
+  [Colleague registerSubclass];
+  [User registerSubclass];
+
   [application registerForRemoteNotificationTypes:UIRemoteNotificationTypeAlert|UIRemoteNotificationTypeBadge];
   
   return YES;

@@ -1,1 +1,12 @@
 .crashlytics
+
+.DS_Store
+*.swp
+*~.nib
+
+xcuserdata
+
+*.pbxuser
+*.perspective
+*.perspectivev3
+nudge-app/nudge.xcworkspace/xcuserdata/mikesilvis.xcuserdatad/UserInterfaceState.xcuserstate
