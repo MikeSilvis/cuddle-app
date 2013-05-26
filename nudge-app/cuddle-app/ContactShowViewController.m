@@ -47,15 +47,15 @@
   self.contactPhoto.layer.borderWidth = 2.0;
 }
 - (void)checkFrequency{
-  if ([contact objectForKey:@"frequency"] == nil){
+  if (!contact.frequency){
     [self performSegueWithIdentifier:@"frequencyPicker" sender:self];
   }
 }
 - (void)loadContactPhoto{
-  if ([contact objectForKey:@"photo"] != nil){
-    self.contactPhoto.file = [contact objectForKey:@"photo"];
-  } else if ([contact objectForKey:@"facebook"] != nil) {
-    NSString *facebookImageURL = [NSString stringWithFormat:@"http://graph.facebook.com/%@/picture?type=large", [contact objectForKey:@"facebook"]];
+  if (!!contact.photo){
+    self.contactPhoto.file = contact.photo;
+  } else if (!!contact.facebook) {
+    NSString *facebookImageURL = [NSString stringWithFormat:@"http://graph.facebook.com/%@/picture?type=large", contact.facebook];
     NSData *facebookImgData = [[NSData alloc] initWithContentsOfURL: [NSURL URLWithString:facebookImageURL]];
     self.contactPhoto.image = [UIImage imageWithData: facebookImgData];
   } else {
@@ -63,11 +63,11 @@
   }
 }
 - (void)disableButtonsWithoutInfo{
-  if (([contact objectForKey:@"number"] == nil) || ([[contact objectForKey:@"number"] isEqual: @""])){
+  if (!!contact.number) {
     self.call.enabled = NO;
     self.text.enabled = NO;
   }
-  if (([contact objectForKey:@"email"] == nil) || ([[contact objectForKey:@"email"] isEqual: @""])){
+  if (!!contact.email){
     self.email.enabled = NO;
   }
 }

@@ -18,7 +18,9 @@
 @dynamic twitter;
 @dynamic facebook;
 @dynamic recordId;
-@dynamic phoneNumber;
+@dynamic methodOfLastContact;
+@dynamic number;
+@dynamic frequency;
 @dynamic notifiedSincePush;
 
 + (NSString *)parseClassName {
@@ -32,6 +34,10 @@
         self.recordId = [NSNumber numberWithInt:recordID];
         NSString *firstName = (__bridge_transfer NSString*)ABRecordCopyValue(abPerson, kABPersonFirstNameProperty);
         NSString *lastName = (__bridge_transfer NSString*)ABRecordCopyValue(abPerson, kABPersonLastNameProperty);
+      
+        if (lastName == NULL) {
+          lastName = @"";
+        }
       
         ABMultiValueRef emails = ABRecordCopyValue(abPerson, kABPersonEmailProperty);
         NSString* tmp_email = (__bridge NSString *)(ABMultiValueCopyValueAtIndex(emails, 0));
@@ -52,7 +58,7 @@
         
         ABMultiValueRef phoneNumbers = ABRecordCopyValue(abPerson, kABPersonPhoneProperty);
         if (ABMultiValueGetCount(phoneNumbers) > 0) {
-            self.phoneNumber = (__bridge_transfer NSString*) ABMultiValueCopyValueAtIndex(phoneNumbers, 0);
+            self.number = (__bridge_transfer NSString*) ABMultiValueCopyValueAtIndex(phoneNumbers, 0);
         }
         NSData  *imgABData = (__bridge_transfer NSData *) ABPersonCopyImageDataWithFormat(abPerson, kABPersonImageFormatOriginalSize);
         UIImage *image = [UIImage imageWithData:imgABData];
@@ -85,15 +91,19 @@
 }
 - (void)saveColleague{
     self.notifiedSincePush = [NSNumber numberWithBool:YES];
-    [self saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
-        if (succeeded){
-            NSMutableDictionary *userData = [NSMutableDictionary dictionary];
-            [userData setObject:self forKey:@"contact"];
-            [[NSNotificationCenter defaultCenter] postNotificationName:@"ContactSaved" object:self userInfo:userData];
-        } else {
-            [[NSNotificationCenter defaultCenter] postNotificationName:@"ContactFailed" object:self];
-        }
-        
-    }];
+    [self saveEventually];
+}
+- (UIImage *) lastContactImage{
+  if ([self.methodOfLastContact isEqual:@"call"]) {
+    return [UIImage imageNamed:@"phone-gray.png"];
+  } else if ([self.methodOfLastContact isEqual:@"sms"]) {
+    return [UIImage imageNamed:@"sms-gray.png"];
+  } else if ([self.methodOfLastContact isEqual:@"email"]) {
+    return [UIImage imageNamed:@"envelope-gray.png"];
+  } else if ([self.methodOfLastContact isEqual:@"contacted"]) {
+    return [UIImage imageNamed:@"checkmark-gray.png"];
+  } else {
+    return nil;
+  }
 }
 @end

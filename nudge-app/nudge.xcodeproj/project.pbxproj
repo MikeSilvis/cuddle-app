@@ -1027,7 +1027,7 @@
 			baseConfigurationReference = 66500968D5FC435493127319 /* Pods.xcconfig */;
 			buildSettings = {
 				CODE_SIGN_IDENTITY = "iPhone Developer: Michael Silvis (JG99G662W3)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Michael Silvis (JG99G662W3)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"$(SRCROOT)\"",
@@ -1037,7 +1037,7 @@
 				INFOPLIST_FILE = "cuddle-app/nudge-Info.plist";
 				PRODUCT_NAME = nudge;
 				PROVISIONING_PROFILE = "29A9C8EA-5D0A-4F87-9B01-4792924839FC";
-				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "29A9C8EA-5D0A-4F87-9B01-4792924839FC";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "";
 				TARGETED_DEVICE_FAMILY = 1;
 				WRAPPER_EXTENSION = app;
 			};

@@ -9,6 +9,7 @@
 #import <UIKit/UIKit.h>
 #import "ContactHistoryController.h"
 #import <Parse/Parse.h>
+#import "Colleague.h"
 #import <MessageUI/MessageUI.h>
 #import <MessageUI/MFMailComposeViewController.h>
 #import <MessageUI/MFMessageComposeViewController.h>
@@ -20,7 +21,7 @@
 @interface ContactShowViewController : UIViewController  <MFMailComposeViewControllerDelegate, MFMessageComposeViewControllerDelegate, UITableViewDataSource, UITableViewDelegate, UITableViewDataSource, UITableViewDelegate, UIActionSheetDelegate>
 @property (weak, nonatomic) IBOutlet PFImageView *contactPhoto;
 - (IBAction)handleSwipe:(UISwipeGestureRecognizer *)sender;
-@property (strong, nonatomic) IBOutlet PFObject *contact;
+@property (strong, nonatomic) IBOutlet Colleague *contact;
 
 - (IBAction)emailButton:(id)sender;
 - (IBAction)textButton:(id)sender;

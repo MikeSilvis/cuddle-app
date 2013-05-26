@@ -17,13 +17,16 @@
 @property (nonatomic, retain) NSNumber *notifiedSincePush;
 @property (nonatomic, retain) NSString *name;
 @property (nonatomic, retain) NSString *email;
-@property (nonatomic, retain) NSString *phoneNumber;
+@property (nonatomic, retain) NSString *number;
 @property (nonatomic, retain) NSString *facebook;
 @property (nonatomic, retain) NSString *twitter;
-@property (nonatomic, retain) PFObject *photo;
+@property (nonatomic, retain) NSString *methodOfLastContact;
+@property (nonatomic, retain) NSString *frequency;
+@property (nonatomic, retain) PFFile *photo;
 @property (nonatomic, retain) PFUser *user;
 
 + (NSString *)parseClassName;
+- (UIImage *)lastContactImage;
 - (id)initWithABPerson:(ABRecordRef)abPerson;
 - (void)saveColleague;
 
