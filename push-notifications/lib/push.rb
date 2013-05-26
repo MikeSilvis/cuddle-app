@@ -16,7 +16,7 @@ class Push
       pf_push = Parse::Push.new(push_data(connection[:contact]), "user_#{connection[:userObjectId]}")
       pf_push.type = 'ios'
       pf_push.save
-      puts "Notification sent as: #{push_data(connection[:contact])} to #{connection[:userObjectId]}"
+      puts "Notification sent as: #{push_data(connection[:contact])} to user_#{connection[:userObjectId]}"
       update_push_notified_flag(connection[:contact]["objectId"])
     end
   end
