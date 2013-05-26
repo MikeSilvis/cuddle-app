@@ -63,11 +63,11 @@
   }
 }
 - (void)disableButtonsWithoutInfo{
-  if (!!contact.number) {
+  if ((contact.number == nil) || ([contact.number isEqual: @""])){
     self.call.enabled = NO;
     self.text.enabled = NO;
   }
-  if (!!contact.email){
+  if ((contact.email == nil) || ([contact.email isEqual: @""])){
     self.email.enabled = NO;
   }
 }
@@ -122,7 +122,7 @@
     {
         MFMailComposeViewController* emailCntrl = [[MFMailComposeViewController alloc] init];
         emailCntrl.mailComposeDelegate = self;
-        [emailCntrl setToRecipients:[NSArray arrayWithObject:[contact objectForKey:@"email"]]];
+        [emailCntrl setToRecipients:[NSArray arrayWithObject:contact.email]];
         [self presentViewController:emailCntrl animated:YES completion:nil];
     }
 }
@@ -131,7 +131,7 @@
 	MFMessageComposeViewController *smsCntrl = [[MFMessageComposeViewController alloc] init];
 	if([MFMessageComposeViewController canSendText])
 	{
-		smsCntrl.recipients = [NSArray arrayWithObjects:[contact objectForKey:@"number"], nil];
+		smsCntrl.recipients = [NSArray arrayWithObjects:contact.number, nil];
 		smsCntrl.messageComposeDelegate = self;
     [self presentViewController:smsCntrl animated:YES completion:nil];
 	}
@@ -139,7 +139,7 @@
 
 - (IBAction)callButton:(id)sender {
   NSCharacterSet *doNotWant = [NSCharacterSet characterSetWithCharactersInString:@"() -"];
-  NSString *cleanedNumber = [[[contact objectForKey:@"number"] componentsSeparatedByCharactersInSet: doNotWant] componentsJoinedByString: @""];
+  NSString *cleanedNumber = [[contact.number componentsSeparatedByCharactersInSet: doNotWant] componentsJoinedByString: @""];
   
   NSString *URLString = [@"tel://" stringByAppendingString:cleanedNumber];
   NSURL *URL = [NSURL URLWithString:URLString];
