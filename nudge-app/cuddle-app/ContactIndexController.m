@@ -201,21 +201,6 @@
         }
     }
 }
-- (NSString *)formatDate:(NSDate *)date{
-  NSDateFormatter *prefixDateFormatter = [[NSDateFormatter alloc] init];
-  [prefixDateFormatter setFormatterBehavior:NSDateFormatterBehavior10_4];
-  [prefixDateFormatter setDateFormat:@"MMMM d"];
-  NSString *prefixDateString = [prefixDateFormatter stringFromDate:date];
-  NSDateFormatter *monthDayFormatter = [[NSDateFormatter alloc] init];
-  [monthDayFormatter setFormatterBehavior:NSDateFormatterBehavior10_4];
-  [monthDayFormatter setDateFormat:@"d"];
-  int date_day = [[monthDayFormatter stringFromDate:date] intValue];
-  NSString *suffix_string = @"|st|nd|rd|th|th|th|th|th|th|th|th|th|th|th|th|th|th|th|th|th|st|nd|rd|th|th|th|th|th|th|th|st";
-  NSArray *suffixes = [suffix_string componentsSeparatedByString: @"|"];
-  NSString *suffix = [suffixes objectAtIndex:date_day];
-  NSString *dateString = [prefixDateString stringByAppendingString:suffix];
-  return dateString;
-}
 - (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath {
   if (editingStyle == UITableViewCellEditingStyleDelete) {
     [SVProgressHUD showWithStatus:@"Removing Contact..."];

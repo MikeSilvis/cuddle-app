@@ -7,8 +7,8 @@ class Push
   DEV_API_KEY = "EWx7bYVDHGaUf4SOrEWRcNZ3TJTSDKyxz12NeIL5"
   PROD_APPLICATION_ID = "7qRCV3hz4fajvJovE942RlmEyIbkp6f82NUwrQCW"
   PROD_API_KEY = "HZza9DiUFY46POu1cfNB9uD06KSKzPVsPMFncRHa"
-  Parse.init :application_id => DEV_APPLICATION_ID, :api_key => DEV_API_KEY
-  #Parse.init :application_id => PROD_APPLICATION_ID, :api_key => PROD_API_KEY
+  #Parse.init :application_id => DEV_APPLICATION_ID, :api_key => DEV_API_KEY
+  Parse.init :application_id => PROD_APPLICATION_ID, :api_key => PROD_API_KEY
 
   def self.send_notification
     drifting_connections.each do |connection|
@@ -61,16 +61,25 @@ class Push
 
   def self.find_outdated_contacts
     Parse::Query.new("Colleague").tap do |q|
-      q.less_eq("updatedAt", two_weeks_ago )
+      q.less_eq("updatedAt", one_week_ago )
       q.eq("notifiedSincePush", true)
       q.order_by = "updatedAt"
       q.include = 'user'
-    end.get
+    end.get.select do |c|
+      Time.parse(c["updatedAt"]) < (Time.now - (60*60*24*c["frequency"]))
+    end
   end
 
   def self.two_weeks_ago
-    #Parse::Date.new((Time.now - (60*60*24*14)).to_datetime)
-    Parse::Date.new((Time.now).to_datetime)
+    Parse::Date.new((Time.now - (60*60*24*14)).to_datetime)
+  end
+
+  def self.one_week_ago
+    Parse::Date.new((Time.now - (60*60*24*7)).to_datetime)
+  end
+
+  def self.one_month_ago
+    Parse::Date.new((Time.now - (60*60*24*28)).to_datetime)
   end
 
 end
