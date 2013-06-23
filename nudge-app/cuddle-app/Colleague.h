@@ -17,10 +17,11 @@
 @property (nonatomic, retain) NSNumber *notifiedSincePush;
 @property (nonatomic, retain) NSString *name;
 @property (nonatomic, retain) NSString *email;
-@property (nonatomic, retain) NSString *number;
+@property (nonatomic, retain) NSMutableDictionary *numbers;
 @property (nonatomic, retain) NSString *facebook;
 @property (nonatomic, retain) NSString *twitter;
 @property (nonatomic, retain) NSString *methodOfLastContact;
+@property (nonatomic, retain) NSDate *lastContactDate;
 @property (nonatomic, retain) NSString *frequency;
 @property (nonatomic, retain) PFFile *photo;
 @property (nonatomic, retain) PFUser *user;
@@ -29,5 +30,6 @@
 - (UIImage *)lastContactImage;
 - (id)initWithABPerson:(ABRecordRef)abPerson;
 - (void)saveColleague;
+- (void)updateContact;
 
 @end

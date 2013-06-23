@@ -37,7 +37,8 @@
 - (PFQuery *)queryForTable {
   PFQuery *query = [PFQuery queryWithClassName:@"Colleague"];
   [query whereKey:@"user" equalTo:[PFUser currentUser]];
-  [query orderByAscending:@"updatedAt"];
+  [query includeKey:@"ContactHistory"];
+  [query orderByAscending:@"lastContactDate"];
   return query;
 }
 
@@ -71,6 +72,7 @@
 }
 - (void)removeNotifications{
   [[NSNotificationCenter defaultCenter] removeObserver:self name:@"openedFromNotification" object:nil];
+  [[NSNotificationCenter defaultCenter] removeObserver:self name:@"PeoplePicker" object:nil];
   [[NSNotificationCenter defaultCenter] removeObserver:self name:UIApplicationWillEnterForegroundNotification object:nil];
 
 }
@@ -126,7 +128,6 @@
     
     cell.userPicture.layer.cornerRadius = 5;
     cell.userPicture.clipsToBounds = YES;
-    cell.userLastContact.text = [friend.updatedAt timeAgo];
   
     if (friend.photo){
         cell.userPicture.file = friend.photo;
@@ -140,6 +141,7 @@
     }
   
     if (friend.methodOfLastContact) {
+      cell.userLastContact.text = [friend.lastContactDate timeAgo];
       cell.contactTypeImage.image = friend.lastContactImage;
     } else {
       cell.contactTypeImage.layer.hidden = YES;

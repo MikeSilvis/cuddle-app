@@ -20,6 +20,7 @@
     [self loadStyles];
     [self queryParseHistory];
     [self loadContactPhoto];
+    [contact updateContact];
     self.contactName.text = [contact objectForKey:@"name"];
     [[NSNotificationCenter defaultCenter] addObserver:self
                                            selector:@selector(handleOpenedFromPush:)
@@ -63,7 +64,7 @@
   }
 }
 - (void)disableButtonsWithoutInfo{
-  if ((contact.number == nil) || ([contact.number isEqual: @""])){
+  if (([[contact.numbers allKeys] count]) == 0){
     self.call.enabled = NO;
     self.text.enabled = NO;
   }
@@ -128,23 +129,41 @@
 }
 
 - (IBAction)textButton:(id)sender {
-	MFMessageComposeViewController *smsCntrl = [[MFMessageComposeViewController alloc] init];
-	if([MFMessageComposeViewController canSendText])
-	{
-		smsCntrl.recipients = [NSArray arrayWithObjects:contact.number, nil];
-		smsCntrl.messageComposeDelegate = self;
-    [self presentViewController:smsCntrl animated:YES completion:nil];
-	}
+  NSArray*labels = [contact.numbers allKeys];
+  
+  UIActionSheet *actionSheet = [[UIActionSheet alloc] initWithTitle:@"Number to Text"
+                                                           delegate:self
+                                                  cancelButtonTitle:nil
+                                             destructiveButtonTitle:nil
+                                                  otherButtonTitles:nil];
+  
+  for (int i = 0; i<labels.count; i++) {
+    [actionSheet addButtonWithTitle:[labels objectAtIndex:i]];
+  }
+  
+  [actionSheet addButtonWithTitle:@"Cancel"];
+  actionSheet.cancelButtonIndex = labels.count;
+  
+  [actionSheet showInView:self.view];
 }
 
 - (IBAction)callButton:(id)sender {
-  NSCharacterSet *doNotWant = [NSCharacterSet characterSetWithCharactersInString:@"() -"];
-  NSString *cleanedNumber = [[contact.number componentsSeparatedByCharactersInSet: doNotWant] componentsJoinedByString: @""];
+  NSArray*labels = [contact.numbers allKeys];
   
-  NSString *URLString = [@"tel://" stringByAppendingString:cleanedNumber];
-  NSURL *URL = [NSURL URLWithString:URLString];
-  [[UIApplication sharedApplication] openURL:URL];
-  [self saveCommunication:@"call"];
+  UIActionSheet *actionSheet = [[UIActionSheet alloc] initWithTitle:@"Number to Call"
+                                                           delegate:self
+                                                  cancelButtonTitle:nil
+                                             destructiveButtonTitle:nil
+                                                  otherButtonTitles:nil];
+  
+  for (int i = 0; i<labels.count; i++) {
+    [actionSheet addButtonWithTitle:[labels objectAtIndex:i]];
+  }
+  
+  [actionSheet addButtonWithTitle:@"Cancel"];
+  actionSheet.cancelButtonIndex = labels.count;
+  
+  [actionSheet showInView:self.view];
 }
 
 - (IBAction)markButton:(id)sender {
@@ -156,18 +175,41 @@
 }
 
 -(void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex {
-  
-   switch (buttonIndex) {
-     case 0:
-         [self saveCommunication:@"call"];
-         break;
-     case 1:
-         [self saveCommunication:@"sms"];
-         break;
-     case 2:
-         [self saveCommunication:@"email"];
-         break;
-   }
+  if ([actionSheet.title isEqual: @"Method of Communication"]){
+    switch (buttonIndex) {
+      case 0:
+        [self saveCommunication:@"call"];
+        break;
+      case 1:
+        [self saveCommunication:@"sms"];
+        break;
+      case 2:
+        [self saveCommunication:@"email"];
+        break;
+    }
+  } else if ([actionSheet.title isEqualToString:@"Number to Call"]){
+    if (actionSheet.cancelButtonIndex == buttonIndex) {
+      true;
+    } else {
+      NSString *URLString = [@"tel://" stringByAppendingString:[contact.numbers allValues][buttonIndex]];
+      NSURL *URL = [NSURL URLWithString:URLString];
+      [[UIApplication sharedApplication] openURL:URL];
+      [self saveCommunication:@"call"];
+    }
+  } else if ([actionSheet.title isEqualToString:@"Number To Text"]){
+    if (actionSheet.cancelButtonIndex == buttonIndex){
+      true;
+    } else {
+      MFMessageComposeViewController *smsCntrl = [[MFMessageComposeViewController alloc] init];
+      if([MFMessageComposeViewController canSendText])
+      {
+        smsCntrl.recipients = [NSArray arrayWithObjects:[contact.numbers allValues][buttonIndex], nil];
+        smsCntrl.messageComposeDelegate = self;
+        [self presentViewController:smsCntrl animated:YES completion:nil];
+        [self saveCommunication:@"text"];
+      }
+    }
+  }
 }
 - (void)mailComposeController:(MFMailComposeViewController*)controller didFinishWithResult:(MFMailComposeResult)result error:(NSError*)error {
   if (result == MFMailComposeResultSent){
@@ -197,6 +239,7 @@
   
     // Save last contact
     [contact setObject:methodOfContact forKey:@"methodOfLastContact"];
+      [contact setObject:[NSDate date] forKey:@"lastContactDate"];
     [contact setObject:[NSNumber numberWithBool:YES] forKey:@"notifiedSincePush"];
     [contact saveEventually];
 
