@@ -38,7 +38,7 @@
   PFQuery *query = [PFQuery queryWithClassName:@"Colleague"];
   [query whereKey:@"user" equalTo:[PFUser currentUser]];
   [query includeKey:@"ContactHistory"];
-  [query orderByAscending:@"lastContactDate"];
+  [query orderByAscending:@"lastContactDate,updatedAt"];
   return query;
 }
 
@@ -141,8 +141,8 @@
     }
   
     if (friend.methodOfLastContact) {
-      cell.userLastContact.text = [friend.lastContactDate timeAgo];
       cell.contactTypeImage.image = friend.lastContactImage;
+      cell.userLastContact.text = [friend.lastContactDate timeAgo];
     } else {
       cell.contactTypeImage.layer.hidden = YES;
       cell.userLastContact.text = @"Never contacted from nudge";

@@ -15,7 +15,6 @@
 - (id)initWithCoder:(NSCoder *)aCoder {
   self = [super initWithCoder:aCoder];
   if (self) {
-    //self.className = @"ContactHistory";
     self.pullToRefreshEnabled = YES;
     self.paginationEnabled = YES;
     self.objectsPerPage = 25;

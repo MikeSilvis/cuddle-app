@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="2.0" toolsVersion="3084" systemVersion="12D78" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="RzY-qC-cMf">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="2.0" toolsVersion="3084" systemVersion="12E55" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="RzY-qC-cMf">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="2083"/>
     </dependencies>
@@ -534,14 +534,6 @@
                                     <action selector="markButton:" destination="Z9q-Du-0x5" eventType="touchUpInside" id="Hnb-Md-pUP"/>
                                 </connections>
                             </button>
-                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Contact History" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="f0F-8r-Uzt">
-                                <constraints>
-                                    <constraint firstAttribute="width" constant="117" id="Mwu-1E-iBi"/>
-                                    <constraint firstAttribute="height" constant="21" id="zHj-iF-I37"/>
-                                </constraints>
-                                <fontDescription key="fontDescription" name="AvenirNextCondensed-Medium" family="Avenir Next Condensed" pointSize="17"/>
-                                <nil key="highlightedColor"/>
-                            </label>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" verticalHuggingPriority="1" bounces="NO" scrollEnabled="NO" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="prototypes" style="plain" separatorStyle="none" allowsSelection="NO" rowHeight="45" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="07s-ip-jfe">
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <constraints>
@@ -596,16 +588,14 @@
                             <constraint firstItem="gKm-ys-X8O" firstAttribute="bottom" secondItem="VTy-F0-tze" secondAttribute="bottom" type="default" id="5Qi-7b-ZcZ"/>
                             <constraint firstItem="RuF-fc-1i1" firstAttribute="leading" secondItem="VTy-F0-tze" secondAttribute="leading" constant="255" id="5Ql-Yf-KMW"/>
                             <constraint firstItem="RuF-fc-1i1" firstAttribute="bottom" secondItem="2pW-ob-mUq" secondAttribute="bottom" type="default" id="Auh-rD-Qs3"/>
-                            <constraint firstItem="f0F-8r-Uzt" firstAttribute="trailing" secondItem="Ouo-Ts-9yz" secondAttribute="trailing" type="default" id="C3g-JA-Q7e"/>
                             <constraint firstItem="mH8-HY-Epc" firstAttribute="centerY" secondItem="ywc-9W-vYu" secondAttribute="centerY" type="default" id="CXI-8A-04K"/>
-                            <constraint firstItem="f0F-8r-Uzt" firstAttribute="top" secondItem="VTy-F0-tze" secondAttribute="top" constant="241" id="EzK-tg-xyN"/>
                             <constraint firstItem="2pW-ob-mUq" firstAttribute="top" secondItem="07s-ip-jfe" secondAttribute="bottom" constant="8" symbolic="YES" type="default" id="FHV-pZ-5rJ"/>
                             <constraint firstItem="yMf-4R-SWU" firstAttribute="leading" secondItem="VTy-F0-tze" secondAttribute="leading" constant="15" id="HMN-WD-ufK"/>
                             <constraint firstAttribute="trailing" secondItem="07s-ip-jfe" secondAttribute="trailing" constant="20" symbolic="YES" type="default" id="IRO-3R-A1S"/>
                             <constraint firstItem="Ouo-Ts-9yz" firstAttribute="bottom" secondItem="yMf-4R-SWU" secondAttribute="bottom" type="default" id="KQv-1F-amH"/>
-                            <constraint firstItem="f0F-8r-Uzt" firstAttribute="leading" secondItem="VTy-F0-tze" secondAttribute="leading" constant="28" id="Kli-WX-fZ1"/>
                             <constraint firstItem="gKm-ys-X8O" firstAttribute="leading" secondItem="VTy-F0-tze" secondAttribute="leading" type="default" id="M79-HG-xM9"/>
                             <constraint firstItem="Ouo-Ts-9yz" firstAttribute="top" secondItem="07s-ip-jfe" secondAttribute="bottom" constant="8" symbolic="YES" type="default" id="MRR-cV-T8P"/>
+                            <constraint firstItem="Ouo-Ts-9yz" firstAttribute="leading" secondItem="VTy-F0-tze" secondAttribute="leading" constant="95" id="aze-1A-ldA"/>
                             <constraint firstItem="yMf-4R-SWU" firstAttribute="centerY" secondItem="gKm-ys-X8O" secondAttribute="centerY" type="default" id="cGo-ed-VZn"/>
                             <constraint firstItem="yMf-4R-SWU" firstAttribute="top" secondItem="07s-ip-jfe" secondAttribute="bottom" constant="8" symbolic="YES" type="default" id="dRL-IW-gde"/>
                             <constraint firstItem="ywc-9W-vYu" firstAttribute="leading" secondItem="mH8-HY-Epc" secondAttribute="trailing" constant="8" symbolic="YES" type="default" id="gCL-qm-9bV"/>
@@ -623,7 +613,6 @@
                     <connections>
                         <outlet property="call" destination="yMf-4R-SWU" id="zk5-zi-RHS"/>
                         <outlet property="contactBackground" destination="Lqo-0e-gQU" id="ssP-52-3hl"/>
-                        <outlet property="contactHistoryText" destination="f0F-8r-Uzt" id="0dv-0T-ZYO"/>
                         <outlet property="contactName" destination="ywc-9W-vYu" id="QKT-hg-6W9"/>
                         <outlet property="contactPhoto" destination="mH8-HY-Epc" id="qk5-6l-aV2"/>
                         <outlet property="email" destination="2pW-ob-mUq" id="oet-Or-SUH"/>
@@ -743,6 +732,9 @@
         <image name="tabbar.png" width="320" height="48"/>
     </resources>
     <classes>
+        <class className="Colleague" superclassName="PFObject">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/Colleague.h"/>
+        </class>
         <class className="ContactHistoryCell" superclassName="PFTableViewCell">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/ContactHistoryCell.h"/>
             <relationships>
@@ -761,7 +753,7 @@
             <relationships>
                 <relationship kind="action" name="showPeoplePicker"/>
                 <relationship kind="outlet" name="addressesTable" candidateClass="UITableView"/>
-                <relationship kind="outlet" name="lastAddedColleague" candidateClass="PFObject"/>
+                <relationship kind="outlet" name="lastAddedColleague" candidateClass="Colleague"/>
             </relationships>
         </class>
         <class className="ContactInfoCell" superclassName="PFTableViewCell">
@@ -783,7 +775,7 @@
                 <relationship kind="action" name="markButton:"/>
                 <relationship kind="action" name="textButton:"/>
                 <relationship kind="outlet" name="call" candidateClass="UIButton"/>
-                <relationship kind="outlet" name="contact" candidateClass="PFObject"/>
+                <relationship kind="outlet" name="contact" candidateClass="Colleague"/>
                 <relationship kind="outlet" name="contactBackground" candidateClass="UIImageView"/>
                 <relationship kind="outlet" name="contactHistoryText" candidateClass="UILabel"/>
                 <relationship kind="outlet" name="contactHistoryView" candidateClass="UIView"/>
@@ -828,8 +820,17 @@
         <class className="NSLayoutConstraint" superclassName="NSObject">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/NSLayoutConstraint.h"/>
         </class>
+        <class className="PFImageView" superclassName="UIImageView">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/PFImageView.h"/>
+        </class>
+        <class className="PFObject" superclassName="NSObject">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/PFObject.h"/>
+        </class>
         <class className="PFQueryTableViewController" superclassName="UITableViewController">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/PFQueryTableViewController.h"/>
+        </class>
+        <class className="PFTableViewCell" superclassName="UITableViewCell">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/PFTableViewCell.h"/>
         </class>
         <class className="RegisterViewController" superclassName="UIViewController">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/RegisterViewController.h"/>
@@ -857,6 +858,6 @@
         <simulatedScreenMetrics key="destination" type="retina4"/>
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
-        <segue reference="ejD-em-WSs"/>
+        <segue reference="kwV-ey-FKD"/>
     </inferredMetricsTieBreakers>
 </document>

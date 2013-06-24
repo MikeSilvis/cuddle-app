@@ -167,7 +167,7 @@
 }
 
 - (IBAction)markButton:(id)sender {
-	UIActionSheet *popupQuery = [[UIActionSheet alloc] initWithTitle:@"Method of Communicaiton"
+	UIActionSheet *popupQuery = [[UIActionSheet alloc] initWithTitle:@"Method of Communication"
                                                           delegate:self
                                                  cancelButtonTitle:@"Cancel" destructiveButtonTitle:nil otherButtonTitles:@"Called", @"Texted", @"Emailed", nil];
 	popupQuery.actionSheetStyle = UIActionSheetStyleBlackOpaque;
@@ -196,7 +196,7 @@
       [[UIApplication sharedApplication] openURL:URL];
       [self saveCommunication:@"call"];
     }
-  } else if ([actionSheet.title isEqualToString:@"Number To Text"]){
+  } else if ([actionSheet.title isEqualToString:@"Number to Text"]){
     if (actionSheet.cancelButtonIndex == buttonIndex){
       true;
     } else {
@@ -206,7 +206,6 @@
         smsCntrl.recipients = [NSArray arrayWithObjects:[contact.numbers allValues][buttonIndex], nil];
         smsCntrl.messageComposeDelegate = self;
         [self presentViewController:smsCntrl animated:YES completion:nil];
-        [self saveCommunication:@"text"];
       }
     }
   }
@@ -239,7 +238,7 @@
   
     // Save last contact
     [contact setObject:methodOfContact forKey:@"methodOfLastContact"];
-      [contact setObject:[NSDate date] forKey:@"lastContactDate"];
+    [contact setObject:[NSDate date] forKey:@"lastContactDate"];
     [contact setObject:[NSNumber numberWithBool:YES] forKey:@"notifiedSincePush"];
     [contact saveEventually];
 
@@ -311,7 +310,8 @@
   cell.backgroundView =  [[UIImageView alloc] initWithImage:[[UIImage imageNamed:@"list-item-bg.png"] stretchableImageWithLeftCapWidth:0.0 topCapHeight:5.0]];
   return cell;
 }
-- (NSString *)formatDate:(NSDate *)date{
+- (NSString *)formatDate:(NSDate *)date
+{
   NSDateFormatter *prefixDateFormatter = [[NSDateFormatter alloc] init];
   [prefixDateFormatter setFormatterBehavior:NSDateFormatterBehavior10_4];
   [prefixDateFormatter setDateFormat:@"MMMM d"];

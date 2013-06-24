@@ -56,33 +56,21 @@
         }
 
       self.name = [NSString stringWithFormat:@"%@ %@", firstName, lastName];
-      NSCharacterSet *doNotWant = [NSCharacterSet characterSetWithCharactersInString:@"() -"];
-      self.numbers = [[NSMutableDictionary alloc] initWithCapacity:20];
-      ABMultiValueRef phones = ABRecordCopyValue(abPerson, kABPersonPhoneProperty);
-      for(CFIndex j = 0; j < ABMultiValueGetCount(phones); j++) {
-        CFStringRef phoneNumberRef = ABMultiValueCopyValueAtIndex(phones, j);
-        CFStringRef locLabel = ABMultiValueCopyLabelAtIndex(phones, j);
-        NSString *phoneLabel =(__bridge NSString*) ABAddressBookCopyLocalizedLabel(locLabel);
-        NSString *phoneNumber = (__bridge NSString *)phoneNumberRef;
-        CFRelease(phoneNumberRef);
-        CFRelease(locLabel);
-        NSString *cleanedNumber = [[phoneNumber componentsSeparatedByCharactersInSet: doNotWant] componentsJoinedByString: @""];
-        [self.numbers setObject:cleanedNumber forKey:phoneLabel];
-      }
-      CFRelease(phones);
+      
+      [self updatePhoneNumberInformation:abPerson];
 
-        NSData  *imgABData = (__bridge_transfer NSData *) ABPersonCopyImageDataWithFormat(abPerson, kABPersonImageFormatOriginalSize);
-        UIImage *image = [UIImage imageWithData:imgABData];
-        if (image.size.width > 1){
-            self.photo = [PFFile fileWithData:imgABData];
-            [self.photo saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
-                if (succeeded){
-                    [self verifyNoOtherColleague];
-                }
-            }];
-        } else {
-            [self verifyNoOtherColleague];
-        }
+      NSData  *imgABData = (__bridge_transfer NSData *) ABPersonCopyImageDataWithFormat(abPerson, kABPersonImageFormatOriginalSize);
+      UIImage *image = [UIImage imageWithData:imgABData];
+      if (image.size.width > 1){
+          self.photo = [PFFile fileWithData:imgABData];
+          [self.photo saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
+              if (succeeded){
+                  [self verifyNoOtherColleague];
+              }
+          }];
+      } else {
+        [self verifyNoOtherColleague];
+      }
     }
     return self;
 }
@@ -101,27 +89,30 @@
   }];
 }
 - (void)updateContact {
-    ABAddressBookRef addressBook = ABAddressBookCreateWithOptions(NULL, nil);
-    ABRecordRef abPerson = ABAddressBookGetPersonWithRecordID(addressBook, [self.recordId intValue]);
-
-    NSDictionary *oldNumbers = self.numbers;
-    self.numbers = [[NSMutableDictionary alloc] initWithCapacity:20];
-    NSCharacterSet *doNotWant = [NSCharacterSet characterSetWithCharactersInString:@"() -"];
-    ABMultiValueRef phones = ABRecordCopyValue(abPerson, kABPersonPhoneProperty);
-    for(CFIndex j = 0; j < ABMultiValueGetCount(phones); j++) {
-      CFStringRef phoneNumberRef = ABMultiValueCopyValueAtIndex(phones, j);
-      CFStringRef locLabel = ABMultiValueCopyLabelAtIndex(phones, j);
-      NSString *phoneLabel =(__bridge NSString*) ABAddressBookCopyLocalizedLabel(locLabel);
-      NSString *phoneNumber = (__bridge NSString *)phoneNumberRef;
-      CFRelease(phoneNumberRef);
-      CFRelease(locLabel);
-      NSString *cleanedNumber = [[phoneNumber componentsSeparatedByCharactersInSet: doNotWant] componentsJoinedByString: @""];
-      [self.numbers setObject:cleanedNumber forKey:phoneLabel];
-    }
+  ABAddressBookRef addressBook = ABAddressBookCreateWithOptions(NULL, nil);
+  ABRecordRef abPerson = ABAddressBookGetPersonWithRecordID(addressBook, [self.recordId intValue]);
   
-  CFRelease(phones);
+  NSDictionary *oldNumbers = self.numbers;
+
+  [self updatePhoneNumberInformation:abPerson];
+
   if (![self.numbers isEqualToDictionary:oldNumbers]){
     [self saveEventually];
+  }
+}
+- (void)updatePhoneNumberInformation:(ABAddressBookRef)abPerson {
+  self.numbers = [[NSMutableDictionary alloc] initWithCapacity:20];
+  NSCharacterSet *doNotWant = [NSCharacterSet characterSetWithCharactersInString:@"() -"];
+  ABMultiValueRef phones = ABRecordCopyValue(abPerson, kABPersonPhoneProperty);
+  for(CFIndex j = 0; j < ABMultiValueGetCount(phones); j++) {
+    CFStringRef phoneNumberRef = ABMultiValueCopyValueAtIndex(phones, j);
+    CFStringRef locLabel = ABMultiValueCopyLabelAtIndex(phones, j);
+    NSString *phoneLabel =(__bridge NSString*) ABAddressBookCopyLocalizedLabel(locLabel);
+    NSString *phoneNumber = (__bridge NSString *)phoneNumberRef;
+    CFRelease(phoneNumberRef);
+    CFRelease(locLabel);
+    NSString *cleanedNumber = [[phoneNumber componentsSeparatedByCharactersInSet: doNotWant] componentsJoinedByString: @""];
+    [self.numbers setObject:cleanedNumber forKey:phoneLabel];
   }
 }
 - (void)saveColleague{
