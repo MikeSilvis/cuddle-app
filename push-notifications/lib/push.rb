@@ -61,12 +61,12 @@ class Push
 
   def self.find_outdated_contacts
     Parse::Query.new("Colleague").tap do |q|
-      q.less_eq("updatedAt", one_week_ago )
+      q.less_eq("lastContactDate", one_week_ago )
       q.eq("notifiedSincePush", true)
-      q.order_by = "updatedAt"
+      q.order_by = "lastContactDate,updatedAt"
       q.include = 'user'
     end.get.select do |c|
-      Time.parse(c["updatedAt"]) < (Time.now - (60*60*24*c["frequency"]))
+      c["lastContactDate"].value.to_time < (Time.now - (60*60*24*c["frequency"].to_i))
     end
   end
 
