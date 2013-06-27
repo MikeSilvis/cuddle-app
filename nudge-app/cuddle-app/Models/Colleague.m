@@ -20,6 +20,7 @@
 @dynamic recordId;
 @dynamic methodOfLastContact;
 @dynamic numbers;
+@dynamic number;
 @dynamic frequency;
 @dynamic notifiedSincePush;
 @dynamic lastContactDate;
@@ -89,12 +90,20 @@
   }];
 }
 - (void)updateContact {
+  if (self.recordId == nil){
+    self.recordId = [self findRecordID];
+  }
   ABAddressBookRef addressBook = ABAddressBookCreateWithOptions(NULL, nil);
   ABRecordRef abPerson = ABAddressBookGetPersonWithRecordID(addressBook, [self.recordId intValue]);
   
   NSDictionary *oldNumbers = self.numbers;
 
   [self updatePhoneNumberInformation:abPerson];
+  
+  if (([[self.numbers allKeys] count] == 0) && (self.number != nil)){
+    NSCharacterSet *doNotWant = [NSCharacterSet characterSetWithCharactersInString:@"() -"];
+    [self.numbers setObject:[[self.number componentsSeparatedByCharactersInSet: doNotWant] componentsJoinedByString: @""] forKey:@"mobile"];
+  }
 
   if (![self.numbers isEqualToDictionary:oldNumbers]){
     [self saveEventually];
@@ -114,6 +123,33 @@
     NSString *cleanedNumber = [[phoneNumber componentsSeparatedByCharactersInSet: doNotWant] componentsJoinedByString: @""];
     [self.numbers setObject:cleanedNumber forKey:phoneLabel];
   }
+}
+- (NSNumber *)findRecordID {
+  NSUInteger i;
+  NSUInteger k;
+  NSCharacterSet *doNotWant = [NSCharacterSet characterSetWithCharactersInString:@"() -"];
+  NSString *cleanedNumber = [[self.number componentsSeparatedByCharactersInSet: doNotWant] componentsJoinedByString: @""];
+  ABAddressBookRef addressBook = ABAddressBookCreateWithOptions(NULL, nil);
+  NSArray *people = (__bridge NSArray *) ABAddressBookCopyArrayOfAllPeople(addressBook);
+
+  for ( i=0; i<[people count]; i++ )
+  {
+    ABRecordRef person = (__bridge ABRecordRef)[people objectAtIndex:i];
+    ABMutableMultiValueRef phoneNumbers = ABRecordCopyValue(person, kABPersonPhoneProperty);
+    CFIndex phoneNumberCount = ABMultiValueGetCount( phoneNumbers );
+    
+    for ( k=0; k<phoneNumberCount; k++ )
+    {
+      NSString *phoneNumberValue = (__bridge NSString *)ABMultiValueCopyValueAtIndex( phoneNumbers, k );
+      NSString *cleanedPhoneNumber = [[phoneNumberValue componentsSeparatedByCharactersInSet: doNotWant] componentsJoinedByString: @""];
+      
+      if ([cleanedNumber isEqualToString:cleanedPhoneNumber]){
+        return [NSNumber numberWithInt:ABRecordGetRecordID(person)];
+      }
+    }
+  }
+  CFRelease(addressBook);
+  return nil;
 }
 - (void)saveColleague{
     self.notifiedSincePush = [NSNumber numberWithBool:YES];

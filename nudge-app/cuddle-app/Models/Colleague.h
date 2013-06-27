@@ -15,6 +15,7 @@
 
 @property (nonatomic, retain) NSNumber *recordId;
 @property (nonatomic, retain) NSNumber *notifiedSincePush;
+@property (nonatomic, retain) NSString *number;
 @property (nonatomic, retain) NSString *name;
 @property (nonatomic, retain) NSString *email;
 @property (nonatomic, retain) NSMutableDictionary *numbers;
