@@ -16,7 +16,7 @@ GEM
       iron_mq
       patron
     patron (0.4.18)
-    rest (2.6.2)
+    rest (2.6.3)
       net-http-persistent
       rest-client (>= 0.3.0)
     rest-client (1.6.7)
