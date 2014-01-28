@@ -1,5 +1,5 @@
 /*
- * Copyright 2012 Facebook
+ * Copyright 2010-present Facebook.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -23,8 +23,8 @@
 #import "FBSession+Internal.h"
 #import "FBRequest.h"
 #import <pthread.h>
-#import "FBSBJSON.h"
 #import "FBGraphUser.h"
+#import "FBUtility.h"
 
 /*
  Indicates whether the test user for an FBTestSession should be shared
@@ -39,9 +39,8 @@ typedef enum {
     FBTestSessionModeShared     = 1,
 } FBTestSessionMode;
 
-
-static NSString *const FBPLISTAppIDKey = @"IOS_SDK_TEST_APP_ID";
-static NSString *const FBPLISTAppSecretKey = @"IOS_SDK_TEST_APP_SECRET";
+static NSString *const FBPLISTTestAppIDKey = @"IOS_SDK_TEST_APP_ID";
+static NSString *const FBPLISTTestAppSecretKey = @"IOS_SDK_TEST_APP_SECRET";
 static NSString *const FBPLISTUniqueUserTagKey = @"IOS_SDK_MACHINE_UNIQUE_USER_KEY";
 static NSString *const FBLoginAuthTestUserURLPath = @"oauth/access_token";
 static NSString *const FBLoginAuthTestUserCreatePathFormat = @"%@/accounts/test-users";
@@ -227,22 +226,23 @@ tokenCachingStrategy:(FBSessionTokenCachingStrategy*)tokenCachingStrategy
              // state transition, and call the handler if there is one
              [self transitionAndCallHandlerWithState:FBSessionStateClosedLoginFailed
                                                error:error
-                                               token:nil
-                                      expirationDate:nil
-                                         shouldCache:NO
-                                           loginType:FBSessionLoginTypeNone];
+                                           tokenData:nil
+                                         shouldCache:NO];
          }
      }];
 }
 
 - (void)transitionToOpenWithToken:(NSString*)token
 {
+    FBAccessTokenData *tokenData = [FBAccessTokenData createTokenFromString:token
+                                                                permissions:nil
+                                                             expirationDate:[NSDate distantFuture]
+                                                                  loginType:FBSessionLoginTypeTestUser
+                                                                refreshDate:[NSDate date]];
     [self transitionAndCallHandlerWithState:FBSessionStateOpen
                                       error:nil
-                                      token:token
-                             expirationDate:[NSDate distantFuture]
-                                shouldCache:NO
-                                  loginType:FBSessionLoginTypeTestUser];
+                                  tokenData:tokenData
+                                shouldCache:NO];
 }
 
 // We raise exceptions when things go wrong here, because this is intended for use only
@@ -263,22 +263,20 @@ tokenCachingStrategy:(FBSessionTokenCachingStrategy*)tokenCachingStrategy
 
 }
 
-- (void)populateTestUsers:(NSArray*)users testAccounts:(NSArray*)testAccounts
+- (void)populateTestUsers:(NSDictionary*)users testAccounts:(NSArray*)testAccounts
 {
     pthread_mutex_lock(&mutex);
 
     // Map user IDs to test_accounts
     for (NSDictionary *testAccount in testAccounts) {
-        id uid = [[testAccount objectForKey:FBLoginTestUserID] stringValue];
-        [testUsers setObject:[NSMutableDictionary dictionaryWithDictionary:testAccount]
-                      forKey:uid];
+        id uid = testAccount[FBLoginTestUserID];
+        testUsers[uid] = [NSMutableDictionary dictionaryWithDictionary:testAccount];
     }
 
     // Add the user name to the test_account data.
-    for (NSDictionary *user in users) {
-        id uid = [[user objectForKey:@"uid"] stringValue];
-        NSMutableDictionary *testUser = [testUsers objectForKey:uid];
-        [testUser setObject:[user objectForKey:FBLoginTestUserName] forKey:FBLoginTestUserName];
+    for (NSString *uid in [users allKeys]) {
+        NSMutableDictionary *testUser = testUsers[uid];
+        testUser[FBLoginTestUserName] = users[uid][FBLoginTestUserName];
     }
 
     pthread_mutex_unlock(&mutex);
@@ -287,67 +285,52 @@ tokenCachingStrategy:(FBSessionTokenCachingStrategy*)tokenCachingStrategy
 - (void)retrieveTestUsersForApp
 {
     // We need three pieces of data: id, access_token, and name (which we use to
-    // encode permissions). We get access_token from the test_account FQL table and
-    // name from the user table; they share an id. Use FQL multiquery to get it all
-    // in one go.
-    NSString *testAccountQuery = [NSString stringWithFormat:
-        @"SELECT id,access_token FROM test_account WHERE app_id = %@",
-        self.testAppID];
-    NSString *userQuery = @"SELECT uid,name FROM user WHERE uid IN (SELECT id FROM #test_accounts)";
-    NSDictionary *multiquery = [NSDictionary dictionaryWithObjectsAndKeys:
-                                testAccountQuery, @"test_accounts",
-                                userQuery, @"users",
-                                nil];
-
-    FBSBJSON *writer = [[FBSBJSON alloc] init];
-    NSString *jsonMultiquery = [writer stringWithObject:multiquery];
-    [writer release];
-
-    NSDictionary *parameters = [NSDictionary dictionaryWithObjectsAndKeys:
-                                jsonMultiquery, @"q",
-                                self.appAccessToken, @"access_token",
-                                nil];
-    FBRequest *request = [[[FBRequest alloc] initWithSession:nil
-                                                  graphPath:@"fql"
-                                                 parameters:parameters
+    // encode permissions). Use batched Graph API requests to get the data
+    FBRequestConnection *connection = [[[FBRequestConnection alloc] init] autorelease];
+    FBRequest *requestForAccountIds = [[[FBRequest alloc] initWithSession:self
+                                                  graphPath:[NSString stringWithFormat:@"%@/accounts/test-users",self.appID]
+                                                  parameters:@{ @"access_token" : self.appAccessToken }
                                                  HTTPMethod:nil]
                          autorelease];
-    [request startWithCompletionHandler:
-     ^(FBRequestConnection *connection, id result, NSError *error) {
-         if (error ||
-             !result) {
-             [self raiseException:error];
-         }
-         id data = [result objectForKey:@"data"];
-         if (![data isKindOfClass:[NSArray class]] ||
-             [data count] != 2) {
-             [self raiseException:nil];
-         }
+    __block id testAccounts = nil;
+    [connection addRequest:requestForAccountIds completionHandler:^(FBRequestConnection *connection, id result, NSError *error) {
+        if (error ||
+            !result) {
+            [self raiseException:error];
+        }
+        testAccounts = [result objectForKey:@"data"];
+    } batchParameters:@{@"name":@"test-accounts", @"omit_response_on_success":@(NO)}];
 
-         // We get back two sets of results. The first is from the test_accounts
-         // query, the second from the users query.
-         id testAccounts = [[data objectAtIndex:0] objectForKey:@"fql_result_set"];
-         id users = [[data objectAtIndex:1] objectForKey:@"fql_result_set"];
-         if (![testAccounts isKindOfClass:[NSArray class]] ||
-             ![users isKindOfClass:[NSArray class]]) {
-             [self raiseException:nil];
-         }
+    FBRequest *requestForUsersAndNames = [[[FBRequest alloc] initWithSession:self
+                                                                   graphPath:@"?ids={result=test-accounts:$.data.*.id}"
+                                                                  parameters:@{ @"access_token" : self.appAccessToken }
+                                                                  HTTPMethod:nil]
+                                          autorelease];
+    [connection addRequest:requestForUsersAndNames completionHandler:^(FBRequestConnection *connection, id result, NSError *error) {
+        if (error ||
+            !result) {
+            [self raiseException:error];
+        }
+        if (!testAccounts) {
+            [self raiseException:nil];
+        }
+        id users = result;
 
-         // Use both sets of results to populate our static array of accounts.
-         [self populateTestUsers:users testAccounts:testAccounts];
+        // Use both sets of results to populate our static array of accounts.
+        [self populateTestUsers:users testAccounts:testAccounts];
 
-         // Now that we've populated all test users, we can continue looking for
-         // the matching user, which started this all off.
-         [self findOrCreateSharedUser];
-     }];
-
+        // Now that we've populated all test users, we can continue looking for
+        // the matching user, which started this all off.
+        [self findOrCreateSharedUser];
+    }];
+    [connection start];
 }
 
 // Given a long string, generate its hash value, and then convert that to a string that
 // we can use as part of a Facebook test user name (i.e., no digits).
 - (NSString*)validNameStringFromInteger:(NSUInteger)input
 {
-    NSString *hashAsString = [NSString stringWithFormat:@"%u", input];
+    NSString *hashAsString = [NSString stringWithFormat:@"%lu", (unsigned long)input];
     NSMutableString *result = [NSMutableString stringWithString:@"Perm"];
 
     // We know each character is a digit. Convert it into a letter starting with 'a'.
@@ -411,18 +394,14 @@ tokenCachingStrategy:(FBSessionTokenCachingStrategy*)tokenCachingStrategy
 #pragma mark Overrides
 
 - (BOOL)transitionToState:(FBSessionState)state
-           andUpdateToken:(NSString*)token
-        andExpirationDate:(NSDate*)date
-              shouldCache:(BOOL)shouldCache
-                loginType:(FBSessionLoginType)loginType {
+      withAccessTokenData:(FBAccessTokenData *)tokenData
+              shouldCache:(BOOL)shouldCache {
     // in case we need these after the transition
     NSString *userID = self.testUserID;
 
     BOOL didTransition = [super transitionToState:state
-                                   andUpdateToken:token
-                                andExpirationDate:date
-                                      shouldCache:shouldCache
-                                        loginType:loginType];
+                              withAccessTokenData:tokenData
+                                      shouldCache:shouldCache];
 
     if (didTransition && FB_ISSESSIONSTATETERMINAL(self.state)) {
         if (self.mode == FBTestSessionModePrivate) {
@@ -441,7 +420,8 @@ tokenCachingStrategy:(FBSessionTokenCachingStrategy*)tokenCachingStrategy
         // For the test session, since we don't present UI,
         // we'll just complete the re-auth. Note this obviously means
         // no new permissions are requested.
-        [super handleReauthorize:nil accessToken:self.accessTokenData.accessToken];
+        [super handleReauthorize:nil
+                     accessToken:(self.disableReauthorize) ? nil : self.accessTokenData.accessToken];
     } else {
         // We ignore behavior, since we aren't going to present UI.
 
@@ -508,8 +488,8 @@ tokenCachingStrategy:(FBSessionTokenCachingStrategy*)tokenCachingStrategy
                       sessionUniqueUserTag:(NSString*)sessionUniqueUserTag
 {
     NSDictionary *environment = [[NSProcessInfo processInfo] environment];
-    NSString *appID = [environment objectForKey:FBPLISTAppIDKey];
-    NSString *appSecret = [environment objectForKey:FBPLISTAppSecretKey];
+    NSString *appID = [environment objectForKey:FBPLISTTestAppIDKey];
+    NSString *appSecret = [environment objectForKey:FBPLISTTestAppSecretKey];
     if (!appID || !appSecret || appID.length == 0 || appSecret.length == 0) {
         [[NSException exceptionWithName:FBInvalidOperationException
                                  reason:

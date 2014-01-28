@@ -1,5 +1,5 @@
 /*
- * Copyright 2012 Facebook
+ * Copyright 2010-present Facebook.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -14,8 +14,9 @@
  * limitations under the License.
  */
 
-#import <Foundation/Foundation.h>
 #import <CoreLocation/CoreLocation.h>
+#import <Foundation/Foundation.h>
+
 #import "FBCacheDescriptor.h"
 
 @interface FBPlacePickerCacheDescriptor : FBCacheDescriptor
@@ -33,3 +34,4 @@
 @property (nonatomic, readonly, copy) NSSet *fieldsForRequest;
 
 @end
+

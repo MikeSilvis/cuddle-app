@@ -1,5 +1,5 @@
 /*
- * Copyright 2012 Facebook
+ * Copyright 2010-present Facebook.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -14,13 +14,13 @@
  * limitations under the License.
  */
 
-#import <Foundation/Foundation.h>
 #import <Accounts/Accounts.h>
+#import <Foundation/Foundation.h>
 
 // up-front decl's
+@class FBAccessTokenData;
 @class FBSession;
 @class FBSessionTokenCachingStrategy;
-@class FBAccessTokenData;
 
 #define FB_SESSIONSTATETERMINALBIT (1 << 8)
 
@@ -167,6 +167,12 @@ typedef enum {
  @abstract Block type used to define blocks called by <FBSession> for state updates
  @discussion See https://developers.facebook.com/docs/technical-guides/iossdk/errors/
   for error handling best practices.
+
+  Requesting additional permissions inside this handler (such as by calling
+  `requestNewPublishPermissions`) should be avoided because it is a poor user
+  experience and its behavior may vary depending on the login type. You should
+  request the permissions closer to the operation that requires it (e.g., when
+  the user performs some action).
  */
 typedef void (^FBSessionStateHandler)(FBSession *session,
                                        FBSessionState status,
@@ -180,6 +186,12 @@ typedef void (^FBSessionStateHandler)(FBSession *session,
 
  @discussion See https://developers.facebook.com/docs/technical-guides/iossdk/errors/
  for error handling best practices.
+
+ Requesting additional permissions inside this handler (such as by calling
+ `requestNewPublishPermissions`) should be avoided because it is a poor user
+ experience and its behavior may vary depending on the login type. You should
+ request the permissions closer to the operation that requires it (e.g., when
+ the user performs some action).
  */
 typedef void (^FBSessionRequestPermissionResultHandler)(FBSession *session,
                                                         NSError *error);
@@ -246,7 +258,8 @@ typedef void (^FBSessionRenewSystemCredentialsHandler)(ACAccountCredentialRenewR
  default values for parameters to <initWithAppID:permissions:urlSchemeSuffix:tokenCacheStrategy:>.
 
  @param permissions  An array of strings representing the permissions to request during the
- authentication flow. A value of nil indicates basic permissions. The default is nil.
+ authentication flow. The basic_info permission must be explicitly requested at first login, and is no
+ longer inferred, (subject to an active migration.) The default is nil.
 
  @discussion
  It is required that any single permission request request (including initial log in) represent read-only permissions
@@ -263,9 +276,9 @@ typedef void (^FBSessionRenewSystemCredentialsHandler)(ACAccountCredentialRenewR
  defaults when ommitted.
 
  @param permissions  An array of strings representing the permissions to request during the
- authentication flow. A value of nil indicates basic permissions. The default is nil.
+ authentication flow. The basic_info permission must be explicitly requested at first login, and is no longer inferred, (subject to an active migration.) The default is nil.
  @param appID  The Facebook App ID for the session. If nil is passed in the default App ID will be obtained from a call to <[FBSession defaultAppID]>. The default is nil.
- @param urlSchemeSuffix  The URL Scheme Suffix to be used in scenarious where multiple iOS apps use one Facebook App ID. A value of nil indicates that this information should be pulled from the plist. The default is nil.
+ @param urlSchemeSuffix  The URL Scheme Suffix to be used in scenarious where multiple iOS apps use one Facebook App ID. A value of nil indicates that this information should be pulled from [FBSettings defaultUrlSchemeSuffix]. The default is nil.
  @param tokenCachingStrategy Specifies a key name to use for cached token information in NSUserDefaults, nil
  indicates a default value of @"FBAccessTokenInformationKey".
 
@@ -286,10 +299,10 @@ typedef void (^FBSessionRenewSystemCredentialsHandler)(ACAccountCredentialRenewR
  defaults when ommitted.
 
  @param permissions  An array of strings representing the permissions to request during the
- authentication flow. A value of nil indicates basic permissions. The default is nil.
+ authentication flow. The basic_info permission must be explicitly requested at first login, and is no longer inferred, (subject to an active migration.) The default is nil.
  @param defaultAudience  Most applications use FBSessionDefaultAudienceNone here, only specifying an audience when using reauthorize to request publish permissions.
  @param appID  The Facebook App ID for the session. If nil is passed in the default App ID will be obtained from a call to <[FBSession defaultAppID]>. The default is nil.
- @param urlSchemeSuffix  The URL Scheme Suffix to be used in scenarious where multiple iOS apps use one Facebook App ID. A value of nil indicates that this information should be pulled from the plist. The default is nil.
+ @param urlSchemeSuffix  The URL Scheme Suffix to be used in scenarious where multiple iOS apps use one Facebook App ID. A value of nil indicates that this information should be pulled from [FBSettings defaultUrlSchemeSuffix]. The default is nil.
  @param tokenCachingStrategy Specifies a key name to use for cached token information in NSUserDefaults, nil
  indicates a default value of @"FBAccessTokenInformationKey".
 
@@ -307,16 +320,16 @@ typedef void (^FBSessionRenewSystemCredentialsHandler)(ACAccountCredentialRenewR
 // instance readonly properties
 
 /*! @abstract Indicates whether the session is open and ready for use. */
-@property(readonly) BOOL isOpen;
+@property (readonly) BOOL isOpen;
 
 /*! @abstract Detailed session state */
-@property(readonly) FBSessionState state;
+@property (readonly) FBSessionState state;
 
 /*! @abstract Identifies the Facebook app which the session object represents. */
-@property(readonly, copy) NSString *appID;
+@property (readonly, copy) NSString *appID;
 
 /*! @abstract Identifies the URL Scheme Suffix used by the session. This is used when multiple iOS apps share a single Facebook app ID. */
-@property(readonly, copy) NSString *urlSchemeSuffix;
+@property (readonly, copy) NSString *urlSchemeSuffix;
 
 /*! @abstract The access token for the session object.
     @discussion Deprecated. Use the `accessTokenData` property. */
@@ -329,7 +342,7 @@ __attribute__((deprecated));
 __attribute__((deprecated));
 
 /*! @abstract The permissions granted to the access token during the authentication flow. */
-@property(readonly, copy) NSArray *permissions;
+@property (readonly, copy) NSArray *permissions;
 
 /*! @abstract Specifies the login type used to authenticate the user.
     @discussion Deprecated. Use the `accessTokenData` property. */
@@ -337,7 +350,7 @@ __attribute__((deprecated));
 __attribute__((deprecated));
 
 /*! @abstract Gets the FBAccessTokenData for the session */
-@property(readonly, copy) FBAccessTokenData *accessTokenData;
+@property (readonly, copy) FBAccessTokenData *accessTokenData;
 
 /*!
  @methodgroup Instance methods
@@ -530,6 +543,19 @@ __attribute__((deprecated));
 - (void)handleDidBecomeActive;
 
 /*!
+ @abstract
+ Assign the block to be invoked for session state changes.
+
+ @discussion
+ This will overwrite any state change handler that was already assigned. Typically,
+ you should only use this setter if you were unable to assign a state change handler explicitly.
+ One example of this is if you are not opening the session (e.g., using the `open*`)
+ but still want to assign a `FBSessionStateHandler` block. This can happen when the SDK
+ opens a session from an app link.
+*/
+- (void)setStateChangeHandler:(FBSessionStateHandler)stateChangeHandler;
+
+/*!
  @methodgroup Class methods
  */
 
@@ -553,7 +579,7 @@ __attribute__((deprecated));
  when there is a cached token available from a previous run of the application. If NO is returned, this indicates
  that the session was not immediately opened, via cache. However, if YES was passed as allowLoginUI, then it is
  possible that the user will login, and the session will become open asynchronously. The primary use for
- this return value is to switch-on facebook capabilities in your UX upon startup, in the case were the session
+ this return value is to switch-on facebook capabilities in your UX upon startup, in the case where the session
  is opened via cache.
  */
 + (BOOL)openActiveSessionWithAllowLoginUI:(BOOL)allowLoginUI;
@@ -583,13 +609,13 @@ __attribute__((deprecated));
  when there is a cached token available from a previous run of the application. If NO is returned, this indicates
  that the session was not immediately opened, via cache. However, if YES was passed as allowLoginUI, then it is
  possible that the user will login, and the session will become open asynchronously. The primary use for
- this return value is to switch-on facebook capabilities in your UX upon startup, in the case were the session
+ this return value is to switch-on facebook capabilities in your UX upon startup, in the case where the session
  is opened via cache.
 
  It is required that initial permissions requests represent read-only permissions only. If publish
  permissions are needed, you may use reauthorizeWithPermissions to specify additional permissions as
  well as an audience. Use of this method will result in a legacy fast-app-switch Facebook Login due to
- the requirement to seperate read and publish permissions for newer applications. Methods and properties
+ the requirement to separate read and publish permissions for newer applications. Methods and properties
  that specify permissions without a read or publish qualification are deprecated; use of a read-qualified
  or publish-qualified alternative is preferred.
  */
@@ -605,8 +631,8 @@ __attribute__((deprecated));
  used by the application. This session becomes the active session, whether open succeeds or fails.
 
  @param readPermissions     An array of strings representing the read permissions to request during the
- authentication flow. A value of nil indicates basic permissions. It is not allowed to pass publish
- permissions to this method.
+ authentication flow. The basic_info permission must be explicitly requested at first login, and is no longer
+ inferred, (subject to an active migration.) It is not allowed to pass publish permissions to this method.
 
  @param allowLoginUI    Sometimes it is useful to attempt to open a session, but only if
  no login UI will be required to accomplish the operation. For example, at application startup it may not
@@ -623,7 +649,7 @@ __attribute__((deprecated));
  when there is a cached token available from a previous run of the application. If NO is returned, this indicates
  that the session was not immediately opened, via cache. However, if YES was passed as allowLoginUI, then it is
  possible that the user will login, and the session will become open asynchronously. The primary use for
- this return value is to switch-on facebook capabilities in your UX upon startup, in the case were the session
+ this return value is to switch-on facebook capabilities in your UX upon startup, in the case where the session
  is opened via cache.
 
  */
@@ -658,7 +684,7 @@ __attribute__((deprecated));
  when there is a cached token available from a previous run of the application. If NO is returned, this indicates
  that the session was not immediately opened, via cache. However, if YES was passed as allowLoginUI, then it is
  possible that the user will login, and the session will become open asynchronously. The primary use for
- this return value is to switch-on facebook capabilities in your UX upon startup, in the case were the session
+ this return value is to switch-on facebook capabilities in your UX upon startup, in the case where the session
  is opened via cache.
 
  */
@@ -699,9 +725,11 @@ __attribute__((deprecated));
  @abstract Set the default Facebook App ID to use for sessions. The app ID may be
  overridden on a per session basis.
 
+ @discussion This method has been deprecated in favor of [FBSettings setDefaultAppID].
+
  @param appID The default Facebook App ID to use for <FBSession> methods.
  */
-+ (void)setDefaultAppID:(NSString*)appID;
++ (void)setDefaultAppID:(NSString*)appID __attribute__((deprecated));
 
 /*!
  @method
@@ -709,8 +737,10 @@ __attribute__((deprecated));
  @abstract Get the default Facebook App ID to use for sessions. If not explicitly
  set, the default will be read from the application's plist. The app ID may be
  overridden on a per session basis.
- */
-+ (NSString*)defaultAppID;
+
+ @discussion This method has been deprecated in favor of [FBSettings defaultAppID].
+*/
++ (NSString*)defaultAppID __attribute__((deprecated));
 
 /*!
  @method
@@ -718,9 +748,11 @@ __attribute__((deprecated));
  @abstract Set the default url scheme suffix to use for sessions. The url
  scheme suffix may be overridden on a per session basis.
 
+ @discussion This method has been deprecated in favor of [FBSettings setDefaultUrlSchemeSuffix].
+
  @param urlSchemeSuffix The default url scheme suffix to use for <FBSession> methods.
  */
-+ (void)setDefaultUrlSchemeSuffix:(NSString*)urlSchemeSuffix;
++ (void)setDefaultUrlSchemeSuffix:(NSString*)urlSchemeSuffix __attribute__((deprecated));
 
 /*!
  @method
@@ -728,8 +760,10 @@ __attribute__((deprecated));
  @abstract Get the default url scheme suffix used for sessions.  If not
  explicitly set, the default will be read from the application's plist. The
  url scheme suffix may be overridden on a per session basis.
+
+ @discussion This method has been deprecated in favor of [FBSettings defaultUrlSchemeSuffix].
  */
-+ (NSString*)defaultUrlSchemeSuffix;
++ (NSString*)defaultUrlSchemeSuffix __attribute__((deprecated));
 
 /*!
  @method

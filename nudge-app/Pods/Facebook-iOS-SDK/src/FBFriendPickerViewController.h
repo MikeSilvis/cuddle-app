@@ -1,12 +1,12 @@
 /*
- * Copyright 2012 Facebook
+ * Copyright 2010-present Facebook.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
  *
  *    http://www.apache.org/licenses/LICENSE-2.0
-
+ *
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -15,9 +15,10 @@
  */
 
 #import <UIKit/UIKit.h>
+
+#import "FBCacheDescriptor.h"
 #import "FBGraphUser.h"
 #import "FBSession.h"
-#import "FBCacheDescriptor.h"
 #import "FBViewController.h"
 
 @protocol FBFriendPickerDelegate;
@@ -124,8 +125,13 @@ typedef enum {
  @abstract
  The list of friends that are currently selected in the veiw.
  The items in the array are <FBGraphUser> objects.
+
+ @discussion
+ You can set this this array to pre-select items in the picker. The objects in the array
+ must be complete id<FBGraphUser> objects (i.e., fetched from a Graph query or from a
+ previous picker's selection, with id and appropriate name fields).
  */
-@property (nonatomic, retain, readonly) NSArray *selection;
+@property (nonatomic, copy) NSArray *selection;
 
 /*!
  @abstract

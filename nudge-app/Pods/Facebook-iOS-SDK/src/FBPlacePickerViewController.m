@@ -1,12 +1,12 @@
 /*
- * Copyright 2012 Facebook
+ * Copyright 2010-present Facebook.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
- *
+ * 
  *    http://www.apache.org/licenses/LICENSE-2.0
-
+ 
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -19,7 +19,7 @@
 #import "FBGraphObjectPagingLoader.h"
 #import "FBGraphObjectTableDataSource.h"
 #import "FBGraphObjectTableSelection.h"
-#import "FBInsights+Internal.h"
+#import "FBAppEvents+Internal.h"
 #import "FBLogger.h"
 #import "FBPlacePickerViewController.h"
 #import "FBRequest.h"
@@ -28,13 +28,13 @@
 #import "FBPlacePickerCacheDescriptor.h"
 #import "FBSession+Internal.h"
 #import "FBSettings.h"
+#import "FBPlacePickerViewGenericPlacePNG.h"
 
 NSString *const FBPlacePickerCacheIdentity = @"FBPlacePicker";
 
 static const NSInteger searchTextChangedTimerInterval = 2;
 const NSInteger defaultResultsLimit = 100;
 const NSInteger defaultRadius = 1000; // 1km
-static NSString *defaultImageName = @"FacebookSDKResources.bundle/FBPlacePickerView/images/fb_generic_place.png";
 
 @interface FBPlacePickerViewController () <FBGraphObjectSelectionChangedDelegate,
                                             FBGraphObjectViewControllerDelegate,
@@ -84,18 +84,18 @@ static NSString *defaultImageName = @"FacebookSDKResources.bundle/FBPlacePickerV
     if (self) {
         [self initialize];
     }
-
+    
     return self;
 }
 
 - (id)initWithCoder:(NSCoder *)aDecoder
 {
     self = [super initWithCoder:aDecoder];
-
+    
     if (self) {
         [self initialize];
     }
-
+    
     return self;
 }
 
@@ -107,7 +107,7 @@ static NSString *defaultImageName = @"FacebookSDKResources.bundle/FBPlacePickerV
     if (self) {
         [self initialize];
     }
-
+    
     return self;
 }
 
@@ -117,7 +117,7 @@ static NSString *defaultImageName = @"FacebookSDKResources.bundle/FBPlacePickerV
     FBGraphObjectTableDataSource *dataSource = [[[FBGraphObjectTableDataSource alloc]
                                                  init]
                                                 autorelease];
-    dataSource.defaultPicture = [UIImage imageNamed:defaultImageName];
+    dataSource.defaultPicture = [FBPlacePickerViewGenericPlacePNG image];
     dataSource.controllerDelegate = self;
     dataSource.itemSubtitleEnabled = YES;
 
@@ -150,7 +150,7 @@ static NSString *defaultImageName = @"FacebookSDKResources.bundle/FBPlacePickerV
     [_loader cancel];
     _loader.delegate = nil;
     [_loader release];
-
+    
     _dataSource.controllerDelegate = nil;
 
     [_dataSource release];
@@ -160,10 +160,10 @@ static NSString *defaultImageName = @"FacebookSDKResources.bundle/FBPlacePickerV
     [_selectionManager release];
     [_spinner release];
     [_tableView release];
-
+    
     [self removeSessionObserver:_session];
     [_session release];
-
+    
     [super dealloc];
 }
 
@@ -192,14 +192,14 @@ static NSString *defaultImageName = @"FacebookSDKResources.bundle/FBPlacePickerV
 - (void)setSession:(FBSession *)session {
     if (session != _session) {
         [self removeSessionObserver:_session];
-
+        
         [_session release];
         _session = [session retain];
 
         [self addSessionObserver:session];
 
         self.loader.session = session;
-
+        
         self.trackActiveSession = (session == nil);
     }
 }
@@ -209,14 +209,14 @@ static NSString *defaultImageName = @"FacebookSDKResources.bundle/FBPlacePickerV
 - (void)loadData
 {
     // when the app calls loadData,
-    // if we don't have a session and there is
+    // if we don't have a session and there is 
     // an open active session, use that
-    if (!self.session ||
+    if (!self.session || 
         (self.trackActiveSession && ![self.session isEqual:[FBSession activeSessionIfOpen]])) {
         self.session = [FBSession activeSessionIfOpen];
         self.trackActiveSession = YES;
     }
-
+    
     // Sending a request on every keystroke is wasteful of bandwidth. Send a
     // request the first time the user types something, then set up a 2-second timer
     // and send whatever changes the user has made since then. (If nothing has changed
@@ -279,7 +279,7 @@ static NSString *defaultImageName = @"FacebookSDKResources.bundle/FBPlacePickerV
         UITableView *tableView = [[[UITableView alloc] initWithFrame:bounds] autorelease];
         tableView.autoresizingMask =
             UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
-
+        
         self.tableView = tableView;
         [self.canvasView addSubview:tableView];
     }
@@ -317,8 +317,8 @@ static NSString *defaultImageName = @"FacebookSDKResources.bundle/FBPlacePickerV
                                           fields:(NSSet*)fieldsForRequest
                                       datasource:(FBGraphObjectTableDataSource*)datasource
                                          session:(FBSession*)session {
-
-    FBRequest *request = [FBRequest requestForPlacesSearchAtCoordinate:coordinate
+    
+    FBRequest *request = [FBRequest requestForPlacesSearchAtCoordinate:coordinate 
                                                         radiusInMeters:radius
                                                           resultsLimit:resultsLimit
                                                             searchText:searchText];
@@ -326,7 +326,7 @@ static NSString *defaultImageName = @"FacebookSDKResources.bundle/FBPlacePickerV
 
     // Use field expansion to fetch a 100px wide picture if we're on a retina device.
     NSString *pictureField = ([FBUtility isRetinaDisplay]) ? @"picture.width(100).height(100)" : @"picture";
-
+    
     NSString *fields = [datasource fieldsForRequestIncluding:fieldsForRequest,
                         @"id",
                         @"name",
@@ -335,9 +335,9 @@ static NSString *defaultImageName = @"FacebookSDKResources.bundle/FBPlacePickerV
                         pictureField,
                         @"were_here_count",
                         nil];
-
+    
     [request.parameters setObject:fields forKey:@"fields"];
-
+    
     return request;
 }
 
@@ -366,9 +366,9 @@ static NSString *defaultImageName = @"FacebookSDKResources.bundle/FBPlacePickerV
 
 - (NSTimer *)createSearchTextChangedTimer {
     NSTimer *timer = [NSTimer scheduledTimerWithTimeInterval:searchTextChangedTimerInterval
-                                                      target:self
-                                                    selector:@selector(searchTextChangedTimerFired:)
-                                                    userInfo:nil
+                                                      target:self 
+                                                    selector:@selector(searchTextChangedTimerFired:) 
+                                                    userInfo:nil 
                                                      repeats:YES];
     return timer;
 }
@@ -388,7 +388,7 @@ static NSString *defaultImageName = @"FacebookSDKResources.bundle/FBPlacePickerV
 - (void)centerAndStartSpinner
 {
     [FBUtility centerView:self.spinner tableView:self.tableView];
-    [self.spinner startAnimating];
+    [self.spinner startAnimating];    
 }
 
 - (void)addSessionObserver:(FBSession *)session {
@@ -398,14 +398,14 @@ static NSString *defaultImageName = @"FacebookSDKResources.bundle/FBPlacePickerV
                  context:nil];
 }
 
-- (void)removeSessionObserver:(FBSession *)session {
+- (void)removeSessionObserver:(FBSession *)session {    
     [session removeObserver:self
                  forKeyPath:@"state"];
 }
 
-- (void)observeValueForKeyPath:(NSString *)keyPath
-                      ofObject:(id)object
-                        change:(NSDictionary *)change
+- (void)observeValueForKeyPath:(NSString *)keyPath 
+                      ofObject:(id)object 
+                        change:(NSDictionary *)change 
                        context:(void *)context {
     if ([object isEqual:self.session] &&
         self.session.isOpen == NO) {
@@ -420,12 +420,12 @@ static NSString *defaultImageName = @"FacebookSDKResources.bundle/FBPlacePickerV
     [self.loader reset];
 }
 
-- (void)logInsights:(BOOL)cancelled {
-    [FBInsights logImplicitEvent:FBInsightsEventNamePlacePickerUsage
-                      valueToSum:1.0
-                      parameters:@{ FBInsightsEventParameterDialogOutcome : (cancelled
-                                            ? FBInsightsDialogOutcomeValue_Cancelled
-                                            : FBInsightsDialogOutcomeValue_Completed),
+- (void)logAppEvents:(BOOL)cancelled {
+    [FBAppEvents logImplicitEvent:FBAppEventNamePlacePickerUsage
+                      valueToSum:nil
+                      parameters:@{ FBAppEventParameterDialogOutcome : (cancelled
+                                            ? FBAppEventsDialogOutcomeValue_Cancelled
+                                            : FBAppEventsDialogOutcomeValue_Completed),
                                     @"num_places_picked" : [NSNumber numberWithUnsignedInteger:self.selection.count]
                                   }
                          session:self.session];
@@ -469,9 +469,9 @@ static NSString *defaultImageName = @"FacebookSDKResources.bundle/FBPlacePickerV
 {
     NSString *category = [graphObject objectForKey:@"category"];
     NSNumber *wereHereCount = [graphObject objectForKey:@"were_here_count"];
-
+    
     NSMutableArray* parts = [NSMutableArray array];
-
+    
     if (category) {
         [parts addObject:[category capitalizedString]];
     }
@@ -513,13 +513,13 @@ static NSString *defaultImageName = @"FacebookSDKResources.bundle/FBPlacePickerV
 - (void)pagingLoader:(FBGraphObjectPagingLoader*)pagingLoader didLoadData:(NSDictionary*)results {
     [self.spinner stopAnimating];
 
-    // This logging currently goes here because we're effectively complete with our initial view when
+    // This logging currently goes here because we're effectively complete with our initial view when 
     // the first page of results come back.  In the future, when we do caching, we will need to move
     // this to a more appropriate place (e.g., after the cache has been brought in).
     [FBLogger singleShotLogEntry:FBLoggingBehaviorPerformanceCharacteristics
                     timestampTag:self
                     formatString:@"Places Picker: first render "];  // logger will append "%d msec"
-
+    
     if ([self.delegate respondsToSelector:@selector(placePickerViewControllerDataDidChange:)]) {
         [(id)self.delegate placePickerViewControllerDataDidChange:self];
     }
@@ -528,7 +528,7 @@ static NSString *defaultImageName = @"FacebookSDKResources.bundle/FBPlacePickerV
 - (void)pagingLoaderDidFinishLoading:(FBGraphObjectPagingLoader *)pagingLoader {
     // No more results, stop spinner
     [self.spinner stopAnimating];
-
+    
     // Call the delegate from here as well, since this might be the first response of a query
     // that has no results.
     if ([self.delegate respondsToSelector:@selector(placePickerViewControllerDataDidChange:)]) {
@@ -538,14 +538,14 @@ static NSString *defaultImageName = @"FacebookSDKResources.bundle/FBPlacePickerV
     // if our current display is from cache, then kick-off a near-term refresh
     if (pagingLoader.isResultFromCache) {
         [self loadDataPostThrottleSkippingRoundTripIfCached:[NSNumber numberWithBool:NO]];
-    }
+    }    
 }
 
 - (void)pagingLoader:(FBGraphObjectPagingLoader*)pagingLoader handleError:(NSError*)error {
     if ([self.delegate respondsToSelector:@selector(placePickerViewController:handleError:)]) {
         [(id)self.delegate placePickerViewController:self handleError:error];
     }
-
+    
 }
 
 - (void)pagingLoaderWasCancelled:(FBGraphObjectPagingLoader*)pagingLoader {
@@ -553,3 +553,4 @@ static NSString *defaultImageName = @"FacebookSDKResources.bundle/FBPlacePickerV
 }
 
 @end
+

@@ -1,5 +1,5 @@
 /*
- * Copyright 2012 Facebook
+ * Copyright 2010-present Facebook.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -15,6 +15,7 @@
  */
 
 #import "FBSessionTokenCachingStrategy.h"
+
 #import "FBAccessTokenData+Internal.h"
 
 // const strings
@@ -27,6 +28,7 @@ NSString *const FBTokenInformationUserFBIDKey = @"com.facebook.sdk:TokenInformat
 NSString *const FBTokenInformationIsFacebookLoginKey = @"com.facebook.sdk:TokenInformationIsFacebookLoginKey";
 NSString *const FBTokenInformationLoginTypeLoginKey = @"com.facebook.sdk:TokenInformationLoginTypeLoginKey";
 NSString *const FBTokenInformationPermissionsKey = @"com.facebook.sdk:TokenInformationPermissionsKey";
+NSString *const FBTokenInformationPermissionsRefreshDateKey = @"com.facebook.sdk:TokenInformationPermissionsRefreshDateKey";
 
 #pragma mark - private FBSessionTokenCachingStrategyNoOpInstance class
 

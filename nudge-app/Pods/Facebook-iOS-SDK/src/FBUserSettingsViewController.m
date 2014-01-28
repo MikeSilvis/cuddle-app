@@ -1,12 +1,12 @@
 /*
- * Copyright 2010 Facebook
+ * Copyright 2010-present Facebook.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
  *
  *    http://www.apache.org/licenses/LICENSE-2.0
-
+ *
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -15,12 +15,15 @@
  */
 
 #import "FBUserSettingsViewController.h"
-#import "FBProfilePictureView.h"
+
+#import "FBAppEvents+Internal.h"
 #import "FBGraphUser.h"
-#import "FBSession.h"
+#import "FBProfilePictureView.h"
 #import "FBRequest.h"
-#import "FBViewController+Internal.h"
+#import "FBSession+Internal.h"
+#import "FBSession.h"
 #import "FBUtility.h"
+#import "FBViewController+Internal.h"
 
 @interface FBUserSettingsViewController ()
 
@@ -34,31 +37,9 @@
 @property (copy, nonatomic) FBSessionStateHandler sessionStateHandler;
 @property (copy, nonatomic) FBRequestHandler requestHandler;
 
-- (void)loginLogoutButtonPressed:(id)sender;
-- (void)sessionStateChanged:(FBSession *)session
-                      state:(FBSessionState)state
-                      error:(NSError *)error;
-- (void)openSession;
-- (void)updateControls;
-- (void)updateBackgroundImage;
-
 @end
 
 @implementation FBUserSettingsViewController
-
-@synthesize profilePicture = _profilePicture;
-@synthesize connectedStateLabel = _connectedStateLabel;
-@synthesize me = _me;
-@synthesize loginLogoutButton = _loginLogoutButton;
-@synthesize permissions = _permissions;
-@synthesize readPermissions = _readPermissions;
-@synthesize publishPermissions = _publishPermissions;
-@synthesize defaultAudience = _defaultAudience;
-@synthesize attemptingLogin = _attemptingLogin;
-@synthesize backgroundImageView = _backgroundImageView;
-@synthesize bundle = _bundle;
-@synthesize sessionStateHandler = _sessionStateHandler;
-@synthesize requestHandler = _requestHandler;
 
 #pragma mark View controller lifecycle
 
@@ -115,6 +96,7 @@
 }
 
 - (void)dealloc {
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
     // As noted in `initializeBlocks`, if we are being dealloc'ed, we
     // need to let our handlers know with the sentinel value of nil
     // to prevent EXC_BAD_ACCESS errors.
@@ -138,7 +120,7 @@
     [super viewDidLoad];
 
     // If we are not being presented modally, we don't need a Done button.
-    if (self.compatiblePresentingViewController == nil) {
+    if (self.presentingViewController == nil) {
         self.doneButton = nil;
     }
 
@@ -189,7 +171,11 @@
                                                 containerView.frame.size.width,
                                                 20);
     self.connectedStateLabel.backgroundColor = [UIColor clearColor];
+#ifdef __IPHONE_6_0
+    self.connectedStateLabel.textAlignment = NSTextAlignmentCenter;
+#else
     self.connectedStateLabel.textAlignment = UITextAlignmentCenter;
+#endif
     self.connectedStateLabel.numberOfLines = 0;
     self.connectedStateLabel.font = [UIFont boldSystemFontOfSize:16.0];
     self.connectedStateLabel.shadowColor = [UIColor blackColor];
@@ -226,6 +212,9 @@
     self.loginLogoutButton.titleLabel.shadowOffset = CGSizeMake(0.0, 1.0);
     [self.canvasView addSubview:self.loginLogoutButton];
 
+    if ([FBSession activeSessionIfOpen] == nil) {
+        [self openSession:NO];
+    }
     // We need to know when the active session changes state.
     // We use the same handler for both, because we don't actually care about distinguishing between them.
     [[NSNotificationCenter defaultCenter] addObserver:self
@@ -257,18 +246,24 @@
     [self updateBackgroundImage];
 }
 
-- (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation {
-    return (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad) || UIInterfaceOrientationIsPortrait(interfaceOrientation);
+- (NSUInteger)supportedInterfaceOrientations {
+    if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad) {
+        return UIInterfaceOrientationMaskAll;
+    } else {
+        return UIInterfaceOrientationMaskPortrait;
+    }
 }
 
 - (BOOL)shouldAutorotate {
-    UIInterfaceOrientation orientation = [[UIDevice currentDevice] orientation];
-
-    return [self shouldAutorotateToInterfaceOrientation:orientation];
+    return YES;
 }
 
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
+    [FBAppEvents logImplicitEvent:FBAppEventNameUserSettingsUsage
+                       valueToSum:nil
+                       parameters:@{ @"view_will_appear" : [NSNumber numberWithBool:YES] }
+                          session:FBSession.activeSessionIfExists];
 }
 #pragma mark Implementation
 
@@ -351,7 +346,7 @@
 }
 
 #pragma GCC diagnostic ignored "-Wdeprecated-declarations"
-- (void)openSession {
+- (void)openSession:(BOOL)allowLoginUI {
     if ([self.delegate respondsToSelector:@selector(loginViewControllerWillAttemptToLogUserIn:)]) {
         [(id)self.delegate loginViewControllerWillAttemptToLogUserIn:self];
     }
@@ -367,11 +362,12 @@
     //    when the user presses login
     if (self.permissions) {
         [FBSession openActiveSessionWithPermissions:self.permissions
-                                       allowLoginUI:YES
+                                       allowLoginUI:allowLoginUI
+                                    defaultAudience:self.defaultAudience
                                   completionHandler:self.sessionStateHandler];
     } else if (![self.publishPermissions count]) {
         [FBSession openActiveSessionWithReadPermissions:self.readPermissions
-                                           allowLoginUI:YES
+                                           allowLoginUI:allowLoginUI
                                       completionHandler:self.sessionStateHandler];
     } else {
         // combined read and publish permissions will usually fail, but if the app wants us to
@@ -384,7 +380,7 @@
         }
         [FBSession openActiveSessionWithPublishPermissions:permissions
                                            defaultAudience:self.defaultAudience
-                                              allowLoginUI:YES
+                                              allowLoginUI:allowLoginUI
                                          completionHandler:self.sessionStateHandler];
     }
 }
@@ -394,6 +390,10 @@
 
 - (void)loginLogoutButtonPressed:(id)sender {
     if (FBSession.activeSession.isOpen) {
+        [FBAppEvents logImplicitEvent:FBAppEventNameUserSettingsUsage
+                           valueToSum:nil
+                           parameters:@{ @"logging_in" : @NO }
+                              session:FBSession.activeSessionIfExists];
         if ([self.delegate respondsToSelector:@selector(loginViewControllerWillLogUserOut:)]) {
             [(id)self.delegate loginViewControllerWillLogUserOut:self];
         }
@@ -404,7 +404,11 @@
             [(id)self.delegate loginViewControllerDidLogUserOut:self];
         }
     } else {
-        [self openSession];
+        [FBAppEvents logImplicitEvent:FBAppEventNameUserSettingsUsage
+                           valueToSum:nil
+                           parameters:@{ @"logging_in" : @YES }
+                              session:FBSession.activeSessionIfExists];
+        [self openSession:YES];
     }
 }
 

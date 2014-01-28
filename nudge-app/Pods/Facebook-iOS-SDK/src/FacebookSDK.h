@@ -1,5 +1,5 @@
 /*
- * Copyright 2012
+ * Copyright 2010-present Facebook.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -15,31 +15,35 @@
  */
 
 // core
-#import "FBSession.h"
 #import "FBAccessTokenData.h"
-#import "FBRequest.h"
+#import "FBAppCall.h"
+#import "FBAppEvents.h"
+#import "FBCacheDescriptor.h"
+#import "FBDialogs.h"
 #import "FBError.h"
-#import "NSError+FBError.h"
-#import "FBSettings.h"
-#import "FBInsights.h"
-
-// graph
-#import "FBGraphUser.h"
-#import "FBGraphPlace.h"
+#import "FBErrorUtility.h"
+#import "FBFrictionlessRecipientCache.h"
+#import "FBFriendPickerViewController.h"
 #import "FBGraphLocation.h"
 #import "FBGraphObject.h"           // + design summary for graph component-group
-#import "FBOpenGraphAction.h"
-
-// ux
+#import "FBGraphPlace.h"
+#import "FBGraphUser.h"
+#import "FBInsights.h"
 #import "FBLoginView.h"
-#import "FBProfilePictureView.h"
-#import "FBUserSettingsViewController.h"
+#import "FBNativeDialogs.h"         // deprecated, use FBDialogs.h
+#import "FBOpenGraphAction.h"
+#import "FBOpenGraphActionShareDialogParams.h"
+#import "FBOpenGraphObject.h"
 #import "FBPlacePickerViewController.h"
-#import "FBFriendPickerViewController.h"
-#import "FBCacheDescriptor.h"
-#import "FBNativeDialogs.h"
+#import "FBProfilePictureView.h"
+#import "FBRequest.h"
+#import "FBSession.h"
+#import "FBSessionTokenCachingStrategy.h"
+#import "FBSettings.h"
+#import "FBShareDialogParams.h"
+#import "FBUserSettingsViewController.h"
 #import "FBWebDialogs.h"
-#import "FBFrictionlessRecipientCache.h"
+#import "NSError+FBError.h"
 
 /*!
  @header
@@ -130,3 +134,6 @@
  </pre>
 
  */
+
+#define FB_IOS_SDK_VERSION_STRING @"3.11.1"
+

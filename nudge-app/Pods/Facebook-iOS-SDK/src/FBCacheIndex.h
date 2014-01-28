@@ -1,5 +1,5 @@
 /*
- * Copyright 2010 Facebook
+ * Copyright 2010-present Facebook.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -14,8 +14,9 @@
  * limitations under the License.
  */
 
-#import <Foundation/Foundation.h>
 #import <sqlite3.h>
+
+#import <Foundation/Foundation.h>
 
 @class FBCacheIndex;
 
@@ -69,3 +70,5 @@
 - (void)removeEntries:(NSString*)keyFragment excludingFragment:(BOOL)exclude;
 
 @end
+
+

@@ -1,5 +1,5 @@
 /*
- * Copyright 2010 Facebook
+ * Copyright 2010-present Facebook.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -15,8 +15,9 @@
  */
 
 #import "FBDataDiskCache.h"
-#import "FBCacheIndex.h"
+
 #import "FBAccessTokenData.h"
+#import "FBCacheIndex.h"
 
 static const NSUInteger kMaxDataInMemorySize = 1 * 1024 * 1024; // 1MB
 static const NSUInteger kMaxDiskCacheSize = 10 * 1024 * 1024; // 10MB
@@ -78,8 +79,10 @@ static NSString *const kAccessTokenKey = @"access_token";
     if (_fileQueue) {
         dispatch_release(_fileQueue);
     }
-
-    [_cacheIndex release];
+    if (_cacheIndex) {
+        _cacheIndex.delegate = nil;
+        [_cacheIndex release];
+    }
     [_dataCachePath release];
     [_inMemoryCache release];
     [super dealloc];

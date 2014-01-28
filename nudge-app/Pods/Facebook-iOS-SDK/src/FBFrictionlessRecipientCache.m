@@ -1,12 +1,12 @@
 /*
- * Copyright 2013 Facebook
+ * Copyright 2010-present Facebook.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
  *
  *    http://www.apache.org/licenses/LICENSE-2.0
-
+ *
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -14,12 +14,12 @@
  * limitations under the License.
  */
 
+#import "FBFrictionlessRecipientCache.h"
+
 #import "FBFrictionlessDialogSupportDelegate.h"
 #import "FBFrictionlessRequestSettings.h"
-#import "FBUtility.h"
 #import "FBSession+Internal.h"
-#import "FBSBJSON.h"
-#import "FBFrictionlessRecipientCache.h"
+#import "FBUtility.h"
 
 @interface FBFrictionlessRecipientCache () <FBFrictionlessDialogSupportDelegate>
 @property (nonatomic, readwrite) BOOL frictionlessShouldMakeViewInvisible;
@@ -115,10 +115,9 @@
         id fbid = [parameters objectForKey:@"to"];
         if (fbid != nil) {
             // if value parses as a json array expression get the list that way
-            FBSBJsonParser *parser = [[[FBSBJsonParser alloc] init] autorelease];
-            id fbids = [parser objectWithString:fbid];
+            id fbids = [FBUtility simpleJSONDecode:fbid];
             if (![fbids isKindOfClass:[NSArray class]]) {
-                // otherwise seperate by commas (handles the singleton case too)
+                // otherwise separate by commas (handles the singleton case too)
                 fbids = [fbid componentsSeparatedByString:@","];
             }
             self.frictionlessShouldMakeViewInvisible = [self.frictionlessSettings isFrictionlessEnabledForRecipients:fbids];

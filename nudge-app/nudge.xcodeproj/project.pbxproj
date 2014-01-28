@@ -116,7 +116,6 @@
 		DAD3EBFB16CA1A4A00E56737 /* MobileCoreServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DAD3EBFA16CA1A4A00E56737 /* MobileCoreServices.framework */; };
 		DAD3EBFD16CA1A4F00E56737 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DAD3EBFC16CA1A4F00E56737 /* QuartzCore.framework */; };
 		DAD3EBFF16CA1A5600E56737 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DAD3EBFE16CA1A5600E56737 /* Security.framework */; };
-		DAD3EC0316CA1A6100E56737 /* StoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DAD3EC0216CA1A6100E56737 /* StoreKit.framework */; };
 		DAD3EC0516CA1A6600E56737 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DAD3EC0416CA1A6600E56737 /* SystemConfiguration.framework */; };
 /* End PBXBuildFile section */
 
@@ -265,7 +264,6 @@
 		DAD3EBFC16CA1A4F00E56737 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		DAD3EBFE16CA1A5600E56737 /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
 		DAD3EC0016CA1A5B00E56737 /* Social.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Social.framework; path = System/Library/Frameworks/Social.framework; sourceTree = SDKROOT; };
-		DAD3EC0216CA1A6100E56737 /* StoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = StoreKit.framework; path = System/Library/Frameworks/StoreKit.framework; sourceTree = SDKROOT; };
 		DAD3EC0416CA1A6600E56737 /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
 
@@ -276,7 +274,6 @@
 			files = (
 				36232B4516E286390029A175 /* MessageUI.framework in Frameworks */,
 				DAD3EC0516CA1A6600E56737 /* SystemConfiguration.framework in Frameworks */,
-				DAD3EC0316CA1A6100E56737 /* StoreKit.framework in Frameworks */,
 				DAD3EBFF16CA1A5600E56737 /* Security.framework in Frameworks */,
 				DAD3EBFD16CA1A4F00E56737 /* QuartzCore.framework in Frameworks */,
 				DAD3EBFB16CA1A4A00E56737 /* MobileCoreServices.framework in Frameworks */,
@@ -525,7 +522,6 @@
 				367EB9C716EE4CDA006828BE /* Crashlytics.framework */,
 				36232B4416E286390029A175 /* MessageUI.framework */,
 				DAD3EC0416CA1A6600E56737 /* SystemConfiguration.framework */,
-				DAD3EC0216CA1A6100E56737 /* StoreKit.framework */,
 				DAD3EC0016CA1A5B00E56737 /* Social.framework */,
 				DAD3EBFE16CA1A5600E56737 /* Security.framework */,
 				DAD3EBFC16CA1A4F00E56737 /* QuartzCore.framework */,
@@ -646,6 +642,16 @@
 			attributes = {
 				LastUpgradeCheck = 0460;
 				ORGANIZATIONNAME = "Mike Silvis";
+				TargetAttributes = {
+					36FFBF4C16C85DDF00CC3140 = {
+						DevelopmentTeam = 78USZ8YX87;
+						SystemCapabilities = {
+							com.apple.InAppPurchase = {
+								enabled = 0;
+							};
+						};
+					};
+				};
 			};
 			buildConfigurationList = 36FFBF4816C85DDF00CC3140 /* Build configuration list for PBXProject "nudge" */;
 			compatibilityVersion = "Xcode 3.2";
@@ -900,8 +906,8 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 66500968D5FC435493127319 /* Pods.xcconfig */;
 			buildSettings = {
-				CODE_SIGN_IDENTITY = "";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Michael Silvis (JG99G662W3)";
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"$(SRCROOT)\"",
@@ -909,7 +915,9 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "cuddle-app/nudge-Prefix.pch";
 				INFOPLIST_FILE = "cuddle-app/nudge-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				PRODUCT_NAME = nudge;
+				PROVISIONING_PROFILE = "";
 				TARGETED_DEVICE_FAMILY = 1;
 				WRAPPER_EXTENSION = app;
 			};
@@ -1001,7 +1009,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 66500968D5FC435493127319 /* Pods.xcconfig */;
 			buildSettings = {
-				CODE_SIGN_IDENTITY = "";
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -1010,7 +1018,9 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "cuddle-app/nudge-Prefix.pch";
 				INFOPLIST_FILE = "cuddle-app/nudge-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				PRODUCT_NAME = nudge;
+				PROVISIONING_PROFILE = "";
 				TARGETED_DEVICE_FAMILY = 1;
 				WRAPPER_EXTENSION = app;
 			};
@@ -1020,8 +1030,8 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 66500968D5FC435493127319 /* Pods.xcconfig */;
 			buildSettings = {
-				CODE_SIGN_IDENTITY = "";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Michael Silvis (JG99G662W3)";
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"$(SRCROOT)\"",
@@ -1029,7 +1039,9 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "cuddle-app/nudge-Prefix.pch";
 				INFOPLIST_FILE = "cuddle-app/nudge-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				PRODUCT_NAME = nudge;
+				PROVISIONING_PROFILE = "";
 				TARGETED_DEVICE_FAMILY = 1;
 				WRAPPER_EXTENSION = app;
 			};

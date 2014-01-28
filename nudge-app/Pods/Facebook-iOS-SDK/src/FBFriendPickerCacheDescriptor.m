@@ -1,5 +1,5 @@
 /*
- * Copyright 2012 Facebook
+ * Copyright 2010-present Facebook.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -15,12 +15,13 @@
  */
 
 #import "FBFriendPickerCacheDescriptor.h"
+
 #import "FBFriendPickerViewController+Internal.h"
-#import "FBSession.h"
+#import "FBGraphObjectPagingLoader.h"
+#import "FBGraphObjectTableDataSource.h"
 #import "FBRequest.h"
 #import "FBRequestConnection.h"
-#import "FBGraphObjectTableDataSource.h"
-#import "FBGraphObjectPagingLoader.h"
+#import "FBSession.h"
 
 @interface FBFriendPickerCacheDescriptor () <FBGraphObjectPagingLoaderDelegate>
 

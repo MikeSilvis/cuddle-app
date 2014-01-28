@@ -1,12 +1,12 @@
 /*
- * Copyright 2010 Facebook
+ * Copyright 2010-present Facebook.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
  *
  *    http://www.apache.org/licenses/LICENSE-2.0
-
+ *
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -14,12 +14,13 @@
  * limitations under the License.
  */
 
-
 #import "FBDialog.h"
-#import "FBSBJSON.h"
-#import "Facebook.h"
+
+#import "FBDialogClosePNG.h"
 #import "FBFrictionlessRequestSettings.h"
+#import "FBSettings+Internal.h"
 #import "FBUtility.h"
+#import "Facebook.h"
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 // global
@@ -300,10 +301,7 @@ params   = _params;
                                               needle:@"frictionless_recipients="];
     if (recipientJson) {
         // if value parses as an array, treat as set of fbids
-        FBSBJsonParser *parser = [[[FBSBJsonParser alloc]
-                                 init]
-                                autorelease];
-        id recipients = [parser objectWithString:recipientJson];
+        id recipients = [FBUtility simpleJSONDecode:recipientJson];
 
         // if we got something usable, copy the ids out and update the cache
         if ([recipients isKindOfClass:[NSArray class]]) {
@@ -341,7 +339,7 @@ params   = _params;
         _webView.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
         [self addSubview:_webView];
 
-        UIImage* closeImage = [UIImage imageNamed:@"FacebookSDKResources.bundle/FBDialog/images/close.png"];
+        UIImage* closeImage = [FBDialogClosePNG image];
 
         UIColor* color = [UIColor colorWithRed:167.0/255 green:184.0/255 blue:216.0/255 alpha:1];
         _closeButton = [[UIButton buttonWithType:UIButtonTypeCustom] retain];
@@ -380,6 +378,7 @@ params   = _params;
 }
 
 - (void)dealloc {
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
     _webView.delegate = nil;
     [_webView release];
     [_params release];
@@ -408,8 +407,11 @@ params   = _params;
 // Display the dialog's WebView with a slick pop-up animation
 - (void)showWebView {
     UIWindow* window = [UIApplication sharedApplication].keyWindow;
-    if (!window) {
-        window = [[UIApplication sharedApplication].windows objectAtIndex:0];
+    if (window.windowLevel != UIWindowLevelNormal) {
+        for(window in [UIApplication sharedApplication].windows) {
+            if (window.windowLevel == UIWindowLevelNormal)
+                break;
+        }
     }
     _modalBackgroundView.frame = window.frame;
     [_modalBackgroundView addSubview:self];
@@ -514,7 +516,7 @@ params   = _params;
 
 - (void)deviceOrientationDidChange:(void*)object {
     UIInterfaceOrientation orientation = [UIApplication sharedApplication].statusBarOrientation;
-    if (!_showingKeyboard && [self shouldRotateToOrientation:orientation]) {
+    if ([self shouldRotateToOrientation:orientation]) {
         [self updateWebOrientation];
 
         CGFloat duration = [UIApplication sharedApplication].statusBarOrientationAnimationDuration;
@@ -617,6 +619,15 @@ params   = _params;
 }
 
 - (void)show {
+    if ([FBSettings restrictedTreatment] == FBRestrictedTreatmentYES) {
+        if ([_delegate respondsToSelector:@selector(dialog:didFailWithError:)]) {
+            NSError *error = [NSError errorWithDomain:FacebookSDKDomain
+                                                 code:FBErrorOperationDisallowedForRestrictedTreament
+                                             userInfo:nil];
+            [_delegate dialog:self didFailWithError:error];
+        }
+        return;
+    }
     [self load];
     [self sizeToFitOrientation:NO];
 
@@ -642,25 +653,39 @@ params   = _params;
 }
 
 - (void)dismissWithSuccess:(BOOL)success animated:(BOOL)animated {
-    if (success) {
-        if ([_delegate respondsToSelector:@selector(dialogDidComplete:)]) {
-            [_delegate dialogDidComplete:self];
-        }
-    } else {
-        if ([_delegate respondsToSelector:@selector(dialogDidNotComplete:)]) {
-            [_delegate dialogDidNotComplete:self];
-        }
-    }
+    // retain self for the life of this method, in case we are released by a client
+    id me = [self retain];
 
-    [self dismiss:animated];
+    @try {
+        if (success) {
+            if ([_delegate respondsToSelector:@selector(dialogDidComplete:)]) {
+                [_delegate dialogDidComplete:self];
+            }
+        } else {
+            if ([_delegate respondsToSelector:@selector(dialogDidNotComplete:)]) {
+                [_delegate dialogDidNotComplete:self];
+            }
+        }
+
+        [self dismiss:animated];
+    } @finally {
+        [me release];
+    }
 }
 
 - (void)dismissWithError:(NSError*)error animated:(BOOL)animated {
-    if ([_delegate respondsToSelector:@selector(dialog:didFailWithError:)]) {
-        [_delegate dialog:self didFailWithError:error];
-    }
+    // retain self for the life of this method, in case we are released by a client
+    id me = [self retain];
 
-    [self dismiss:animated];
+    @try {
+        if ([_delegate respondsToSelector:@selector(dialog:didFailWithError:)]) {
+            [_delegate dialog:self didFailWithError:error];
+        }
+
+        [self dismiss:animated];
+    } @finally {
+        [me release];
+    }
 }
 
 - (void)dialogWillAppear {
@@ -686,10 +711,17 @@ params   = _params;
 }
 
 - (void)dialogDidCancel:(NSURL *)url {
-    if ([_delegate respondsToSelector:@selector(dialogDidNotCompleteWithUrl:)]) {
-        [_delegate dialogDidNotCompleteWithUrl:url];
+    // retain self for the life of this method, in case we are released by a client
+    id me = [self retain];
+
+    @try {
+        if ([_delegate respondsToSelector:@selector(dialogDidNotCompleteWithUrl:)]) {
+            [_delegate dialogDidNotCompleteWithUrl:url];
+        }
+        [self dismissWithSuccess:NO animated:YES];
+    } @finally {
+        [me release];
     }
-    [self dismissWithSuccess:NO animated:YES];
 }
 
 @end

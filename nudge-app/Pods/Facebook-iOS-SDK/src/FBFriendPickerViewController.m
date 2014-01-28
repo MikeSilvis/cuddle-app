@@ -1,12 +1,12 @@
 /*
- * Copyright 2012 Facebook
+ * Copyright 2010-present Facebook.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
  *
  *    http://www.apache.org/licenses/LICENSE-2.0
-
+ *
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -14,24 +14,25 @@
  * limitations under the License.
  */
 
-#import "FBError.h"
 #import "FBFriendPickerViewController.h"
 #import "FBFriendPickerViewController+Internal.h"
+
+#import "FBAppEvents+Internal.h"
+#import "FBError.h"
 #import "FBFriendPickerCacheDescriptor.h"
+#import "FBFriendPickerViewDefaultPNG.h"
 #import "FBGraphObjectPagingLoader.h"
+#import "FBGraphObjectTableCell.h"
 #import "FBGraphObjectTableDataSource.h"
 #import "FBGraphObjectTableSelection.h"
-#import "FBGraphObjectTableCell.h"
-#import "FBInsights+Internal.h"
 #import "FBLogger.h"
 #import "FBRequest.h"
 #import "FBRequestConnection.h"
-#import "FBUtility.h"
 #import "FBSession+Internal.h"
 #import "FBSettings.h"
+#import "FBUtility.h"
 
 NSString *const FBFriendPickerCacheIdentity = @"FBFriendPicker";
-static NSString *defaultImageName = @"FacebookSDKResources.bundle/FBFriendPickerView/images/default.png";
 
 int const FBRefreshCacheDelaySeconds = 2;
 
@@ -106,7 +107,7 @@ int const FBRefreshCacheDelaySeconds = 2;
     FBGraphObjectTableDataSource *dataSource = [[[FBGraphObjectTableDataSource alloc]
                                                  init]
                                                 autorelease];
-    dataSource.defaultPicture = [UIImage imageNamed:defaultImageName];
+    dataSource.defaultPicture = [FBFriendPickerViewDefaultPNG image];
     dataSource.controllerDelegate = self;
     dataSource.itemTitleSuffixEnabled = YES;
 
@@ -177,7 +178,20 @@ int const FBRefreshCacheDelaySeconds = 2;
 }
 
 - (NSArray *)selection {
-    return self.selectionManager.selection;
+    // There might be bogus items set via setSelection, so we need to check against
+    // datasource and filter them out.
+    NSMutableArray* validSelection = [[[NSMutableArray alloc] init] autorelease];
+    for (FBGraphObject *item in self.selectionManager.selection) {
+        NSIndexPath* indexPath = [self.dataSource indexPathForItem:item];
+        if (indexPath != nil) {
+            [validSelection addObject:item];
+        }
+    }
+    return validSelection;
+}
+
+- (void)setSelection:(NSArray *)selection {
+    [self.selectionManager selectItem:selection tableView:self.tableView];
 }
 
 // We don't really need to store session, let the loader hold it.
@@ -392,12 +406,12 @@ int const FBRefreshCacheDelaySeconds = 2;
     [self.spinner startAnimating];
 }
 
-- (void)logInsights:(BOOL)cancelled {
-    [FBInsights logImplicitEvent:FBInsightsEventNameFriendPickerUsage
-                      valueToSum:1.0
-                      parameters:@{ FBInsightsEventParameterDialogOutcome : (cancelled
-                                                                             ? FBInsightsDialogOutcomeValue_Cancelled
-                                                                             : FBInsightsDialogOutcomeValue_Completed),
+- (void)logAppEvents:(BOOL)cancelled {
+    [FBAppEvents logImplicitEvent:FBAppEventNameFriendPickerUsage
+                      valueToSum:nil
+                      parameters:@{ FBAppEventParameterDialogOutcome : (cancelled
+                                                                             ? FBAppEventsDialogOutcomeValue_Cancelled
+                                                                             : FBAppEventsDialogOutcomeValue_Completed),
                                     @"num_friends_picked" : [NSNumber numberWithUnsignedInteger:self.selection.count]
                                   }
                          session:self.session];

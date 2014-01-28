@@ -1,12 +1,12 @@
 /*
- * Copyright 2010 Facebook
+ * Copyright 2010-present Facebook.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
  *
  *    http://www.apache.org/licenses/LICENSE-2.0
-
+ *
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -15,10 +15,13 @@
  */
 
 #import "FBProfilePictureView.h"
-#import "FBURLConnection.h"
+
+#import "FBProfilePictureViewBlankProfilePortraitPNG.h"
+#import "FBProfilePictureViewBlankProfileSquarePNG.h"
 #import "FBRequest.h"
-#import "FBUtility.h"
 #import "FBSDKVersion.h"
+#import "FBURLConnection.h"
+#import "FBUtility.h"
 
 @interface FBProfilePictureView()
 
@@ -168,7 +171,7 @@
 
         NSString *template = @"%@/%@/picture?%@";
         NSString *urlString = [NSString stringWithFormat:template,
-                               FBGraphBasePath,
+                               [FBUtility buildFacebookUrlWithPre:@"https://graph."],
                                self.profileID,
                                newImageQueryParamString];
         NSURL *url = [NSURL URLWithString:urlString];
@@ -179,12 +182,9 @@
     } else {
         BOOL isSquare = (self.pictureCropping == FBProfilePictureCroppingSquare);
 
-        NSString *blankImageName =
-            [NSString
-                stringWithFormat:@"FacebookSDKResources.bundle/FBProfilePictureView/images/fb_blank_profile_%@.png",
-                isSquare ? @"square" : @"portrait"];
-
-        self.imageView.image = [UIImage imageNamed:blankImageName];
+        self.imageView.image = isSquare ?
+            [FBProfilePictureViewBlankProfileSquarePNG image] :
+            [FBProfilePictureViewBlankProfilePortraitPNG image];
         [self ensureImageViewContentMode];
     }
 
@@ -233,5 +233,8 @@
     [super layoutSubviews];
 }
 
+- (CGSize)intrinsicContentSize {
+    return self.bounds.size;
+}
 
 @end

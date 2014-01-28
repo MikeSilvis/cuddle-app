@@ -1,5 +1,5 @@
 /*
- * Copyright 2012 Facebook
+ * Copyright 2010-present Facebook.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -15,10 +15,11 @@
  */
 
 #import "FBPlacePickerCacheDescriptor.h"
-#import "FBGraphObjectTableDataSource.h"
+
 #import "FBGraphObjectPagingLoader.h"
-#import "FBPlacePickerViewController.h"
+#import "FBGraphObjectTableDataSource.h"
 #import "FBPlacePickerViewController+Internal.h"
+#import "FBPlacePickerViewController.h"
 
 @interface FBPlacePickerCacheDescriptor () <FBGraphObjectPagingLoaderDelegate>
 

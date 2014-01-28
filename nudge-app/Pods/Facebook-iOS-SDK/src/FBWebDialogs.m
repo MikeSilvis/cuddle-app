@@ -1,12 +1,12 @@
 /*
- * Copyright 2013 Facebook
+ * Copyright 2010-present Facebook.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
  *
  *    http://www.apache.org/licenses/LICENSE-2.0
-
+ *
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -14,20 +14,21 @@
  * limitations under the License.
  */
 
+#import "FBWebDialogs.h"
+
 #import <Social/Social.h>
 
-#import "FBSession+Internal.h"
 #import "FBAccessTokenData.h"
-#import "FBWebDialogs.h"
-#import "FBUtility.h"
 #import "FBDialog.h"
-#import "FBSDKVersion.h"
-#import "FBViewController+Internal.h"
 #import "FBFrictionlessDialogSupportDelegate.h"
-#import "FBFrictionlessRequestSettings.h"
 #import "FBFrictionlessRecipientCache.h"
-
-static NSString* dialogBaseURL = @"https://m." FB_BASE_URL "/dialog/";
+#import "FBFrictionlessRequestSettings.h"
+#import "FBLogger.h"
+#import "FBSession+Internal.h"
+#import "FBSettings.h"
+#import "FBUtility.h"
+#import "FBViewController+Internal.h"
+#import "FacebookSDK.h"
 
 // this is an implementation detail class which acts
 // as the delegate in or to map to a block
@@ -65,7 +66,10 @@ static NSString* dialogBaseURL = @"https://m." FB_BASE_URL "/dialog/";
 
 - (void)dealloc {
     self.handler = nil;
-    self.dialog = nil;
+    if (self.dialog) {
+        self.dialog.delegate = nil;
+        self.dialog = nil;
+    }
     self.dialogMethod = nil;
     self.parameters = nil;
     self.session = nil;
@@ -73,6 +77,11 @@ static NSString* dialogBaseURL = @"https://m." FB_BASE_URL "/dialog/";
     [super dealloc];
 }
 
+// The SDK 3.* and greater maintains compatibility with the 2.0 SDKs, in order to simplify migration
+// for customers moving to 3.*. Due to this, there are a few ugly bits where we have to hack to keep
+// the legacy code working, without letting its anti-patterns bleed into the newer (and hopefully
+// cleaner) 3.* API, and customer app. The self-retention madness in this class is an example of this.
+// So without further ado...
 - (void)goRetainYourself {
     if (!_isSelfRetained) {
         [self retain];
@@ -83,7 +92,10 @@ static NSString* dialogBaseURL = @"https://m." FB_BASE_URL "/dialog/";
 - (void)releaseSelfIfNeeded {
     self.handler = nil; // insurance
     self.delegate = nil; // insurance
-    self.dialog = nil;
+    if (self.dialog) {
+        self.dialog.delegate = nil;
+        self.dialog = nil;
+    }
     if (_isSelfRetained) {
         [self autorelease];
         _isSelfRetained = NO;
@@ -184,7 +196,7 @@ static NSString* dialogBaseURL = @"https://m." FB_BASE_URL "/dialog/";
                                 handler:(FBWebDialogHandler)handler
                                delegate:(id<FBWebDialogsDelegate>)delegate {
 
-    NSString *dialogURL = [dialogBaseURL stringByAppendingString:dialog];
+    NSString *dialogURL = [[FBUtility dialogBaseURL] stringByAppendingString:dialog];
 
     NSMutableDictionary *parametersImpl = [NSMutableDictionary dictionary];
 
@@ -192,6 +204,7 @@ static NSString* dialogBaseURL = @"https://m." FB_BASE_URL "/dialog/";
     [parametersImpl setObject:@"touch" forKey:@"display"];
     [parametersImpl setObject:FB_IOS_SDK_VERSION_STRING forKey:@"sdk"];
     [parametersImpl setObject:@"fbconnect://success" forKey:@"redirect_uri"];
+    [parametersImpl setObject:[FBSettings defaultAppID] ? : @"" forKey:@"app_id"];
 
     // then roll in developer provided parameters
     if (parameters) {
@@ -207,10 +220,16 @@ static NSString* dialogBaseURL = @"https://m." FB_BASE_URL "/dialog/";
     // caller must pass parameters to meet the requirements of the dialog
     if (session) {
         // set access_token and app_id
-        [parametersImpl setValue:session.accessTokenData.accessToken ? : @""
+        [parametersImpl setObject:session.accessTokenData.accessToken ? : @""
                           forKey:@"access_token"];
         [parametersImpl setObject:session.appID ? : @""
                            forKey:@"app_id"];
+    }
+
+    NSString *app_id = [parametersImpl objectForKey:@"app_id"];
+    if ([app_id length] == 0) {
+        [FBLogger singleShotLogEntry:FBLoggingBehaviorDeveloperErrors
+                            logEntry:@"You must specify an app_id via an FBSession, the parameters, or the plist"];
     }
 
     BOOL isViewInvisible = NO;

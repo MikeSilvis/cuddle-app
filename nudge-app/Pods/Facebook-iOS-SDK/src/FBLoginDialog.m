@@ -1,12 +1,12 @@
 /*
- * Copyright 2010 Facebook
+ * Copyright 2010-present Facebook.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
  *
  *    http://www.apache.org/licenses/LICENSE-2.0
-
+ *
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -14,8 +14,10 @@
  * limitations under the License.
  */
 
-#import "FBDialog.h"
 #import "FBLoginDialog.h"
+
+#import "FBDialog.h"
+#import "FBUtility.h"
 
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 
@@ -63,8 +65,9 @@
         [self dialogDidCancel:url];
         [self dismissWithSuccess:NO animated:YES];
     } else {
-        if ([_loginDelegate respondsToSelector:@selector(fbDialogLogin:expirationDate:)]) {
-            [_loginDelegate fbDialogLogin:token expirationDate:expirationDate];
+        NSDictionary *params = [FBUtility queryParamsDictionaryFromFBURL:url];
+        if ([_loginDelegate respondsToSelector:@selector(fbDialogLogin:expirationDate:params:)]) {
+            [_loginDelegate fbDialogLogin:token expirationDate:expirationDate params:params];
         }
         [self dismissWithSuccess:YES animated:YES];
     }

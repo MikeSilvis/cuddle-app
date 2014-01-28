@@ -1,12 +1,12 @@
 /*
- * Copyright 2010 Facebook
+ * Copyright 2010-present Facebook.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
  *
  *    http://www.apache.org/licenses/LICENSE-2.0
-
+ *
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -48,7 +48,7 @@
 
 // Append string, or key/value pair
 - (void)appendString:(NSString *)string;
-- (void)appendFormat:(NSString *)formatString, ...;
+- (void)appendFormat:(NSString *)formatString, ... NS_FORMAT_FUNCTION(1,2);
 - (void)appendKey:(NSString *)key value:(NSString *)value;
 
 // Emit log, clearing out the logger contents.
@@ -68,11 +68,11 @@
                   logEntry:(NSString *)logEntry;
 
 + (void)singleShotLogEntry:(NSString *)loggingBehavior
-              formatString:(NSString *)formatString, ...;
+              formatString:(NSString *)formatString, ... NS_FORMAT_FUNCTION(2,3);
 
 + (void)singleShotLogEntry:(NSString *)loggingBehavior
               timestampTag:(NSObject *)timestampTag
-              formatString:(NSString *)formatString, ...;
+              formatString:(NSString *)formatString, ... NS_FORMAT_FUNCTION(3,4);
 
 // Register a timestamp label with the "current" time, to then be retrieved by singleShotLogEntry
 // to include a duration.

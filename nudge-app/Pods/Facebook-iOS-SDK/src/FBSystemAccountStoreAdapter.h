@@ -1,5 +1,5 @@
 /*
- * Copyright 2012 Facebook
+ * Copyright 2010-present Facebook.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -14,9 +14,12 @@
  * limitations under the License.
  */
 
-#import <Foundation/Foundation.h>
 #import <Accounts/Accounts.h>
+#import <Foundation/Foundation.h>
+
 #import "FBSession+Internal.h"
+#import "FBTask.h"
+#import "FBTaskCompletionSource.h"
 
 typedef void (^FBRequestAccessToAccountsHandler)(NSString* oauthToken, NSError *accountStoreError);
 
@@ -27,13 +30,6 @@ typedef void (^FBRequestAccessToAccountsHandler)(NSString* oauthToken, NSError *
   consumption. If publicized, consider moving declarations to an internal only header.
 */
 @interface FBSystemAccountStoreAdapter : NSObject
-
-/*
- @abstract A convenience overload to default various parameters based on the provided session,
-  typically only for requesting a new token for the provided session.
-*/
-- (void)requestAccessToFacebookAccountStore:(FBSession *)session
-                                    handler:(FBRequestAccessToAccountsHandler)handler;
 
 /*
  @abstract
@@ -51,7 +47,15 @@ typedef void (^FBRequestAccessToAccountsHandler)(NSString* oauthToken, NSError *
                                       appID:(NSString *)appID
                                     session:(FBSession *)session
                                     handler:(FBRequestAccessToAccountsHandler)handler;
+/*!
+ @abstract Same as `renewSystemAuthorization:` but represented as `FBTask`.
+*/
+- (FBTask *)renewSystemAuthorizationAsTask;
 
+/*!
+ @abstract Same as `requestAccessToFacebookAccountStore:handler:` but represented as `FBTask`
+*/
+- (FBTask *)requestAccessToFacebookAccountStoreAsTask:(FBSession *)session;
 /*
  @abstract Sends a message to the device account store to renew the Facebook account credentials
 
