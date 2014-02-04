@@ -15,5 +15,5 @@
 @property (weak, nonatomic) IBOutlet UIPageControl *pageControl;
 - (IBAction)pageChanged:(id)sender;
 @property (nonatomic, assign) BOOL pageControlBeingUsed;
-
+- (void)addScrollViewImages;
 @end

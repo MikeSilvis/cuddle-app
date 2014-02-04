@@ -11,8 +11,4 @@
 
 @implementation User
 
-//+ (NSString *)parseClassName {
-//  return @"User";
-//}
-
 @end

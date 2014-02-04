@@ -20,14 +20,24 @@
   [self.navigationController setNavigationBarHidden:YES];  
 	pageControlBeingUsed = NO;
   self.scrollView.frame = self.view.bounds;
-  self.view.backgroundColor = [UIColor colorWithPatternImage: [UIImage imageNamed:@"welcome-background.png"]];
+
+//  self.view.backgroundColor = [UIColor colorWithPatternImage: [UIImage imageNamed:@"welcome-background.png"]];
+  
+  [self addScrollViewImages];
+
+}
+- (void)addScrollViewImages {
   
   UIImageView *firstImage   = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"import.png"]];
   UIImageView *secondImage  = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"register.png"]];
   UIImageView *thirdImage   = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"reminder.png"]];
   UIImageView *fourthImage  = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"final.png"]];
-
+  
   NSArray *images = [NSArray arrayWithObjects:firstImage, secondImage, thirdImage, fourthImage, nil];
+  
+  NSLog(@"hello");
+  NSLog(@"%f", self.scrollView.frame.size.height);
+  
   for (int i =0; i < images.count; i++) {
 		CGRect frame;
 		frame.origin.x = self.scrollView.frame.size.width * i;
@@ -52,7 +62,7 @@
 }
 - (void)scrollViewDidScroll:(UIScrollView *)sender {
 	if (!pageControlBeingUsed) {
-		// Switch the indicator when more than 50% of the previous/next page is visible
+
 		CGFloat pageWidth = self.scrollView.frame.size.width;
 		int page = floor((self.scrollView.contentOffset.x - pageWidth / 2) / pageWidth) + 1;
 		self.pageControl.currentPage = page;
