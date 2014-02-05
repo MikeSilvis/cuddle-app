@@ -10,7 +10,6 @@
 
 @implementation FrequencyPickerController
 - (void)viewDidLoad{
-  self.view.backgroundColor = [UIColor colorWithPatternImage: [UIImage imageNamed:@"background.png"]];
   self.navigationItem.hidesBackButton = YES;
   self.navigationItem.titleView = [self titleView];
   NSArray *arrayToLoadPicker = [[NSArray alloc] initWithObjects:@"Weekly",@"Biweekly",@"Monthly",@"Never", nil];

@@ -16,7 +16,7 @@
   [super viewDidLoad];
 	[self userCheck];
   [self.navigationController setNavigationBarHidden:YES];  
-	_pageControlBeingUsed = NO;
+	self.pageControlBeingUsed = NO;
   self.scrollView.frame = self.view.bounds;
 
   self.view.backgroundColor = [UIColor colorWithPatternImage: [UIImage imageNamed:@"welcome-background.png"]];
@@ -56,7 +56,7 @@
   }
 }
 - (void)scrollViewDidScroll:(UIScrollView *)sender {
-	if (!_pageControlBeingUsed) {
+	if (!self.pageControlBeingUsed) {
 
 		CGFloat pageWidth = self.scrollView.frame.size.width;
 		int page = floor((self.scrollView.contentOffset.x - pageWidth / 2) / pageWidth) + 1;
@@ -65,19 +65,19 @@
 }
 
 - (void)scrollViewWillBeginDragging:(UIScrollView *)currentScrollView {
-	_pageControlBeingUsed = NO;
+	self.pageControlBeingUsed = NO;
 }
 
 - (void)scrollViewDidEndDecelerating:(UIScrollView *)currentScrollView {
-	_pageControlBeingUsed = NO;
+	self.pageControlBeingUsed = NO;
   CGFloat pageWidth = currentScrollView.frame.size.width;
   float fractionalPage = currentScrollView.contentOffset.x / pageWidth;
   NSInteger page = lround(fractionalPage);
   if (page == 3){
-    CGRect frame = _scrollView.frame;
+    CGRect frame = self.scrollView.frame;
     frame.origin.x = frame.size.width * 2;
     frame.origin.y = 0;
-    [_scrollView scrollRectToVisible:frame animated:YES];
+    [self.scrollView scrollRectToVisible:frame animated:YES];
     [self performSegueWithIdentifier:@"registerSegue" sender:self];
   }
 }
@@ -88,6 +88,6 @@
 	frame.origin.y = 0;
 	frame.size = self.scrollView.frame.size;
 	[self.scrollView scrollRectToVisible:frame animated:YES];
-	_pageControlBeingUsed = YES;
+	self.pageControlBeingUsed = YES;
 }
 @end

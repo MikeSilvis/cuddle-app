@@ -7,7 +7,7 @@
         <!--Welcome Controller - Welcome-->
         <scene sceneID="pkK-7M-uAi">
             <objects>
-                <viewController title="Welcome" id="h2x-IE-8pD" customClass="WelcomeController" sceneMemberID="viewController">
+                <viewController title="Welcome" automaticallyAdjustsScrollViewInsets="NO" id="h2x-IE-8pD" customClass="WelcomeController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="MFy-R1-aTl"/>
                         <viewControllerLayoutGuide type="bottom" id="VcL-I6-Lrl"/>
@@ -68,48 +68,34 @@
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="IEP-vB-Y1L">
-                                <rect key="frame" x="20" y="207" width="280" height="50"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="50" id="sFg-o9-6ul"/>
-                                </constraints>
-                                <fontDescription key="fontDescription" name="AvenirNext-Heavy" family="Avenir Next" pointSize="15"/>
-                                <state key="normal" title="Login" backgroundImage="ipad-button-blue.png">
-                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="IEP-vB-Y1L">
+                                <rect key="frame" x="0.0" y="355.5" width="320" height="50"/>
+                                <fontDescription key="fontDescription" name="AvenirNext-Medium" family="Avenir Next" pointSize="15"/>
+                                <state key="normal" title="Login">
                                     <color key="titleShadowColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
                                     <action selector="login:" destination="2" eventType="touchUpInside" id="p0S-0x-m7B"/>
                                 </connections>
                             </button>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Email" textAlignment="center" minimumFontSize="17" background="ipad-text-input.png" translatesAutoresizingMaskIntoConstraints="NO" id="5Mh-Oj-KiN">
-                                <rect key="frame" x="20" y="82" width="280" height="50"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="50" id="3Az-ze-ech"/>
-                                </constraints>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Email" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="5Mh-Oj-KiN">
+                                <rect key="frame" x="0.0" y="235" width="320" height="50"/>
                                 <fontDescription key="fontDescription" name="AvenirNextCondensed-Medium" family="Avenir Next Condensed" pointSize="20"/>
                                 <textInputTraits key="textInputTraits" keyboardType="emailAddress" returnKeyType="next"/>
                                 <connections>
                                     <action selector="editingEmailField:" destination="2" eventType="editingDidBegin" id="grq-D8-qeD"/>
                                 </connections>
                             </textField>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Password" textAlignment="center" minimumFontSize="17" background="ipad-text-input.png" translatesAutoresizingMaskIntoConstraints="NO" id="rOq-ji-7M9">
-                                <rect key="frame" x="20" y="140" width="280" height="50"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="50" id="MhW-65-4dD"/>
-                                </constraints>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Password" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="rOq-ji-7M9">
+                                <rect key="frame" x="0.0" y="289" width="320" height="50"/>
                                 <fontDescription key="fontDescription" name="AvenirNextCondensed-Medium" family="Avenir Next Condensed" pointSize="20"/>
                                 <textInputTraits key="textInputTraits" returnKeyType="go" secureTextEntry="YES"/>
                                 <connections>
                                     <action selector="editingPasswordField:" destination="2" eventType="editingDidBegin" id="rNv-EN-X3V"/>
                                 </connections>
                             </textField>
-                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Nice to see you again." lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bC1-XY-2Le">
-                                <rect key="frame" x="46" y="30" width="249" height="28"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="28" id="9rA-3n-qZf"/>
-                                    <constraint firstAttribute="width" constant="249" id="kdD-iw-5ZD"/>
-                                </constraints>
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" fixedFrame="YES" text="Nice to see you again." textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bC1-XY-2Le">
+                                <rect key="frame" x="0.0" y="119.5" width="320" height="28"/>
                                 <fontDescription key="fontDescription" name="Avenir-Medium" family="Avenir" pointSize="24"/>
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <nil key="highlightedColor"/>
@@ -117,19 +103,6 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <gestureRecognizers/>
-                        <constraints>
-                            <constraint firstItem="5Mh-Oj-KiN" firstAttribute="top" secondItem="3" secondAttribute="top" constant="82" id="74U-1J-5za"/>
-                            <constraint firstItem="IEP-vB-Y1L" firstAttribute="top" secondItem="3" secondAttribute="top" constant="207" id="8xA-rX-9qv"/>
-                            <constraint firstAttribute="trailing" secondItem="IEP-vB-Y1L" secondAttribute="trailing" constant="20" symbolic="YES" id="MS7-lI-gCd"/>
-                            <constraint firstItem="bC1-XY-2Le" firstAttribute="leading" secondItem="3" secondAttribute="leading" constant="46" id="TZu-kG-JeK"/>
-                            <constraint firstAttribute="trailing" secondItem="rOq-ji-7M9" secondAttribute="trailing" constant="20" symbolic="YES" id="Xx5-qt-lYf"/>
-                            <constraint firstItem="rOq-ji-7M9" firstAttribute="leading" secondItem="3" secondAttribute="leading" constant="20" symbolic="YES" id="cek-wa-AgU"/>
-                            <constraint firstItem="rOq-ji-7M9" firstAttribute="top" secondItem="5Mh-Oj-KiN" secondAttribute="bottom" constant="8" symbolic="YES" id="dz0-AP-zys"/>
-                            <constraint firstItem="bC1-XY-2Le" firstAttribute="top" secondItem="3" secondAttribute="top" constant="30" id="kEw-jT-eKX"/>
-                            <constraint firstItem="5Mh-Oj-KiN" firstAttribute="leading" secondItem="3" secondAttribute="leading" constant="20" symbolic="YES" id="kj3-d6-zUf"/>
-                            <constraint firstAttribute="trailing" secondItem="5Mh-Oj-KiN" secondAttribute="trailing" constant="20" symbolic="YES" id="sQb-RX-NlX"/>
-                            <constraint firstItem="IEP-vB-Y1L" firstAttribute="leading" secondItem="3" secondAttribute="leading" constant="20" symbolic="YES" id="uG7-di-VTY"/>
-                        </constraints>
                         <connections>
                             <outletCollection property="gestureRecognizers" destination="OQX-vA-7DO" appends="YES" id="Q9q-pQ-0LX"/>
                         </connections>
@@ -166,11 +139,9 @@
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="irt-8E-uoQ">
-                                <rect key="frame" x="20" y="207" width="280" height="50"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="50" id="qdF-ET-MAd"/>
-                                </constraints>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="irt-8E-uoQ">
+                                <rect key="frame" x="0.0" y="355.5" width="320" height="50"/>
+                                <fontDescription key="fontDescription" name="AvenirNext-Medium" family="Avenir Next" pointSize="15"/>
                                 <state key="normal" title="Sign Up">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
@@ -178,48 +149,36 @@
                                     <action selector="registerUserButton:" destination="kDV-Vv-6JX" eventType="touchUpInside" id="Tpu-Ih-bTe"/>
                                 </connections>
                             </button>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Email" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="KdB-Aj-4Mx">
-                                <rect key="frame" x="20" y="82" width="280" height="50"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="50" id="Foa-HQ-39j"/>
-                                </constraints>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Email" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="KdB-Aj-4Mx">
+                                <rect key="frame" x="0.0" y="233" width="320" height="30"/>
                                 <fontDescription key="fontDescription" name="AvenirNextCondensed-Medium" family="Avenir Next Condensed" pointSize="20"/>
                                 <textInputTraits key="textInputTraits" autocorrectionType="no" keyboardType="emailAddress" returnKeyType="next"/>
                                 <connections>
                                     <action selector="editingEmailField:" destination="kDV-Vv-6JX" eventType="editingDidBegin" id="qEy-nI-SF5"/>
                                 </connections>
                             </textField>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Password" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="bcV-cF-oB4">
-                                <rect key="frame" x="20" y="140" width="280" height="50"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="50" id="Nux-Hl-xk4"/>
-                                </constraints>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Password" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="bcV-cF-oB4">
+                                <rect key="frame" x="0.0" y="289" width="320" height="50"/>
                                 <fontDescription key="fontDescription" name="AvenirNextCondensed-Medium" family="Avenir Next Condensed" pointSize="20"/>
                                 <textInputTraits key="textInputTraits" autocorrectionType="no" returnKeyType="join" secureTextEntry="YES"/>
                                 <connections>
                                     <action selector="editingPasswordField:" destination="kDV-Vv-6JX" eventType="editingDidBegin" id="rl9-tt-e20"/>
                                 </connections>
                             </textField>
-                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Never drift apart again." lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="T0x-KA-F6C">
-                                <rect key="frame" x="32" y="25" width="256" height="33"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" constant="256" id="Uo7-oj-6OY"/>
-                                </constraints>
-                                <fontDescription key="fontDescription" name="Avenir-Oblique" family="Avenir" pointSize="24"/>
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" fixedFrame="YES" text="Never drift apart again." textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="T0x-KA-F6C">
+                                <rect key="frame" x="0.0" y="119.5" width="325" height="33"/>
+                                <fontDescription key="fontDescription" name="Avenir-Medium" family="Avenir" pointSize="24"/>
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Already have an account?" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="v0W-L7-Gw8">
-                                <rect key="frame" x="67" y="493" width="186" height="22"/>
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" fixedFrame="YES" text="Already have an account?" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="v0W-L7-Gw8">
+                                <rect key="frame" x="0.0" y="493" width="320" height="22"/>
                                 <fontDescription key="fontDescription" name="Avenir-Medium" family="Avenir" pointSize="16"/>
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="9oQ-a7-jka">
-                                <rect key="frame" x="20" y="515" width="280" height="44"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="44" id="v4O-YQ-1Tm"/>
-                                </constraints>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="9oQ-a7-jka">
+                                <rect key="frame" x="0.0" y="515" width="320" height="44"/>
                                 <state key="normal" title="Login">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
@@ -230,24 +189,6 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <gestureRecognizers/>
-                        <constraints>
-                            <constraint firstItem="v0W-L7-Gw8" firstAttribute="centerX" secondItem="irt-8E-uoQ" secondAttribute="centerX" id="9Dp-nm-hdH"/>
-                            <constraint firstAttribute="trailing" secondItem="bcV-cF-oB4" secondAttribute="trailing" constant="20" symbolic="YES" id="JAS-d7-aZm"/>
-                            <constraint firstItem="T0x-KA-F6C" firstAttribute="centerX" secondItem="KdB-Aj-4Mx" secondAttribute="centerX" id="MVz-bh-c7C"/>
-                            <constraint firstItem="T0x-KA-F6C" firstAttribute="top" secondItem="IYM-Pm-Gia" secondAttribute="top" constant="25" id="MxX-ph-EvJ"/>
-                            <constraint firstItem="v0W-L7-Gw8" firstAttribute="centerX" secondItem="9oQ-a7-jka" secondAttribute="centerX" id="OhO-PD-Oyi"/>
-                            <constraint firstItem="irt-8E-uoQ" firstAttribute="leading" secondItem="IYM-Pm-Gia" secondAttribute="leading" constant="20" symbolic="YES" id="UU2-g0-ruD"/>
-                            <constraint firstAttribute="bottom" secondItem="v0W-L7-Gw8" secondAttribute="bottom" constant="53" id="UUj-l6-faU"/>
-                            <constraint firstAttribute="trailing" secondItem="KdB-Aj-4Mx" secondAttribute="trailing" constant="20" symbolic="YES" id="cDg-aN-B0c"/>
-                            <constraint firstItem="bcV-cF-oB4" firstAttribute="top" secondItem="KdB-Aj-4Mx" secondAttribute="bottom" constant="8" symbolic="YES" id="cPm-8y-CCv"/>
-                            <constraint firstItem="bcV-cF-oB4" firstAttribute="leading" secondItem="IYM-Pm-Gia" secondAttribute="leading" constant="20" symbolic="YES" id="ccZ-ZB-WP0"/>
-                            <constraint firstItem="KdB-Aj-4Mx" firstAttribute="top" secondItem="IYM-Pm-Gia" secondAttribute="top" constant="82" id="dw5-4S-Keh"/>
-                            <constraint firstAttribute="trailing" secondItem="irt-8E-uoQ" secondAttribute="trailing" constant="20" symbolic="YES" id="eGv-s2-n58"/>
-                            <constraint firstItem="KdB-Aj-4Mx" firstAttribute="leading" secondItem="IYM-Pm-Gia" secondAttribute="leading" constant="20" symbolic="YES" id="rRs-JG-tPp"/>
-                            <constraint firstItem="irt-8E-uoQ" firstAttribute="top" secondItem="IYM-Pm-Gia" secondAttribute="top" constant="207" id="saP-z6-E7e"/>
-                            <constraint firstAttribute="trailing" secondItem="9oQ-a7-jka" secondAttribute="trailing" constant="20" symbolic="YES" id="uaX-Qk-z0o"/>
-                            <constraint firstAttribute="bottom" secondItem="9oQ-a7-jka" secondAttribute="bottom" constant="9" id="yIy-xb-u5B"/>
-                        </constraints>
                         <connections>
                             <outletCollection property="gestureRecognizers" destination="dtD-Vp-ubq" appends="YES" id="rck-vC-1YL"/>
                         </connections>
@@ -779,9 +720,7 @@
         <image name="contact_without_image.png" width="70" height="70"/>
         <image name="email.png" width="24" height="24"/>
         <image name="header.png" width="320" height="150"/>
-        <image name="ipad-button-blue.png" width="157" height="49"/>
         <image name="ipad-list-item-selected.png" width="319" height="67"/>
-        <image name="ipad-text-input.png" width="327" height="41"/>
         <image name="list-item-bg.png" width="320" height="67"/>
         <image name="lonely.png" width="320" height="568"/>
         <image name="phone-gray.png" width="24" height="24"/>

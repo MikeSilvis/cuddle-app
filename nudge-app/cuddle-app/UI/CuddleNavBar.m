@@ -10,10 +10,7 @@
 
 @implementation CuddleNavBar 
 + (void)initialize {
-    UIImage *backButton = [[UIImage imageNamed:@"back.png"] resizableImageWithCapInsets:UIEdgeInsetsMake(0, 14, 0, 4)];
-    
-    [[UIBarButtonItem appearance] setBackButtonBackgroundImage:backButton forState:UIControlStateNormal
-                                                    barMetrics:UIBarMetricsDefault];
+  [[UIBarButtonItem appearance] setTintColor:[UIColor whiteColor]];
 }
 
 - (id)initWithFrame:(CGRect)frame {
@@ -32,20 +29,10 @@
     return self;
 }
 - (void)customize {
-//  [[UINavigationBar appearance] setBarTintColor: Rgb2UIColor(160, 97, 5)];
-//  [[UINavigationBar appearance] setBarTintColor:UIColorFromRGB(0x067AB5)];
+
   [[UINavigationBar appearance] setBackgroundImage:[UIImage imageNamed:@"menubar.png"] forBarMetrics:UIBarMetricsDefault];
-
-
-
-//    UIImage *navBarBg = [UIImage imageNamed:@"menubar.png"];
-//    [[UINavigationBar appearance] setBackgroundImage:navBarBg forBarMetrics:UIBarMetricsDefault];
-    UIImage *barButton = [[UIImage imageNamed:@"menubar-button.png"] resizableImageWithCapInsets:UIEdgeInsetsMake(0, 4, 0, 4)];
-    
-    [[UIBarButtonItem appearance] setBackgroundImage:barButton forState:UIControlStateNormal
-                                          barMetrics:UIBarMetricsDefault];
   
-    [[UINavigationBar appearance] setTitleTextAttributes: [NSDictionary dictionaryWithObjectsAndKeys:
+  [[UINavigationBar appearance] setTitleTextAttributes: [NSDictionary dictionaryWithObjectsAndKeys:
       [UIColor colorWithRed:255.0/255.0 green:255.0/255.0 blue:255.0/255.0 alpha:1.0],
       NSForegroundColorAttributeName,
       [UIFont fontWithName:@"Avenir-Heavy" size:20.0],

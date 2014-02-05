@@ -24,7 +24,6 @@
 - (void)viewDidLoad{
   [super viewDidLoad];
   self.title = @"Contact History";
-  self.view.backgroundColor = [UIColor colorWithPatternImage: [UIImage imageNamed:@"background.png"]];
   
   //Add a left swipe gesture recognizer
   UISwipeGestureRecognizer *recognizer = [[UISwipeGestureRecognizer alloc] initWithTarget:self
