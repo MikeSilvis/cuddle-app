@@ -21,7 +21,7 @@
 	pageControlBeingUsed = NO;
   self.scrollView.frame = self.view.bounds;
 
-//  self.view.backgroundColor = [UIColor colorWithPatternImage: [UIImage imageNamed:@"welcome-background.png"]];
+  self.view.backgroundColor = [UIColor colorWithPatternImage: [UIImage imageNamed:@"welcome-background.png"]];
   
   [self addScrollViewImages];
 
@@ -34,9 +34,6 @@
   UIImageView *fourthImage  = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"final.png"]];
   
   NSArray *images = [NSArray arrayWithObjects:firstImage, secondImage, thirdImage, fourthImage, nil];
-  
-  NSLog(@"hello");
-  NSLog(@"%f", self.scrollView.frame.size.height);
   
   for (int i =0; i < images.count; i++) {
 		CGRect frame;
