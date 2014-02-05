@@ -15,7 +15,6 @@
     [super viewDidLoad];
     self.title = @"Register";
     [self.navigationController setNavigationBarHidden:NO];
-    self.view.backgroundColor = [UIColor colorWithPatternImage: [UIImage imageNamed:@"background.png"]];
     UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc]
                                    initWithTarget:self
                                    action:@selector(dismissKeyboard)];

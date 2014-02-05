@@ -32,8 +32,14 @@
     return self;
 }
 - (void)customize {
-    UIImage *navBarBg = [UIImage imageNamed:@"menubar.png"];
-    [[UINavigationBar appearance] setBackgroundImage:navBarBg forBarMetrics:UIBarMetricsDefault];
+//  [[UINavigationBar appearance] setBarTintColor: Rgb2UIColor(160, 97, 5)];
+//  [[UINavigationBar appearance] setBarTintColor:UIColorFromRGB(0x067AB5)];
+  [[UINavigationBar appearance] setBackgroundImage:[UIImage imageNamed:@"menubar.png"] forBarMetrics:UIBarMetricsDefault];
+
+
+
+//    UIImage *navBarBg = [UIImage imageNamed:@"menubar.png"];
+//    [[UINavigationBar appearance] setBackgroundImage:navBarBg forBarMetrics:UIBarMetricsDefault];
     UIImage *barButton = [[UIImage imageNamed:@"menubar-button.png"] resizableImageWithCapInsets:UIEdgeInsetsMake(0, 4, 0, 4)];
     
     [[UIBarButtonItem appearance] setBackgroundImage:barButton forState:UIControlStateNormal
