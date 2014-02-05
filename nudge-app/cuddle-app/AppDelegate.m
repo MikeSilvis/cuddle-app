@@ -19,6 +19,9 @@
 
   [Colleague registerSubclass];
   [User registerSubclass];
+  
+  [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleLightContent];
+
 
   [application registerForRemoteNotificationTypes:UIRemoteNotificationTypeAlert|UIRemoteNotificationTypeBadge];
   
