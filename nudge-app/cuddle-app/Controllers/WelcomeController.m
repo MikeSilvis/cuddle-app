@@ -35,7 +35,7 @@
   
   NSArray *images = [NSArray arrayWithObjects:firstImage, secondImage, thirdImage, fourthImage, nil];
   
-  for (int i =0; i < images.count; i++) {
+  for (int i = 0; i < images.count; i++) {
 		CGRect frame;
 		frame.origin.x = self.scrollView.frame.size.width * i;
 		frame.origin.y = 0;
@@ -49,6 +49,7 @@
 	self.pageControl.currentPage = 0;
 	self.pageControl.numberOfPages = images.count;
 }
+
 - (void)viewDidAppear:(BOOL)animated{
     [self.navigationController setNavigationBarHidden:YES];
 }
