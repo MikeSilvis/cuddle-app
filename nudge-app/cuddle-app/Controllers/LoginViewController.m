@@ -59,7 +59,7 @@
                                                     name:UIKeyboardWillHideNotification
                                                   object:nil];
 }
-#define kOFFSET_FOR_KEYBOARD 60.0
+#define kOFFSET_FOR_KEYBOARD 55.0
 
 -(void)keyboardWillShow {
     // Animate the current view out of the way

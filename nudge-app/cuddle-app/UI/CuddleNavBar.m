@@ -29,6 +29,7 @@
     return self;
 }
 - (void)customize {
+  [[UINavigationBar appearance] setTintColor:[UIColor whiteColor]];
 
   [[UINavigationBar appearance] setBackgroundImage:[UIImage imageNamed:@"menubar.png"] forBarMetrics:UIBarMetricsDefault];
   
