@@ -20,7 +20,6 @@
 - (id)initWithCoder:(NSCoder *)aCoder {
     self = [super initWithCoder:aCoder];
     if (self) {
-          [SVProgressHUD showWithStatus:@"Logging in..."];
         self.pullToRefreshEnabled = NO;
         self.paginationEnabled = YES;
         self.objectsPerPage = 25;
@@ -51,8 +50,8 @@
 
 - (void)viewDidLoad{
     [super viewDidLoad];
+  [SVProgressHUD showWithStatus:@"Logging in..."];
     [self.navigationController setNavigationBarHidden:NO];
-    self.view.backgroundColor = [UIColor colorWithPatternImage: [UIImage imageNamed:@"background.png"]];
     self.navigationItem.hidesBackButton = YES;
     self.navigationItem.titleView = [self titleView];
     [self savePushChannel];
