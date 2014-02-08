@@ -11,7 +11,7 @@
 
 @implementation Colleague
 
-@dynamic  user;
+@dynamic user;
 @dynamic name;
 @dynamic email;
 @dynamic photo;
@@ -80,12 +80,8 @@
   [query whereKey:@"user" equalTo:[PFUser currentUser]];
   [query whereKey:@"recordId" equalTo:self.recordId];
   [query findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
-    if (objects.count > 0){
-      NSMutableDictionary *userData = [NSMutableDictionary dictionary];
-      userData[@"contact"] = objects[0];
-      [[NSNotificationCenter defaultCenter] postNotificationName:@"ContactSaved" object:self userInfo:userData];
-    } else {
-      [self saveColleague];
+    if (objects.count == 0) {
+      self.notifiedSincePush = @YES;
     }
   }];
 }
@@ -150,10 +146,6 @@
   }
   CFRelease(addressBook);
   return nil;
-}
-- (void)saveColleague{
-    self.notifiedSincePush = @YES;
-//    [self saveEventually];
 }
 - (UIImage *) lastContactImage{
   if ([self.methodOfLastContact isEqual:@"call"]) {

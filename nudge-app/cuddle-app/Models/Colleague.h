@@ -30,7 +30,6 @@
 + (NSString *)parseClassName;
 - (UIImage *)lastContactImage;
 - (id)initWithABPerson:(ABRecordRef)abPerson;
-- (void)saveColleague;
 - (void)updateContact;
 
 @end

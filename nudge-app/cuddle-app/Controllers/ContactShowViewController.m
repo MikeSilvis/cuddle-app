@@ -18,9 +18,7 @@
     [self disableButtonsWithoutInfo];
     [self loadStyles];
     self.seeMore.hidden = YES;
-    [self queryParseHistory];
     [self loadContactPhoto];
-    [contact updateContact];
     self.navigationController.topViewController.title = contact.name;
     [[NSNotificationCenter defaultCenter] addObserver:self
                                            selector:@selector(handleOpenedFromPush:)
@@ -45,6 +43,9 @@
 - (void)checkFrequency{
   if (!contact.frequency){
     [self performSegueWithIdentifier:@"frequencyPicker" sender:self];
+  } else {
+    [self queryParseHistory];
+    [contact updateContact];
   }
 }
 - (void)loadContactPhoto{
@@ -156,6 +157,10 @@
                                                  cancelButtonTitle:@"Cancel" destructiveButtonTitle:nil otherButtonTitles:@"Called", @"Texted", @"Emailed", nil];
 	popupQuery.actionSheetStyle = UIActionSheetStyleBlackOpaque;
 	[popupQuery showInView:self.view];
+}
+
+- (IBAction)editFrequency:(id)sender {
+  [self performSegueWithIdentifier:@"frequencyPicker" sender:self];
 }
 
 -(void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex {

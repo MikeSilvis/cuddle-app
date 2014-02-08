@@ -12,7 +12,7 @@
 - (void)viewDidLoad{
   self.navigationItem.hidesBackButton = YES;
   self.navigationItem.titleView = [self titleView];
-  NSArray *arrayToLoadPicker = @[@"Weekly",@"Biweekly",@"Monthly",@"Never"];
+  NSArray *arrayToLoadPicker = @[@"Weekly",@"Biweekly",@"Monthly"];
   self.pickerViewArray = arrayToLoadPicker;
 }
 - (UIView *)titleView {
@@ -20,7 +20,7 @@
   CGFloat width = 0.95 * self.view.frame.size.width;
   UIView *containerView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, width, navBarHeight)];
   
-  UIImage *logo = [UIImage imageNamed:@"logo.png"];
+  UIImage *logo = [UIImage imageNamed:@"logo"];
   
   UIButton *logoButton = [UIButton buttonWithType:UIButtonTypeCustom];
   [logoButton setEnabled:NO];
@@ -43,8 +43,6 @@
     [self updateContactFrequency:@14];
   } else if ([frequency isEqual:@"Monthly"]){
     [self updateContactFrequency:@28];
-  } else {
-    [self updateContactFrequency:@0];
   }
   [self.navigationController popViewControllerAnimated:YES];
 }

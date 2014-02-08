@@ -26,6 +26,7 @@
 - (IBAction)textButton:(id)sender;
 - (IBAction)callButton:(id)sender;
 - (IBAction)markButton:(id)sender;
+- (IBAction)editFrequency:(id)sender;
 
 
 @property (weak, nonatomic) IBOutlet UIButton *call;
