@@ -33,7 +33,7 @@
     if (self) {
         self.user = [PFUser currentUser];
         NSInteger recordID  =  ABRecordGetRecordID(abPerson);
-        self.recordId = [NSNumber numberWithInt:recordID];
+        self.recordId = @(recordID);
         NSString *firstName = (__bridge_transfer NSString*)ABRecordCopyValue(abPerson, kABPersonFirstNameProperty);
         NSString *lastName = (__bridge_transfer NSString*)ABRecordCopyValue(abPerson, kABPersonLastNameProperty);
       
@@ -82,7 +82,7 @@
   [query findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
     if (objects.count > 0){
       NSMutableDictionary *userData = [NSMutableDictionary dictionary];
-      [userData setObject:objects[0] forKey:@"contact"];
+      userData[@"contact"] = objects[0];
       [[NSNotificationCenter defaultCenter] postNotificationName:@"ContactSaved" object:self userInfo:userData];
     } else {
       [self saveColleague];
@@ -102,7 +102,7 @@
   
   if (([[self.numbers allKeys] count] == 0) && (self.number != nil)){
     NSCharacterSet *doNotWant = [NSCharacterSet characterSetWithCharactersInString:@"() -"];
-    [self.numbers setObject:[[self.number componentsSeparatedByCharactersInSet: doNotWant] componentsJoinedByString: @""] forKey:@"mobile"];
+    (self.numbers)[@"mobile"] = [[self.number componentsSeparatedByCharactersInSet: doNotWant] componentsJoinedByString: @""];
   }
 
   if (![self.numbers isEqualToDictionary:oldNumbers]){
@@ -121,7 +121,7 @@
     CFRelease(phoneNumberRef);
     CFRelease(locLabel);
     NSString *cleanedNumber = [[phoneNumber componentsSeparatedByCharactersInSet: doNotWant] componentsJoinedByString: @""];
-    [self.numbers setObject:cleanedNumber forKey:phoneLabel];
+    (self.numbers)[phoneLabel] = cleanedNumber;
   }
 }
 - (NSNumber *)findRecordID {
@@ -134,7 +134,7 @@
 
   for ( i=0; i<[people count]; i++ )
   {
-    ABRecordRef person = (__bridge ABRecordRef)[people objectAtIndex:i];
+    ABRecordRef person = (__bridge ABRecordRef)people[i];
     ABMutableMultiValueRef phoneNumbers = ABRecordCopyValue(person, kABPersonPhoneProperty);
     CFIndex phoneNumberCount = ABMultiValueGetCount( phoneNumbers );
     
@@ -144,7 +144,7 @@
       NSString *cleanedPhoneNumber = [[phoneNumberValue componentsSeparatedByCharactersInSet: doNotWant] componentsJoinedByString: @""];
       
       if ([cleanedNumber isEqualToString:cleanedPhoneNumber]){
-        return [NSNumber numberWithInt:ABRecordGetRecordID(person)];
+        return @(ABRecordGetRecordID(person));
       }
     }
   }
@@ -152,7 +152,7 @@
   return nil;
 }
 - (void)saveColleague{
-    self.notifiedSincePush = [NSNumber numberWithBool:YES];
+    self.notifiedSincePush = @YES;
 //    [self saveEventually];
 }
 - (UIImage *) lastContactImage{

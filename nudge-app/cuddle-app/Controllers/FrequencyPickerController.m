@@ -12,7 +12,7 @@
 - (void)viewDidLoad{
   self.navigationItem.hidesBackButton = YES;
   self.navigationItem.titleView = [self titleView];
-  NSArray *arrayToLoadPicker = [[NSArray alloc] initWithObjects:@"Weekly",@"Biweekly",@"Monthly",@"Never", nil];
+  NSArray *arrayToLoadPicker = @[@"Weekly",@"Biweekly",@"Monthly",@"Never"];
   self.pickerViewArray = arrayToLoadPicker;
 }
 - (UIView *)titleView {
@@ -36,20 +36,20 @@
 }
 
 - (IBAction)saveFrequency:(id)sender {
-  NSString *frequency = [self.pickerViewArray objectAtIndex:[self.picker selectedRowInComponent:0]];
+  NSString *frequency = (self.pickerViewArray)[[self.picker selectedRowInComponent:0]];
   if ([frequency isEqual: @"Weekly"]){
-    [self updateContactFrequency:[[NSNumber alloc] initWithInt:7]];
+    [self updateContactFrequency:@7];
   } else if ([frequency isEqual: @"Biweekly"]){
-    [self updateContactFrequency:[[NSNumber alloc] initWithInt:14]];
+    [self updateContactFrequency:@14];
   } else if ([frequency isEqual:@"Monthly"]){
-    [self updateContactFrequency:[[NSNumber alloc] initWithInt:28]];
+    [self updateContactFrequency:@28];
   } else {
-    [self updateContactFrequency:[[NSNumber alloc] initWithInt:0]];
+    [self updateContactFrequency:@0];
   }
   [self.navigationController popViewControllerAnimated:YES];
 }
 - (void)updateContactFrequency:(NSNumber *)days{
-  [self.contact setObject:days forKey:@"frequency"];
+  (self.contact)[@"frequency"] = days;
   [self.contact saveEventually];
 }
 
@@ -60,6 +60,6 @@
   return [self.pickerViewArray count];
 }
 - (NSString *)pickerView:(UIPickerView *)pickerView titleForRow:(NSInteger)row forComponent:(NSInteger)component {
-  return [self.pickerViewArray objectAtIndex:row];
+  return (self.pickerViewArray)[row];
 }
 @end

@@ -84,8 +84,8 @@
     button.layer.shadowRadius = 5.0;
     
     CABasicAnimation *anim = [CABasicAnimation animationWithKeyPath:@"shadowOpacity"];
-    anim.fromValue = [NSNumber numberWithFloat:0.0];
-    anim.toValue = [NSNumber numberWithFloat:1.0];
+    anim.fromValue = @0.0f;
+    anim.toValue = @1.0f;
     anim.duration = 3.0;
     [button.layer addAnimation:anim forKey:@"shadowOpacity"];
     button.layer.shadowOpacity = 1.0;
@@ -107,7 +107,7 @@
     {
         MFMailComposeViewController* emailCntrl = [[MFMailComposeViewController alloc] init];
         emailCntrl.mailComposeDelegate = self;
-        [emailCntrl setToRecipients:[NSArray arrayWithObject:contact.email]];
+        [emailCntrl setToRecipients:@[contact.email]];
         [self presentViewController:emailCntrl animated:YES completion:nil];
     }
 }
@@ -122,7 +122,7 @@
                                                   otherButtonTitles:nil];
   
   for (int i = 0; i<labels.count; i++) {
-    [actionSheet addButtonWithTitle:[labels objectAtIndex:i]];
+    [actionSheet addButtonWithTitle:labels[i]];
   }
   
   [actionSheet addButtonWithTitle:@"Cancel"];
@@ -141,7 +141,7 @@
                                                   otherButtonTitles:nil];
   
   for (int i = 0; i<labels.count; i++) {
-    [actionSheet addButtonWithTitle:[labels objectAtIndex:i]];
+    [actionSheet addButtonWithTitle:labels[i]];
   }
   
   [actionSheet addButtonWithTitle:@"Cancel"];
@@ -187,7 +187,7 @@
       MFMessageComposeViewController *smsCntrl = [[MFMessageComposeViewController alloc] init];
       if([MFMessageComposeViewController canSendText])
       {
-        smsCntrl.recipients = [NSArray arrayWithObjects:[contact.numbers allValues][buttonIndex], nil];
+        smsCntrl.recipients = @[[contact.numbers allValues][buttonIndex]];
         smsCntrl.messageComposeDelegate = self;
         [self presentViewController:smsCntrl animated:YES completion:nil];
       }
@@ -212,8 +212,8 @@
   
     // Save the relationship
     PFObject *newNetwork = [[PFObject alloc] initWithClassName:@"ContactHistory"];
-    [newNetwork setObject:contact forKey:@"colleague"];
-    [newNetwork setObject:methodOfContact forKey:@"method"];
+    newNetwork[@"colleague"] = contact;
+    newNetwork[@"method"] = methodOfContact;
     [newNetwork saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
       if (succeeded){
         [self queryParseHistory];
@@ -221,9 +221,9 @@
     }];
   
     // Save last contact
-    [contact setObject:methodOfContact forKey:@"methodOfLastContact"];
-    [contact setObject:[NSDate date] forKey:@"lastContactDate"];
-    [contact setObject:[NSNumber numberWithBool:YES] forKey:@"notifiedSincePush"];
+    contact[@"methodOfLastContact"] = methodOfContact;
+    contact[@"lastContactDate"] = [NSDate date];
+    contact[@"notifiedSincePush"] = @YES;
     [contact saveEventually];
 
     // Update the app to respect todays communication
@@ -276,19 +276,19 @@
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
   static NSString *cellIdentifier = @"contactShowCell";
   UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:cellIdentifier];
-  PFObject *history = [self.contactHistory objectAtIndex:indexPath.row];
+  PFObject *history = (self.contactHistory)[indexPath.row];
   if (!cell) {
     cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:nil];
   }
   cell.textLabel.text = [self formatDate:history.createdAt];
   cell.textLabel.backgroundColor = [UIColor clearColor];
-  if ([[history objectForKey:@"method"] isEqual:@"call"]) {
+  if ([history[@"method"] isEqual:@"call"]) {
     cell.imageView.image = [UIImage imageNamed:@"phone-gray.png"];
-  } else if ([[history objectForKey:@"method"] isEqual:@"sms"]) {
+  } else if ([history[@"method"] isEqual:@"sms"]) {
     cell.imageView.image = [UIImage imageNamed:@"sms-gray.png"];
-  } else if ([[history objectForKey:@"method"] isEqual:@"email"]) {
+  } else if ([history[@"method"] isEqual:@"email"]) {
     cell.imageView.image = [UIImage imageNamed:@"email-gray.png"];
-  } else if ([[history objectForKey:@"method"] isEqual:@"contacted"]) {
+  } else if ([history[@"method"] isEqual:@"contacted"]) {
       cell.imageView.image = [UIImage imageNamed:@"checkmark-gray.png"];
   }
   return cell;
@@ -305,7 +305,7 @@
   int date_day = [[monthDayFormatter stringFromDate:date] intValue];
   NSString *suffix_string = @"|st|nd|rd|th|th|th|th|th|th|th|th|th|th|th|th|th|th|th|th|th|st|nd|rd|th|th|th|th|th|th|th|st";
   NSArray *suffixes = [suffix_string componentsSeparatedByString: @"|"];
-  NSString *suffix = [suffixes objectAtIndex:date_day];
+  NSString *suffix = suffixes[date_day];
   NSString *dateString = [prefixDateString stringByAppendingString:suffix];
   return dateString;
 }

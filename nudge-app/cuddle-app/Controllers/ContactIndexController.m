@@ -196,7 +196,7 @@
         ContactShowViewController *destViewController = segue.destinationViewController;
         [self removeNotifications];
         if (indexPath){
-          destViewController.contact = [self.objects objectAtIndex:indexPath.row];
+          destViewController.contact = (self.objects)[indexPath.row];
         } else if (self.lastAddedColleague != nil){
           destViewController.contact = self.lastAddedColleague;
         }
@@ -205,7 +205,7 @@
 - (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath {
   if (editingStyle == UITableViewCellEditingStyleDelete) {
     [SVProgressHUD showWithStatus:@"Removing Contact..."];
-    PFObject *object = [self.objects objectAtIndex:indexPath.row];
+    PFObject *object = (self.objects)[indexPath.row];
     [object deleteInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
       [SVProgressHUD dismiss];
       [self loadObjects];

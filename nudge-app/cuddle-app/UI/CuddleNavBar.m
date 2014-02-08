@@ -33,11 +33,7 @@
 
   [[UINavigationBar appearance] setBackgroundImage:[UIImage imageNamed:@"menubar.png"] forBarMetrics:UIBarMetricsDefault];
   
-  [[UINavigationBar appearance] setTitleTextAttributes: [NSDictionary dictionaryWithObjectsAndKeys:
-      [UIColor colorWithRed:255.0/255.0 green:255.0/255.0 blue:255.0/255.0 alpha:1.0],
-      NSForegroundColorAttributeName,
-      [UIFont fontWithName:@"Avenir-Heavy" size:20.0],
-      NSFontAttributeName,
-      nil]];
+  [[UINavigationBar appearance] setTitleTextAttributes: @{NSForegroundColorAttributeName: [UIColor colorWithRed:255.0/255.0 green:255.0/255.0 blue:255.0/255.0 alpha:1.0],
+      NSFontAttributeName: [UIFont fontWithName:@"Avenir-Heavy" size:20.0]}];
 }
 @end

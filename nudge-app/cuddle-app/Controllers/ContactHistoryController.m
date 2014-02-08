@@ -43,16 +43,16 @@
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath object:(PFObject *)object {
   ContactHistoryCell *cell = (ContactHistoryCell *)[tableView dequeueReusableCellWithIdentifier:@"contactHistoryCell"];
   
-  if ([[object objectForKey:@"method"] isEqual:@"call"]) {
+  if ([object[@"method"] isEqual:@"call"]) {
     cell.lastContact.text = [@"Called on " stringByAppendingString:[self formatDate:object.createdAt]];
     cell.lastContactImage.image = [UIImage imageNamed:@"phone-gray"];
-  } else if ([[object objectForKey:@"method"] isEqual:@"sms"]) {
+  } else if ([object[@"method"] isEqual:@"sms"]) {
     cell.lastContact.text = [@"Texted on " stringByAppendingString:[self formatDate:object.createdAt]];;
     cell.lastContactImage.image = [UIImage imageNamed:@"sms-gray"];
-  } else if ([[object objectForKey:@"method"] isEqual:@"email"]) {
+  } else if ([object[@"method"] isEqual:@"email"]) {
     cell.lastContact.text = [@"Emailed on " stringByAppendingString:[self formatDate:object.createdAt]];
     cell.lastContactImage.image = [UIImage imageNamed:@"email-gray"];
-  } else if ([[object objectForKey:@"method"] isEqual:@"contacted"]) {
+  } else if ([object[@"method"] isEqual:@"contacted"]) {
     cell.lastContact.text = [@"Contacted on " stringByAppendingString:[self formatDate:object.createdAt]];
     cell.lastContactImage.image = [UIImage imageNamed:@"checkmark-gray"];
   }
@@ -73,7 +73,7 @@
   int date_day = [[monthDayFormatter stringFromDate:date] intValue];
   NSString *suffix_string = @"|st|nd|rd|th|th|th|th|th|th|th|th|th|th|th|th|th|th|th|th|th|st|nd|rd|th|th|th|th|th|th|th|st";
   NSArray *suffixes = [suffix_string componentsSeparatedByString: @"|"];
-  NSString *suffix = [suffixes objectAtIndex:date_day];
+  NSString *suffix = suffixes[date_day];
   NSString *dateString = [prefixDateString stringByAppendingString:suffix];
   return dateString;
 }
