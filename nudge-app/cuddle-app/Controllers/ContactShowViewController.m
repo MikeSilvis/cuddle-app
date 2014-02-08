@@ -17,6 +17,7 @@
     [super viewDidLoad];
     [self disableButtonsWithoutInfo];
     [self loadStyles];
+    self.seeMore.hidden = YES;
     [self queryParseHistory];
     [self loadContactPhoto];
     [contact updateContact];
@@ -71,10 +72,10 @@
   self.tableView.hidden = YES;
   self.seeMore.hidden = YES;
   self.contactHistoryText.hidden = YES;
-  [self addShadowToActions:self.call];
-  [self addShadowToActions:self.text];
-  [self addShadowToActions:self.email];
-  [self addShadowToActions:self.plus];
+//  [self addShadowToActions:self.call];
+//  [self addShadowToActions:self.text];
+//  [self addShadowToActions:self.email];
+//  [self addShadowToActions:self.plus];
 }
 - (void)addShadowToActions:(UIButton *)button{
   if (button.enabled){
@@ -286,11 +287,10 @@
   } else if ([[history objectForKey:@"method"] isEqual:@"sms"]) {
     cell.imageView.image = [UIImage imageNamed:@"sms-gray.png"];
   } else if ([[history objectForKey:@"method"] isEqual:@"email"]) {
-    cell.imageView.image = [UIImage imageNamed:@"envelope-gray.png"];
+    cell.imageView.image = [UIImage imageNamed:@"email-gray.png"];
   } else if ([[history objectForKey:@"method"] isEqual:@"contacted"]) {
       cell.imageView.image = [UIImage imageNamed:@"checkmark-gray.png"];
   }
-  cell.backgroundView =  [[UIImageView alloc] initWithImage:[[UIImage imageNamed:@"list-item-bg.png"] stretchableImageWithLeftCapWidth:0.0 topCapHeight:5.0]];
   return cell;
 }
 - (NSString *)formatDate:(NSDate *)date

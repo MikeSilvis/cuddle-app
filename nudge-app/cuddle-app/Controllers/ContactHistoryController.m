@@ -45,16 +45,16 @@
   
   if ([[object objectForKey:@"method"] isEqual:@"call"]) {
     cell.lastContact.text = [@"Called on " stringByAppendingString:[self formatDate:object.createdAt]];
-    cell.lastContactImage.image = [UIImage imageNamed:@"phone-gray.png"];
+    cell.lastContactImage.image = [UIImage imageNamed:@"phone-gray"];
   } else if ([[object objectForKey:@"method"] isEqual:@"sms"]) {
     cell.lastContact.text = [@"Texted on " stringByAppendingString:[self formatDate:object.createdAt]];;
-    cell.lastContactImage.image = [UIImage imageNamed:@"sms-gray.png"];
+    cell.lastContactImage.image = [UIImage imageNamed:@"sms-gray"];
   } else if ([[object objectForKey:@"method"] isEqual:@"email"]) {
     cell.lastContact.text = [@"Emailed on " stringByAppendingString:[self formatDate:object.createdAt]];
-    cell.lastContactImage.image = [UIImage imageNamed:@"envelope-gray.png"];
+    cell.lastContactImage.image = [UIImage imageNamed:@"email-gray"];
   } else if ([[object objectForKey:@"method"] isEqual:@"contacted"]) {
     cell.lastContact.text = [@"Contacted on " stringByAppendingString:[self formatDate:object.createdAt]];
-    cell.lastContactImage.image = [UIImage imageNamed:@"checkmark-gray.png"];
+    cell.lastContactImage.image = [UIImage imageNamed:@"checkmark-gray"];
   }
 
   return cell;

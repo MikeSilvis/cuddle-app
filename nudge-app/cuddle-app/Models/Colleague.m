@@ -153,17 +153,17 @@
 }
 - (void)saveColleague{
     self.notifiedSincePush = [NSNumber numberWithBool:YES];
-    [self saveEventually];
+//    [self saveEventually];
 }
 - (UIImage *) lastContactImage{
   if ([self.methodOfLastContact isEqual:@"call"]) {
-    return [UIImage imageNamed:@"phone-gray.png"];
+    return [UIImage imageNamed:@"phone-gray"];
   } else if ([self.methodOfLastContact isEqual:@"sms"]) {
     return [UIImage imageNamed:@"sms-gray.png"];
   } else if ([self.methodOfLastContact isEqual:@"email"]) {
-    return [UIImage imageNamed:@"envelope-gray.png"];
+    return [UIImage imageNamed:@"email-gray"];
   } else if ([self.methodOfLastContact isEqual:@"contacted"]) {
-    return [UIImage imageNamed:@"checkmark-gray.png"];
+    return [UIImage imageNamed:@"checkmark-gray"];
   } else {
     return nil;
   }
