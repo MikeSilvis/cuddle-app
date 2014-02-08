@@ -110,7 +110,8 @@
 }
 
 - (void)loginUser{
-    [SVProgressHUD showWithStatus:@"Logging in..."];
+
+    [SVProgressHUD showWithStatus:@"Logging in..." maskType: SVProgressHUDMaskTypeBlack];
     [PFUser logInWithUsernameInBackground:self.emailField.text password:self.passwordField.text block:^(PFUser *user, NSError *error) {
         [SVProgressHUD dismiss];
         if (user) {

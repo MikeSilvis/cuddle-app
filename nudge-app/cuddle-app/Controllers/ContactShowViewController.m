@@ -10,18 +10,17 @@
 
 @implementation ContactShowViewController
 
-@synthesize contact, started;
+@synthesize contact;
 
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    self.view.backgroundColor = [UIColor colorWithPatternImage: [UIImage imageNamed:@"background.png"]];
     [self disableButtonsWithoutInfo];
     [self loadStyles];
     [self queryParseHistory];
     [self loadContactPhoto];
     [contact updateContact];
-    self.contactName.text = [contact objectForKey:@"name"];
+    self.navigationController.topViewController.title = contact.name;
     [[NSNotificationCenter defaultCenter] addObserver:self
                                            selector:@selector(handleOpenedFromPush:)
                                                name:@"openedFromNotification"
@@ -32,11 +31,6 @@
   [self loadContactPhoto];
 }
 - (void)loadStyles{
-  self.contactBackground.layer.shadowColor = [UIColor whiteColor].CGColor;
-  self.contactBackground.layer.shadowOffset = CGSizeMake(0, 1);
-  self.contactBackground.layer.shadowOpacity = 1;
-  self.contactBackground.layer.shadowRadius = 5.0;
-  self.contactBackground.clipsToBounds = NO;
   self.tableView.backgroundColor = [UIColor clearColor];
   self.tableView.layer.borderColor = [UIColor whiteColor].CGColor;
   self.tableView.layer.cornerRadius = 5;
@@ -60,7 +54,7 @@
     NSData *facebookImgData = [[NSData alloc] initWithContentsOfURL: [NSURL URLWithString:facebookImageURL]];
     self.contactPhoto.image = [UIImage imageWithData: facebookImgData];
   } else {
-    self.contactPhoto.image = [UIImage imageNamed:@"contact_without_image.png"];
+    self.contactPhoto.image = [UIImage imageNamed:@"contact_without_image"];
   }
 }
 - (void)disableButtonsWithoutInfo{
@@ -96,12 +90,6 @@
     button.layer.shadowOpacity = 1.0;
   }
 }
-- (UIImageView *)started{
-  if (started == nil){
-    started = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"started"]];
-  }
-  return started;
-}
 
 - (void)handleOpenedFromPush:(NSNotification *)notification{
   [self.navigationController popViewControllerAnimated:NO];
@@ -111,11 +99,6 @@
   self.tableView.hidden = NO;
   self.seeMore.hidden = NO;
   self.contactHistoryText.hidden = NO;
-  self.started.hidden = YES;
-}
-
-- (IBAction)handleSwipe:(UISwipeGestureRecognizer *)sender {
-    [self.navigationController popViewControllerAnimated:YES];
 }
 
 - (IBAction)emailButton:(id)sender {

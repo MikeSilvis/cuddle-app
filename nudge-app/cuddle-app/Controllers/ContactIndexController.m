@@ -50,7 +50,6 @@
 
 - (void)viewDidLoad{
     [super viewDidLoad];
-  [SVProgressHUD showWithStatus:@"Logging in..."];
     [self.navigationController setNavigationBarHidden:NO];
     self.navigationItem.hidesBackButton = YES;
     self.navigationItem.titleView = [self titleView];
@@ -106,7 +105,7 @@
   CGFloat width = 0.95 * self.view.frame.size.width;
   UIView *containerView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, width, navBarHeight)];
   
-  UIImage *logo = [UIImage imageNamed:@"logo.png"];
+  UIImage *logo = [UIImage imageNamed:@"logo"];
   
   UIButton *logoButton = [UIButton buttonWithType:UIButtonTypeCustom];
   [logoButton setEnabled:NO];
@@ -137,7 +136,7 @@
         NSData *facebookImgData = [[NSData alloc] initWithContentsOfURL: [NSURL URLWithString:facebookImageURL]];
         cell.userPicture.image = [UIImage imageWithData: facebookImgData];
     } else {
-        cell.userPicture.image = [UIImage imageNamed:@"contact_without_image.png"];
+        cell.userPicture.image = [UIImage imageNamed:@"contact_without_image"];
     }
   
     if (friend.methodOfLastContact) {
@@ -171,15 +170,15 @@
       shouldContinueAfterSelectingPerson:(ABRecordRef)person {
     
     [SVProgressHUD showWithStatus:@"Saving Contact"];
-  
+
     self.lastAddedColleague = [[Colleague alloc] initWithABPerson:person];
-  
+
+    [SVProgressHUD dismiss];
+
+    [self dismissViewControllerAnimated:YES completion:nil];
+
     [self performSegueWithIdentifier:@"contactShowSegue" sender:self];
   
-    [SVProgressHUD dismiss];
-  
-    [self dismissViewControllerAnimated:YES completion:nil];
-    
     return NO;
 }
 

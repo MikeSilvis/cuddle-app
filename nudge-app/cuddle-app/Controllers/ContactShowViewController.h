@@ -20,7 +20,6 @@
 
 @interface ContactShowViewController : UIViewController  <MFMailComposeViewControllerDelegate, MFMessageComposeViewControllerDelegate, UITableViewDataSource, UITableViewDelegate, UITableViewDataSource, UITableViewDelegate, UIActionSheetDelegate>
 @property (weak, nonatomic) IBOutlet PFImageView *contactPhoto;
-- (IBAction)handleSwipe:(UISwipeGestureRecognizer *)sender;
 @property (strong, nonatomic) IBOutlet Colleague *contact;
 
 - (IBAction)emailButton:(id)sender;
@@ -33,14 +32,10 @@
 @property (weak, nonatomic) IBOutlet UIButton *text;
 @property (weak, nonatomic) IBOutlet UIButton *email;
 @property (weak, nonatomic) IBOutlet UIButton *plus;
-@property (weak, nonatomic) IBOutlet UIImageView *contactBackground;
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 @property (weak, nonatomic) IBOutlet UIView *contactHistoryView;
-@property (weak, nonatomic) IBOutlet UILabel *contactName;
 
 @property (nonatomic, retain) NSArray *contactHistory;
 @property (weak, nonatomic) IBOutlet UILabel *contactHistoryText;
 @property (weak, nonatomic) IBOutlet UIButton *seeMore;
-
-@property (strong, nonatomic) IBOutlet UIImageView *started;
 @end
