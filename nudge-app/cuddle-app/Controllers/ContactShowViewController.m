@@ -151,6 +151,8 @@
 }
 
 -(void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex {
+
+
   if ([actionSheet.title isEqual: @"Method of Communication"]){
     switch (buttonIndex) {
       case 0:
@@ -221,6 +223,9 @@
     // Update the app to respect todays communication
   [SVProgressHUD showSuccessWithStatus:@"Great job at keeping in touch!"];
   [self queryParseHistory];
+
+  NSDictionary *dimensions = @{@"method":methodOfContact};
+  [PFAnalytics trackEvent:@"Contacted" dimensions:dimensions];
 }
 
 

@@ -175,6 +175,9 @@ shouldContinueAfterSelectingPerson:(ABRecordRef)person {
   }
 
   [SVProgressHUD dismiss];
+  
+  NSDictionary *dimensions = @{@"contactAdded":@"true"};
+  [PFAnalytics trackEvent:@"contactAdded" dimensions:dimensions];
 
   [self dismissViewControllerAnimated:YES completion:nil];
 

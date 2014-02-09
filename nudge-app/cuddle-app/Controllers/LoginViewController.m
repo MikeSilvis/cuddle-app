@@ -110,6 +110,8 @@
   [PFUser logInWithUsernameInBackground:self.emailField.text password:self.passwordField.text block:^(PFUser *user, NSError *error) {
     [SVProgressHUD dismiss];
     if (user) {
+       NSDictionary *dimensions = @{@"login":@"true"};
+      [PFAnalytics trackEvent:@"userLogin" dimensions:dimensions];
       [self performSegueWithIdentifier:@"loginSuccessSegue" sender:self];            
     } else {
       UIAlertView *message = [[UIAlertView alloc] initWithTitle:@"Login Error!"

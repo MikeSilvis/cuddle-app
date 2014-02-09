@@ -15,10 +15,11 @@
 
 
 
-- (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
-{
+- (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
   [Crashlytics startWithAPIKey:@"2c4de91dd9eef6b63fa865a54c345433bebc795a"];
+
   [Parse setApplicationId:PARSEAPPLICATIONID clientKey:PARSECLIENTKEY];
+  [PFAnalytics trackAppOpenedWithLaunchOptions:launchOptions];
 
   [Colleague registerSubclass];
   [User registerSubclass];

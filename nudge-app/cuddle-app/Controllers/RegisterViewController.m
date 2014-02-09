@@ -125,6 +125,8 @@
       [user signUpInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
         if (succeeded) {
           [SVProgressHUD dismiss];
+          NSDictionary *dimensions = @{@"register":@"true"};
+          [PFAnalytics trackEvent:@"userSignup" dimensions:dimensions];
           [self performSegueWithIdentifier:@"registerSuccessSegue" sender:self];
         } else {
           NSLog(@"registration failed");
