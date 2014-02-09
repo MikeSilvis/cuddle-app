@@ -9,6 +9,10 @@
 #import "Colleague.h"
 #import <Parse/PFObject+Subclass.h>
 
+@interface Colleague ()
+@end
+
+
 @implementation Colleague
 
 @dynamic user;
@@ -24,6 +28,9 @@
 @dynamic frequency;
 @dynamic notifiedSincePush;
 @dynamic lastContactDate;
+
+@synthesize avatarPhoto;
+
 
 + (NSString *)parseClassName {
   return @"Colleague";
@@ -71,20 +78,24 @@
   return self;
 }
 - (UIImage *)avatarPhoto {
-  ABAddressBookRef addressBook = ABAddressBookCreateWithOptions(NULL, nil);
-  ABRecordRef abPerson = ABAddressBookGetPersonWithRecordID(addressBook, [self.recordId intValue]);
-  NSData  *imgABData = (__bridge_transfer NSData *) ABPersonCopyImageDataWithFormat(abPerson, kABPersonImageFormatOriginalSize);
-  UIImage *image = [UIImage imageWithData:imgABData];
-
-  if (!!image) {
-    return image;
-  } else if (!!self.facebook) {
-    NSString *facebookImageURL = [NSString stringWithFormat:@"http://graph.facebook.com/%@/picture?type=large", self.facebook];
-    NSData *facebookImgData = [[NSData alloc] initWithContentsOfURL: [NSURL URLWithString:facebookImageURL]];
-    return [UIImage imageWithData: facebookImgData];
-  } else {
-    return [UIImage imageNamed:@"contact_without_image"];
+  if (!avatarPhoto) {
+    ABAddressBookRef addressBook = ABAddressBookCreateWithOptions(NULL, nil);
+    ABRecordRef abPerson = ABAddressBookGetPersonWithRecordID(addressBook, [self.recordId intValue]);
+    NSData  *imgABData = (__bridge_transfer NSData *) ABPersonCopyImageDataWithFormat(abPerson, kABPersonImageFormatOriginalSize);
+    UIImage *image = [UIImage imageWithData:imgABData];
+    
+    if (!!image) {
+      avatarPhoto = image;
+    } else if (!!self.facebook) {
+      NSString *facebookImageURL = [NSString stringWithFormat:@"http://graph.facebook.com/%@/picture?type=large", self.facebook];
+      NSData *facebookImgData = [[NSData alloc] initWithContentsOfURL: [NSURL URLWithString:facebookImageURL]];
+      avatarPhoto = [UIImage imageWithData: facebookImgData];
+    } else {
+      avatarPhoto = [UIImage imageNamed:@"contact_without_image"];
+    }
   }
+
+  return avatarPhoto;
 }
 - (void)updateContact {
   ABAddressBookRef addressBook = ABAddressBookCreateWithOptions(NULL, nil);

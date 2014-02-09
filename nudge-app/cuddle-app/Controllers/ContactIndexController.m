@@ -129,7 +129,13 @@
   cell.userPicture.layer.cornerRadius = 5;
   cell.userPicture.clipsToBounds = YES;
 
-  cell.userPicture.image = friend.avatarPhoto;
+  dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^ {
+    UIImage *avatarPhoto = friend.avatarPhoto;
+     
+    dispatch_async(dispatch_get_main_queue(), ^() {
+      cell.userPicture.image = avatarPhoto;
+    });
+  });
   
   if (friend.methodOfLastContact) {
     cell.contactTypeImage.layer.hidden = NO;

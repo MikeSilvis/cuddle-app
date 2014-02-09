@@ -26,11 +26,11 @@
 @property (nonatomic, retain) NSString *frequency;
 @property (nonatomic, retain) PFFile *photo;
 @property (nonatomic, retain) PFUser *user;
+@property (nonatomic, retain) UIImage *avatarPhoto;
 
 + (NSString *)parseClassName;
 - (UIImage *)lastContactImage;
 - (id)initWithABPerson:(ABRecordRef)abPerson;
 - (void)updateContact;
-- (UIImage *)avatarPhoto;
 
 @end
