@@ -1,7 +1,6 @@
-platform :ios
+platform :ios, '7.0'
 xcodeproj 'nudge.xcodeproj'
 
 pod 'SVProgressHUD'
 pod 'Parse'
-pod 'TestFlightSDK'
-pod 'Facebook-iOS-SDK'
+pod 'GoogleAnalytics-iOS-SDK'
