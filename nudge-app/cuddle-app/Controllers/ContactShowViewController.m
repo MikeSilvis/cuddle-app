@@ -28,6 +28,7 @@
 - (void)viewDidAppear:(BOOL)animated{
   [self checkFrequency];
   [self loadContactPhoto];
+//  [scall setAction:@selector(sayHello:)];
 }
 - (void)loadStyles{
   self.tableView.backgroundColor = [UIColor clearColor];
@@ -62,7 +63,6 @@
 - (void)disableButtonsWithoutInfo{
   if (([[contact.numbers allKeys] count]) == 0){
     self.call.enabled = NO;
-    self.text.enabled = NO;
   }
   if ((contact.email == nil) || ([contact.email isEqual: @""])){
     self.email.enabled = NO;
@@ -72,7 +72,6 @@
 - (void)addGettingStarted{
   self.tableView.hidden = YES;
   self.seeMore.hidden = YES;
-  self.contactHistoryText.hidden = YES;
 //  [self addShadowToActions:self.call];
 //  [self addShadowToActions:self.text];
 //  [self addShadowToActions:self.email];
@@ -100,7 +99,6 @@
 - (void)removeGettingStarted{
   self.tableView.hidden = NO;
   self.seeMore.hidden = NO;
-  self.contactHistoryText.hidden = NO;
 }
 
 - (IBAction)emailButton:(id)sender {

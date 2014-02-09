@@ -15,5 +15,6 @@
 @property (strong, nonatomic) NSArray *pickerViewArray;
 @property (weak, nonatomic) IBOutlet UIPickerView *picker;
 - (IBAction)saveFrequency:(id)sender;
+- (void) defaultFrequency;
 
 @end
