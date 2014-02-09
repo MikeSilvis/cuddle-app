@@ -24,21 +24,12 @@
 - (void)viewDidLoad{
   [super viewDidLoad];
   self.title = @"Contact History";
-  
-  //Add a left swipe gesture recognizer
-  UISwipeGestureRecognizer *recognizer = [[UISwipeGestureRecognizer alloc] initWithTarget:self
-                                                                                   action:@selector(handleSwipeRight:)];
-  [recognizer setDirection:(UISwipeGestureRecognizerDirectionRight)];
-  [self.tableView addGestureRecognizer:recognizer];
 }
 - (PFQuery *)queryForTable {
   PFQuery *query = [PFQuery queryWithClassName:@"ContactHistory"];
   [query whereKey:@"colleague" equalTo:self.contact];
   [query orderByDescending:@"updatedAt"];
   return query;
-}
-- (void)handleSwipeRight:(UISwipeGestureRecognizer *)gestureRecognizer {
-    [self.navigationController popViewControllerAnimated:YES];
 }
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath object:(PFObject *)object {
   ContactHistoryCell *cell = (ContactHistoryCell *)[tableView dequeueReusableCellWithIdentifier:@"contactHistoryCell"];
@@ -58,9 +49,6 @@
   }
 
   return cell;
-}
-- (IBAction)handleSwipe:(UISwipeGestureRecognizer *)sender {
-  [self.navigationController popViewControllerAnimated:YES];
 }
 - (NSString *)formatDate:(NSDate *)date{
   NSDateFormatter *prefixDateFormatter = [[NSDateFormatter alloc] init];

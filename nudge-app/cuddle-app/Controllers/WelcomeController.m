@@ -12,24 +12,24 @@
 @implementation WelcomeController
 
 - (void)viewDidLoad {
-  
   [super viewDidLoad];
 	[self userCheck];
-  [self.navigationController setNavigationBarHidden:YES];  
+  [self.navigationController setNavigationBarHidden:YES];
+  self.screenName = @"Contact Show";
 	self.pageControlBeingUsed = NO;
   self.scrollView.frame = self.view.bounds;
 
-  self.view.backgroundColor = [UIColor colorWithPatternImage: [UIImage imageNamed:@"welcome-background.png"]];
+  self.view.backgroundColor = [UIColor colorWithPatternImage: [UIImage imageNamed:@"welcome-background"]];
   
   [self addScrollViewImages];
 
 }
 - (void)addScrollViewImages {
   
-  UIImageView *firstImage   = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"import.png"]];
-  UIImageView *secondImage  = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"register.png"]];
-  UIImageView *thirdImage   = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"reminder.png"]];
-  UIImageView *fourthImage  = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"final.png"]];
+  UIImageView *firstImage   = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"import"]];
+  UIImageView *secondImage  = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"register"]];
+  UIImageView *thirdImage   = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"reminder"]];
+  UIImageView *fourthImage  = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"final"]];
   
   NSArray *images = @[firstImage, secondImage, thirdImage, fourthImage];
   [images enumerateObjectsUsingBlock:^(id imageView, NSUInteger index, BOOL *stop) {
@@ -48,7 +48,9 @@
 }
 
 - (void)viewDidAppear:(BOOL)animated{
+    [super viewDidAppear:YES];
     [self.navigationController setNavigationBarHidden:YES];
+    self.screenName = @"Welcome";
 }
 - (void)userCheck{
   if ([PFUser currentUser]) {

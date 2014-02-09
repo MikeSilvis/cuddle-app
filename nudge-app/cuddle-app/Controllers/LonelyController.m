@@ -9,7 +9,10 @@
 #import "LonelyController.h"
 
 @implementation LonelyController
+
 -(void)viewDidLoad{
+    [super viewDidLoad];
+    self.screenName = @"Home Screen";
     self.navigationItem.hidesBackButton = YES;
 }
 - (IBAction)showPeoplePicker:(id)sender {

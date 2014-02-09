@@ -17,6 +17,7 @@
     [super viewDidLoad];
     [self disableButtonsWithoutInfo];
     [self loadStyles];
+    self.screenName = @"Contact Show";
     self.seeMore.hidden = YES;
     [self loadContactPhoto];
     self.navigationController.topViewController.title = contact.name;
@@ -26,9 +27,9 @@
                                              object:nil];
 }
 - (void)viewDidAppear:(BOOL)animated{
+  [super viewDidAppear:YES];
   [self checkFrequency];
   [self loadContactPhoto];
-//  [scall setAction:@selector(sayHello:)];
 }
 - (void)loadStyles{
   self.tableView.backgroundColor = [UIColor clearColor];

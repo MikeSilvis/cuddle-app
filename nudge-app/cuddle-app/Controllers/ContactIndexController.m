@@ -43,6 +43,7 @@
 }
 
 - (void)viewDidAppear:(BOOL)animated{
+    [super viewDidDisappear:YES];
     [self watchNotifications];
     [self loadObjects];
     [self pushUser];

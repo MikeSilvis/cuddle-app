@@ -17,8 +17,9 @@
 #import  <QuartzCore/QuartzCore.h>
 #import <QuartzCore/CAAnimation.h>
 #import "FrequencyPickerController.h"
+#import "GAITrackedViewController.h"
 
-@interface ContactShowViewController : UIViewController  <MFMailComposeViewControllerDelegate, MFMessageComposeViewControllerDelegate, UITableViewDataSource, UITableViewDelegate, UITableViewDataSource, UITableViewDelegate, UIActionSheetDelegate>
+@interface ContactShowViewController : GAITrackedViewController  <MFMailComposeViewControllerDelegate, MFMessageComposeViewControllerDelegate, UITableViewDataSource, UITableViewDelegate, UITableViewDataSource, UITableViewDelegate, UIActionSheetDelegate>
 @property (weak, nonatomic) IBOutlet PFImageView *contactPhoto;
 @property (strong, nonatomic) IBOutlet Colleague *contact;
 

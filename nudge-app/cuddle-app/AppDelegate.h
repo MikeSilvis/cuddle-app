@@ -12,6 +12,7 @@
 #import <Parse/Parse.h>
 #import <Crashlytics/Crashlytics.h>
 #import "WelcomeController.h"
+#import "GAI.h"
 
 //#ifdef DEBUG
   #define PARSEAPPLICATIONID @"7TZmoyE9Rdg5KvRTrEX8KctSDJ7NplhH1Oz7DR9H"
@@ -26,5 +27,7 @@
 @property (strong, nonatomic) UIWindow *window;
 
 @property (nonatomic, retain) NSString *colleagueId;
+
+-(void) addGoogleAnalytics;
 
 @end

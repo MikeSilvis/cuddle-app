@@ -9,12 +9,15 @@
 #import "FrequencyPickerController.h"
 
 @implementation FrequencyPickerController
+
 - (void)viewDidLoad{
+  [super viewDidLoad];
   self.navigationItem.hidesBackButton = YES;
   self.navigationItem.titleView = [self titleView];
   NSArray *arrayToLoadPicker = @[@"Weekly",@"Biweekly",@"Monthly"];
   self.pickerViewArray = arrayToLoadPicker;
   [self defaultFrequency];
+  self.screenName = @"Frequency Selection";
 }
 - (UIView *)titleView {
   CGFloat navBarHeight = self.navigationController.navigationBar.frame.size.height;

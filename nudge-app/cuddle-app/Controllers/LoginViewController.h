@@ -9,8 +9,9 @@
 #import <UIKit/UIKit.h>
 #import <SVProgressHUD.h>
 #import <Parse/Parse.h>
+#import "GAITrackedViewController.h"
 
-@interface LoginViewController : UIViewController <UITextFieldDelegate>
+@interface LoginViewController : GAITrackedViewController <UITextFieldDelegate>
 
 - (IBAction)login:(id)sender;
 

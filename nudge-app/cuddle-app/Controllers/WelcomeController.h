@@ -8,8 +8,9 @@
 
 #import <UIKit/UIKit.h>
 #import <Parse/Parse.h>
+#import "GAITrackedViewController.h"
 
-@interface WelcomeController : UIViewController <UIScrollViewDelegate>
+@interface WelcomeController : GAITrackedViewController <UIScrollViewDelegate>
 
 @property (weak, nonatomic) IBOutlet UIScrollView *scrollView;
 @property (weak, nonatomic) IBOutlet UIPageControl *pageControl;

@@ -14,6 +14,7 @@
 - (void)viewDidLoad{
     [super viewDidLoad];
     self.title = @"Register";
+    self.screenName = @"Register";
     [self.navigationController setNavigationBarHidden:NO];
     UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc]
                                    initWithTarget:self

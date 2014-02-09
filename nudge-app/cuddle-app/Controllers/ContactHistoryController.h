@@ -9,6 +9,7 @@
 #import <UIKit/UIKit.h>
 #import <Parse/Parse.h>
 #import "ContactHistoryCell.h"
+#import "GAITrackedViewController.h"
 
 @interface ContactHistoryController : PFQueryTableViewController
 @property (strong, nonatomic) IBOutlet PFObject *contact;

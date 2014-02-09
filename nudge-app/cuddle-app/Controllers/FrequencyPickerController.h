@@ -8,8 +8,9 @@
 
 #import <UIKit/UIKit.h>
 #import <Parse/Parse.h>
+#import "GAITrackedViewController.h"
 
-@interface FrequencyPickerController : UIViewController <UIPickerViewDelegate, UIPickerViewDataSource>
+@interface FrequencyPickerController : GAITrackedViewController <UIPickerViewDelegate, UIPickerViewDataSource>
 
 @property (strong, nonatomic) IBOutlet PFObject *contact;
 @property (strong, nonatomic) NSArray *pickerViewArray;

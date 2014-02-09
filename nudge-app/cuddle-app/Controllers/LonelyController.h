@@ -8,8 +8,9 @@
 
 #import <UIKit/UIKit.h>
 #import "User.h"
+#import "GAITrackedViewController.h"
 
-@interface LonelyController : UIViewController
+@interface LonelyController : GAITrackedViewController
 - (IBAction)showPeoplePicker:(id)sender;
 
 @end

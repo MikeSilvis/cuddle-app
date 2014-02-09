@@ -9,9 +9,10 @@
 #import <UIKit/UIKit.h>
 #import "SVProgressHUD.h"
 #import <Parse/Parse.h>
+#import "GAITrackedViewController.h"
 #import "User.h"
 
-@interface RegisterViewController : UIViewController <UITextFieldDelegate>
+@interface RegisterViewController : GAITrackedViewController <UITextFieldDelegate>
 
 @property (weak, nonatomic) IBOutlet UITextField *emailField;
 @property (weak, nonatomic) IBOutlet UITextField *passwordField;

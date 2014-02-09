@@ -19,6 +19,7 @@
 
   [Colleague registerSubclass];
   [User registerSubclass];
+  [self addGoogleAnalytics];
   
   [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleLightContent];
 
@@ -27,7 +28,19 @@
   
   return YES;
 }
-
+- (void)addGoogleAnalytics {
+  // Optional: automatically send uncaught exceptions to Google Analytics.
+  [GAI sharedInstance].trackUncaughtExceptions = YES;
+  
+  // Optional: set Google Analytics dispatch interval to e.g. 20 seconds.
+  [GAI sharedInstance].dispatchInterval = 20;
+  
+  // Optional: set Logger to VERBOSE for debug information.
+  [[[GAI sharedInstance] logger] setLogLevel:kGAILogLevelVerbose];
+  
+  // Initialize tracker.
+  [[GAI sharedInstance] trackerWithTrackingId:@"UA-43469808-1"];
+}
 - (void)application:(UIApplication *)application didRegisterForRemoteNotificationsWithDeviceToken:(NSData *)newDeviceToken
 {
   // Store the deviceToken in the current installation and save it to Parse.
