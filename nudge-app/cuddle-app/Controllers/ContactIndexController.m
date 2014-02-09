@@ -132,6 +132,7 @@
     cell.userPicture.image = friend.avatarPhoto;
   
     if (friend.methodOfLastContact) {
+      cell.contactTypeImage.layer.hidden = NO;
       cell.contactTypeImage.image = friend.lastContactImage;
       cell.userLastContact.text = [friend.lastContactDate timeAgo];
     } else {
@@ -175,7 +176,6 @@
   if (self.lastAddedColleague == nil) {
     self.lastAddedColleague = [[Colleague alloc] initWithABPerson:person];
   }
-
 
     [SVProgressHUD dismiss];
 
