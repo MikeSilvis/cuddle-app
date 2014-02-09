@@ -64,7 +64,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="320" height="480"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="IEP-vB-Y1L">
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="IEP-vB-Y1L">
                                 <rect key="frame" x="0.0" y="298" width="320" height="50"/>
                                 <fontDescription key="fontDescription" name="AvenirNext-Medium" family="Avenir Next" pointSize="15"/>
                                 <state key="normal" title="Login">
@@ -74,7 +74,7 @@
                                     <action selector="login:" destination="2" eventType="touchUpInside" id="p0S-0x-m7B"/>
                                 </connections>
                             </button>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Email" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="5Mh-Oj-KiN">
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Email" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="5Mh-Oj-KiN">
                                 <rect key="frame" x="0.0" y="176" width="320" height="50"/>
                                 <fontDescription key="fontDescription" name="AvenirNextCondensed-Medium" family="Avenir Next Condensed" pointSize="20"/>
                                 <textInputTraits key="textInputTraits" keyboardType="emailAddress" returnKeyType="next"/>
@@ -82,16 +82,22 @@
                                     <action selector="editingEmailField:" destination="2" eventType="editingDidBegin" id="grq-D8-qeD"/>
                                 </connections>
                             </textField>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Password" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="rOq-ji-7M9">
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Password" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="rOq-ji-7M9">
                                 <rect key="frame" x="0.0" y="231" width="320" height="50"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="50" id="sWa-cX-YNr"/>
+                                </constraints>
                                 <fontDescription key="fontDescription" name="AvenirNextCondensed-Medium" family="Avenir Next Condensed" pointSize="20"/>
                                 <textInputTraits key="textInputTraits" returnKeyType="go" secureTextEntry="YES"/>
                                 <connections>
                                     <action selector="editingPasswordField:" destination="2" eventType="editingDidBegin" id="rNv-EN-X3V"/>
                                 </connections>
                             </textField>
-                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" fixedFrame="YES" text="Nice to see you again." textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bC1-XY-2Le">
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Nice to see you again." textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bC1-XY-2Le">
                                 <rect key="frame" x="0.0" y="91" width="320" height="28"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="28" id="oXE-7w-s5v"/>
+                                </constraints>
                                 <fontDescription key="fontDescription" name="Avenir-Medium" family="Avenir" pointSize="24"/>
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <nil key="highlightedColor"/>
@@ -99,6 +105,22 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <gestureRecognizers/>
+                        <constraints>
+                            <constraint firstItem="rOq-ji-7M9" firstAttribute="top" secondItem="5Mh-Oj-KiN" secondAttribute="bottom" constant="5" id="4gA-Dy-Y91"/>
+                            <constraint firstItem="5Mh-Oj-KiN" firstAttribute="trailing" secondItem="rOq-ji-7M9" secondAttribute="trailing" id="6wQ-vO-4Gw"/>
+                            <constraint firstItem="rOq-ji-7M9" firstAttribute="top" secondItem="3" secondAttribute="top" constant="231" id="8pA-Me-iXV"/>
+                            <constraint firstItem="IEP-vB-Y1L" firstAttribute="leading" secondItem="rOq-ji-7M9" secondAttribute="leading" id="9Ii-LN-Ga1"/>
+                            <constraint firstItem="IEP-vB-Y1L" firstAttribute="top" secondItem="rOq-ji-7M9" secondAttribute="bottom" constant="17" id="Atk-KR-daZ"/>
+                            <constraint firstItem="IEP-vB-Y1L" firstAttribute="trailing" secondItem="rOq-ji-7M9" secondAttribute="trailing" id="DF0-l7-cYq"/>
+                            <constraint firstItem="5Mh-Oj-KiN" firstAttribute="leading" secondItem="3" secondAttribute="leading" id="E1f-Dr-eWb"/>
+                            <constraint firstItem="5Mh-Oj-KiN" firstAttribute="top" secondItem="bC1-XY-2Le" secondAttribute="bottom" constant="57" id="GkS-s9-eOf"/>
+                            <constraint firstItem="5Mh-Oj-KiN" firstAttribute="leading" secondItem="bC1-XY-2Le" secondAttribute="leading" id="Nby-Pw-Qhq"/>
+                            <constraint firstItem="bC1-XY-2Le" firstAttribute="top" secondItem="qiU-Bo-sSo" secondAttribute="bottom" constant="27" id="Zde-UD-Pdy"/>
+                            <constraint firstItem="6fE-fF-2Yp" firstAttribute="top" secondItem="IEP-vB-Y1L" secondAttribute="bottom" constant="132" id="cN7-kn-VBn"/>
+                            <constraint firstItem="5Mh-Oj-KiN" firstAttribute="trailing" secondItem="bC1-XY-2Le" secondAttribute="trailing" id="eDy-RM-0ug"/>
+                            <constraint firstAttribute="trailing" secondItem="5Mh-Oj-KiN" secondAttribute="trailing" id="gQm-p7-XMr"/>
+                            <constraint firstItem="5Mh-Oj-KiN" firstAttribute="leading" secondItem="rOq-ji-7M9" secondAttribute="leading" id="sGf-wq-XyS"/>
+                        </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="Login" id="caE-O3-Zjl"/>
                     <simulatedStatusBarMetrics key="simulatedStatusBarMetrics" statusBarStyle="lightContent"/>
@@ -107,7 +129,7 @@
                     <connections>
                         <outlet property="emailField" destination="5Mh-Oj-KiN" id="gju-xu-Ygv"/>
                         <outlet property="passwordField" destination="rOq-ji-7M9" id="kSF-rg-5VG"/>
-                        <segue destination="b8Q-sT-juJ" kind="push" identifier="loginSuccessSegue" id="67z-qR-seE"/>
+                        <segue destination="b8Q-sT-juJ" kind="custom" identifier="loginSuccessSegue" customClass="LoginSegue" id="67z-qR-seE"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="4" sceneMemberID="firstResponder"/>
@@ -603,6 +625,6 @@
         <simulatedScreenMetrics key="destination"/>
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
-        <segue reference="ejD-em-WSs"/>
+        <segue reference="67z-qR-seE"/>
     </inferredMetricsTieBreakers>
 </document>

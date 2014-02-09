@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		115174BE18A75AF900BD7A69 /* LoginSegue.m in Sources */ = {isa = PBXBuildFile; fileRef = 115174BD18A75AF900BD7A69 /* LoginSegue.m */; };
 		116E022318A08F3C00A371A1 /* Media.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 116E022218A08F3C00A371A1 /* Media.xcassets */; };
 		11ED3BD518A7456400797B41 /* Crashlytics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 11ED3BD418A7456400797B41 /* Crashlytics.framework */; };
 		36232B4516E286390029A175 /* MessageUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 36232B4416E286390029A175 /* MessageUI.framework */; };
@@ -65,6 +66,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		115174BC18A75AF900BD7A69 /* LoginSegue.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoginSegue.h; sourceTree = "<group>"; };
+		115174BD18A75AF900BD7A69 /* LoginSegue.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoginSegue.m; sourceTree = "<group>"; };
 		116E022218A08F3C00A371A1 /* Media.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Media.xcassets; path = Resources/Media.xcassets; sourceTree = "<group>"; };
 		11ED3BD418A7456400797B41 /* Crashlytics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Crashlytics.framework; sourceTree = "<group>"; };
 		36232B4416E286390029A175 /* MessageUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MessageUI.framework; path = System/Library/Frameworks/MessageUI.framework; sourceTree = SDKROOT; };
@@ -228,6 +231,8 @@
 				366917DB16D714E600DF21E9 /* LonelySegue.h */,
 				366917DC16D714E600DF21E9 /* LonelySegue.m */,
 				3641707C16FA83D1001B1893 /* FrequencySegue.h */,
+				115174BC18A75AF900BD7A69 /* LoginSegue.h */,
+				115174BD18A75AF900BD7A69 /* LoginSegue.m */,
 				3641707D16FA83D1001B1893 /* FrequencySegue.m */,
 			);
 			path = Segue;
@@ -508,6 +513,7 @@
 				DA36C78F16CB5D6F001D7889 /* RegisterViewController.m in Sources */,
 				366917D816D7143500DF21E9 /* LonelyController.m in Sources */,
 				366917DD16D714E600DF21E9 /* LonelySegue.m in Sources */,
+				115174BE18A75AF900BD7A69 /* LoginSegue.m in Sources */,
 				365D019F16DC38780091CBA6 /* User.m in Sources */,
 				36F7E59616E05A62007BB7A6 /* CuddleNavBar.m in Sources */,
 				36232B6C16E2B3FA0029A175 /* ContactHistoryCell.m in Sources */,

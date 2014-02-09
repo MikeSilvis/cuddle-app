@@ -7,6 +7,7 @@
 //
 
 #import "LoginViewController.h"
+#define kOFFSET_FOR_KEYBOARD 55.0
 
 @interface LoginViewController ()
 
@@ -14,8 +15,7 @@
 
 @implementation LoginViewController
 
-- (void)viewDidLoad
-{
+- (void)viewDidLoad {
   [super viewDidLoad];
   self.screenName = @"Login";
   UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc]
@@ -28,8 +28,7 @@
   [self.emailField resignFirstResponder];
   [self.passwordField resignFirstResponder];
 }
-- (BOOL)textFieldShouldReturn:(UITextField *)textField
-{
+- (BOOL)textFieldShouldReturn:(UITextField *)textField {
   if (textField == self.emailField){
     [self.passwordField becomeFirstResponder];
   } else if (textField == self.passwordField){
@@ -59,7 +58,6 @@
     name:UIKeyboardWillHideNotification
     object:nil];
 }
-#define kOFFSET_FOR_KEYBOARD 55.0
 
 -(void)keyboardWillShow {
     // Animate the current view out of the way
@@ -85,8 +83,7 @@
 }
 
 //method to move the view up/down whenever the keyboard is shown/dismissed
--(void)setViewMovedUp:(BOOL)movedUp
-{
+-(void)setViewMovedUp:(BOOL)movedUp {
   [UIView beginAnimations:nil context:NULL];
     [UIView setAnimationDuration:0.3]; // if you want to slide up the view
     
@@ -107,42 +104,54 @@
     self.view.frame = rect;
     
     [UIView commitAnimations];
-  }
+}
 
-  - (void)loginUser {
+- (void)loginUser {
 
-    [SVProgressHUD showWithStatus:@"Logging in..." maskType: SVProgressHUDMaskTypeBlack];
-    [PFUser logInWithUsernameInBackground:self.emailField.text password:self.passwordField.text block:^(PFUser *user, NSError *error) {
-      [SVProgressHUD dismiss];
-      if (user) {
-        [self performSegueWithIdentifier:@"loginSuccessSegue" sender:self];            
-      } else {
-        UIAlertView *message = [[UIAlertView alloc] initWithTitle:@"Login Error!"
-          message:@"Please try again."
-          delegate:nil
-          cancelButtonTitle:@"OK"
-          otherButtonTitles:nil];
-        [message show];
-      }
-    }];
+  [SVProgressHUD showWithStatus:@"Logging in..." maskType: SVProgressHUDMaskTypeBlack];
+  [PFUser logInWithUsernameInBackground:self.emailField.text password:self.passwordField.text block:^(PFUser *user, NSError *error) {
+    [SVProgressHUD dismiss];
+    if (user) {
+      [self performSegueWithIdentifier:@"loginSuccessSegue" sender:self];            
+    } else {
+      UIAlertView *message = [[UIAlertView alloc] initWithTitle:@"Login Error!"
+        message:@"Please try again, or select Forgot Password"
+        delegate:self
+        cancelButtonTitle:@"Try Again"
+        otherButtonTitles:@"Reset Password", nil];
+      [message show];
+    }
+  }];
+}
+- (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex {
+  NSString *title = [alertView buttonTitleAtIndex:buttonIndex];
+  if([title isEqualToString:@"Reset Password"]) {
+    [PFUser requestPasswordResetForEmailInBackground:self.emailField.text];
+    UIAlertView *message = [[UIAlertView alloc] initWithTitle:@"Password Reset complete"
+                                                      message:@"Please check your email and reset your password there"
+                                                     delegate:nil
+                                            cancelButtonTitle:@"Okay!"
+                                            otherButtonTitles:nil];
+    [message show];
   }
+}
+- (IBAction)goToRegister:(id)sender {
+  [self.navigationController popViewControllerAnimated:YES];
+}
+- (void)didReceiveMemoryWarning
+{
+  [super didReceiveMemoryWarning];
+}
 
-  - (IBAction)goToRegister:(id)sender {
-    [self.navigationController popViewControllerAnimated:YES];
-  }
-  - (void)didReceiveMemoryWarning
-  {
-    [super didReceiveMemoryWarning];
-  }
+- (IBAction)login:(id)sender {
+  [self loginUser];
+}
+- (IBAction)editingEmailField:(id)sender {
+  self.emailField.delegate = self;
+}
 
-  - (IBAction)login:(id)sender {
-    [self loginUser];
-  }
-  - (IBAction)editingEmailField:(id)sender {
-    self.emailField.delegate = self;
-  }
+- (IBAction)editingPasswordField:(id)sender {
+  self.passwordField.delegate = self;
+}
 
-  - (IBAction)editingPasswordField:(id)sender {
-    self.passwordField.delegate = self;
-  }
 @end
