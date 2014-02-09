@@ -7,6 +7,7 @@
 //
 
 #import "RegisterViewController.h"
+#define kOFFSET_FOR_KEYBOARD 70.0
 
 
 @implementation RegisterViewController
@@ -59,7 +60,6 @@
     name:UIKeyboardWillHideNotification
     object:nil];
 }
-#define kOFFSET_FOR_KEYBOARD 55.0
 
 -(void)keyboardWillShow {
     // Animate the current view out of the way

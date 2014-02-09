@@ -7,7 +7,7 @@
 //
 
 #import "LoginViewController.h"
-#define kOFFSET_FOR_KEYBOARD 55.0
+#define kOFFSET_FOR_KEYBOARD 70.0
 
 @interface LoginViewController ()
 
@@ -90,8 +90,6 @@
     CGRect rect = self.view.frame;
     if (movedUp)
     {
-        // 1. move the view's origin up so that the text field that will be hidden come above the keyboard
-        // 2. increase the size of the view so that the area behind the keyboard is covered up.
       rect.origin.y -= kOFFSET_FOR_KEYBOARD;
       rect.size.height += kOFFSET_FOR_KEYBOARD;
     }
@@ -115,17 +113,17 @@
       [self performSegueWithIdentifier:@"loginSuccessSegue" sender:self];            
     } else {
       UIAlertView *message = [[UIAlertView alloc] initWithTitle:@"Login Error!"
-        message:@"Please try again, or select Forgot Password"
+        message:@"Sorry, the password you entered was not correct."
         delegate:self
         cancelButtonTitle:@"Try Again"
-        otherButtonTitles:@"Reset Password", nil];
+        otherButtonTitles:@"Forgot?", nil];
       [message show];
     }
   }];
 }
 - (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex {
   NSString *title = [alertView buttonTitleAtIndex:buttonIndex];
-  if([title isEqualToString:@"Reset Password"]) {
+  if([title isEqualToString:@"Forgot?"]) {
     [PFUser requestPasswordResetForEmailInBackground:self.emailField.text];
     UIAlertView *message = [[UIAlertView alloc] initWithTitle:@"Password Reset complete"
                                                       message:@"Please check your email and reset your password there"
