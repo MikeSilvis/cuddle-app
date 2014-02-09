@@ -12,15 +12,22 @@
 #import "GAITrackedViewController.h"
 #import "User.h"
 
+
 @interface RegisterViewController : GAITrackedViewController <UITextFieldDelegate>
 
-@property (weak, nonatomic) IBOutlet UITextField *emailField;
-@property (weak, nonatomic) IBOutlet UITextField *passwordField;
+
 - (IBAction)editingEmailField:(id)sender;
 - (IBAction)editingPasswordField:(id)sender;
 - (BOOL)isValidEmail:(NSString *)canidate;
 - (void)signUpUser;
 - (IBAction)registerUserButton:(id)sender;
 - (IBAction)backToIntro:(id)sender;
+
+@property (weak, nonatomic) IBOutlet UIButton *registerButton;
+@property (weak, nonatomic) IBOutlet UIButton *loginButton;
+@property (weak, nonatomic) IBOutlet UILabel *neverDrift;
+@property (weak, nonatomic) IBOutlet UITextField *emailField;
+@property (weak, nonatomic) IBOutlet UITextField *passwordField;
+@property (weak, nonatomic) IBOutlet UILabel *alreadyRegistered;
 
 @end

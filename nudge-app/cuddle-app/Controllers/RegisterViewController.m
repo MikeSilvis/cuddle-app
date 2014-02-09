@@ -7,6 +7,11 @@
 //
 
 #import "RegisterViewController.h"
+
+#import "UIButton+Nudge.h"
+#import "UILabel+Nudge.h"
+#import "UITextField+Nudge.h"
+
 #define kOFFSET_FOR_KEYBOARD 70.0
 
 
@@ -16,6 +21,7 @@
   [super viewDidLoad];
   self.title = @"Register";
   self.screenName = @"Register";
+  [self setStyles];
   [self.navigationController setNavigationBarHidden:NO];
   UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc]
    initWithTarget:self
@@ -24,8 +30,15 @@
   [self.view addGestureRecognizer:tap];
   self.navigationItem.hidesBackButton = YES;
 }
-- (BOOL)textFieldShouldReturn:(UITextField *)textField
-{
+- (void)setStyles {
+  self.registerButton    = [UIButton cuddleStyleWithButton:self.registerButton];
+  self.loginButton       = [UIButton cuddleStyleWithButton:self.loginButton];
+  self.neverDrift        = [UILabel cuddleStyleWithHeader1Label:self.neverDrift];
+  self.alreadyRegistered = [UILabel cuddleStyleWithHeader2Label:self.alreadyRegistered];
+  self.emailField        = [UITextField cuddleStyleWithTextField:self.emailField];
+  self.passwordField     = [UITextField cuddleStyleWithTextField:self.passwordField];
+}
+- (BOOL)textFieldShouldReturn:(UITextField *)textField {
   if (textField == self.emailField){
     [self.passwordField becomeFirstResponder];
   } else if (textField == self.passwordField){

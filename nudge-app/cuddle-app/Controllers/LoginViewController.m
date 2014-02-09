@@ -7,6 +7,11 @@
 //
 
 #import "LoginViewController.h"
+
+#import "UIButton+Nudge.h"
+#import "UILabel+Nudge.h"
+#import "UITextField+Nudge.h"
+
 #define kOFFSET_FOR_KEYBOARD 70.0
 
 @interface LoginViewController ()
@@ -18,11 +23,18 @@
 - (void)viewDidLoad {
   [super viewDidLoad];
   self.screenName = @"Login";
+  [self setStyles];
   UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc]
    initWithTarget:self
    action:@selector(dismissKeyboard)];
   
   [self.view addGestureRecognizer:tap];
+}
+- (void)setStyles {
+  self.emailField     = [UITextField cuddleStyleWithTextField:self.emailField];
+  self.passwordField  = [UITextField cuddleStyleWithTextField:self.emailField];
+  self.seeYouAgain    = [UILabel cuddleStyleWithHeader1Label:self.seeYouAgain];
+  self.loginButton    = [UIButton cuddleStyleWithButton:self.loginButton];
 }
 -(void)dismissKeyboard {
   [self.emailField resignFirstResponder];

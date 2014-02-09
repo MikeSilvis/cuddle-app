@@ -83,19 +83,18 @@
                                     <action selector="editingPasswordField:" destination="2" eventType="editingDidBegin" id="rNv-EN-X3V"/>
                                 </connections>
                             </textField>
-                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Nice to see you again." textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bC1-XY-2Le">
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Nice to see you again." lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bC1-XY-2Le">
                                 <rect key="frame" x="0.0" y="91" width="320" height="28"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="28" id="oXE-7w-s5v"/>
                                 </constraints>
-                                <fontDescription key="fontDescription" name="Avenir-Medium" family="Avenir" pointSize="24"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="24"/>
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="OzR-RK-NYp">
                                 <rect key="frame" x="0.0" y="298" width="320" height="50"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" name="AvenirNext-Medium" family="Avenir Next" pointSize="15"/>
                                 <state key="normal" title="Login">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
@@ -122,7 +121,9 @@
                     <nil key="simulatedBottomBarMetrics"/>
                     <connections>
                         <outlet property="emailField" destination="5Mh-Oj-KiN" id="gju-xu-Ygv"/>
+                        <outlet property="loginButton" destination="OzR-RK-NYp" id="fdE-Gu-Jf2"/>
                         <outlet property="passwordField" destination="rOq-ji-7M9" id="kSF-rg-5VG"/>
+                        <outlet property="seeYouAgain" destination="bC1-XY-2Le" id="w6J-ch-Oha"/>
                         <segue destination="b8Q-sT-juJ" kind="custom" identifier="loginSuccessSegue" customClass="LoginSegue" id="67z-qR-seE"/>
                     </connections>
                 </viewController>
@@ -147,7 +148,6 @@
                                 <constraints>
                                     <constraint firstAttribute="height" constant="50" id="8zl-I7-mrS"/>
                                 </constraints>
-                                <fontDescription key="fontDescription" name="AvenirNext-Medium" family="Avenir Next" pointSize="15"/>
                                 <state key="normal" title="Sign Up">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
@@ -171,15 +171,15 @@
                                     <action selector="editingPasswordField:" destination="kDV-Vv-6JX" eventType="editingDidBegin" id="rl9-tt-e20"/>
                                 </connections>
                             </textField>
-                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Never drift apart again." textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="T0x-KA-F6C">
-                                <rect key="frame" x="0.0" y="91" width="320" height="33"/>
-                                <fontDescription key="fontDescription" name="Avenir-Medium" family="Avenir" pointSize="24"/>
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Never drift apart again." lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="T0x-KA-F6C">
+                                <rect key="frame" x="0.0" y="91" width="320" height="29"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="24"/>
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Already have an account?" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="v0W-L7-Gw8">
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" misplaced="YES" text="Already have an account?" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="v0W-L7-Gw8">
                                 <rect key="frame" x="0.0" y="509" width="320" height="22"/>
-                                <fontDescription key="fontDescription" name="Avenir-Medium" family="Avenir" pointSize="16"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="16"/>
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
@@ -221,8 +221,12 @@
                     </view>
                     <navigationItem key="navigationItem" title="Register" id="zsW-hQ-ewu"/>
                     <connections>
+                        <outlet property="alreadyRegistered" destination="v0W-L7-Gw8" id="qpw-2b-Tz3"/>
                         <outlet property="emailField" destination="KdB-Aj-4Mx" id="uIB-RB-oDp"/>
+                        <outlet property="loginButton" destination="9oQ-a7-jka" id="Www-UA-EVb"/>
+                        <outlet property="neverDrift" destination="T0x-KA-F6C" id="f9n-xz-a9p"/>
                         <outlet property="passwordField" destination="bcV-cF-oB4" id="Yhf-au-ifA"/>
+                        <outlet property="registerButton" destination="irt-8E-uoQ" id="LC9-90-P8n"/>
                         <segue destination="b8Q-sT-juJ" kind="custom" identifier="registerSuccessSegue" customClass="LonelySegue" id="kwV-ey-FKD"/>
                     </connections>
                 </viewController>
@@ -619,6 +623,6 @@
         <simulatedScreenMetrics key="destination" type="retina4"/>
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
-        <segue reference="ejD-em-WSs"/>
+        <segue reference="67z-qR-seE"/>
     </inferredMetricsTieBreakers>
 </document>

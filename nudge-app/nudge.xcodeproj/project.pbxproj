@@ -8,6 +8,9 @@
 
 /* Begin PBXBuildFile section */
 		115174BE18A75AF900BD7A69 /* LoginSegue.m in Sources */ = {isa = PBXBuildFile; fileRef = 115174BD18A75AF900BD7A69 /* LoginSegue.m */; };
+		1151750B18A77C7C00BD7A69 /* UIButton+Nudge.m in Sources */ = {isa = PBXBuildFile; fileRef = 1151750A18A77C7C00BD7A69 /* UIButton+Nudge.m */; };
+		1151750E18A7815100BD7A69 /* UILabel+Nudge.m in Sources */ = {isa = PBXBuildFile; fileRef = 1151750D18A7815100BD7A69 /* UILabel+Nudge.m */; };
+		1151751418A7858800BD7A69 /* UITextField+Nudge.m in Sources */ = {isa = PBXBuildFile; fileRef = 1151751318A7858800BD7A69 /* UITextField+Nudge.m */; };
 		116E022318A08F3C00A371A1 /* Media.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 116E022218A08F3C00A371A1 /* Media.xcassets */; };
 		11ED3BD518A7456400797B41 /* Crashlytics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 11ED3BD418A7456400797B41 /* Crashlytics.framework */; };
 		36232B4516E286390029A175 /* MessageUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 36232B4416E286390029A175 /* MessageUI.framework */; };
@@ -68,6 +71,12 @@
 /* Begin PBXFileReference section */
 		115174BC18A75AF900BD7A69 /* LoginSegue.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoginSegue.h; sourceTree = "<group>"; };
 		115174BD18A75AF900BD7A69 /* LoginSegue.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoginSegue.m; sourceTree = "<group>"; };
+		1151750918A77C7C00BD7A69 /* UIButton+Nudge.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIButton+Nudge.h"; sourceTree = "<group>"; };
+		1151750A18A77C7C00BD7A69 /* UIButton+Nudge.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIButton+Nudge.m"; sourceTree = "<group>"; };
+		1151750C18A7815100BD7A69 /* UILabel+Nudge.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UILabel+Nudge.h"; sourceTree = "<group>"; };
+		1151750D18A7815100BD7A69 /* UILabel+Nudge.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UILabel+Nudge.m"; sourceTree = "<group>"; };
+		1151751218A7858800BD7A69 /* UITextField+Nudge.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "UITextField+Nudge.h"; path = "cuddle-app/UI/UITextField+Nudge.h"; sourceTree = SOURCE_ROOT; };
+		1151751318A7858800BD7A69 /* UITextField+Nudge.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "UITextField+Nudge.m"; path = "cuddle-app/UI/UITextField+Nudge.m"; sourceTree = SOURCE_ROOT; };
 		116E022218A08F3C00A371A1 /* Media.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Media.xcassets; path = Resources/Media.xcassets; sourceTree = "<group>"; };
 		11ED3BD418A7456400797B41 /* Crashlytics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Crashlytics.framework; sourceTree = "<group>"; };
 		36232B4416E286390029A175 /* MessageUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MessageUI.framework; path = System/Library/Frameworks/MessageUI.framework; sourceTree = SDKROOT; };
@@ -250,8 +259,14 @@
 		36F7E59716E05ABD007BB7A6 /* UI */ = {
 			isa = PBXGroup;
 			children = (
+				1151750C18A7815100BD7A69 /* UILabel+Nudge.h */,
+				1151750D18A7815100BD7A69 /* UILabel+Nudge.m */,
+				1151750918A77C7C00BD7A69 /* UIButton+Nudge.h */,
+				1151750A18A77C7C00BD7A69 /* UIButton+Nudge.m */,
 				36F7E59416E05A62007BB7A6 /* CuddleNavBar.h */,
 				36F7E59516E05A62007BB7A6 /* CuddleNavBar.m */,
+				1151751218A7858800BD7A69 /* UITextField+Nudge.h */,
+				1151751318A7858800BD7A69 /* UITextField+Nudge.m */,
 			);
 			path = UI;
 			sourceTree = "<group>";
@@ -510,8 +525,11 @@
 				362D55FD16C8674B00A3423D /* ContactIndexController.m in Sources */,
 				362D560016C86FD400A3423D /* ContactShowViewController.m in Sources */,
 				DA58A56F16C8BFD6006D7F55 /* Colleague.m in Sources */,
+				1151751418A7858800BD7A69 /* UITextField+Nudge.m in Sources */,
 				DA36C78F16CB5D6F001D7889 /* RegisterViewController.m in Sources */,
+				1151750E18A7815100BD7A69 /* UILabel+Nudge.m in Sources */,
 				366917D816D7143500DF21E9 /* LonelyController.m in Sources */,
+				1151750B18A77C7C00BD7A69 /* UIButton+Nudge.m in Sources */,
 				366917DD16D714E600DF21E9 /* LonelySegue.m in Sources */,
 				115174BE18A75AF900BD7A69 /* LoginSegue.m in Sources */,
 				365D019F16DC38780091CBA6 /* User.m in Sources */,
