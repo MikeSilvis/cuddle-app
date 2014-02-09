@@ -460,7 +460,7 @@
                                 <rect key="frame" x="20" y="91" width="94" height="94"/>
                                 <autoresizingMask key="autoresizingMask"/>
                             </imageView>
-                            <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" fixedFrame="YES" barStyle="black" translatesAutoresizingMaskIntoConstraints="NO" id="yAO-0M-sDc">
+                            <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" barStyle="black" translatesAutoresizingMaskIntoConstraints="NO" id="yAO-0M-sDc">
                                 <rect key="frame" x="0.0" y="436" width="320" height="44"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
                                 <color key="backgroundColor" red="0.23137256503105164" green="0.23921570181846619" blue="0.25098040699958801" alpha="1" colorSpace="deviceRGB"/>
@@ -495,7 +495,10 @@
                             <constraint firstAttribute="trailing" secondItem="07s-ip-jfe" secondAttribute="trailing" constant="20" symbolic="YES" id="0dC-9H-wCl"/>
                             <constraint firstItem="07s-ip-jfe" firstAttribute="leading" secondItem="VTy-F0-tze" secondAttribute="leading" constant="20" symbolic="YES" id="8E0-hP-x4W"/>
                             <constraint firstItem="MDg-od-mxi" firstAttribute="top" secondItem="VTy-F0-tze" secondAttribute="top" id="H27-ho-3AS"/>
+                            <constraint firstItem="yAO-0M-sDc" firstAttribute="trailing" secondItem="MDg-od-mxi" secondAttribute="trailing" id="KuO-kA-xFq"/>
+                            <constraint firstItem="yAO-0M-sDc" firstAttribute="leading" secondItem="MDg-od-mxi" secondAttribute="leading" id="MKI-nn-fN4"/>
                             <constraint firstAttribute="bottom" secondItem="07s-ip-jfe" secondAttribute="bottom" constant="57" id="Qpa-ZI-r1M"/>
+                            <constraint firstItem="wow-8M-mKp" firstAttribute="top" secondItem="yAO-0M-sDc" secondAttribute="bottom" id="Vfr-mG-dyK"/>
                             <constraint firstItem="07s-ip-jfe" firstAttribute="centerX" secondItem="MDg-od-mxi" secondAttribute="centerX" id="v38-h3-bAV"/>
                         </constraints>
                     </view>
