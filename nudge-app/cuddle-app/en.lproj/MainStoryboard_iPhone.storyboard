@@ -24,7 +24,7 @@
                             </scrollView>
                             <pageControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" numberOfPages="4" translatesAutoresizingMaskIntoConstraints="NO" id="jSk-2N-sWh">
                                 <rect key="frame" x="141" y="531" width="38" height="37"/>
-                                <color key="pageIndicatorTintColor" red="0.022483251622525645" green="0.35975527763366699" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                <color key="pageIndicatorTintColor" red="0.21176472306251526" green="0.43137258291244507" blue="0.61568629741668701" alpha="1" colorSpace="deviceRGB"/>
                                 <color key="currentPageIndicatorTintColor" red="1" green="0.96618515721441123" blue="0.96003367006868079" alpha="1" colorSpace="calibratedRGB"/>
                                 <connections>
                                     <action selector="pageChanged:" destination="h2x-IE-8pD" eventType="valueChanged" id="sND-Ad-cdg"/>
