@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="4514" systemVersion="13B3116" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="RzY-qC-cMf">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="4514" systemVersion="12E55" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="RzY-qC-cMf">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="3747"/>
     </dependencies>
@@ -171,9 +171,9 @@
                                     <action selector="editingPasswordField:" destination="kDV-Vv-6JX" eventType="editingDidBegin" id="rl9-tt-e20"/>
                                 </connections>
                             </textField>
-                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Never drift apart again." textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="T0x-KA-F6C">
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" misplaced="YES" text="Never drift apart again." textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="T0x-KA-F6C">
                                 <rect key="frame" x="0.0" y="91" width="320" height="33"/>
-                                <fontDescription key="fontDescription" name="Avenir-Medium" family="Avenir" pointSize="24"/>
+                                <fontDescription key="fontDescription" name="AmericanTypewriter" family="American Typewriter" pointSize="24"/>
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
@@ -374,11 +374,8 @@
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" image="lonely" translatesAutoresizingMaskIntoConstraints="NO" id="p52-u8-PR1">
-                                <rect key="frame" x="0.0" y="59" width="320" height="317"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="317" id="vY6-7M-vkb"/>
-                                </constraints>
+                            <imageView userInteractionEnabled="NO" contentMode="center" fixedFrame="YES" image="lonely" translatesAutoresizingMaskIntoConstraints="NO" id="p52-u8-PR1">
+                                <rect key="frame" x="0.0" y="-36" width="320" height="640"/>
                             </imageView>
                             <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" fixedFrame="YES" text="Never drift apart again." textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="uWM-PL-mwo">
                                 <rect key="frame" x="10" y="-91" width="320" height="33"/>
@@ -386,32 +383,8 @@
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="So lonely?" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qrH-Oj-vwu">
-                                <rect key="frame" x="0.0" y="479" width="320" height="33"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" name="Avenir-Medium" family="Avenir" pointSize="24"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Get started by adding contacts with the + button" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" preferredMaxLayoutWidth="231" translatesAutoresizingMaskIntoConstraints="NO" id="UOp-Ak-Uhr">
-                                <rect key="frame" x="45" y="520" width="231" height="47"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" name="Avenir-Medium" family="Avenir" pointSize="17"/>
-                                <nil key="highlightedColor"/>
-                            </label>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
-                        <constraints>
-                            <constraint firstItem="qrH-Oj-vwu" firstAttribute="centerX" secondItem="UOp-Ak-Uhr" secondAttribute="centerX" id="5Op-8f-q9E"/>
-                            <constraint firstItem="C6h-B8-bZ5" firstAttribute="top" secondItem="UOp-Ak-Uhr" secondAttribute="bottom" constant="1" id="AQ9-pO-ZAy"/>
-                            <constraint firstItem="p52-u8-PR1" firstAttribute="trailing" secondItem="qrH-Oj-vwu" secondAttribute="trailing" id="Fwl-Yk-mii"/>
-                            <constraint firstAttribute="trailing" secondItem="UOp-Ak-Uhr" secondAttribute="trailing" constant="44" id="P8V-GK-UPv"/>
-                            <constraint firstItem="UOp-Ak-Uhr" firstAttribute="top" secondItem="qrH-Oj-vwu" secondAttribute="bottom" constant="8" symbolic="YES" id="SZx-ih-Xw3"/>
-                            <constraint firstItem="qrH-Oj-vwu" firstAttribute="leading" secondItem="Iwe-IT-fyb" secondAttribute="leading" id="bp1-cT-eSm"/>
-                            <constraint firstItem="UOp-Ak-Uhr" firstAttribute="leading" secondItem="Iwe-IT-fyb" secondAttribute="leading" constant="45" id="jhU-pK-Wdq"/>
-                            <constraint firstItem="p52-u8-PR1" firstAttribute="leading" secondItem="qrH-Oj-vwu" secondAttribute="leading" id="rit-V8-D7g"/>
-                            <constraint firstItem="p52-u8-PR1" firstAttribute="top" secondItem="Iwe-IT-fyb" secondAttribute="top" constant="59" id="viF-6S-raD"/>
-                            <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="UOp-Ak-Uhr" secondAttribute="trailing" constant="44" id="y1J-A7-l6S"/>
-                        </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="fBF-lB-AaE">
                         <barButtonItem key="rightBarButtonItem" systemItem="add" id="iSD-Nb-6se">
@@ -608,7 +581,7 @@
         <image name="contact_without_image" width="70" height="70"/>
         <image name="email" width="24" height="16"/>
         <image name="header" width="320" height="150"/>
-        <image name="lonely" width="160" height="158"/>
+        <image name="lonely" width="320" height="480"/>
         <image name="phone" width="24" height="24"/>
         <image name="phone-gray" width="24" height="24"/>
         <image name="sms" width="24" height="22"/>
@@ -619,6 +592,6 @@
         <simulatedScreenMetrics key="destination" type="retina4"/>
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
-        <segue reference="ejD-em-WSs"/>
+        <segue reference="kwV-ey-FKD"/>
     </inferredMetricsTieBreakers>
 </document>

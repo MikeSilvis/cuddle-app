@@ -3,14 +3,16 @@
     {
       "idiom" : "iphone",
       "scale" : "1x",
-      "filename" : "NudgePanda-Welcome-Background-4.png"
+      "filename" : "NudgePanda Welcome Background-4 small.png"
     },
     {
       "idiom" : "iphone",
-      "scale" : "2x"
+      "scale" : "2x",
+      "filename" : "NudgePanda Welcome Background-4.png"
     },
     {
       "idiom" : "iphone",
+      "filename" : "NudgePanda Welcome Background-4 big.png",
       "subtype" : "retina4",
       "scale" : "2x"
     }

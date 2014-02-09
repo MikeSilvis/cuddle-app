@@ -1,13 +1,20 @@
 {
   "images" : [
     {
-      "idiom" : "universal",
-      "scale" : "1x"
+      "idiom" : "iphone",
+      "scale" : "1x",
+      "filename" : "NudgePanda Get Started small.png"
     },
     {
-      "idiom" : "universal",
+      "idiom" : "iphone",
       "scale" : "2x",
-      "filename" : "lonely.png"
+      "filename" : "NudgePanda Get Started.png"
+    },
+    {
+      "idiom" : "iphone",
+      "filename" : "NudgePanda Get Started big.png",
+      "subtype" : "retina4",
+      "scale" : "2x"
     }
   ],
   "info" : {
