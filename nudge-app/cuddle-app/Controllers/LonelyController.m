@@ -11,12 +11,12 @@
 @implementation LonelyController
 
 -(void)viewDidLoad{
-    [super viewDidLoad];
-    self.screenName = @"Home Screen";
-    self.navigationItem.hidesBackButton = YES;
+	[super viewDidLoad];
+	self.screenName = @"Home Screen";
+	self.navigationItem.hidesBackButton = YES;
 }
 - (IBAction)showPeoplePicker:(id)sender {
-    [[NSNotificationCenter defaultCenter] postNotificationName:@"PeoplePicker" object:self];
-    [self.navigationController popViewControllerAnimated:YES];
+	[[NSNotificationCenter defaultCenter] postNotificationName:@"PeoplePicker" object:self];
+	[self.navigationController popViewControllerAnimated:YES];
 }
 @end

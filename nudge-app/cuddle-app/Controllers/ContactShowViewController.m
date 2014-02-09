@@ -14,22 +14,21 @@
 
 - (void)viewDidLoad
 {
-    [super viewDidLoad];
-    [self disableButtonsWithoutInfo];
-    [self loadStyles];
-    self.screenName = @"Contact Show";
-    self.seeMore.hidden = YES;
-    self.contactPhoto.image = contact.avatarPhoto;
-    self.navigationController.topViewController.title = contact.name;
-    [[NSNotificationCenter defaultCenter] addObserver:self
-                                           selector:@selector(handleOpenedFromPush:)
-                                               name:@"openedFromNotification"
-                                             object:nil];
+  [super viewDidLoad];
+  [self disableButtonsWithoutInfo];
+  [self loadStyles];
+  self.screenName = @"Contact Show";
+  self.seeMore.hidden = YES;
+  self.contactPhoto.image = contact.avatarPhoto;
+  self.navigationController.topViewController.title = contact.name;
+  [[NSNotificationCenter defaultCenter] addObserver:self
+   selector:@selector(handleOpenedFromPush:)
+   name:@"openedFromNotification"
+   object:nil];
 }
 - (void)viewDidAppear:(BOOL)animated{
   [super viewDidAppear:YES];
   [self checkFrequency];
-//  self.contactPhoto.image = contact.avatarPhoto;
 }
 - (void)loadStyles{
   self.tableView.backgroundColor = [UIColor clearColor];
@@ -92,23 +91,23 @@
 }
 
 - (IBAction)emailButton:(id)sender {
-    if ([MFMailComposeViewController canSendMail])
-    {
-        MFMailComposeViewController* emailCntrl = [[MFMailComposeViewController alloc] init];
-        emailCntrl.mailComposeDelegate = self;
-        [emailCntrl setToRecipients:@[contact.email]];
-        [self presentViewController:emailCntrl animated:YES completion:nil];
-    }
+  if ([MFMailComposeViewController canSendMail])
+  {
+    MFMailComposeViewController* emailCntrl = [[MFMailComposeViewController alloc] init];
+    emailCntrl.mailComposeDelegate = self;
+    [emailCntrl setToRecipients:@[contact.email]];
+    [self presentViewController:emailCntrl animated:YES completion:nil];
+  }
 }
 
 - (IBAction)textButton:(id)sender {
   NSArray*labels = [contact.numbers allKeys];
   
   UIActionSheet *actionSheet = [[UIActionSheet alloc] initWithTitle:@"Number to Text"
-                                                           delegate:self
-                                                  cancelButtonTitle:nil
-                                             destructiveButtonTitle:nil
-                                                  otherButtonTitles:nil];
+   delegate:self
+   cancelButtonTitle:nil
+   destructiveButtonTitle:nil
+   otherButtonTitles:nil];
   
   for (int i = 0; i<labels.count; i++) {
     [actionSheet addButtonWithTitle:labels[i]];
@@ -124,10 +123,10 @@
   NSArray*labels = [contact.numbers allKeys];
   
   UIActionSheet *actionSheet = [[UIActionSheet alloc] initWithTitle:@"Number to Call"
-                                                           delegate:self
-                                                  cancelButtonTitle:nil
-                                             destructiveButtonTitle:nil
-                                                  otherButtonTitles:nil];
+   delegate:self
+   cancelButtonTitle:nil
+   destructiveButtonTitle:nil
+   otherButtonTitles:nil];
   
   for (int i = 0; i<labels.count; i++) {
     [actionSheet addButtonWithTitle:labels[i]];
@@ -141,8 +140,8 @@
 
 - (IBAction)markButton:(id)sender {
 	UIActionSheet *popupQuery = [[UIActionSheet alloc] initWithTitle:@"Method of Communication"
-                                                          delegate:self
-                                                 cancelButtonTitle:@"Cancel" destructiveButtonTitle:nil otherButtonTitles:@"Called", @"Texted", @"Emailed", nil];
+    delegate:self
+    cancelButtonTitle:@"Cancel" destructiveButtonTitle:nil otherButtonTitles:@"Called", @"Texted", @"Emailed", nil];
 	popupQuery.actionSheetStyle = UIActionSheetStyleBlackOpaque;
 	[popupQuery showInView:self.view];
 }
@@ -155,14 +154,14 @@
   if ([actionSheet.title isEqual: @"Method of Communication"]){
     switch (buttonIndex) {
       case 0:
-        [self saveCommunication:@"call"];
-        break;
+      [self saveCommunication:@"call"];
+      break;
       case 1:
-        [self saveCommunication:@"sms"];
-        break;
+      [self saveCommunication:@"sms"];
+      break;
       case 2:
-        [self saveCommunication:@"email"];
-        break;
+      [self saveCommunication:@"email"];
+      break;
     }
   } else if ([actionSheet.title isEqualToString:@"Number to Call"]){
     if (actionSheet.cancelButtonIndex == buttonIndex) {
@@ -204,24 +203,24 @@
 - (void)saveCommunication:(NSString *)methodOfContact{
   
     // Save the relationship
-    PFObject *newNetwork = [[PFObject alloc] initWithClassName:@"ContactHistory"];
-    newNetwork[@"colleague"] = contact;
-    newNetwork[@"method"] = methodOfContact;
-    [newNetwork saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
-      if (succeeded){
-        [self queryParseHistory];
-      }
-    }];
+  PFObject *newNetwork = [[PFObject alloc] initWithClassName:@"ContactHistory"];
+  newNetwork[@"colleague"] = contact;
+  newNetwork[@"method"] = methodOfContact;
+  [newNetwork saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
+    if (succeeded){
+      [self queryParseHistory];
+    }
+  }];
   
     // Save last contact
-    contact[@"methodOfLastContact"] = methodOfContact;
-    contact[@"lastContactDate"] = [NSDate date];
-    contact[@"notifiedSincePush"] = @YES;
-    [contact saveEventually];
+  contact[@"methodOfLastContact"] = methodOfContact;
+  contact[@"lastContactDate"] = [NSDate date];
+  contact[@"notifiedSincePush"] = @YES;
+  [contact saveEventually];
 
     // Update the app to respect todays communication
-    [SVProgressHUD showSuccessWithStatus:@"Great job at keeping in touch!"];
-    [self queryParseHistory];
+  [SVProgressHUD showSuccessWithStatus:@"Great job at keeping in touch!"];
+  [self queryParseHistory];
 }
 
 
@@ -282,7 +281,7 @@
   } else if ([history[@"method"] isEqual:@"email"]) {
     cell.imageView.image = [UIImage imageNamed:@"email-gray.png"];
   } else if ([history[@"method"] isEqual:@"contacted"]) {
-      cell.imageView.image = [UIImage imageNamed:@"checkmark-gray.png"];
+    cell.imageView.image = [UIImage imageNamed:@"checkmark-gray.png"];
   }
   return cell;
 }

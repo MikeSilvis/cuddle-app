@@ -13,10 +13,10 @@
 
 - (void)viewDidLoad {
   [super viewDidLoad];
-	[self userCheck];
+  [self userCheck];
   [self.navigationController setNavigationBarHidden:YES];
   self.screenName = @"Contact Show";
-	self.pageControlBeingUsed = NO;
+  self.pageControlBeingUsed = NO;
   self.scrollView.frame = self.view.bounds;
 
   self.view.backgroundColor = [UIColor colorWithPatternImage: [UIImage imageNamed:@"welcome-background"]];
@@ -34,23 +34,23 @@
   NSArray *images = @[firstImage, secondImage, thirdImage, fourthImage];
   [images enumerateObjectsUsingBlock:^(id imageView, NSUInteger index, BOOL *stop) {
     CGRect frame;
-		frame.origin.x = self.scrollView.frame.size.width * index;
-		frame.origin.y = 0;
-		frame.size = self.scrollView.frame.size;
-		UIView *subview = [[UIView alloc] initWithFrame:frame];
+    frame.origin.x = self.scrollView.frame.size.width * index;
+    frame.origin.y = 0;
+    frame.size = self.scrollView.frame.size;
+    UIView *subview = [[UIView alloc] initWithFrame:frame];
     [subview addSubview:imageView];
-		[self.scrollView addSubview:subview];
+    [self.scrollView addSubview:subview];
   }];
-	
-	self.scrollView.contentSize = CGSizeMake(self.scrollView.frame.size.width * images.count, (self.scrollView.frame.size.height));
-	self.pageControl.currentPage = 0;
-	self.pageControl.numberOfPages = images.count;
+  
+  self.scrollView.contentSize = CGSizeMake(self.scrollView.frame.size.width * images.count, (self.scrollView.frame.size.height));
+  self.pageControl.currentPage = 0;
+  self.pageControl.numberOfPages = images.count;
 }
 
 - (void)viewDidAppear:(BOOL)animated{
-    [super viewDidAppear:YES];
-    [self.navigationController setNavigationBarHidden:YES];
-    self.screenName = @"Welcome";
+  [super viewDidAppear:YES];
+  [self.navigationController setNavigationBarHidden:YES];
+  self.screenName = @"Welcome";
 }
 - (void)userCheck{
   if ([PFUser currentUser]) {

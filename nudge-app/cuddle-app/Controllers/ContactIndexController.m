@@ -1,4 +1,4 @@
-//
+  //
 //  ContactController.m
 //  cuddle-app
 //
@@ -18,13 +18,13 @@
 @synthesize addressesTable;
 
 - (id)initWithCoder:(NSCoder *)aCoder {
-    self = [super initWithCoder:aCoder];
-    if (self) {
-        self.pullToRefreshEnabled = NO;
-        self.paginationEnabled = YES;
-        self.objectsPerPage = 25;
-    }
-    return self;
+  self = [super initWithCoder:aCoder];
+  if (self) {
+    self.pullToRefreshEnabled = NO;
+    self.paginationEnabled = YES;
+    self.objectsPerPage = 25;
+  }
+  return self;
 }
 - (void)savePushChannel {
   PFInstallation *currentInstallation = [PFInstallation currentInstallation];
@@ -43,32 +43,32 @@
 }
 
 - (void)viewDidAppear:(BOOL)animated{
-    [super viewDidDisappear:YES];
-    [self watchNotifications];
-    [self loadObjects];
-    [self pushUser];
+  [super viewDidDisappear:YES];
+  [self watchNotifications];
+  [self loadObjects];
+  [self pushUser];
 }
 
 - (void)viewDidLoad{
-    [super viewDidLoad];
-    [self.navigationController setNavigationBarHidden:NO];
-    self.navigationItem.hidesBackButton = YES;
-    self.navigationItem.titleView = [self titleView];
-    [self savePushChannel];
+  [super viewDidLoad];
+  [self.navigationController setNavigationBarHidden:NO];
+  self.navigationItem.hidesBackButton = YES;
+  self.navigationItem.titleView = [self titleView];
+  [self savePushChannel];
 }
 - (void)watchNotifications{
   [[NSNotificationCenter defaultCenter] addObserver:self
-                                           selector:@selector(selectPersonFromPicker)
-                                               name:@"PeoplePicker"
-                                             object:nil];
+   selector:@selector(selectPersonFromPicker)
+   name:@"PeoplePicker"
+   object:nil];
   [[NSNotificationCenter defaultCenter] addObserver:self
-                                           selector:@selector(handleOpenedFromPush:)
-                                               name:UIApplicationWillEnterForegroundNotification
-                                             object:nil];
+   selector:@selector(handleOpenedFromPush:)
+   name:UIApplicationWillEnterForegroundNotification
+   object:nil];
   [[NSNotificationCenter defaultCenter] addObserver:self
-                                           selector:@selector(handleOpenedFromPush:)
-                                               name:@"openedFromNotification"
-                                             object:nil];
+   selector:@selector(handleOpenedFromPush:)
+   name:@"openedFromNotification"
+   object:nil];
 }
 - (void)removeNotifications{
   [[NSNotificationCenter defaultCenter] removeObserver:self name:@"openedFromNotification" object:nil];
@@ -122,47 +122,44 @@
 }
 # pragma mark - Table List
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath object:(Colleague *)friend {
-    
-    ContactInfoCell *cell = (ContactInfoCell *)[tableView dequeueReusableCellWithIdentifier:@"contactInfoCell"];
-    cell.userName.text = friend.name;
-    
-    cell.userPicture.layer.cornerRadius = 5;
-    cell.userPicture.clipsToBounds = YES;
+  
+  ContactInfoCell *cell = (ContactInfoCell *)[tableView dequeueReusableCellWithIdentifier:@"contactInfoCell"];
+  cell.userName.text = friend.name;
+  
+  cell.userPicture.layer.cornerRadius = 5;
+  cell.userPicture.clipsToBounds = YES;
 
-    cell.userPicture.image = friend.avatarPhoto;
+  cell.userPicture.image = friend.avatarPhoto;
   
-    if (friend.methodOfLastContact) {
-      cell.contactTypeImage.layer.hidden = NO;
-      cell.contactTypeImage.image = friend.lastContactImage;
-      cell.userLastContact.text = [friend.lastContactDate timeAgo];
-    } else {
-      cell.contactTypeImage.layer.hidden = YES;
-      cell.userLastContact.text = @"Never contacted from nudge";
-    }
+  if (friend.methodOfLastContact) {
+    cell.contactTypeImage.layer.hidden = NO;
+    cell.contactTypeImage.image = friend.lastContactImage;
+    cell.userLastContact.text = [friend.lastContactDate timeAgo];
+  } else {
+    cell.contactTypeImage.layer.hidden = YES;
+    cell.userLastContact.text = @"Never contacted from nudge";
+  }
   
-    return cell;
+  return cell;
 }
-
-# pragma mark - Adding a Contact
-
 - (IBAction)showPeoplePicker{
-    [self selectPersonFromPicker];
+  [self selectPersonFromPicker];
 }
 
 - (void)selectPersonFromPicker{
-    ABPeoplePickerNavigationController *picker = [[ABPeoplePickerNavigationController alloc] init];
-    picker.peoplePickerDelegate = self;
-    
-    [self presentViewController:picker animated:YES completion:nil];
+  ABPeoplePickerNavigationController *picker = [[ABPeoplePickerNavigationController alloc] init];
+  picker.peoplePickerDelegate = self;
+  
+  [self presentViewController:picker animated:YES completion:nil];
 }
 
 - (void)peoplePickerNavigationControllerDidCancel: (ABPeoplePickerNavigationController *)peoplePicker {
-    [self dismissViewControllerAnimated:YES completion:nil];
+  [self dismissViewControllerAnimated:YES completion:nil];
 }
 - (BOOL)peoplePickerNavigationController: (ABPeoplePickerNavigationController *)peoplePicker
-      shouldContinueAfterSelectingPerson:(ABRecordRef)person {
-    
-    [SVProgressHUD showWithStatus:@"Saving Contact"];
+shouldContinueAfterSelectingPerson:(ABRecordRef)person {
+  
+  [SVProgressHUD showWithStatus:@"Saving Contact"];
 
   NSNumber *recordID  =  [NSNumber numberWithInt:ABRecordGetRecordID(person)];
   self.lastAddedColleague = nil;
@@ -177,34 +174,34 @@
     self.lastAddedColleague = [[Colleague alloc] initWithABPerson:person];
   }
 
-    [SVProgressHUD dismiss];
+  [SVProgressHUD dismiss];
 
-    [self dismissViewControllerAnimated:YES completion:nil];
+  [self dismissViewControllerAnimated:YES completion:nil];
 
-    [self performSegueWithIdentifier:@"contactShowSegue" sender:self];
+  [self performSegueWithIdentifier:@"contactShowSegue" sender:self];
 
-    return NO;
+  return NO;
 }
 
 - (BOOL)peoplePickerNavigationController: (ABPeoplePickerNavigationController *)peoplePicker
-      shouldContinueAfterSelectingPerson:(ABRecordRef)person
-                                property:(ABPropertyID)property
-                              identifier:(ABMultiValueIdentifier)identifier
+shouldContinueAfterSelectingPerson:(ABRecordRef)person
+property:(ABPropertyID)property
+identifier:(ABMultiValueIdentifier)identifier
 {
-    return NO;
+  return NO;
 }
 
 -(void) prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender{
-    if([segue.identifier isEqualToString:@"contactShowSegue"]){
-        NSIndexPath *indexPath = [self.tableView indexPathForSelectedRow];
-        ContactShowViewController *destViewController = segue.destinationViewController;
-        [self removeNotifications];
-        if (indexPath){
-          destViewController.contact = (self.objects)[indexPath.row];
-        } else if (self.lastAddedColleague != nil){
-          destViewController.contact = self.lastAddedColleague;
-        }
+  if([segue.identifier isEqualToString:@"contactShowSegue"]){
+    NSIndexPath *indexPath = [self.tableView indexPathForSelectedRow];
+    ContactShowViewController *destViewController = segue.destinationViewController;
+    [self removeNotifications];
+    if (indexPath){
+      destViewController.contact = (self.objects)[indexPath.row];
+    } else if (self.lastAddedColleague != nil){
+      destViewController.contact = self.lastAddedColleague;
     }
+  }
 }
 - (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath {
   if (editingStyle == UITableViewCellEditingStyleDelete) {

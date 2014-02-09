@@ -29,46 +29,46 @@
   return @"Colleague";
 }
 - (id)initWithABPerson:(ABRecordRef)abPerson {
-    self = [Colleague object];
-    if (self) {
-        self.user = [PFUser currentUser];
-        NSInteger recordID  =  ABRecordGetRecordID(abPerson);
-        self.recordId = @(recordID);
-        NSString *firstName = (__bridge_transfer NSString*)ABRecordCopyValue(abPerson, kABPersonFirstNameProperty);
-        NSString *lastName = (__bridge_transfer NSString*)ABRecordCopyValue(abPerson, kABPersonLastNameProperty);
-      
-        if (lastName == NULL) {
-          lastName = @"";
-        }
-      
-        ABMultiValueRef emails = ABRecordCopyValue(abPerson, kABPersonEmailProperty);
-        NSString* tmp_email = (__bridge NSString *)(ABMultiValueCopyValueAtIndex(emails, 0));
+  self = [Colleague object];
+  if (self) {
+    self.user = [PFUser currentUser];
+    NSInteger recordID  =  ABRecordGetRecordID(abPerson);
+    self.recordId = @(recordID);
+    NSString *firstName = (__bridge_transfer NSString*)ABRecordCopyValue(abPerson, kABPersonFirstNameProperty);
+    NSString *lastName = (__bridge_transfer NSString*)ABRecordCopyValue(abPerson, kABPersonLastNameProperty);
+    
+    if (lastName == NULL) {
+      lastName = @"";
+    }
+    
+    ABMultiValueRef emails = ABRecordCopyValue(abPerson, kABPersonEmailProperty);
+    NSString* tmp_email = (__bridge NSString *)(ABMultiValueCopyValueAtIndex(emails, 0));
 
-        self.email = (tmp_email == nil) ? @"" : tmp_email;
-        self.notifiedSincePush = @YES;
+    self.email = (tmp_email == nil) ? @"" : tmp_email;
+    self.notifiedSincePush = @YES;
 
-        ABMultiValueRef socialMulti = ABRecordCopyValue(abPerson, kABPersonSocialProfileProperty);
-        for (CFIndex i = 0; i < ABMultiValueGetCount(socialMulti); i++) {
-            NSDictionary* social = (__bridge NSDictionary*)ABMultiValueCopyValueAtIndex(socialMulti, i);
-            if ([social[@"service"] isEqualToString:(__bridge NSString*)kABPersonSocialProfileServiceFacebook]) {
-                self.facebook = (NSString*)social[@"username"];
-            } else if ([social[@"service"] isEqualToString:(__bridge NSString*)kABPersonSocialProfileServiceTwitter]) {
-              self.twitter = (NSString*)social[@"username"];
-            }
-        }
-
-      self.name = [NSString stringWithFormat:@"%@ %@", firstName, lastName];
-      
-      [self updatePhoneNumberInformation:abPerson];
-
-      NSData  *imgABData = (__bridge_transfer NSData *) ABPersonCopyImageDataWithFormat(abPerson, kABPersonImageFormatOriginalSize);
-      UIImage *image = [UIImage imageWithData:imgABData];
-      if (image.size.width > 1){
-          self.photo = [PFFile fileWithData:imgABData];
-          [self.photo saveInBackground];
+    ABMultiValueRef socialMulti = ABRecordCopyValue(abPerson, kABPersonSocialProfileProperty);
+    for (CFIndex i = 0; i < ABMultiValueGetCount(socialMulti); i++) {
+      NSDictionary* social = (__bridge NSDictionary*)ABMultiValueCopyValueAtIndex(socialMulti, i);
+      if ([social[@"service"] isEqualToString:(__bridge NSString*)kABPersonSocialProfileServiceFacebook]) {
+        self.facebook = (NSString*)social[@"username"];
+      } else if ([social[@"service"] isEqualToString:(__bridge NSString*)kABPersonSocialProfileServiceTwitter]) {
+        self.twitter = (NSString*)social[@"username"];
       }
     }
-    return self;
+
+    self.name = [NSString stringWithFormat:@"%@ %@", firstName, lastName];
+    
+    [self updatePhoneNumberInformation:abPerson];
+
+    NSData  *imgABData = (__bridge_transfer NSData *) ABPersonCopyImageDataWithFormat(abPerson, kABPersonImageFormatOriginalSize);
+    UIImage *image = [UIImage imageWithData:imgABData];
+    if (image.size.width > 1){
+      self.photo = [PFFile fileWithData:imgABData];
+      [self.photo saveInBackground];
+    }
+  }
+  return self;
 }
 - (UIImage *)avatarPhoto {
   ABAddressBookRef addressBook = ABAddressBookCreateWithOptions(NULL, nil);

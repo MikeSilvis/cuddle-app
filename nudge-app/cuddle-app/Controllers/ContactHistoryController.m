@@ -1,4 +1,4 @@
-//
+  //
 //  ContactHistoryController.m
 //  cuddle-app
 //
@@ -33,7 +33,7 @@
 }
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath object:(PFObject *)object {
   ContactHistoryCell *cell = (ContactHistoryCell *)[tableView dequeueReusableCellWithIdentifier:@"contactHistoryCell"];
-  
+
   if ([object[@"method"] isEqual:@"call"]) {
     cell.lastContact.text = [@"Called on " stringByAppendingString:[self formatDate:object.createdAt]];
     cell.lastContactImage.image = [UIImage imageNamed:@"phone-gray"];
