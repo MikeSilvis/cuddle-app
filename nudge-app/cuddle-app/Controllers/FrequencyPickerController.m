@@ -14,6 +14,7 @@
   self.navigationItem.titleView = [self titleView];
   NSArray *arrayToLoadPicker = @[@"Weekly",@"Biweekly",@"Monthly"];
   self.pickerViewArray = arrayToLoadPicker;
+  [self defaultFrequency];
 }
 - (UIView *)titleView {
   CGFloat navBarHeight = self.navigationController.navigationBar.frame.size.height;
@@ -33,6 +34,24 @@
   [containerView addSubview:logoButton];
   
   return containerView;
+}
+- (void) defaultFrequency {
+  NSNumber *frequencyNum = (self.contact)[@"frequency"];
+  NSInteger selectedRow = 0;
+
+  NSNumber *oneWeek  = [NSNumber numberWithInt:7];
+  NSNumber *twoWeeks = [NSNumber numberWithInt:14];
+  NSNumber *oneMonth = [NSNumber numberWithInt:28];
+
+  if ([frequencyNum isEqualToNumber:oneWeek]) {
+    selectedRow = 0;
+  } else if ([frequencyNum isEqualToNumber:twoWeeks]) {
+    selectedRow = 1;
+  } else if ([frequencyNum isEqualToNumber:oneMonth]) {
+    selectedRow = 2;
+  }
+  
+  [self.picker selectRow:selectedRow inComponent:0 animated:NO];
 }
 
 - (IBAction)saveFrequency:(id)sender {

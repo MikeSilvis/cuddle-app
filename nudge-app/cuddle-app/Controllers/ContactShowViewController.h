@@ -22,21 +22,21 @@
 @property (weak, nonatomic) IBOutlet PFImageView *contactPhoto;
 @property (strong, nonatomic) IBOutlet Colleague *contact;
 
-- (IBAction)emailButton:(id)sender;
-- (IBAction)textButton:(id)sender;
+
 - (IBAction)callButton:(id)sender;
+- (IBAction)textButton:(id)sender;
+- (IBAction)emailButton:(id)sender;
 - (IBAction)markButton:(id)sender;
+
+@property (weak, nonatomic) IBOutlet UIBarButtonItem *call;
+@property (weak, nonatomic) IBOutlet UIBarButtonItem *text;
+@property (weak, nonatomic) IBOutlet UIBarButtonItem *email;
+@property (weak, nonatomic) IBOutlet UIBarButtonItem *plus;
+
+
 - (IBAction)editFrequency:(id)sender;
 
-
-@property (weak, nonatomic) IBOutlet UIButton *call;
-@property (weak, nonatomic) IBOutlet UIButton *text;
-@property (weak, nonatomic) IBOutlet UIButton *email;
-@property (weak, nonatomic) IBOutlet UIButton *plus;
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
-@property (weak, nonatomic) IBOutlet UIView *contactHistoryView;
-
 @property (nonatomic, retain) NSArray *contactHistory;
-@property (weak, nonatomic) IBOutlet UILabel *contactHistoryText;
 @property (weak, nonatomic) IBOutlet UIButton *seeMore;
 @end
