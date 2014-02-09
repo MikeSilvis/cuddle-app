@@ -26,10 +26,10 @@
 }
 - (void)addScrollViewImages {
   
-  UIImageView *firstImage   = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"import"]];
-  UIImageView *secondImage  = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"register"]];
-  UIImageView *thirdImage   = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"reminder"]];
-  UIImageView *fourthImage  = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"final"]];
+  UIImageView *firstImage   = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"NudgePanda Welcome Background-2"]];
+  UIImageView *secondImage  = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"NudgePanda Welcome Background-3"]];
+  UIImageView *thirdImage   = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"NudgePanda Welcome Background-4"]];
+  UIImageView *fourthImage  = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"NudgePanda Welcome Background-2"]];
   
   NSArray *images = @[firstImage, secondImage, thirdImage, fourthImage];
   [images enumerateObjectsUsingBlock:^(id imageView, NSUInteger index, BOOL *stop) {
