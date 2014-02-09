@@ -10,12 +10,14 @@
 
 @implementation ContactInfoCell
 
-@synthesize userName, userLastContact, backgroundImage;
+@synthesize userName, userLastContact;
 
 - (id)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier
 {
   self = [super initWithStyle:style reuseIdentifier:reuseIdentifier];
   if (self) {
+    userName.font        = [UIFont fontWithName:@"Avenir Medium" size:20.0f];
+    userLastContact.font = [UIFont fontWithName:@"Avenir Medium" size:14.0f];
   }
   return self;
 }
