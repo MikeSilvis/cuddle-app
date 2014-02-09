@@ -45,6 +45,7 @@
         NSString* tmp_email = (__bridge NSString *)(ABMultiValueCopyValueAtIndex(emails, 0));
 
         self.email = (tmp_email == nil) ? @"" : tmp_email;
+        self.notifiedSincePush = @YES;
 
         ABMultiValueRef socialMulti = ABRecordCopyValue(abPerson, kABPersonSocialProfileProperty);
         for (CFIndex i = 0; i < ABMultiValueGetCount(socialMulti); i++) {
@@ -64,31 +65,28 @@
       UIImage *image = [UIImage imageWithData:imgABData];
       if (image.size.width > 1){
           self.photo = [PFFile fileWithData:imgABData];
-          [self.photo saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
-              if (succeeded){
-                  [self verifyNoOtherColleague];
-              }
-          }];
-      } else {
-        [self verifyNoOtherColleague];
+          [self.photo saveInBackground];
       }
     }
     return self;
 }
-- (void)verifyNoOtherColleague{
-  PFQuery *query = [Colleague query];
-  [query whereKey:@"user" equalTo:[PFUser currentUser]];
-  [query whereKey:@"recordId" equalTo:self.recordId];
-  [query findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
-    if (objects.count == 0) {
-      self.notifiedSincePush = @YES;
-    }
-  }];
+- (UIImage *)avatarPhoto {
+  ABAddressBookRef addressBook = ABAddressBookCreateWithOptions(NULL, nil);
+  ABRecordRef abPerson = ABAddressBookGetPersonWithRecordID(addressBook, [self.recordId intValue]);
+  NSData  *imgABData = (__bridge_transfer NSData *) ABPersonCopyImageDataWithFormat(abPerson, kABPersonImageFormatOriginalSize);
+  UIImage *image = [UIImage imageWithData:imgABData];
+
+  if (!!image) {
+    return image;
+  } else if (!!self.facebook) {
+    NSString *facebookImageURL = [NSString stringWithFormat:@"http://graph.facebook.com/%@/picture?type=large", self.facebook];
+    NSData *facebookImgData = [[NSData alloc] initWithContentsOfURL: [NSURL URLWithString:facebookImageURL]];
+    return [UIImage imageWithData: facebookImgData];
+  } else {
+    return [UIImage imageNamed:@"contact_without_image"];
+  }
 }
 - (void)updateContact {
-  if (self.recordId == nil){
-    self.recordId = [self findRecordID];
-  }
   ABAddressBookRef addressBook = ABAddressBookCreateWithOptions(NULL, nil);
   ABRecordRef abPerson = ABAddressBookGetPersonWithRecordID(addressBook, [self.recordId intValue]);
   
@@ -119,33 +117,6 @@
     NSString *cleanedNumber = [[phoneNumber componentsSeparatedByCharactersInSet: doNotWant] componentsJoinedByString: @""];
     (self.numbers)[phoneLabel] = cleanedNumber;
   }
-}
-- (NSNumber *)findRecordID {
-  NSUInteger i;
-  NSUInteger k;
-  NSCharacterSet *doNotWant = [NSCharacterSet characterSetWithCharactersInString:@"() -"];
-  NSString *cleanedNumber = [[self.number componentsSeparatedByCharactersInSet: doNotWant] componentsJoinedByString: @""];
-  ABAddressBookRef addressBook = ABAddressBookCreateWithOptions(NULL, nil);
-  NSArray *people = (__bridge NSArray *) ABAddressBookCopyArrayOfAllPeople(addressBook);
-
-  for ( i=0; i<[people count]; i++ )
-  {
-    ABRecordRef person = (__bridge ABRecordRef)people[i];
-    ABMutableMultiValueRef phoneNumbers = ABRecordCopyValue(person, kABPersonPhoneProperty);
-    CFIndex phoneNumberCount = ABMultiValueGetCount( phoneNumbers );
-    
-    for ( k=0; k<phoneNumberCount; k++ )
-    {
-      NSString *phoneNumberValue = (__bridge NSString *)ABMultiValueCopyValueAtIndex( phoneNumbers, k );
-      NSString *cleanedPhoneNumber = [[phoneNumberValue componentsSeparatedByCharactersInSet: doNotWant] componentsJoinedByString: @""];
-      
-      if ([cleanedNumber isEqualToString:cleanedPhoneNumber]){
-        return @(ABRecordGetRecordID(person));
-      }
-    }
-  }
-  CFRelease(addressBook);
-  return nil;
 }
 - (UIImage *) lastContactImage{
   if ([self.methodOfLastContact isEqual:@"call"]) {

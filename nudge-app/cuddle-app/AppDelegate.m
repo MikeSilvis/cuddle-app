@@ -9,8 +9,11 @@
 #import "AppDelegate.h"
 #import "Colleague.h"
 #import "User.h"
+#import <Crashlytics/Crashlytics.h>
 
 @implementation AppDelegate
+
+
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {

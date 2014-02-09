@@ -19,7 +19,7 @@
     [self loadStyles];
     self.screenName = @"Contact Show";
     self.seeMore.hidden = YES;
-    [self loadContactPhoto];
+    self.contactPhoto.image = contact.avatarPhoto;
     self.navigationController.topViewController.title = contact.name;
     [[NSNotificationCenter defaultCenter] addObserver:self
                                            selector:@selector(handleOpenedFromPush:)
@@ -29,7 +29,7 @@
 - (void)viewDidAppear:(BOOL)animated{
   [super viewDidAppear:YES];
   [self checkFrequency];
-  [self loadContactPhoto];
+//  self.contactPhoto.image = contact.avatarPhoto;
 }
 - (void)loadStyles{
   self.tableView.backgroundColor = [UIColor clearColor];
@@ -48,17 +48,6 @@
   } else {
     [self queryParseHistory];
     [contact updateContact];
-  }
-}
-- (void)loadContactPhoto{
-  if (!!contact.photo){
-    self.contactPhoto.file = contact.photo;
-  } else if (!!contact.facebook) {
-    NSString *facebookImageURL = [NSString stringWithFormat:@"http://graph.facebook.com/%@/picture?type=large", contact.facebook];
-    NSData *facebookImgData = [[NSData alloc] initWithContentsOfURL: [NSURL URLWithString:facebookImageURL]];
-    self.contactPhoto.image = [UIImage imageWithData: facebookImgData];
-  } else {
-    self.contactPhoto.image = [UIImage imageNamed:@"contact_without_image"];
   }
 }
 - (void)disableButtonsWithoutInfo{

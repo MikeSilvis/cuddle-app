@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		116E022318A08F3C00A371A1 /* Media.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 116E022218A08F3C00A371A1 /* Media.xcassets */; };
+		11ED3BD518A7456400797B41 /* Crashlytics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 11ED3BD418A7456400797B41 /* Crashlytics.framework */; };
 		36232B4516E286390029A175 /* MessageUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 36232B4416E286390029A175 /* MessageUI.framework */; };
 		36232B6C16E2B3FA0029A175 /* ContactHistoryCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 36232B6B16E2B3FA0029A175 /* ContactHistoryCell.m */; };
 		362D55FA16C866B000A3423D /* ContactInfoCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 362D55F916C866B000A3423D /* ContactInfoCell.m */; };
@@ -65,6 +66,7 @@
 
 /* Begin PBXFileReference section */
 		116E022218A08F3C00A371A1 /* Media.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Media.xcassets; path = Resources/Media.xcassets; sourceTree = "<group>"; };
+		11ED3BD418A7456400797B41 /* Crashlytics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Crashlytics.framework; sourceTree = "<group>"; };
 		36232B4416E286390029A175 /* MessageUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MessageUI.framework; path = System/Library/Frameworks/MessageUI.framework; sourceTree = SDKROOT; };
 		36232B6A16E2B3FA0029A175 /* ContactHistoryCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ContactHistoryCell.h; sourceTree = "<group>"; };
 		36232B6B16E2B3FA0029A175 /* ContactHistoryCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ContactHistoryCell.m; sourceTree = "<group>"; };
@@ -142,6 +144,7 @@
 			files = (
 				36232B4516E286390029A175 /* MessageUI.framework in Frameworks */,
 				DAD3EC0516CA1A6600E56737 /* SystemConfiguration.framework in Frameworks */,
+				11ED3BD518A7456400797B41 /* Crashlytics.framework in Frameworks */,
 				DAD3EBFF16CA1A5600E56737 /* Security.framework in Frameworks */,
 				DAD3EBFD16CA1A4F00E56737 /* QuartzCore.framework in Frameworks */,
 				DAD3EBFB16CA1A4A00E56737 /* MobileCoreServices.framework in Frameworks */,
@@ -273,6 +276,7 @@
 		36FFBF4F16C85DDF00CC3140 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				11ED3BD418A7456400797B41 /* Crashlytics.framework */,
 				367EB9C716EE4CDA006828BE /* Crashlytics.framework */,
 				36232B4416E286390029A175 /* MessageUI.framework */,
 				DAD3EC0416CA1A6600E56737 /* SystemConfiguration.framework */,
@@ -458,7 +462,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "if [ -f .crashlytics -o \"$CONFIGURATION\" == \"Distribution\" ]; then\n    ./Crashlytics.framework/run 2c4de91dd9eef6b63fa865a54c345433bebc795a\nfi";
+			shellScript = "./Crashlytics.framework/run 2c4de91dd9eef6b63fa865a54c345433bebc795a f2c077a7ba4dd3074bbe966df8ebb9f52bfb88a9766299b7cd956fad37b1812d";
 		};
 		36FFBF7416C85DDF00CC3140 /* ShellScript */ = {
 			isa = PBXShellScriptBuildPhase;
@@ -600,7 +604,8 @@
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
-					"\"$(SRCROOT)\"",
+					"$(SRCROOT)",
+					"/Users/silvis/Documents/code/cuddle-app/nudge-app",
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "cuddle-app/nudge-Prefix.pch";
@@ -705,7 +710,8 @@
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
-					"\"$(SRCROOT)\"",
+					"$(SRCROOT)",
+					"/Users/silvis/Documents/code/cuddle-app/nudge-app",
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "cuddle-app/nudge-Prefix.pch";
@@ -728,7 +734,8 @@
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
-					"\"$(SRCROOT)\"",
+					"$(SRCROOT)",
+					"/Users/silvis/Documents/code/cuddle-app/nudge-app",
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "cuddle-app/nudge-Prefix.pch";

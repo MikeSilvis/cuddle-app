@@ -128,17 +128,8 @@
     
     cell.userPicture.layer.cornerRadius = 5;
     cell.userPicture.clipsToBounds = YES;
-  
-    if (friend.photo){
-        cell.userPicture.file = friend.photo;
-        [cell.userPicture loadInBackground];
-    } else if (!!friend.facebook) {
-        NSString *facebookImageURL = [NSString stringWithFormat:@"http://graph.facebook.com/%@/picture?type=large", friend.facebook];
-        NSData *facebookImgData = [[NSData alloc] initWithContentsOfURL: [NSURL URLWithString:facebookImageURL]];
-        cell.userPicture.image = [UIImage imageWithData: facebookImgData];
-    } else {
-        cell.userPicture.image = [UIImage imageNamed:@"contact_without_image"];
-    }
+
+    cell.userPicture.image = friend.avatarPhoto;
   
     if (friend.methodOfLastContact) {
       cell.contactTypeImage.image = friend.lastContactImage;
@@ -172,14 +163,26 @@
     
     [SVProgressHUD showWithStatus:@"Saving Contact"];
 
+  NSNumber *recordID  =  [NSNumber numberWithInt:ABRecordGetRecordID(person)];
+  self.lastAddedColleague = nil;
+  
+  for (Colleague *object in self.objects) {
+    if ([object.recordId isEqualToNumber:recordID]) {
+      self.lastAddedColleague = object;
+    }
+  }
+  
+  if (self.lastAddedColleague == nil) {
     self.lastAddedColleague = [[Colleague alloc] initWithABPerson:person];
+  }
+
 
     [SVProgressHUD dismiss];
 
     [self dismissViewControllerAnimated:YES completion:nil];
 
     [self performSegueWithIdentifier:@"contactShowSegue" sender:self];
-  
+
     return NO;
 }
 
