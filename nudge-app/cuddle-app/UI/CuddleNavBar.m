@@ -29,11 +29,10 @@
     return self;
 }
 - (void)customize {
+  [[UINavigationBar appearance] setBarTintColor:[UIColor colorWithRed:(175.0/255) green:(218.0/255) blue:(255.0/255) alpha:1.0]];
   [[UINavigationBar appearance] setTintColor:[UIColor whiteColor]];
-
-  [[UINavigationBar appearance] setBackgroundImage:[UIImage imageNamed:@"menubar"] forBarMetrics:UIBarMetricsDefault];
   
-  [[UINavigationBar appearance] setTitleTextAttributes: @{NSForegroundColorAttributeName: [UIColor colorWithRed:255.0/255.0 green:255.0/255.0 blue:255.0/255.0 alpha:1.0],
+  [[UINavigationBar appearance] setTitleTextAttributes: @{NSForegroundColorAttributeName: [UIColor whiteColor],
       NSFontAttributeName: [UIFont fontWithName:@"Avenir-Heavy" size:20.0]}];
 }
 @end

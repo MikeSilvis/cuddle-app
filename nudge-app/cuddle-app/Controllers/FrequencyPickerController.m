@@ -7,6 +7,7 @@
 //
 
 #import "FrequencyPickerController.h"
+#import "UITextField+Nudge.h"
 
 @implementation FrequencyPickerController
 
@@ -16,6 +17,7 @@
   self.navigationItem.titleView = [self titleView];
   NSArray *arrayToLoadPicker = @[@"Weekly",@"Biweekly",@"Monthly"];
   self.pickerViewArray = arrayToLoadPicker;
+  self.frequencyLabel = [UITextField cuddleStyleWithTextField:self.frequencyLabel];
   [self defaultFrequency];
   self.screenName = @"Frequency Selection";
 }

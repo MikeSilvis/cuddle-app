@@ -24,15 +24,12 @@
   [super viewDidLoad];
   self.screenName = @"Login";
   [self setStyles];
-  UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc]
-   initWithTarget:self
-   action:@selector(dismissKeyboard)];
-  
+  UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(dismissKeyboard)];
   [self.view addGestureRecognizer:tap];
 }
 - (void)setStyles {
   self.emailField     = [UITextField cuddleStyleWithTextField:self.emailField];
-  self.passwordField  = [UITextField cuddleStyleWithTextField:self.emailField];
+  self.passwordField  = [UITextField cuddleStyleWithTextField:self.passwordField];
   self.seeYouAgain    = [UILabel cuddleStyleWithHeader1Label:self.seeYouAgain];
   self.loginButton    = [UIButton cuddleStyleWithButton:self.loginButton];
 }
@@ -44,6 +41,7 @@
   if (textField == self.emailField){
     [self.passwordField becomeFirstResponder];
   } else if (textField == self.passwordField){
+    NSLog(@"hello!");
     [self loginUser];
   }
   
@@ -146,9 +144,6 @@
                                             otherButtonTitles:nil];
     [message show];
   }
-}
-- (IBAction)goToRegister:(id)sender {
-  [self.navigationController popViewControllerAnimated:YES];
 }
 - (void)didReceiveMemoryWarning
 {

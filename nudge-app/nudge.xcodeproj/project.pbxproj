@@ -11,6 +11,7 @@
 		1151750B18A77C7C00BD7A69 /* UIButton+Nudge.m in Sources */ = {isa = PBXBuildFile; fileRef = 1151750A18A77C7C00BD7A69 /* UIButton+Nudge.m */; };
 		1151750E18A7815100BD7A69 /* UILabel+Nudge.m in Sources */ = {isa = PBXBuildFile; fileRef = 1151750D18A7815100BD7A69 /* UILabel+Nudge.m */; };
 		1151751418A7858800BD7A69 /* UITextField+Nudge.m in Sources */ = {isa = PBXBuildFile; fileRef = 1151751318A7858800BD7A69 /* UITextField+Nudge.m */; };
+		1151751718A86FC400BD7A69 /* UITextView.m in Sources */ = {isa = PBXBuildFile; fileRef = 1151751618A86FC400BD7A69 /* UITextView.m */; };
 		116E022318A08F3C00A371A1 /* Media.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 116E022218A08F3C00A371A1 /* Media.xcassets */; };
 		11ED3BD518A7456400797B41 /* Crashlytics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 11ED3BD418A7456400797B41 /* Crashlytics.framework */; };
 		36232B4516E286390029A175 /* MessageUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 36232B4416E286390029A175 /* MessageUI.framework */; };
@@ -77,13 +78,15 @@
 		1151750D18A7815100BD7A69 /* UILabel+Nudge.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UILabel+Nudge.m"; sourceTree = "<group>"; };
 		1151751218A7858800BD7A69 /* UITextField+Nudge.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "UITextField+Nudge.h"; path = "cuddle-app/UI/UITextField+Nudge.h"; sourceTree = SOURCE_ROOT; };
 		1151751318A7858800BD7A69 /* UITextField+Nudge.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "UITextField+Nudge.m"; path = "cuddle-app/UI/UITextField+Nudge.m"; sourceTree = SOURCE_ROOT; };
+		1151751518A86FC400BD7A69 /* UITextView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UITextView.h; sourceTree = "<group>"; };
+		1151751618A86FC400BD7A69 /* UITextView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UITextView.m; sourceTree = "<group>"; };
 		116E022218A08F3C00A371A1 /* Media.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Media.xcassets; path = Resources/Media.xcassets; sourceTree = "<group>"; };
 		11ED3BD418A7456400797B41 /* Crashlytics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Crashlytics.framework; sourceTree = "<group>"; };
 		36232B4416E286390029A175 /* MessageUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MessageUI.framework; path = System/Library/Frameworks/MessageUI.framework; sourceTree = SDKROOT; };
-		36232B6A16E2B3FA0029A175 /* ContactHistoryCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ContactHistoryCell.h; sourceTree = "<group>"; };
-		36232B6B16E2B3FA0029A175 /* ContactHistoryCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ContactHistoryCell.m; sourceTree = "<group>"; };
-		362D55F816C866B000A3423D /* ContactInfoCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ContactInfoCell.h; sourceTree = "<group>"; };
-		362D55F916C866B000A3423D /* ContactInfoCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ContactInfoCell.m; sourceTree = "<group>"; };
+		36232B6A16E2B3FA0029A175 /* ContactHistoryCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ContactHistoryCell.h; path = ../Cells/ContactHistoryCell.h; sourceTree = "<group>"; };
+		36232B6B16E2B3FA0029A175 /* ContactHistoryCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ContactHistoryCell.m; path = ../Cells/ContactHistoryCell.m; sourceTree = "<group>"; };
+		362D55F816C866B000A3423D /* ContactInfoCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ContactInfoCell.h; path = ../Cells/ContactInfoCell.h; sourceTree = "<group>"; };
+		362D55F916C866B000A3423D /* ContactInfoCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ContactInfoCell.m; path = ../Cells/ContactInfoCell.m; sourceTree = "<group>"; };
 		362D55FB16C8674B00A3423D /* ContactIndexController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ContactIndexController.h; sourceTree = "<group>"; };
 		362D55FC16C8674B00A3423D /* ContactIndexController.m */ = {isa = PBXFileReference; fileEncoding = 4; indentWidth = 2; lastKnownFileType = sourcecode.c.objc; path = ContactIndexController.m; sourceTree = "<group>"; tabWidth = 2; };
 		362D55FE16C86FD400A3423D /* ContactShowViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ContactShowViewController.h; sourceTree = "<group>"; };
@@ -223,17 +226,6 @@
 			path = Controllers;
 			sourceTree = "<group>";
 		};
-		3647A8E216D31C6900602D54 /* Cells */ = {
-			isa = PBXGroup;
-			children = (
-				36232B6A16E2B3FA0029A175 /* ContactHistoryCell.h */,
-				36232B6B16E2B3FA0029A175 /* ContactHistoryCell.m */,
-				362D55F816C866B000A3423D /* ContactInfoCell.h */,
-				362D55F916C866B000A3423D /* ContactInfoCell.m */,
-			);
-			path = Cells;
-			sourceTree = "<group>";
-		};
 		366917DA16D7149900DF21E9 /* Segue */ = {
 			isa = PBXGroup;
 			children = (
@@ -259,6 +251,10 @@
 		36F7E59716E05ABD007BB7A6 /* UI */ = {
 			isa = PBXGroup;
 			children = (
+				36232B6A16E2B3FA0029A175 /* ContactHistoryCell.h */,
+				36232B6B16E2B3FA0029A175 /* ContactHistoryCell.m */,
+				362D55F816C866B000A3423D /* ContactInfoCell.h */,
+				362D55F916C866B000A3423D /* ContactInfoCell.m */,
 				1151750C18A7815100BD7A69 /* UILabel+Nudge.h */,
 				1151750D18A7815100BD7A69 /* UILabel+Nudge.m */,
 				1151750918A77C7C00BD7A69 /* UIButton+Nudge.h */,
@@ -267,6 +263,8 @@
 				36F7E59516E05A62007BB7A6 /* CuddleNavBar.m */,
 				1151751218A7858800BD7A69 /* UITextField+Nudge.h */,
 				1151751318A7858800BD7A69 /* UITextField+Nudge.m */,
+				1151751518A86FC400BD7A69 /* UITextView.h */,
+				1151751618A86FC400BD7A69 /* UITextView.m */,
 			);
 			path = UI;
 			sourceTree = "<group>";
@@ -329,7 +327,6 @@
 				36940A5E16ECE9C0008CFBAC /* Helpers */,
 				36F7E59716E05ABD007BB7A6 /* UI */,
 				366917DA16D7149900DF21E9 /* Segue */,
-				3647A8E216D31C6900602D54 /* Cells */,
 				362D55F716C8667F00A3423D /* Controllers */,
 				362D55F616C8667400A3423D /* Models */,
 				36FFBF5F16C85DDF00CC3140 /* AppDelegate.h */,
@@ -530,6 +527,7 @@
 				1151750E18A7815100BD7A69 /* UILabel+Nudge.m in Sources */,
 				366917D816D7143500DF21E9 /* LonelyController.m in Sources */,
 				1151750B18A77C7C00BD7A69 /* UIButton+Nudge.m in Sources */,
+				1151751718A86FC400BD7A69 /* UITextView.m in Sources */,
 				366917DD16D714E600DF21E9 /* LonelySegue.m in Sources */,
 				115174BE18A75AF900BD7A69 /* LoginSegue.m in Sources */,
 				365D019F16DC38780091CBA6 /* User.m in Sources */,

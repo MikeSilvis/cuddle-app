@@ -14,6 +14,7 @@
 	[super viewDidLoad];
 	self.screenName = @"Home Screen";
 	self.navigationItem.hidesBackButton = YES;
+  self.view.backgroundColor = [UIColor colorWithRed:(175.0/255) green:(218.0/255) blue:(255.0/255) alpha:1.0];
 }
 - (IBAction)showPeoplePicker:(id)sender {
 	[[NSNotificationCenter defaultCenter] postNotificationName:@"PeoplePicker" object:self];

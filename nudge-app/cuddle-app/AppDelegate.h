@@ -13,6 +13,7 @@
 #import <Crashlytics/Crashlytics.h>
 #import "WelcomeController.h"
 #import "GAI.h"
+#define IS_IPHONE5 (([[UIScreen mainScreen] bounds].size.height-568)?NO:YES)
 
 //#ifdef DEBUG
 //  #define PARSEAPPLICATIONID @"7TZmoyE9Rdg5KvRTrEX8KctSDJ7NplhH1Oz7DR9H"

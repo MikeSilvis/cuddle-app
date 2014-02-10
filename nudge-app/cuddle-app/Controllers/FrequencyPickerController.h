@@ -17,5 +17,6 @@
 @property (weak, nonatomic) IBOutlet UIPickerView *picker;
 - (IBAction)saveFrequency:(id)sender;
 - (void) defaultFrequency;
+@property (weak, nonatomic) IBOutlet UITextView *frequencyLabel;
 
 @end

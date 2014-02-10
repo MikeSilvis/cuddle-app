@@ -11,7 +11,7 @@
 @implementation UIButton (Nudge)
  
 + (UIButton *)cuddleStyleWithButton:(UIButton *)button {
-  [button setTitleColor:[UIColor colorWithRed:(26.0/255) green:(126.0/255) blue:(243.0/255) alpha:0.6] forState:UIControlStateNormal];
+  [button setTitleColor:[UIColor colorWithRed:(26.0/255) green:(126.0/255) blue:(243.0/255) alpha:1.0] forState:UIControlStateNormal];
   button.titleLabel.font = [UIFont fontWithName:@"Avenir Next Medium" size:15.0f];
   
   return button;

@@ -10,7 +10,6 @@
 
 @implementation UITextField (Nudge)
 + (UITextField *)cuddleStyleWithTextField:(UITextField *)textField {
-  textField.textColor = [UIColor greenColor];
   return textField;
 }
 @end

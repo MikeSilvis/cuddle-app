@@ -18,8 +18,7 @@
   self.screenName = @"Contact Show";
   self.pageControlBeingUsed = NO;
   self.scrollView.frame = self.view.bounds;
-
-  self.view.backgroundColor = [UIColor colorWithPatternImage: [UIImage imageNamed:@"welcome-background"]];
+  self.view.backgroundColor = [UIColor colorWithRed:(175.0/255) green:(218.0/255) blue:(255.0/255) alpha:1.0];
   
   [self addScrollViewImages];
 
@@ -35,7 +34,11 @@
   [images enumerateObjectsUsingBlock:^(id imageView, NSUInteger index, BOOL *stop) {
     CGRect frame;
     frame.origin.x = self.scrollView.frame.size.width * index;
-    frame.origin.y = 0;
+    if (IS_IPHONE5) {
+      frame.origin.y = 15;
+    } else {
+      frame.origin.y = 0;
+    }
     frame.size = self.scrollView.frame.size;
     UIView *subview = [[UIView alloc] initWithFrame:frame];
     [subview addSubview:imageView];
