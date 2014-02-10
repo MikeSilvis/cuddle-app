@@ -66,7 +66,7 @@
                         <subviews>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Email" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="5Mh-Oj-KiN">
                                 <rect key="frame" x="0.0" y="176" width="320" height="28"/>
-                                <fontDescription key="fontDescription" name="AvenirNextCondensed-Medium" family="Avenir Next Condensed" pointSize="20"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="20"/>
                                 <textInputTraits key="textInputTraits" keyboardType="emailAddress" returnKeyType="next"/>
                                 <connections>
                                     <action selector="editingEmailField:" destination="2" eventType="editingDidBegin" id="grq-D8-qeD"/>
@@ -77,7 +77,7 @@
                                 <constraints>
                                     <constraint firstAttribute="height" constant="28" id="sWa-cX-YNr"/>
                                 </constraints>
-                                <fontDescription key="fontDescription" name="AvenirNextCondensed-Medium" family="Avenir Next Condensed" pointSize="20"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="20"/>
                                 <textInputTraits key="textInputTraits" returnKeyType="go" secureTextEntry="YES"/>
                                 <connections>
                                     <action selector="editingPasswordField:" destination="2" eventType="editingDidBegin" id="rNv-EN-X3V"/>

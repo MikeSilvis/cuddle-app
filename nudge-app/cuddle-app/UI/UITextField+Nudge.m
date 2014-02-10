@@ -10,6 +10,9 @@
 
 @implementation UITextField (Nudge)
 + (UITextField *)cuddleStyleWithTextField:(UITextField *)textField {
+  textField.textColor = [UIColor darkTextColor];
+  textField.textAlignment = NSTextAlignmentCenter;
+  textField.font = [UIFont fontWithName:@"Avenir Medium" size:15.0f];
   return textField;
 }
 @end
