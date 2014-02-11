@@ -1,5 +1,6 @@
 source 'https://rubygems.org'
 
+ruby '2.0'
 gem 'parse-ruby-client'
 gem 'hashie'
 gem 'iron_worker_ng'
