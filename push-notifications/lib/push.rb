@@ -17,7 +17,7 @@ class Push
       pf_push.type = 'ios'
       pf_push.save
       puts "Notification sent as: #{push_data(connection[:contact])} to user_#{connection[:userObjectId]}"
-      update_push_notified_flag(connection[:contact]["objectId"])
+      #update_push_notified_flag(connection[:contact]["objectId"])
     end
   end
 
@@ -33,8 +33,8 @@ class Push
 
   def self.push_data(contact)
     {
-      :alert => "You haven't contacted #{contact['name']} since #{contact['updatedAtFormated']}.",
-      :c => contact['objectId']
+      alert: "How is #{contact['name']} doing? Panda thinks you should ask.",
+      c: contact['objectId']
     }
   end
 

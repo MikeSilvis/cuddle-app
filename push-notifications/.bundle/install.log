@@ -1,0 +1,13 @@
+# Logfile created on 2014-02-10 21:41:26 -0800 by logger.rb/41954
+I, [2014-02-10T21:41:26.925865 #65329]  INFO -- : 0:  hashie (2.0.5) from /Users/silvis/.rvm/gems/ruby-2.0.0-p353/specifications/hashie-2.0.5.gemspec
+I, [2014-02-10T21:41:27.837012 #65329]  INFO -- : 0:  net-http-persistent (2.8) from /Users/silvis/.rvm/gems/ruby-2.0.0-p353/specifications/net-http-persistent-2.8.gemspec
+I, [2014-02-10T21:41:28.399882 #65329]  INFO -- : 0:  mime-types (1.23) from /Users/silvis/.rvm/gems/ruby-2.0.0-p353/specifications/mime-types-1.23.gemspec
+I, [2014-02-10T21:41:29.385441 #65329]  INFO -- : 0:  rest-client (1.6.7) from /Users/silvis/.rvm/gems/ruby-2.0.0-p353/specifications/rest-client-1.6.7.gemspec
+I, [2014-02-10T21:41:30.142862 #65329]  INFO -- : 0:  rest (2.6.3) from /Users/silvis/.rvm/gems/ruby-2.0.0-p353/specifications/rest-2.6.3.gemspec
+I, [2014-02-10T21:41:30.643815 #65329]  INFO -- : 0:  iron_core (0.6.2) from /Users/silvis/.rvm/gems/ruby-2.0.0-p353/specifications/iron_core-0.6.2.gemspec
+I, [2014-02-10T21:41:31.139554 #65329]  INFO -- : 0:  iron_mq (4.0.3) from /Users/silvis/.rvm/gems/ruby-2.0.0-p353/specifications/iron_mq-4.0.3.gemspec
+I, [2014-02-10T21:41:31.139876 #65329]  INFO -- : 0:  bundler (1.5.1) from /Users/silvis/.rvm/gems/ruby-2.0.0-p353@global/specifications/bundler-1.5.1.gemspec
+I, [2014-02-10T21:41:32.130051 #65329]  INFO -- : 0:  rubyzip (0.9.9) from /Users/silvis/.rvm/gems/ruby-2.0.0-p353/specifications/rubyzip-0.9.9.gemspec
+I, [2014-02-10T21:41:32.976696 #65329]  INFO -- : 0:  iron_worker_ng (0.16.4) from /Users/silvis/.rvm/gems/ruby-2.0.0-p353/specifications/iron_worker_ng-0.16.4.gemspec
+I, [2014-02-10T21:41:34.901423 #65329]  INFO -- : 0:  patron (0.4.18) from /Users/silvis/.rvm/gems/ruby-2.0.0-p353/specifications/patron-0.4.18.gemspec
+I, [2014-02-10T21:41:36.123900 #65329]  INFO -- : 0:  parse-ruby-client (0.1.15) from /Users/silvis/.rvm/gems/ruby-2.0.0-p353/specifications/parse-ruby-client-0.1.15.gemspec

@@ -44,7 +44,7 @@
                     <connections>
                         <outlet property="pageControl" destination="jSk-2N-sWh" id="AcD-Qx-fP1"/>
                         <outlet property="scrollView" destination="woN-f0-Orl" id="oCb-9f-dmQ"/>
-                        <segue destination="kDV-Vv-6JX" kind="push" identifier="registerSegue" customClass="LonelySegue" id="aEE-PH-xuH"/>
+                        <segue destination="kDV-Vv-6JX" kind="custom" identifier="RegisterSegue" customClass="RegisterSegue" id="aEE-PH-xuH"/>
                         <segue destination="b8Q-sT-juJ" kind="push" identifier="alreadySignedIn" id="ejD-em-WSs"/>
                     </connections>
                 </viewController>
@@ -600,6 +600,6 @@
         <simulatedScreenMetrics key="destination" type="retina4"/>
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
-        <segue reference="67z-qR-seE"/>
+        <segue reference="ejD-em-WSs"/>
     </inferredMetricsTieBreakers>
 </document>

@@ -92,7 +92,7 @@
 - (void)handleOpenedFromPush:(NSNotification *)notification{
   [self pushUser];
 }
-- (void)pushUser{
+- (void)pushUser {
   for (Colleague *object in self.objects) {
     if ([object.objectId isEqualToString:self.appDelegate.colleagueId]){
       self.lastAddedColleague = object;

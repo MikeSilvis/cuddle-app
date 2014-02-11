@@ -41,7 +41,6 @@
   if (textField == self.emailField){
     [self.passwordField becomeFirstResponder];
   } else if (textField == self.passwordField){
-    NSLog(@"hello!");
     [self loginUser];
   }
   

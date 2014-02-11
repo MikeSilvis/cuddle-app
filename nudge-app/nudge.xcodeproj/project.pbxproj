@@ -13,6 +13,7 @@
 		1151751418A7858800BD7A69 /* UITextField+Nudge.m in Sources */ = {isa = PBXBuildFile; fileRef = 1151751318A7858800BD7A69 /* UITextField+Nudge.m */; };
 		1151751718A86FC400BD7A69 /* UITextView.m in Sources */ = {isa = PBXBuildFile; fileRef = 1151751618A86FC400BD7A69 /* UITextView.m */; };
 		116E022318A08F3C00A371A1 /* Media.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 116E022218A08F3C00A371A1 /* Media.xcassets */; };
+		11B71B3A18A9E88E00FC93A6 /* RegisterSegue.m in Sources */ = {isa = PBXBuildFile; fileRef = 11B71B3918A9E88E00FC93A6 /* RegisterSegue.m */; };
 		11ED3BD518A7456400797B41 /* Crashlytics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 11ED3BD418A7456400797B41 /* Crashlytics.framework */; };
 		36232B4516E286390029A175 /* MessageUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 36232B4416E286390029A175 /* MessageUI.framework */; };
 		36232B6C16E2B3FA0029A175 /* ContactHistoryCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 36232B6B16E2B3FA0029A175 /* ContactHistoryCell.m */; };
@@ -81,6 +82,8 @@
 		1151751518A86FC400BD7A69 /* UITextView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UITextView.h; sourceTree = "<group>"; };
 		1151751618A86FC400BD7A69 /* UITextView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UITextView.m; sourceTree = "<group>"; };
 		116E022218A08F3C00A371A1 /* Media.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Media.xcassets; path = Resources/Media.xcassets; sourceTree = "<group>"; };
+		11B71B3818A9E88E00FC93A6 /* RegisterSegue.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RegisterSegue.h; sourceTree = "<group>"; };
+		11B71B3918A9E88E00FC93A6 /* RegisterSegue.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RegisterSegue.m; sourceTree = "<group>"; };
 		11ED3BD418A7456400797B41 /* Crashlytics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Crashlytics.framework; sourceTree = "<group>"; };
 		36232B4416E286390029A175 /* MessageUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MessageUI.framework; path = System/Library/Frameworks/MessageUI.framework; sourceTree = SDKROOT; };
 		36232B6A16E2B3FA0029A175 /* ContactHistoryCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ContactHistoryCell.h; path = ../Cells/ContactHistoryCell.h; sourceTree = "<group>"; };
@@ -229,6 +232,8 @@
 		366917DA16D7149900DF21E9 /* Segue */ = {
 			isa = PBXGroup;
 			children = (
+				11B71B3818A9E88E00FC93A6 /* RegisterSegue.h */,
+				11B71B3918A9E88E00FC93A6 /* RegisterSegue.m */,
 				366917DB16D714E600DF21E9 /* LonelySegue.h */,
 				366917DC16D714E600DF21E9 /* LonelySegue.m */,
 				3641707C16FA83D1001B1893 /* FrequencySegue.h */,
@@ -515,6 +520,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				11B71B3A18A9E88E00FC93A6 /* RegisterSegue.m in Sources */,
 				36FFBF5D16C85DDF00CC3140 /* main.m in Sources */,
 				36FFBF6116C85DDF00CC3140 /* AppDelegate.m in Sources */,
 				36FFBF7016C85DDF00CC3140 /* LoginViewController.m in Sources */,
