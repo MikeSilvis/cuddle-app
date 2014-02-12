@@ -480,17 +480,17 @@
                                             <action selector="callButton:" destination="Z9q-Du-0x5" id="k8Z-xP-nDh"/>
                                         </connections>
                                     </barButtonItem>
-                                    <barButtonItem image="sms" width="64" id="ODu-pw-oGM">
+                                    <barButtonItem image="sms" width="66" id="ODu-pw-oGM">
                                         <connections>
                                             <action selector="textButton:" destination="Z9q-Du-0x5" id="ZHC-sU-64C"/>
                                         </connections>
                                     </barButtonItem>
-                                    <barButtonItem image="email" width="78" id="sNM-6V-BqG">
+                                    <barButtonItem image="email" width="70" id="sNM-6V-BqG">
                                         <connections>
                                             <action selector="emailButton:" destination="Z9q-Du-0x5" id="hEP-pd-XEI"/>
                                         </connections>
                                     </barButtonItem>
-                                    <barButtonItem image="checkmark-gray" width="52" id="9L7-jD-Iw3">
+                                    <barButtonItem image="checkmark-gray" width="60" id="9L7-jD-Iw3">
                                         <connections>
                                             <action selector="markButton:" destination="Z9q-Du-0x5" id="Wh4-0t-rp3"/>
                                         </connections>
