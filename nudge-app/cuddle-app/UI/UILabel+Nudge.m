@@ -12,13 +12,13 @@
 + (UILabel *)cuddleStyleWithHeader1Label:(UILabel *)label {
   label.textColor = [UIColor darkTextColor];
   label.textAlignment = NSTextAlignmentCenter;
-  label.font = [UIFont fontWithName:@"Avenir Medium" size:24.0f];
+  label.font = [UIFont fontWithName:@"American Typewriter Medium" size:24.0f];
   return label;
 }
 + (UILabel *)cuddleStyleWithHeader2Label:(UILabel *)label {
   label.textColor = [UIColor darkTextColor];
   label.textAlignment = NSTextAlignmentCenter;
-  label.font = [UIFont fontWithName:@"Avenir Medium" size:16.0f];
+  label.font = [UIFont fontWithName:@"American Typewriter Medium" size:16.0f];
   return label;
 }
 @end

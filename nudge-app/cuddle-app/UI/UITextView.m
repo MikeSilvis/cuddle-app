@@ -13,7 +13,7 @@
 + (UITextView *)cuddleStyleWithTextView:(UITextView *)textView {
   textView.textColor = [UIColor darkTextColor];
   textView.textAlignment = NSTextAlignmentCenter;
-  textView.font = [UIFont fontWithName:@"Avenir Medium" size:24.0f];
+  textView.font = [UIFont fontWithName:@"American Typewriter" size:24.0f];
   return textView;
 }
 @end

@@ -12,7 +12,7 @@
 + (UITextField *)cuddleStyleWithTextField:(UITextField *)textField {
   textField.textColor = [UIColor darkTextColor];
   textField.textAlignment = NSTextAlignmentCenter;
-  textField.font = [UIFont fontWithName:@"Avenir Medium" size:15.0f];
+  textField.font = [UIFont fontWithName:@"American Typewriter" size:15.0f];
   return textField;
 }
 @end

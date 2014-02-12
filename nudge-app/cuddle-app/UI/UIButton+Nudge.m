@@ -12,7 +12,7 @@
  
 + (UIButton *)cuddleStyleWithButton:(UIButton *)button {
   [button setTitleColor:[UIColor colorWithRed:(26.0/255) green:(126.0/255) blue:(243.0/255) alpha:1.0] forState:UIControlStateNormal];
-  button.titleLabel.font = [UIFont fontWithName:@"Avenir Next Medium" size:15.0f];
+  button.titleLabel.font = [UIFont fontWithName:@"American Typewriter Medium" size:15.0f];
   
   return button;
 }

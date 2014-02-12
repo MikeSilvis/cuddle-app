@@ -33,6 +33,6 @@
   [[UINavigationBar appearance] setTintColor:[UIColor whiteColor]];
   
   [[UINavigationBar appearance] setTitleTextAttributes: @{NSForegroundColorAttributeName: [UIColor whiteColor],
-      NSFontAttributeName: [UIFont fontWithName:@"Avenir-Heavy" size:20.0]}];
+      NSFontAttributeName: [UIFont fontWithName:@"American Typewriter Bold" size:20.0]}];
 }
 @end
