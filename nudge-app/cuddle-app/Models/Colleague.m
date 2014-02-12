@@ -67,13 +67,6 @@
     self.name = [NSString stringWithFormat:@"%@ %@", firstName, lastName];
     
     [self updatePhoneNumberInformation:abPerson];
-
-    NSData  *imgABData = (__bridge_transfer NSData *) ABPersonCopyImageDataWithFormat(abPerson, kABPersonImageFormatOriginalSize);
-    UIImage *image = [UIImage imageWithData:imgABData];
-    if (image.size.width > 1){
-      self.photo = [PFFile fileWithData:imgABData];
-      [self.photo saveInBackground];
-    }
   }
   return self;
 }
