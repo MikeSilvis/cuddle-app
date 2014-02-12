@@ -239,29 +239,31 @@
   }
 }
 - (void)queryParseHistory{
-  PFQuery *query = [PFQuery queryWithClassName:@"ContactHistory"];
-  [query whereKey:@"colleague" equalTo:self.contact];
-  [query orderByDescending:@"createdAt"];
-  query.limit = 3;
-  [query findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
-    if (!error) {
-      if (objects.count == 0){
-        self.tableView.hidden = YES;
-        self.seeMore.hidden = YES;
-        [self addGettingStarted];
-      } else if (objects.count < 3) {
-        [self removeGettingStarted];
-        self.seeMore.hidden = YES;
-        self.contactHistory = objects;
-        [self.tableView reloadData];
-      } else {
-        self.seeMore.hidden = NO;
-        self.contactHistory = objects;
-        [self removeGettingStarted];
-        [self.tableView reloadData];
+  if (self.contact.objectId) {
+    PFQuery *query = [PFQuery queryWithClassName:@"ContactHistory"];
+    [query whereKey:@"colleague" equalTo:self.contact];
+    [query orderByDescending:@"createdAt"];
+    query.limit = 3;
+    [query findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
+      if (!error) {
+        if (objects.count == 0){
+          self.tableView.hidden = YES;
+          self.seeMore.hidden = YES;
+          [self addGettingStarted];
+        } else if (objects.count < 3) {
+          [self removeGettingStarted];
+          self.seeMore.hidden = YES;
+          self.contactHistory = objects;
+          [self.tableView reloadData];
+        } else {
+          self.seeMore.hidden = NO;
+          self.contactHistory = objects;
+          [self removeGettingStarted];
+          [self.tableView reloadData];
+        }
       }
-    }
-  }];
+    }];
+  }
 }
 #pragma mark - UITableViewDatasource methods
 

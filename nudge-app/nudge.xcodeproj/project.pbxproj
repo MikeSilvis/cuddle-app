@@ -237,9 +237,9 @@
 				366917DB16D714E600DF21E9 /* LonelySegue.h */,
 				366917DC16D714E600DF21E9 /* LonelySegue.m */,
 				3641707C16FA83D1001B1893 /* FrequencySegue.h */,
+				3641707D16FA83D1001B1893 /* FrequencySegue.m */,
 				115174BC18A75AF900BD7A69 /* LoginSegue.h */,
 				115174BD18A75AF900BD7A69 /* LoginSegue.m */,
-				3641707D16FA83D1001B1893 /* FrequencySegue.m */,
 			);
 			path = Segue;
 			sourceTree = "<group>";
