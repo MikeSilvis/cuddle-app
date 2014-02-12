@@ -24,6 +24,7 @@
 @property (strong, nonatomic) IBOutlet Colleague *contact;
 
 
+@property (weak, nonatomic) IBOutlet UIImageView *NudgeTooltips;
 - (IBAction)callButton:(id)sender;
 - (IBAction)textButton:(id)sender;
 - (IBAction)emailButton:(id)sender;

@@ -16,8 +16,8 @@
 {
   self = [super initWithStyle:style reuseIdentifier:reuseIdentifier];
   if (self) {
-    userName.font        = [UIFont fontWithName:@"American Typewriter Medium" size:20.0f];
-    userLastContact.font = [UIFont fontWithName:@"American Typewriter Medium" size:14.0f];
+    userName.font        = [UIFont fontWithName:@"American Typewriter" size:20.0f];
+    userLastContact.font = [UIFont fontWithName:@"American Typewriter" size:14.0f];
   }
   return self;
 }

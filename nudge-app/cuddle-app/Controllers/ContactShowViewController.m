@@ -59,6 +59,7 @@
 }
 
 - (void)addGettingStarted{
+  self.NudgeTooltips.hidden = NO;
   self.tableView.hidden = YES;
   self.seeMore.hidden = YES;
 //  [self addShadowToActions:self.call];
@@ -252,10 +253,12 @@
       } else if (objects.count < 3) {
         [self removeGettingStarted];
         self.seeMore.hidden = YES;
+        self.NudgeTooltips.hidden = YES;
         self.contactHistory = objects;
         [self.tableView reloadData];
       } else {
         self.seeMore.hidden = NO;
+        self.NudgeTooltips.hidden = YES;
         self.contactHistory = objects;
         [self removeGettingStarted];
         [self.tableView reloadData];
