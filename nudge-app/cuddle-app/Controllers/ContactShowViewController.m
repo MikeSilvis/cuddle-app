@@ -210,6 +210,7 @@
   newNetwork[@"method"] = methodOfContact;
   [newNetwork saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
     if (succeeded){
+      // Update the app to respect todays communication
       [self queryParseHistory];
     }
   }];
@@ -220,9 +221,7 @@
   contact[@"notifiedSincePush"] = @YES;
   [contact saveEventually];
 
-    // Update the app to respect todays communication
   [SVProgressHUD showSuccessWithStatus:@"Great job at keeping in touch!"];
-  [self queryParseHistory];
 
   NSDictionary *dimensions = @{@"method":methodOfContact};
   [PFAnalytics trackEvent:@"Contacted" dimensions:dimensions];
