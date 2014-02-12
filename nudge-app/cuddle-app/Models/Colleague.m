@@ -104,11 +104,6 @@
   NSDictionary *oldNumbers = self.numbers;
 
   [self updatePhoneNumberInformation:abPerson];
-  
-  if (([[self.numbers allKeys] count] == 0) && (self.number != nil)){
-    NSCharacterSet *doNotWant = [NSCharacterSet characterSetWithCharactersInString:@"() -"];
-    (self.numbers)[@"mobile"] = [[self.number componentsSeparatedByCharactersInSet: doNotWant] componentsJoinedByString: @""];
-  }
 
   if (![self.numbers isEqualToDictionary:oldNumbers]){
     [self saveEventually];
