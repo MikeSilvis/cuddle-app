@@ -7,17 +7,17 @@
 //
 
 #import "FrequencyPickerController.h"
-#import "UITextField+Nudge.h"
+#import "UITextView.h"
 
 @implementation FrequencyPickerController
 
 - (void)viewDidLoad{
   [super viewDidLoad];
   self.navigationItem.hidesBackButton = YES;
-  self.navigationItem.titleView = [self titleView];
+  self.navigationItem.titleView = [self titleView];  
   NSArray *arrayToLoadPicker = @[@"Weekly",@"Biweekly",@"Monthly"];
   self.pickerViewArray = arrayToLoadPicker;
-  self.frequencyLabel = [UITextField cuddleStyleWithTextField:self.frequencyLabel];
+  self.frequencyLabel = [UITextView cuddleStyleWithTextView:self.frequencyLabel];
   [self defaultFrequency];
   self.screenName = @"Frequency Selection";
 }
@@ -68,7 +68,14 @@
   } else if ([frequency isEqual:@"Monthly"]){
     [self updateContactFrequency:@28];
   }
-  [self.navigationController popViewControllerAnimated:YES];
+  
+  CATransition* transition = [CATransition animation];
+  transition.duration = 0.5;
+  transition.type = kCATransitionMoveIn;
+  transition.subtype = kCATransitionFromTop;
+
+  [self.navigationController.view.layer addAnimation:transition forKey:@"popController"];
+  [self.navigationController popViewControllerAnimated:NO];
 }
 - (void)updateContactFrequency:(NSNumber *)days{
   (self.contact)[@"frequency"] = days;

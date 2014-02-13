@@ -263,8 +263,8 @@
         [self removeGettingStarted];
         [self.tableView reloadData];
       }
-    }
-  }];
+    }];
+  }
 }
 #pragma mark - UITableViewDatasource methods
 
