@@ -25,6 +25,12 @@
    selector:@selector(handleOpenedFromPush:)
    name:@"openedFromNotification"
    object:nil];
+  
+  self.NudgeTooltips.hidden = YES;
+  if (!self.contact.methodOfLastContact) {
+    [self addGettingStarted];
+  }
+  
 }
 - (void)viewDidAppear:(BOOL)animated{
   [super viewDidAppear:YES];
@@ -62,10 +68,6 @@
   self.NudgeTooltips.hidden = NO;
   self.tableView.hidden = YES;
   self.seeMore.hidden = YES;
-//  [self addShadowToActions:self.call];
-//  [self addShadowToActions:self.text];
-//  [self addShadowToActions:self.email];
-//  [self addShadowToActions:self.plus];
 }
 - (void)addShadowToActions:(UIButton *)button{
   if (button.enabled){
@@ -89,6 +91,7 @@
 - (void)removeGettingStarted{
   self.tableView.hidden = NO;
   self.seeMore.hidden = NO;
+  self.NudgeTooltips.hidden = YES;
 }
 
 - (IBAction)emailButton:(id)sender {
@@ -240,28 +243,28 @@
   }
 }
 - (void)queryParseHistory{
-  PFQuery *query = [PFQuery queryWithClassName:@"ContactHistory"];
-  [query whereKey:@"colleague" equalTo:self.contact];
-  [query orderByDescending:@"createdAt"];
-  query.limit = 3;
-  [query findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
-    if (!error) {
-      if (objects.count == 0){
-        self.tableView.hidden = YES;
-        self.seeMore.hidden = YES;
-        [self addGettingStarted];
-      } else if (objects.count < 3) {
-        [self removeGettingStarted];
-        self.seeMore.hidden = YES;
-        self.NudgeTooltips.hidden = YES;
-        self.contactHistory = objects;
-        [self.tableView reloadData];
-      } else {
-        self.seeMore.hidden = NO;
-        self.NudgeTooltips.hidden = YES;
-        self.contactHistory = objects;
-        [self removeGettingStarted];
-        [self.tableView reloadData];
+  if (self.contact.objectId) {
+    PFQuery *query = [PFQuery queryWithClassName:@"ContactHistory"];
+    [query whereKey:@"colleague" equalTo:self.contact];
+    [query orderByDescending:@"createdAt"];
+    query.limit = 3;
+    [query findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
+      if (!error) {
+        if (objects.count == 0){
+          self.tableView.hidden = YES;
+          self.seeMore.hidden = YES;
+          [self addGettingStarted];
+        } else if (objects.count < 3) {
+          [self removeGettingStarted];
+          self.seeMore.hidden = YES;
+          self.contactHistory = objects;
+          [self.tableView reloadData];
+        } else {
+          self.seeMore.hidden = NO;
+          self.contactHistory = objects;
+          [self removeGettingStarted];
+          [self.tableView reloadData];
+        }
       }
     }];
   }
