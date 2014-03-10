@@ -2,21 +2,21 @@ GEM
   remote: https://rubygems.org/
   specs:
     hashie (2.0.5)
-    iron_core (0.6.2)
-      rest (>= 2.2.0)
-    iron_mq (4.0.3)
+    iron_core (1.0.3)
+      rest (>= 2.6.4)
+    iron_mq (5.0.1)
       iron_core (>= 0.5.1)
-    mime-types (1.23)
-    net-http-persistent (2.8)
-    parse-ruby-client (0.1.15)
+    net-http-persistent (2.9.4)
+    netrc (0.7.7)
+    parse-ruby-client (0.2.0)
       iron_mq
       patron
     patron (0.4.18)
-    rest (2.6.3)
-      net-http-persistent
-      rest-client (>= 0.3.0)
-    rest-client (1.6.7)
-      mime-types (>= 1.16)
+    rest (2.7.1)
+      net-http-persistent (>= 2.9.1)
+      rest_client (>= 1.7.1)
+    rest_client (1.7.3)
+      netrc (~> 0.7.7)
 
 PLATFORMS
   ruby
