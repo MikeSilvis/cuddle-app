@@ -6,10 +6,6 @@ GEM
       rest (>= 2.2.0)
     iron_mq (4.0.3)
       iron_core (>= 0.5.1)
-    iron_worker_ng (0.16.4)
-      bundler (>= 1.2.0)
-      iron_core (>= 0.5.1)
-      rubyzip (>= 0.9.9)
     mime-types (1.23)
     net-http-persistent (2.8)
     parse-ruby-client (0.1.15)
@@ -21,12 +17,10 @@ GEM
       rest-client (>= 0.3.0)
     rest-client (1.6.7)
       mime-types (>= 1.16)
-    rubyzip (0.9.9)
 
 PLATFORMS
   ruby
 
 DEPENDENCIES
   hashie
-  iron_worker_ng
   parse-ruby-client

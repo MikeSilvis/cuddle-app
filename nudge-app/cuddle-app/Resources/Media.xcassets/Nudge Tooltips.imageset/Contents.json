@@ -1,9 +1,20 @@
 {
   "images" : [
     {
-      "idiom" : "universal",
+      "idiom" : "iphone",
       "scale" : "1x",
       "filename" : "NudgeTooltips2.png"
+    },
+    {
+      "idiom" : "iphone",
+      "scale" : "2x",
+      "filename" : "NudgeTooltips2-1.png"
+    },
+    {
+      "idiom" : "iphone",
+      "filename" : "NudgeTooltips2-2.png",
+      "subtype" : "retina4",
+      "scale" : "2x"
     }
   ],
   "info" : {

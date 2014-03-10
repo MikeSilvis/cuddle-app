@@ -1,9 +1,8 @@
 source 'https://rubygems.org'
 
-ruby '2.0'
+ruby '1.9.3'
 gem 'parse-ruby-client'
 gem 'hashie'
-gem 'iron_worker_ng'
 
 #group :test do
   #gem 'shoulda-context'
