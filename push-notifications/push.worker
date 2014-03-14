@@ -1,4 +1,5 @@
 runtime "ruby"
+stack 'ruby-2.1'
 
 file 'push_worker.rb'
 remote
