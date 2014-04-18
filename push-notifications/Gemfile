@@ -3,6 +3,7 @@ source 'https://rubygems.org'
 ruby '1.9.3'
 gem 'parse-ruby-client'
 gem 'hashie'
+gem 'debugger'
 
 #group :test do
   #gem 'shoulda-context'

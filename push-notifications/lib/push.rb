@@ -1,4 +1,5 @@
 require 'rubygems'
+require 'debugger'
 require 'bundler'
 Bundler.require
 
