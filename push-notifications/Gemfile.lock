@@ -12,6 +12,7 @@ GEM
       iron_mq
       patron
     patron (0.4.18)
+    rake (10.1.1)
     rest (2.7.1)
       net-http-persistent (>= 2.9.1)
       rest_client (>= 1.7.1)
@@ -24,3 +25,4 @@ PLATFORMS
 DEPENDENCIES
   hashie
   parse-ruby-client
+  rake

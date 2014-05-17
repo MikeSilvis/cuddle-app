@@ -1,0 +1,5 @@
+task :default => [:push]
+
+task :push do
+  ruby "push_worker.rb"
+end

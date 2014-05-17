@@ -1,8 +1,9 @@
 source 'https://rubygems.org'
 
-ruby '2.1.0'
+ruby '2.1.1'
 gem 'parse-ruby-client'
 gem 'hashie'
+gem 'rake'
 
 #group :test do
   #gem 'shoulda-context'
