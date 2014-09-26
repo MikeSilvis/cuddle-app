@@ -25,7 +25,6 @@
 		365D019F16DC38780091CBA6 /* User.m in Sources */ = {isa = PBXBuildFile; fileRef = 365D019E16DC38780091CBA6 /* User.m */; };
 		366917D816D7143500DF21E9 /* LonelyController.m in Sources */ = {isa = PBXBuildFile; fileRef = 366917D716D7143500DF21E9 /* LonelyController.m */; };
 		366917DD16D714E600DF21E9 /* LonelySegue.m in Sources */ = {isa = PBXBuildFile; fileRef = 366917DC16D714E600DF21E9 /* LonelySegue.m */; };
-		367EB9C816EE4CDA006828BE /* Crashlytics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 367EB9C716EE4CDA006828BE /* Crashlytics.framework */; };
 		36940A6416ECEA12008CFBAC /* NSDateTimeAgo.m in Sources */ = {isa = PBXBuildFile; fileRef = 36940A6316ECEA12008CFBAC /* NSDateTimeAgo.m */; };
 		36A6605216E457F5003D3C99 /* ContactHistoryController.m in Sources */ = {isa = PBXBuildFile; fileRef = 36A6605116E457F5003D3C99 /* ContactHistoryController.m */; };
 		36A9EBE516C8A1CE000E084C /* AddressBook.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 36A9EBE416C8A1CE000E084C /* AddressBook.framework */; };
@@ -40,11 +39,6 @@
 		36FFBF6116C85DDF00CC3140 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 36FFBF6016C85DDF00CC3140 /* AppDelegate.m */; };
 		36FFBF6A16C85DDF00CC3140 /* MainStoryboard_iPhone.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 36FFBF6816C85DDF00CC3140 /* MainStoryboard_iPhone.storyboard */; };
 		36FFBF7016C85DDF00CC3140 /* LoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 36FFBF6F16C85DDF00CC3140 /* LoginViewController.m */; };
-		36FFBF7816C85DDF00CC3140 /* SenTestingKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 36FFBF7716C85DDF00CC3140 /* SenTestingKit.framework */; };
-		36FFBF7916C85DDF00CC3140 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 36FFBF5016C85DDF00CC3140 /* UIKit.framework */; };
-		36FFBF7A16C85DDF00CC3140 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 36FFBF5216C85DDF00CC3140 /* Foundation.framework */; };
-		36FFBF8216C85DDF00CC3140 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 36FFBF8016C85DDF00CC3140 /* InfoPlist.strings */; };
-		36FFBF8516C85DDF00CC3140 /* cuddle_appTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 36FFBF8416C85DDF00CC3140 /* cuddle_appTests.m */; };
 		4D73DBD968F944939BD8D053 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 44275C98D0A34A6484197B49 /* libPods.a */; };
 		DA36C78F16CB5D6F001D7889 /* RegisterViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DA36C78E16CB5D6F001D7889 /* RegisterViewController.m */; };
 		DA58A56F16C8BFD6006D7F55 /* Colleague.m in Sources */ = {isa = PBXBuildFile; fileRef = DA58A56E16C8BFD6006D7F55 /* Colleague.m */; };
@@ -59,16 +53,6 @@
 		DAD3EBFF16CA1A5600E56737 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DAD3EBFE16CA1A5600E56737 /* Security.framework */; };
 		DAD3EC0516CA1A6600E56737 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DAD3EC0416CA1A6600E56737 /* SystemConfiguration.framework */; };
 /* End PBXBuildFile section */
-
-/* Begin PBXContainerItemProxy section */
-		36FFBF7B16C85DDF00CC3140 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 36FFBF4516C85DDF00CC3140 /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = 36FFBF4C16C85DDF00CC3140;
-			remoteInfo = "cuddle-app";
-		};
-/* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
 		115174BC18A75AF900BD7A69 /* LoginSegue.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoginSegue.h; sourceTree = "<group>"; };
@@ -128,7 +112,6 @@
 		36FFBF6916C85DDF00CC3140 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = en; path = en.lproj/MainStoryboard_iPhone.storyboard; sourceTree = "<group>"; };
 		36FFBF6E16C85DDF00CC3140 /* LoginViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LoginViewController.h; sourceTree = "<group>"; };
 		36FFBF6F16C85DDF00CC3140 /* LoginViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LoginViewController.m; sourceTree = "<group>"; };
-		36FFBF7616C85DDF00CC3140 /* nudgeTests.octest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = nudgeTests.octest; sourceTree = BUILT_PRODUCTS_DIR; };
 		36FFBF7716C85DDF00CC3140 /* SenTestingKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SenTestingKit.framework; path = Library/Frameworks/SenTestingKit.framework; sourceTree = DEVELOPER_DIR; };
 		36FFBF7F16C85DDF00CC3140 /* nudgeTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "nudgeTests-Info.plist"; sourceTree = "<group>"; };
 		36FFBF8116C85DDF00CC3140 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
@@ -178,17 +161,6 @@
 				36FFBF5116C85DDF00CC3140 /* UIKit.framework in Frameworks */,
 				36FFBF5316C85DDF00CC3140 /* Foundation.framework in Frameworks */,
 				4D73DBD968F944939BD8D053 /* libPods.a in Frameworks */,
-				367EB9C816EE4CDA006828BE /* Crashlytics.framework in Frameworks */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		36FFBF7216C85DDF00CC3140 /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				36FFBF7816C85DDF00CC3140 /* SenTestingKit.framework in Frameworks */,
-				36FFBF7916C85DDF00CC3140 /* UIKit.framework in Frameworks */,
-				36FFBF7A16C85DDF00CC3140 /* Foundation.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -291,7 +263,6 @@
 			isa = PBXGroup;
 			children = (
 				36FFBF4D16C85DDF00CC3140 /* nudge.app */,
-				36FFBF7616C85DDF00CC3140 /* nudgeTests.octest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -395,32 +366,14 @@
 			productReference = 36FFBF4D16C85DDF00CC3140 /* nudge.app */;
 			productType = "com.apple.product-type.application";
 		};
-		36FFBF7516C85DDF00CC3140 /* nudgeTests */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = 36FFBF8B16C85DDF00CC3140 /* Build configuration list for PBXNativeTarget "nudgeTests" */;
-			buildPhases = (
-				36FFBF7116C85DDF00CC3140 /* Sources */,
-				36FFBF7216C85DDF00CC3140 /* Frameworks */,
-				36FFBF7316C85DDF00CC3140 /* Resources */,
-				36FFBF7416C85DDF00CC3140 /* ShellScript */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-				36FFBF7C16C85DDF00CC3140 /* PBXTargetDependency */,
-			);
-			name = nudgeTests;
-			productName = "cuddle-appTests";
-			productReference = 36FFBF7616C85DDF00CC3140 /* nudgeTests.octest */;
-			productType = "com.apple.product-type.bundle";
-		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
 		36FFBF4516C85DDF00CC3140 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastUpgradeCheck = 0460;
+				LastTestingUpgradeCheck = 0600;
+				LastUpgradeCheck = 0510;
 				ORGANIZATIONNAME = "Mike Silvis";
 				TargetAttributes = {
 					36FFBF4C16C85DDF00CC3140 = {
@@ -446,7 +399,6 @@
 			projectRoot = "";
 			targets = (
 				36FFBF4C16C85DDF00CC3140 /* nudge */,
-				36FFBF7516C85DDF00CC3140 /* nudgeTests */,
 			);
 		};
 /* End PBXProject section */
@@ -459,14 +411,6 @@
 				36FFBF5B16C85DDF00CC3140 /* InfoPlist.strings in Resources */,
 				36FFBF6A16C85DDF00CC3140 /* MainStoryboard_iPhone.storyboard in Resources */,
 				116E022318A08F3C00A371A1 /* Media.xcassets in Resources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		36FFBF7316C85DDF00CC3140 /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				36FFBF8216C85DDF00CC3140 /* InfoPlist.strings in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -485,19 +429,6 @@
 			runOnlyForDeploymentPostprocessing = 1;
 			shellPath = /bin/sh;
 			shellScript = "./Crashlytics.framework/run 2c4de91dd9eef6b63fa865a54c345433bebc795a f2c077a7ba4dd3074bbe966df8ebb9f52bfb88a9766299b7cd956fad37b1812d";
-		};
-		36FFBF7416C85DDF00CC3140 /* ShellScript */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "# Run the unit tests in this test bundle.\n\"${SYSTEM_DEVELOPER_DIR}/Tools/RunUnitTests\"\n";
 		};
 		70B8F35BA243472BB50A70E2 /* Copy Pods Resources */ = {
 			isa = PBXShellScriptBuildPhase;
@@ -547,23 +478,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		36FFBF7116C85DDF00CC3140 /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				36FFBF8516C85DDF00CC3140 /* cuddle_appTests.m in Sources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 /* End PBXSourcesBuildPhase section */
-
-/* Begin PBXTargetDependency section */
-		36FFBF7C16C85DDF00CC3140 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = 36FFBF4C16C85DDF00CC3140 /* nudge */;
-			targetProxy = 36FFBF7B16C85DDF00CC3140 /* PBXContainerItemProxy */;
-		};
-/* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
 		36FFBF5916C85DDF00CC3140 /* InfoPlist.strings */ = {
@@ -643,24 +558,6 @@
 				PROVISIONING_PROFILE = "";
 				TARGETED_DEVICE_FAMILY = 1;
 				WRAPPER_EXTENSION = app;
-			};
-			name = adhoc;
-		};
-		36133AD916EB06CB00C33D3B /* adhoc */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/cuddle-app.app/cuddle-app";
-				CODE_SIGN_IDENTITY = "";
-				FRAMEWORK_SEARCH_PATHS = (
-					"\"$(SDKROOT)/Developer/Library/Frameworks\"",
-					"\"$(DEVELOPER_LIBRARY_DIR)/Frameworks\"",
-				);
-				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "cuddle-app/cuddle-app-Prefix.pch";
-				INFOPLIST_FILE = "cuddle-appTests/nudgeTests-Info.plist";
-				PRODUCT_NAME = nudgeTests;
-				TEST_HOST = "$(BUNDLE_LOADER)";
-				WRAPPER_EXTENSION = octest;
 			};
 			name = adhoc;
 		};
@@ -776,42 +673,6 @@
 			};
 			name = Release;
 		};
-		36FFBF8C16C85DDF00CC3140 /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/cuddle-app.app/cuddle-app";
-				CODE_SIGN_IDENTITY = "";
-				FRAMEWORK_SEARCH_PATHS = (
-					"\"$(SDKROOT)/Developer/Library/Frameworks\"",
-					"\"$(DEVELOPER_LIBRARY_DIR)/Frameworks\"",
-				);
-				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "cuddle-app/cuddle-app-Prefix.pch";
-				INFOPLIST_FILE = "cuddle-appTests/nudgeTests-Info.plist";
-				PRODUCT_NAME = nudgeTests;
-				TEST_HOST = "$(BUNDLE_LOADER)";
-				WRAPPER_EXTENSION = octest;
-			};
-			name = Debug;
-		};
-		36FFBF8D16C85DDF00CC3140 /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/cuddle-app.app/cuddle-app";
-				CODE_SIGN_IDENTITY = "";
-				FRAMEWORK_SEARCH_PATHS = (
-					"\"$(SDKROOT)/Developer/Library/Frameworks\"",
-					"\"$(DEVELOPER_LIBRARY_DIR)/Frameworks\"",
-				);
-				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "cuddle-app/cuddle-app-Prefix.pch";
-				INFOPLIST_FILE = "cuddle-appTests/nudgeTests-Info.plist";
-				PRODUCT_NAME = nudgeTests;
-				TEST_HOST = "$(BUNDLE_LOADER)";
-				WRAPPER_EXTENSION = octest;
-			};
-			name = Release;
-		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -831,16 +692,6 @@
 				36FFBF8916C85DDF00CC3140 /* Debug */,
 				36FFBF8A16C85DDF00CC3140 /* Release */,
 				36133AD816EB06CB00C33D3B /* adhoc */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
-		36FFBF8B16C85DDF00CC3140 /* Build configuration list for PBXNativeTarget "nudgeTests" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				36FFBF8C16C85DDF00CC3140 /* Debug */,
-				36FFBF8D16C85DDF00CC3140 /* Release */,
-				36133AD916EB06CB00C33D3B /* adhoc */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

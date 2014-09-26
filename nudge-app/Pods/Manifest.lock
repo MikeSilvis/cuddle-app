@@ -1,8 +1,8 @@
 PODS:
-  - Facebook-iOS-SDK (3.12.0)
-  - GoogleAnalytics-iOS-SDK (3.0.3)
-  - Parse (1.2.18):
-    - Facebook-iOS-SDK (~> 3.11)
+  - Bolts (1.1.2)
+  - GoogleAnalytics-iOS-SDK (3.0.9)
+  - Parse (1.4.1):
+    - Bolts (~> 1.1.2)
   - SVProgressHUD (1.0)
 
 DEPENDENCIES:
@@ -11,9 +11,9 @@ DEPENDENCIES:
   - SVProgressHUD
 
 SPEC CHECKSUMS:
-  Facebook-iOS-SDK: c09f7d80db5c48170ff834bc03ebe774c49d1f5b
-  GoogleAnalytics-iOS-SDK: 7b0e55cfe5e70d60478a7b105f15ac71e8bc373e
-  Parse: 6dd57f2af9f89dc6facc755cec4e96f8b739b1fb
-  SVProgressHUD: 5e10939a296debf5fe5a5895eda9539b8b2114f1
+  Bolts: 2635e8698a630774689441047f3465d78c48d485
+  GoogleAnalytics-iOS-SDK: d9e198b1f955259a72886769be7377cdfcdb2250
+  Parse: db1a09c832b7509edcc88a65dc07229f5e578c73
+  SVProgressHUD: 5034c6e22b8c2ca3e09402e48d41ed0340aa1c50
 
-COCOAPODS: 0.29.0
+COCOAPODS: 0.33.1
