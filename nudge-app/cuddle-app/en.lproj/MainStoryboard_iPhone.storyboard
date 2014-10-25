@@ -65,6 +65,7 @@
                     <connections>
                         <outlet property="pageControl" destination="jSk-2N-sWh" id="AcD-Qx-fP1"/>
                         <outlet property="scrollView" destination="woN-f0-Orl" id="oCb-9f-dmQ"/>
+                        <segue destination="b8Q-sT-juJ" kind="custom" identifier="alreadySignedIn" customClass="RegisterSegue" id="jop-c1-Tif"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="csh-m8-Yf4" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -543,6 +544,7 @@
                         <outlet property="tableView" destination="07s-ip-jfe" id="fxi-PR-D2v"/>
                         <outlet property="text" destination="ODu-pw-oGM" id="U2y-xL-se2"/>
                         <segue destination="ch2-x5-YvJ" kind="custom" identifier="frequencyPicker" customClass="FrequencySegue" id="MNL-xA-COH"/>
+                        <segue destination="ch2-x5-YvJ" kind="custom" identifier="frequencyPickerNoAnimation" customClass="RegisterSegue" id="csJ-3A-qn8"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="wrS-B9-Js3" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -629,7 +631,8 @@
         <simulatedScreenMetrics key="destination" type="retina4"/>
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
-        <segue reference="67z-qR-seE"/>
-        <segue reference="COU-Jr-zcR"/>
+        <segue reference="jop-c1-Tif"/>
+        <segue reference="Y0w-iZ-Nqi"/>
+        <segue reference="csJ-3A-qn8"/>
     </inferredMetricsTieBreakers>
 </document>

@@ -44,23 +44,24 @@
   self.tableView.layer.borderWidth = 2.0;
   self.tableView.clipsToBounds = YES;
   self.contactPhoto.layer.borderColor = [UIColor whiteColor].CGColor;
-  self.contactPhoto.layer.cornerRadius = 5;
+  self.contactPhoto.layer.cornerRadius = 45;
   self.contactPhoto.clipsToBounds = YES;
   self.contactPhoto.layer.borderWidth = 2.0;
 
   // Toolbar
   CGFloat fontSize = 24;
+  CGSize imageSize = CGSizeMake(24, 24);
   FAKFontAwesome *callIcon = [FAKFontAwesome phoneIconWithSize:fontSize];
-  self.call.image = [callIcon imageWithSize:CGSizeMake(24, 24)];
+  self.call.image = [callIcon imageWithSize:imageSize];
   
   FAKFontAwesome *textIcon = [FAKFontAwesome commentIconWithSize:fontSize];
-  self.text.image = [textIcon imageWithSize:CGSizeMake(24, 24)];
+  self.text.image = [textIcon imageWithSize:imageSize];
 
   FAKFontAwesome *emailIcon = [FAKFontAwesome envelopeIconWithSize:fontSize];
-  self.email.image = [emailIcon imageWithSize:CGSizeMake(24, 24)];
+  self.email.image = [emailIcon imageWithSize:imageSize];
 
   FAKFontAwesome *plusIcon = [FAKFontAwesome thumbsUpIconWithSize:fontSize];
-  self.plus.image = [plusIcon imageWithSize:CGSizeMake(24, 24)];
+  self.plus.image = [plusIcon imageWithSize:imageSize];
 }
 - (void)checkFrequency{
   if (!contact.frequency){
@@ -240,7 +241,8 @@
   contact[@"notifiedSincePush"] = @YES;
   [contact saveEventually];
 
-  [SVProgressHUD showSuccessWithStatus:@"Great job at keeping in touch!"];
+  [SVProgressHUD showWithStatus:@"Great job at keeping in touch!" maskType:SVProgressHUDMaskTypeBlack];
+  [SVProgressHUD dismiss];
 
   NSDictionary *dimensions = @{@"method":methodOfContact};
   [PFAnalytics trackEvent:@"Contacted" dimensions:dimensions];

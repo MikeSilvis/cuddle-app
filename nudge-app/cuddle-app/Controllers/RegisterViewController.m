@@ -132,7 +132,7 @@
     user.email = self.emailField.text;
     user.username = self.emailField.text;
     
-    [SVProgressHUD showWithStatus:@"Saving your account"];
+    [SVProgressHUD showWithStatus:@"Saving your account" maskType:SVProgressHUDMaskTypeBlack];
     [user signUpInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
       if (succeeded) {
         [SVProgressHUD dismiss];

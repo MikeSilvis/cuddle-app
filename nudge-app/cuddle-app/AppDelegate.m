@@ -25,7 +25,9 @@
   [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleLightContent];
 
 
-  [application registerForRemoteNotificationTypes:UIRemoteNotificationTypeAlert|UIRemoteNotificationTypeBadge];
+  UIUserNotificationSettings* notificationSettings = [UIUserNotificationSettings settingsForTypes:UIUserNotificationTypeAlert | UIUserNotificationTypeBadge | UIUserNotificationTypeSound categories:nil];
+  [[UIApplication sharedApplication] registerUserNotificationSettings:notificationSettings];
+  [[UIApplication sharedApplication] registerForRemoteNotifications];  
   
   return YES;
 }

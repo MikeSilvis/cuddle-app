@@ -154,19 +154,18 @@
 }
 
 - (void)selectPersonFromPicker{
-  ABPeoplePickerNavigationController *picker = [[ABPeoplePickerNavigationController alloc] init];
-  picker.peoplePickerDelegate = self;
-  
-  [self presentViewController:picker animated:YES completion:nil];
+  CFErrorRef error;
+  ABAddressBookRef addressBook = ABAddressBookCreateWithOptions(NULL, &error);
+  ABAddressBookRequestAccessWithCompletion(addressBook, ^(bool granted, CFErrorRef error) {
+    ABPeoplePickerNavigationController *picker = [[ABPeoplePickerNavigationController alloc] init];
+    picker.peoplePickerDelegate = self;
+    
+    [self presentViewController:picker animated:YES completion:nil];
+  });
 }
 
-- (void)peoplePickerNavigationControllerDidCancel: (ABPeoplePickerNavigationController *)peoplePicker {
-  [self dismissViewControllerAnimated:YES completion:nil];
-}
-- (BOOL)peoplePickerNavigationController: (ABPeoplePickerNavigationController *)peoplePicker
-shouldContinueAfterSelectingPerson:(ABRecordRef)person {
-  
-  [SVProgressHUD showWithStatus:@"Saving Contact"];
+- (void)peoplePickerNavigationController:(ABPeoplePickerNavigationController *)peoplePicker didSelectPerson:(ABRecordRef)person property:(ABPropertyID)property identifier:(ABMultiValueIdentifier)identifier {
+  [SVProgressHUD showWithStatus:@"Saving Contact" maskType:SVProgressHUDMaskTypeBlack];
 
   NSNumber *recordID  =  [NSNumber numberWithInt:ABRecordGetRecordID(person)];
   self.lastAddedColleague = nil;
@@ -190,14 +189,16 @@ shouldContinueAfterSelectingPerson:(ABRecordRef)person {
 
   [self performSegueWithIdentifier:@"contactShowSegue" sender:self];
 
-  return NO;
+}
+
+- (void)peoplePickerNavigationControllerDidCancel: (ABPeoplePickerNavigationController *)peoplePicker {
+  [self dismissViewControllerAnimated:YES completion:nil];
 }
 
 - (BOOL)peoplePickerNavigationController: (ABPeoplePickerNavigationController *)peoplePicker
-shouldContinueAfterSelectingPerson:(ABRecordRef)person
-property:(ABPropertyID)property
-identifier:(ABMultiValueIdentifier)identifier
-{
+      shouldContinueAfterSelectingPerson:(ABRecordRef)person
+                                property:(ABPropertyID)property
+                              identifier:(ABMultiValueIdentifier)identifier {
   return NO;
 }
 
@@ -219,7 +220,7 @@ identifier:(ABMultiValueIdentifier)identifier
 }
 - (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath {
   if (editingStyle == UITableViewCellEditingStyleDelete) {
-    [SVProgressHUD showWithStatus:@"Removing Contact..."];
+    [SVProgressHUD showWithStatus:@"Removing Contact..." maskType:SVProgressHUDMaskTypeBlack];
     PFObject *object = (self.objects)[indexPath.row];
     [object deleteInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
       [SVProgressHUD dismiss];
