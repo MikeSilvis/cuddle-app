@@ -31,6 +31,26 @@
                                     <action selector="pageChanged:" destination="h2x-IE-8pD" eventType="valueChanged" id="sND-Ad-cdg"/>
                                 </connections>
                             </pageControl>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="4n2-7f-Xo4">
+                                <rect key="frame" x="0.0" y="537" width="100" height="25"/>
+                                <state key="normal" title="Login">
+                                    <color key="titleColor" red="1" green="0.96618515719999998" blue="0.96003367009999996" alpha="1" colorSpace="calibratedRGB"/>
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <segue destination="2" kind="push" id="Y0w-iZ-Nqi"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="i0N-JA-giS">
+                                <rect key="frame" x="220" y="537" width="100" height="25"/>
+                                <state key="normal" title="Register">
+                                    <color key="titleColor" red="0.97254908080000002" green="0.97254908080000002" blue="0.97254908080000002" alpha="1" colorSpace="deviceRGB"/>
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <segue destination="kDV-Vv-6JX" kind="push" id="ckz-CU-HIF"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
@@ -45,8 +65,6 @@
                     <connections>
                         <outlet property="pageControl" destination="jSk-2N-sWh" id="AcD-Qx-fP1"/>
                         <outlet property="scrollView" destination="woN-f0-Orl" id="oCb-9f-dmQ"/>
-                        <segue destination="kDV-Vv-6JX" kind="custom" identifier="RegisterSegue" customClass="RegisterSegue" id="aEE-PH-xuH"/>
-                        <segue destination="b8Q-sT-juJ" kind="push" identifier="alreadySignedIn" id="ejD-em-WSs"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="csh-m8-Yf4" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -68,7 +86,7 @@
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Email" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="5Mh-Oj-KiN">
                                 <rect key="frame" x="0.0" y="181" width="320" height="24"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="20"/>
-                                <textInputTraits key="textInputTraits" keyboardType="emailAddress" returnKeyType="next"/>
+                                <textInputTraits key="textInputTraits" autocorrectionType="no" keyboardType="emailAddress" returnKeyType="next"/>
                                 <connections>
                                     <action selector="editingEmailField:" destination="2" eventType="editingDidBegin" id="grq-D8-qeD"/>
                                 </connections>
@@ -143,7 +161,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="4" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1713" y="788"/>
+            <point key="canvasLocation" x="1156" y="832"/>
         </scene>
         <!--Register-->
         <scene sceneID="KdO-vS-vje">
@@ -185,7 +203,7 @@
                                     <action selector="editingPasswordField:" destination="kDV-Vv-6JX" eventType="editingDidBegin" id="rl9-tt-e20"/>
                                 </connections>
                             </textField>
-                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Create your account" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="T0x-KA-F6C">
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" misplaced="YES" text="Create your account" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="T0x-KA-F6C">
                                 <rect key="frame" x="0.0" y="47" width="320" height="29"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="24"/>
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
@@ -611,6 +629,7 @@
         <simulatedScreenMetrics key="destination" type="retina4"/>
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
-        <segue reference="kwV-ey-FKD"/>
+        <segue reference="67z-qR-seE"/>
+        <segue reference="COU-Jr-zcR"/>
     </inferredMetricsTieBreakers>
 </document>

@@ -28,7 +28,6 @@
    action:@selector(dismissKeyboard)];
   
   [self.view addGestureRecognizer:tap];
-  self.navigationItem.hidesBackButton = YES;
 }
 - (void)setStyles {
   self.registerButton    = [UIButton cuddleStyleWithButton:self.registerButton];
@@ -64,7 +63,6 @@
 }
 - (void)viewWillDisappear:(BOOL)animated
 {
-    // unregister for keyboard notifications while not visible.
   [[NSNotificationCenter defaultCenter] removeObserver:self
     name:UIKeyboardWillShowNotification
     object:nil];

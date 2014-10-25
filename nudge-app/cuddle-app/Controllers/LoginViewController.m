@@ -25,6 +25,7 @@
   self.screenName = @"Login";
   [self setStyles];
   UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(dismissKeyboard)];
+  [self.navigationController setNavigationBarHidden:NO];
   [self.view addGestureRecognizer:tap];
 }
 - (void)setStyles {

@@ -28,17 +28,12 @@
   UIImageView *firstImage   = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"NudgePanda Welcome Background-1"]];
   UIImageView *secondImage  = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"NudgePanda Welcome Background-2"]];
   UIImageView *thirdImage   = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"NudgePanda Welcome Background-3"]];
-  UIImageView *fourthImage  = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"NudgePanda Welcome Background-4"]];
-  
-  NSArray *images = @[firstImage, secondImage, thirdImage, fourthImage];
+
+  NSArray *images = @[firstImage, secondImage, thirdImage];
   [images enumerateObjectsUsingBlock:^(id imageView, NSUInteger index, BOOL *stop) {
     CGRect frame;
     frame.origin.x = self.scrollView.frame.size.width * index;
-    if (IS_IPHONE5) {
-      frame.origin.y = 15;
-    } else {
-      frame.origin.y = 0;
-    }
+    frame.origin.y = -20;
     frame.size = self.scrollView.frame.size;
     UIView *subview = [[UIView alloc] initWithFrame:frame];
     [subview addSubview:imageView];
@@ -71,20 +66,6 @@
 
 - (void)scrollViewWillBeginDragging:(UIScrollView *)currentScrollView {
 	self.pageControlBeingUsed = NO;
-}
-
-- (void)scrollViewDidEndDecelerating:(UIScrollView *)currentScrollView {
-	self.pageControlBeingUsed = NO;
-  CGFloat pageWidth = currentScrollView.frame.size.width;
-  float fractionalPage = currentScrollView.contentOffset.x / pageWidth;
-  NSInteger page = lround(fractionalPage);
-  if (page == 3){
-    CGRect frame = self.scrollView.frame;
-    frame.origin.x = frame.size.width * 2;
-    frame.origin.y = 0;
-    [self.scrollView scrollRectToVisible:frame animated:YES];
-    [self performSegueWithIdentifier:@"RegisterSegue" sender:self];
-  }
 }
 
 - (IBAction)pageChanged:(id)sender {
