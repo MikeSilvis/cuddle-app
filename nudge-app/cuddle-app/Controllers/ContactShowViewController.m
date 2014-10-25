@@ -7,6 +7,7 @@
 //
 
 #import "ContactShowViewController.h"
+#import <FontAwesomeKit/FAKFontAwesome.h>
 
 @implementation ContactShowViewController
 
@@ -46,6 +47,20 @@
   self.contactPhoto.layer.cornerRadius = 5;
   self.contactPhoto.clipsToBounds = YES;
   self.contactPhoto.layer.borderWidth = 2.0;
+
+  // Toolbar
+  CGFloat fontSize = 24;
+  FAKFontAwesome *callIcon = [FAKFontAwesome phoneIconWithSize:fontSize];
+  self.call.image = [callIcon imageWithSize:CGSizeMake(24, 24)];
+  
+  FAKFontAwesome *textIcon = [FAKFontAwesome commentIconWithSize:fontSize];
+  self.text.image = [textIcon imageWithSize:CGSizeMake(24, 24)];
+
+  FAKFontAwesome *emailIcon = [FAKFontAwesome envelopeIconWithSize:fontSize];
+  self.email.image = [emailIcon imageWithSize:CGSizeMake(24, 24)];
+
+  FAKFontAwesome *plusIcon = [FAKFontAwesome thumbsUpIconWithSize:fontSize];
+  self.plus.image = [plusIcon imageWithSize:CGSizeMake(24, 24)];
 }
 - (void)checkFrequency{
   if (!contact.frequency){
@@ -284,15 +299,24 @@
   }
   cell.textLabel.text = [self formatDate:history.createdAt];
   cell.textLabel.backgroundColor = [UIColor clearColor];
+
+  FAKFontAwesome *icon;
+  CGFloat fontSize = 24;
+
   if ([history[@"method"] isEqual:@"call"]) {
-    cell.imageView.image = [UIImage imageNamed:@"phone-gray.png"];
+    icon = [FAKFontAwesome phoneIconWithSize:fontSize];
   } else if ([history[@"method"] isEqual:@"sms"]) {
-    cell.imageView.image = [UIImage imageNamed:@"sms-gray.png"];
+    icon = [FAKFontAwesome commentIconWithSize:fontSize];
   } else if ([history[@"method"] isEqual:@"email"]) {
-    cell.imageView.image = [UIImage imageNamed:@"email-gray.png"];
+    icon = [FAKFontAwesome envelopeIconWithSize:fontSize];
   } else if ([history[@"method"] isEqual:@"contacted"]) {
-    cell.imageView.image = [UIImage imageNamed:@"checkmark-gray.png"];
+    icon = [FAKFontAwesome thumbsUpIconWithSize:fontSize];
   }
+
+  if (icon) {
+    cell.imageView.image = [icon imageWithSize:CGSizeMake(24, 24)];
+  }
+  
   return cell;
 }
 - (NSString *)formatDate:(NSDate *)date

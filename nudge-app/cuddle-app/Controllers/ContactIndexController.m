@@ -22,7 +22,7 @@
   if (self) {
     self.pullToRefreshEnabled = NO;
     self.paginationEnabled = YES;
-    self.objectsPerPage = 25;
+    self.objectsPerPage = 100;
   }
   return self;
 }
@@ -89,9 +89,11 @@
 - (AppDelegate *)appDelegate{
   return (AppDelegate*)[[UIApplication sharedApplication] delegate];
 }
+
 - (void)handleOpenedFromPush:(NSNotification *)notification{
   [self pushUser];
 }
+
 - (void)pushUser {
   for (Colleague *object in self.objects) {
     if ([object.objectId isEqualToString:self.appDelegate.colleagueId]){
@@ -126,23 +128,22 @@
   ContactInfoCell *cell = (ContactInfoCell *)[tableView dequeueReusableCellWithIdentifier:@"contactInfoCell"];
   cell.userName.text = friend.name;
   
-  cell.userPicture.layer.cornerRadius = 5;
+  cell.userPicture.layer.cornerRadius = 20;
   cell.userPicture.clipsToBounds = YES;
 
   dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^ {
-    UIImage *avatarPhoto = friend.avatarPhoto;
+    UIImage *avatarPhoto = friend.avatarPhotoImage;
     
     dispatch_async(dispatch_get_main_queue(), ^() {
       cell.userPicture.image = avatarPhoto;
     });
   });
+
+  cell.contactTypeImage.image = friend.lastContactImage;
   
   if (friend.methodOfLastContact) {
-    cell.contactTypeImage.layer.hidden = NO;
-    cell.contactTypeImage.image = friend.lastContactImage;
     cell.userLastContact.text = [friend.lastContactDate timeAgo];
   } else {
-    cell.contactTypeImage.layer.hidden = YES;
     cell.userLastContact.text = @"Never contacted from nudge";
   }
   
@@ -198,6 +199,10 @@ property:(ABPropertyID)property
 identifier:(ABMultiValueIdentifier)identifier
 {
   return NO;
+}
+
+-(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
+  return 60;
 }
 
 -(void) prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender{

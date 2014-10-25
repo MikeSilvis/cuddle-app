@@ -119,56 +119,57 @@
     self.view.frame = rect;
     
     [UIView commitAnimations];
-  }
-  - (IBAction)editingEmailField:(id)sender {
-    self.emailField.delegate = self;
-  }
+}
+- (IBAction)editingEmailField:(id)sender {
+  self.emailField.delegate = self;
+}
 
-  - (IBAction)editingPasswordField:(id)sender {
-    self.passwordField.delegate = self;
+- (IBAction)editingPasswordField:(id)sender {
+  self.passwordField.delegate = self;
+}
+- (void)signUpUser{
+  if (([self isValidEmail:self.emailField.text]) || ([self.passwordField.text length] >= 6)){
+    PFUser *user = [PFUser user];
+    user.password = self.passwordField.text;
+    user.email = self.emailField.text;
+    user.username = self.emailField.text;
+    
+    [SVProgressHUD showWithStatus:@"Saving your account"];
+    [user signUpInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
+      if (succeeded) {
+        [SVProgressHUD dismiss];
+        NSDictionary *dimensions = @{@"register":@"true"};
+        [PFAnalytics trackEvent:@"userSignup" dimensions:dimensions];
+        [self performSegueWithIdentifier:@"registerSuccessSegue" sender:self];
+      } else {
+        NSLog(@"registration failed");
+        [SVProgressHUD showErrorWithStatus:@"Sorry that email address is already taken."];
+      }
+    }];
+  } else {
+    NSLog(@"invalid email or password");
+    UIAlertView *message = [[UIAlertView alloc] initWithTitle:@"Registration Error!"
+      message:@"Either your email is in the wrong format or your password is too short (6 characters)."
+      delegate:nil
+      cancelButtonTitle:@"OK"
+      otherButtonTitles:nil];
+    [message show];
   }
-  - (void)signUpUser{
-    if (([self isValidEmail:self.emailField.text]) || ([self.passwordField.text length] >= 6)){
-      PFUser *user = [PFUser user];
-      user.password = self.passwordField.text;
-      user.email = self.emailField.text;
-      user.username = self.emailField.text;
-      
-      [SVProgressHUD showWithStatus:@"Saving your account"];
-      [user signUpInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
-        if (succeeded) {
-          [SVProgressHUD dismiss];
-          NSDictionary *dimensions = @{@"register":@"true"};
-          [PFAnalytics trackEvent:@"userSignup" dimensions:dimensions];
-          [self performSegueWithIdentifier:@"registerSuccessSegue" sender:self];
-        } else {
-          NSLog(@"registration failed");
-          [SVProgressHUD showErrorWithStatus:@"Sorry that email address is already taken."];
-        }
-      }];
-    } else {
-      NSLog(@"invalid email or password");
-      UIAlertView *message = [[UIAlertView alloc] initWithTitle:@"Registration Error!"
-        message:@"Either your email is in the wrong format or your password is too short (6 characters)."
-        delegate:nil
-        cancelButtonTitle:@"OK"
-        otherButtonTitles:nil];
-      [message show];
-    }
-  }
+}
 
-  - (IBAction)registerUserButton:(id)sender {
-    [self signUpUser];
+- (IBAction)registerUserButton:(id)sender {
+  [self signUpUser];
 
-  }
+}
 
-  - (IBAction)backToIntro:(id)sender {
-    [self.navigationController popViewControllerAnimated:YES];
-  }
-  -(BOOL) isValidEmail:(NSString *)canidate
-  {
-    NSString *emailRegex = @"[A-Z0-9a-z._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,4}";
-    NSPredicate *emailTest = [NSPredicate predicateWithFormat:@"SELF MATCHES %@", emailRegex];
-    return [emailTest evaluateWithObject:canidate];
-  }
+- (IBAction)backToIntro:(id)sender {
+  [self.navigationController popViewControllerAnimated:YES];
+}
+
+-(BOOL) isValidEmail:(NSString *)canidate
+{
+  NSString *emailRegex = @"[A-Z0-9a-z._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,4}";
+  NSPredicate *emailTest = [NSPredicate predicateWithFormat:@"SELF MATCHES %@", emailRegex];
+  return [emailTest evaluateWithObject:canidate];
+}
 @end

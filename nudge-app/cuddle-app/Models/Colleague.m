@@ -8,10 +8,7 @@
 
 #import "Colleague.h"
 #import <Parse/PFObject+Subclass.h>
-
-@interface Colleague ()
-@end
-
+#import <FontAwesomeKit/FAKFontAwesome.h>
 
 @implementation Colleague
 
@@ -70,25 +67,25 @@
   }
   return self;
 }
-- (UIImage *)avatarPhoto {
-  if (!avatarPhoto) {
+- (UIImage *)avatarPhotoImage {
+  if (!self.avatarPhoto) {
     ABAddressBookRef addressBook = ABAddressBookCreateWithOptions(NULL, nil);
     ABRecordRef abPerson = ABAddressBookGetPersonWithRecordID(addressBook, [self.recordId intValue]);
     NSData  *imgABData = (__bridge_transfer NSData *) ABPersonCopyImageDataWithFormat(abPerson, kABPersonImageFormatOriginalSize);
     UIImage *image = [UIImage imageWithData:imgABData];
     
     if (!!image) {
-      avatarPhoto = image;
-    } else if (!!self.facebook) {
+      self.avatarPhoto = image;
+    } else if ([self.facebook boolValue]) {
       NSString *facebookImageURL = [NSString stringWithFormat:@"http://graph.facebook.com/%@/picture?type=large", self.facebook];
       NSData *facebookImgData = [[NSData alloc] initWithContentsOfURL: [NSURL URLWithString:facebookImageURL]];
-      avatarPhoto = [UIImage imageWithData: facebookImgData];
+      self.avatarPhoto = [UIImage imageWithData: facebookImgData];
     } else {
-      avatarPhoto = [UIImage imageNamed:@"contact_without_image"];
+      self.avatarPhoto = [UIImage imageNamed:@"contact_without_image"];
     }
   }
 
-  return avatarPhoto;
+  return self.avatarPhoto;
 }
 - (void)updateContact {
   ABAddressBookRef addressBook = ABAddressBookCreateWithOptions(NULL, nil);
@@ -118,16 +115,21 @@
   }
 }
 - (UIImage *) lastContactImage{
+  FAKFontAwesome *icon;
+  CGFloat fontSize = 24;
+
   if ([self.methodOfLastContact isEqual:@"call"]) {
-    return [UIImage imageNamed:@"phone-gray"];
+    icon = [FAKFontAwesome phoneIconWithSize:fontSize];
   } else if ([self.methodOfLastContact isEqual:@"sms"]) {
-    return [UIImage imageNamed:@"sms-gray.png"];
+    icon = [FAKFontAwesome commentIconWithSize:fontSize];
   } else if ([self.methodOfLastContact isEqual:@"email"]) {
-    return [UIImage imageNamed:@"email-gray"];
+    icon = [FAKFontAwesome envelopeIconWithSize:fontSize];
   } else if ([self.methodOfLastContact isEqual:@"contacted"]) {
-    return [UIImage imageNamed:@"checkmark-gray"];
+    icon = [FAKFontAwesome thumbsUpIconWithSize:fontSize];
   } else {
-    return nil;
+    icon = [FAKFontAwesome frownOIconWithSize:fontSize];
   }
+
+  return [icon imageWithSize:CGSizeMake(24, 24)];
 }
 @end

@@ -144,14 +144,11 @@
     [message show];
   }
 }
-- (void)didReceiveMemoryWarning
-{
-  [super didReceiveMemoryWarning];
-}
 
 - (IBAction)login:(id)sender {
   [self loginUser];
 }
+
 - (IBAction)editingEmailField:(id)sender {
   self.emailField.delegate = self;
 }

@@ -7,6 +7,7 @@
 //
 
 #import "ContactHistoryController.h"
+#import <FontAwesomeKit/FAKFontAwesome.h>
 
 @implementation ContactHistoryController
 
@@ -34,19 +35,24 @@
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath object:(PFObject *)object {
   ContactHistoryCell *cell = (ContactHistoryCell *)[tableView dequeueReusableCellWithIdentifier:@"contactHistoryCell"];
 
+  FAKFontAwesome *icon;
+  CGFloat fontSize = 24;
+
   if ([object[@"method"] isEqual:@"call"]) {
     cell.lastContact.text = [@"Called on " stringByAppendingString:[self formatDate:object.createdAt]];
-    cell.lastContactImage.image = [UIImage imageNamed:@"phone-gray"];
+    icon = [FAKFontAwesome phoneIconWithSize:fontSize];
   } else if ([object[@"method"] isEqual:@"sms"]) {
     cell.lastContact.text = [@"Texted on " stringByAppendingString:[self formatDate:object.createdAt]];;
-    cell.lastContactImage.image = [UIImage imageNamed:@"sms-gray"];
+    icon = [FAKFontAwesome commentIconWithSize:fontSize];
   } else if ([object[@"method"] isEqual:@"email"]) {
     cell.lastContact.text = [@"Emailed on " stringByAppendingString:[self formatDate:object.createdAt]];
-    cell.lastContactImage.image = [UIImage imageNamed:@"email-gray"];
+    icon = [FAKFontAwesome envelopeIconWithSize:fontSize];
   } else if ([object[@"method"] isEqual:@"contacted"]) {
     cell.lastContact.text = [@"Contacted on " stringByAppendingString:[self formatDate:object.createdAt]];
-    cell.lastContactImage.image = [UIImage imageNamed:@"checkmark-gray"];
+    icon = [FAKFontAwesome thumbsUpIconWithSize:fontSize];
   }
+
+  cell.lastContactImage.image = [icon imageWithSize:CGSizeMake(24, 24)];
 
   return cell;
 }

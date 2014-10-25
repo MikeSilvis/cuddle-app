@@ -32,5 +32,6 @@
 - (UIImage *)lastContactImage;
 - (id)initWithABPerson:(ABRecordRef)abPerson;
 - (void)updateContact;
+- (UIImage *)avatarPhotoImage;
 
 @end
