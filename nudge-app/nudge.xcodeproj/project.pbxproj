@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		1129527E19FC1E6900EDEE2F /* Crashlytics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1129527D19FC1E6900EDEE2F /* Crashlytics.framework */; };
 		115174BE18A75AF900BD7A69 /* LoginSegue.m in Sources */ = {isa = PBXBuildFile; fileRef = 115174BD18A75AF900BD7A69 /* LoginSegue.m */; };
 		1151750B18A77C7C00BD7A69 /* UIButton+Nudge.m in Sources */ = {isa = PBXBuildFile; fileRef = 1151750A18A77C7C00BD7A69 /* UIButton+Nudge.m */; };
 		1151750E18A7815100BD7A69 /* UILabel+Nudge.m in Sources */ = {isa = PBXBuildFile; fileRef = 1151750D18A7815100BD7A69 /* UILabel+Nudge.m */; };
@@ -54,6 +55,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		1129527D19FC1E6900EDEE2F /* Crashlytics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Crashlytics.framework; sourceTree = "<group>"; };
 		115174BC18A75AF900BD7A69 /* LoginSegue.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoginSegue.h; sourceTree = "<group>"; };
 		115174BD18A75AF900BD7A69 /* LoginSegue.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoginSegue.m; sourceTree = "<group>"; };
 		1151750918A77C7C00BD7A69 /* UIButton+Nudge.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIButton+Nudge.h"; sourceTree = "<group>"; };
@@ -154,6 +156,7 @@
 				DAD3EBF516CA1A2800E56737 /* CoreLocation.framework in Frameworks */,
 				36FFBF5516C85DDF00CC3140 /* CoreGraphics.framework in Frameworks */,
 				DAD3EBF316CA1A1800E56737 /* CFNetwork.framework in Frameworks */,
+				1129527E19FC1E6900EDEE2F /* Crashlytics.framework in Frameworks */,
 				DAD3EBF116CA1A0F00E56737 /* AdSupport.framework in Frameworks */,
 				DAD3EBED16CA19FF00E56737 /* AudioToolbox.framework in Frameworks */,
 				36A9EBE716C8A1D1000E084C /* AddressBookUI.framework in Frameworks */,
@@ -259,6 +262,7 @@
 		36FFBF4416C85DDF00CC3140 = {
 			isa = PBXGroup;
 			children = (
+				1129527D19FC1E6900EDEE2F /* Crashlytics.framework */,
 				36FFBF5616C85DDF00CC3140 /* cuddle-app */,
 				36FFBF7D16C85DDF00CC3140 /* cuddle-appTests */,
 				36FFBF4F16C85DDF00CC3140 /* Frameworks */,
@@ -366,7 +370,7 @@
 				36FFBF4A16C85DDF00CC3140 /* Frameworks */,
 				36FFBF4B16C85DDF00CC3140 /* Resources */,
 				70B8F35BA243472BB50A70E2 /* Copy Pods Resources */,
-				367EB9C616EE4CA3006828BE /* ShellScript */,
+				1129527C19FC1E2C00EDEE2F /* ShellScript */,
 			);
 			buildRules = (
 			);
@@ -428,18 +432,19 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		367EB9C616EE4CA3006828BE /* ShellScript */ = {
+		1129527C19FC1E2C00EDEE2F /* ShellScript */ = {
 			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 8;
+			buildActionMask = 2147483647;
 			files = (
 			);
 			inputPaths = (
 			);
 			outputPaths = (
 			);
-			runOnlyForDeploymentPostprocessing = 1;
+			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "./Crashlytics.framework/run 2c4de91dd9eef6b63fa865a54c345433bebc795a f2c077a7ba4dd3074bbe966df8ebb9f52bfb88a9766299b7cd956fad37b1812d";
+			showEnvVarsInLog = 0;
 		};
 		70B8F35BA243472BB50A70E2 /* Copy Pods Resources */ = {
 			isa = PBXShellScriptBuildPhase;
@@ -576,6 +581,7 @@
 					"$(inherited)",
 					"$(SRCROOT)",
 					"/Users/silvis/Documents/code/cuddle-app/nudge-app",
+					"$(PROJECT_DIR)",
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "cuddle-app/nudge-Prefix.pch";
@@ -664,6 +670,7 @@
 					"$(inherited)",
 					"$(SRCROOT)",
 					"/Users/silvis/Documents/code/cuddle-app/nudge-app",
+					"$(PROJECT_DIR)",
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "cuddle-app/nudge-Prefix.pch";
@@ -688,6 +695,7 @@
 					"$(inherited)",
 					"$(SRCROOT)",
 					"/Users/silvis/Documents/code/cuddle-app/nudge-app",
+					"$(PROJECT_DIR)",
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "cuddle-app/nudge-Prefix.pch";
