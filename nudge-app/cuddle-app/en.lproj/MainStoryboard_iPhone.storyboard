@@ -325,7 +325,6 @@
                     </navigationItem>
                     <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" barStyle="black" prompted="NO"/>
                     <connections>
-                        <outlet property="addressesTable" destination="Edb-cn-l04" id="qla-gY-wlG"/>
                         <segue destination="dby-KP-TPU" kind="modal" identifier="frequencyPicker" modalTransitionStyle="flipHorizontal" id="bfP-K2-4eA"/>
                     </connections>
                 </tableViewController>
@@ -611,9 +610,9 @@
         <simulatedScreenMetrics key="destination" type="retina4"/>
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
-        <segue reference="COU-Jr-zcR"/>
         <segue reference="jop-c1-Tif"/>
-        <segue reference="ifP-wh-feI"/>
-        <segue reference="MNL-xA-COH"/>
+        <segue reference="bfP-K2-4eA"/>
+        <segue reference="5QD-II-XKi"/>
+        <segue reference="COU-Jr-zcR"/>
     </inferredMetricsTieBreakers>
 </document>

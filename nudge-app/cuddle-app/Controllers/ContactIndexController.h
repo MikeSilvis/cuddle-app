@@ -22,11 +22,11 @@
 
 - (IBAction)showPeoplePicker;
 
-@property (strong, nonatomic) IBOutlet UITableView *addressesTable;
-@property PFFile *imageFile;
-@property (nonatomic, assign) BOOL parseDidLoad;
-
 @property (strong, nonatomic) IBOutlet Colleague *lastAddedColleague;
 @property BOOL firstLogin;
+
+@property (nonatomic, retain) UIView *logoView;
+@property (nonatomic, retain) UIView *lonelyView;
+@property (nonatomic, retain) UIColor *separatorColor;
 
 @end

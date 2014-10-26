@@ -34,6 +34,16 @@
     [currentInstallation saveInBackground];
   }
 }
+
+-(void)addLonelyView {
+  if (self.lonelyView == nil) {
+    self.lonelyView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"lonely"]];
+    self.lonelyView.frame = self.view.bounds;
+    self.lonelyView.hidden = YES;
+    [self.view addSubview:self.lonelyView];
+  }
+}
+
 - (PFQuery *)queryForTable {
   PFQuery *query = [Colleague query];
   [query whereKey:@"user" equalTo:[PFUser currentUser]];
@@ -43,52 +53,75 @@
   return query;
 }
 
-- (void)viewDidAppear:(BOOL)animated{
-  [super viewDidDisappear:YES];
-  if (self.firstLogin) {
-//    [self performSegueWithIdentifier:@"lonelySegue" sender:self];
+- (void)setUpTableOrLonely {
+  [self addLonelyView];
+  bool hasPeeps = [[PFUser currentUser][@"hasPeeps"] boolValue];
+
+  // Assume if nil, that they do have peeps
+  bool doesNotHavePeeps = (!hasPeeps && ([PFUser currentUser][@"hasPeeps"] != nil));
+  if (self.firstLogin || doesNotHavePeeps) {
+    self.logoView.hidden = YES;
+    self.lonelyView.hidden = NO;
+    self.tableView.separatorColor = [UIColor clearColor];
+    self.tableView.alwaysBounceVertical = NO;
+    self.tableView.scrollEnabled = NO;
     self.firstLogin = false;
   } else {
-    [self watchNotifications];
-    [self loadObjects];
-    [self pushUser];
+    self.logoView.hidden = NO;
+    self.lonelyView.hidden = YES;
+    self.tableView.separatorColor = self.separatorColor;
+    self.tableView.alwaysBounceVertical = YES;
+    self.tableView.scrollEnabled = YES;
   }
 }
 
 - (void)viewDidLoad{
   [super viewDidLoad];
+  self.navigationItem.titleView = self.titleView;
+  self.separatorColor = self.tableView.separatorColor;
   [self.navigationController setNavigationBarHidden:NO];
   self.navigationItem.hidesBackButton = YES;
-  self.navigationItem.titleView = [self titleView];
   [self savePushChannel];
+  [self watchNotifications];
+  [self pushUser];
+}
+
+-(void)viewWillAppear:(BOOL)animated {
+  [super viewWillAppear:animated];
+  [self loadObjects];
+  [self setUpTableOrLonely];
 }
 
 - (void)watchNotifications{
   [[NSNotificationCenter defaultCenter] addObserver:self
-   selector:@selector(handleOpenedFromPush:)
-   name:UIApplicationWillEnterForegroundNotification
-   object:nil];
+                                           selector:@selector(handleOpenedFromPush:)
+                                               name:UIApplicationWillEnterForegroundNotification
+                                             object:nil];
   [[NSNotificationCenter defaultCenter] addObserver:self
-   selector:@selector(handleOpenedFromPush:)
-   name:@"openedFromNotification"
-   object:nil];
+                                           selector:@selector(handleOpenedFromPush:)
+                                               name:@"openedFromNotification"
+                                             object:nil];
 }
 
-- (void)removeNotifications{
+- (void)viewDidDisappear:(BOOL)animated {
+  [super viewDidDisappear:animated];
+
   [[NSNotificationCenter defaultCenter] removeObserver:self name:@"openedFromNotification" object:nil];
   [[NSNotificationCenter defaultCenter] removeObserver:self name:UIApplicationWillEnterForegroundNotification object:nil];
-
 }
 
-//- (void)objectsDidLoad:(NSError *)error{
-//  [super objectsDidLoad:error];
-//  if (self.parseDidLoad == false) {
-//    if ([self.addressesTable numberOfRowsInSection:0] == 0){
-////      [self performSegueWithIdentifier:@"lonelySegue" sender:self];
-//    }
-//    [self setParseDidLoad:YES];
-//  }
-//}
+- (void)objectsDidLoad:(NSError *)error{
+  [super objectsDidLoad:error];
+
+  if (self.objects.count > 0) {
+    [[PFUser currentUser] setObject:@(true) forKey:@"hasPeeps"];
+  } else {
+    [[PFUser currentUser] setObject:@(false) forKey:@"hasPeeps"];
+  }
+
+  [[PFUser currentUser] saveEventually];
+  [self setUpTableOrLonely];
+}
 
 - (AppDelegate *)appDelegate{
   return (AppDelegate*)[[UIApplication sharedApplication] delegate];
@@ -110,7 +143,7 @@
 - (UIView *)titleView {
   CGFloat navBarHeight = self.navigationController.navigationBar.frame.size.height;
   CGFloat width = 0.95 * self.view.frame.size.width;
-  UIView *containerView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, width, navBarHeight)];
+  self.logoView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, width, navBarHeight)];
   
   UIImage *logo = [UIImage imageNamed:@"logo"];
   
@@ -122,9 +155,9 @@
   [logoButton setFrame:CGRectMake(centerPosition, logoY, logo.size.width, logo.size.height)];
   [logoButton setImage:logo forState:UIControlStateDisabled];
   
-  [containerView addSubview:logoButton];
-  
-  return containerView;
+  [self.logoView addSubview:logoButton];
+
+  return self.logoView;
 }
 # pragma mark - Table List
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath object:(Colleague *)friend {
@@ -214,7 +247,6 @@
   if([segue.identifier isEqualToString:@"contactShowSegue"]){
     NSIndexPath *indexPath = [self.tableView indexPathForSelectedRow];
     ContactShowViewController *destViewController = segue.destinationViewController;
-    [self removeNotifications];
     if (indexPath){
       [self.tableView deselectRowAtIndexPath:indexPath animated:NO];
       destViewController.contact = (self.objects)[indexPath.row];
