@@ -26,7 +26,6 @@
   
   [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleLightContent];
 
-
   UIUserNotificationSettings* notificationSettings = [UIUserNotificationSettings settingsForTypes:UIUserNotificationTypeAlert | UIUserNotificationTypeBadge | UIUserNotificationTypeSound categories:nil];
   [[UIApplication sharedApplication] registerUserNotificationSettings:notificationSettings];
   [[UIApplication sharedApplication] registerForRemoteNotifications];  

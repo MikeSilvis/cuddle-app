@@ -86,20 +86,6 @@
   self.tableView.hidden = YES;
   self.seeMore.hidden = YES;
 }
-- (void)addShadowToActions:(UIButton *)button{
-  if (button.enabled){
-    button.layer.shadowColor = [UIColor colorWithRed:74/255.0f green:149/255.0f blue:203/255.0f alpha:1.0f].CGColor;
-    button.layer.shadowOffset = CGSizeMake(0, 0);
-    button.layer.shadowRadius = 5.0;
-    
-    CABasicAnimation *anim = [CABasicAnimation animationWithKeyPath:@"shadowOpacity"];
-    anim.fromValue = @0.0f;
-    anim.toValue = @1.0f;
-    anim.duration = 3.0;
-    [button.layer addAnimation:anim forKey:@"shadowOpacity"];
-    button.layer.shadowOpacity = 1.0;
-  }
-}
 
 - (void)handleOpenedFromPush:(NSNotification *)notification{
   [self.navigationController popViewControllerAnimated:NO];
@@ -225,7 +211,7 @@
 
 - (void)saveCommunication:(NSString *)methodOfContact{
   
-    // Save the relationship
+  // Save the relationship
   PFObject *newNetwork = [[PFObject alloc] initWithClassName:@"ContactHistory"];
   newNetwork[@"colleague"] = contact;
   newNetwork[@"method"] = methodOfContact;

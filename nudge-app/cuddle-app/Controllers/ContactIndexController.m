@@ -8,7 +8,7 @@
 
 #import "ContactIndexController.h"
 #import "FrequencyPickerController.h"
-
+#import "CuddleNavBar.h"
 
 @interface ContactIndexController ()
 
@@ -34,7 +34,7 @@
   }
 }
 - (PFQuery *)queryForTable {
-  PFQuery *query = [PFQuery queryWithClassName:@"Colleague"];
+  PFQuery *query = [Colleague query];
   [query whereKey:@"user" equalTo:[PFUser currentUser]];
   [query includeKey:@"ContactHistory"];
   [query orderByAscending:@"lastContactDate"];
@@ -46,6 +46,7 @@
   [super viewDidDisappear:YES];
   if (self.firstLogin) {
     [self performSegueWithIdentifier:@"lonelySegue" sender:self];
+    self.firstLogin = false;
   } else {
     [self watchNotifications];
     [self loadObjects];
@@ -63,10 +64,6 @@
 
 - (void)watchNotifications{
   [[NSNotificationCenter defaultCenter] addObserver:self
-   selector:@selector(selectPersonFromPicker)
-   name:@"PeoplePicker"
-   object:nil];
-  [[NSNotificationCenter defaultCenter] addObserver:self
    selector:@selector(handleOpenedFromPush:)
    name:UIApplicationWillEnterForegroundNotification
    object:nil];
@@ -77,7 +74,6 @@
 }
 - (void)removeNotifications{
   [[NSNotificationCenter defaultCenter] removeObserver:self name:@"openedFromNotification" object:nil];
-  [[NSNotificationCenter defaultCenter] removeObserver:self name:@"PeoplePicker" object:nil];
   [[NSNotificationCenter defaultCenter] removeObserver:self name:UIApplicationWillEnterForegroundNotification object:nil];
 
 }
@@ -133,8 +129,8 @@
   ContactInfoCell *cell = (ContactInfoCell *)[tableView dequeueReusableCellWithIdentifier:@"contactInfoCell"];
   cell.userName.text = friend.name;
   
-  cell.userPicture.layer.cornerRadius = 20;
   cell.userPicture.clipsToBounds = YES;
+  cell.userPicture.layer.cornerRadius = 20;
 
   dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^ {
     UIImage *avatarPhoto = friend.avatarPhotoImage;
@@ -195,8 +191,7 @@
   NSDictionary *dimensions = @{@"contactAdded":@"true"};
   [PFAnalytics trackEvent:@"contactAdded" dimensions:dimensions];
 
-//  [self dismissViewControllerAnimated:YES completion:nil];
-
+  [self dismissViewControllerAnimated:NO completion:nil];
   [self performSegueWithIdentifier:@"frequencyPicker" sender:self];
 }
 

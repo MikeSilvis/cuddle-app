@@ -327,7 +327,7 @@
                     <connections>
                         <outlet property="addressesTable" destination="Edb-cn-l04" id="qla-gY-wlG"/>
                         <segue destination="lQ5-KZ-oi9" kind="custom" identifier="lonelySegue" customClass="LonelySegue" id="U7p-aW-0RZ"/>
-                        <segue destination="dby-KP-TPU" kind="push" identifier="frequencyPicker" id="bfP-K2-4eA"/>
+                        <segue destination="dby-KP-TPU" kind="modal" identifier="frequencyPicker" modalTransitionStyle="flipHorizontal" id="bfP-K2-4eA"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="AES-uZ-hag" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -393,6 +393,7 @@
                         <outlet property="nameLabel" destination="FfM-2e-mUf" id="CXH-pv-JYh"/>
                         <outlet property="picker" destination="snR-LV-JZk" id="K9Q-1P-ydd"/>
                         <segue destination="Z9q-Du-0x5" kind="push" identifier="contactShowSegue" id="ifP-wh-feI"/>
+                        <segue destination="b8Q-sT-juJ" kind="custom" identifier="frequencyPickerComplete" customClass="FrequencySegue" id="pNE-3s-H2s"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="5Qg-pf-rkt" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -427,11 +428,13 @@
                         <barButtonItem key="rightBarButtonItem" systemItem="add" id="iSD-Nb-6se">
                             <connections>
                                 <action selector="showPeoplePicker:" destination="lQ5-KZ-oi9" id="qcd-U7-rrg"/>
-                                <segue destination="b8Q-sT-juJ" kind="push" id="XOc-wB-eHU"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
                     <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" barStyle="black" prompted="NO"/>
+                    <connections>
+                        <segue destination="dby-KP-TPU" kind="modal" identifier="LonelyFrequencyPickerSegue" id="gyf-H2-bVo"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ocX-aj-Ys6" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -651,9 +654,9 @@
         <simulatedScreenMetrics key="destination" type="retina4"/>
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
-        <segue reference="L7S-ON-pel"/>
-        <segue reference="COU-Jr-zcR"/>
-        <segue reference="5QD-II-XKi"/>
+        <segue reference="pNE-3s-H2s"/>
         <segue reference="bfP-K2-4eA"/>
+        <segue reference="ifP-wh-feI"/>
+        <segue reference="COU-Jr-zcR"/>
     </inferredMetricsTieBreakers>
 </document>

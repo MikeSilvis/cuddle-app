@@ -29,6 +29,10 @@
     return self;
 }
 - (void)customize {
+  [[self class] customize];
+}
+
++(void)customize {
   [[UINavigationBar appearance] setBarTintColor:[UIColor colorWithRed:(175.0/255) green:(218.0/255) blue:(255.0/255) alpha:1.0]];
   [[UINavigationBar appearance] setTintColor:[UIColor whiteColor]];
   

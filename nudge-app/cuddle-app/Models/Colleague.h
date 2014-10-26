@@ -27,6 +27,7 @@
 @property (nonatomic, retain) PFFile *photo;
 @property (nonatomic, retain) PFUser *user;
 @property (nonatomic, retain) UIImage *avatarPhoto;
+@property (nonatomic, retain) NSArray *ContactHistory;
 
 + (NSString *)parseClassName;
 - (UIImage *)lastContactImage;

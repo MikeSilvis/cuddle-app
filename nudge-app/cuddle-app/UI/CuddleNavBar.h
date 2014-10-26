@@ -10,4 +10,6 @@
 
 @interface CuddleNavBar : UINavigationBar
 
++(void)customize;
+
 @end

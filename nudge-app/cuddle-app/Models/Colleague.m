@@ -25,6 +25,7 @@
 @dynamic frequency;
 @dynamic notifiedSincePush;
 @dynamic lastContactDate;
+@dynamic ContactHistory;
 
 @synthesize avatarPhoto;
 
