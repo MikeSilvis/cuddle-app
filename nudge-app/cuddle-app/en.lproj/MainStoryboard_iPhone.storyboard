@@ -259,7 +259,7 @@
                         <outlet property="neverDrift" destination="T0x-KA-F6C" id="f9n-xz-a9p"/>
                         <outlet property="passwordField" destination="bcV-cF-oB4" id="Yhf-au-ifA"/>
                         <outlet property="registerButton" destination="irt-8E-uoQ" id="LC9-90-P8n"/>
-                        <segue destination="lQ5-KZ-oi9" kind="custom" identifier="registerSuccessSegue" customClass="RegisterSegue" id="rWc-7h-KBU"/>
+                        <segue destination="b8Q-sT-juJ" kind="custom" identifier="registerSuccessSegue" customClass="RegisterSegue" id="L7S-ON-pel"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="XH6-vD-PVL" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -651,10 +651,9 @@
         <simulatedScreenMetrics key="destination" type="retina4"/>
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
-        <segue reference="U7p-aW-0RZ"/>
-        <segue reference="XOc-wB-eHU"/>
-        <segue reference="bfP-K2-4eA"/>
-        <segue reference="ifP-wh-feI"/>
+        <segue reference="L7S-ON-pel"/>
         <segue reference="COU-Jr-zcR"/>
+        <segue reference="5QD-II-XKi"/>
+        <segue reference="bfP-K2-4eA"/>
     </inferredMetricsTieBreakers>
 </document>

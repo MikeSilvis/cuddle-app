@@ -27,4 +27,6 @@
 @property (nonatomic, assign) BOOL parseDidLoad;
 
 @property (strong, nonatomic) IBOutlet Colleague *lastAddedColleague;
+@property BOOL firstLogin;
+
 @end

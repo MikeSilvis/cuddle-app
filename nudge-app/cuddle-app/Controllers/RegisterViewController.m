@@ -7,7 +7,7 @@
 //
 
 #import "RegisterViewController.h"
-
+#import "ContactIndexController.h"
 #import "UIButton+Nudge.h"
 #import "UILabel+Nudge.h"
 #import "UITextField+Nudge.h"
@@ -169,5 +169,11 @@
   NSString *emailRegex = @"[A-Z0-9a-z._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,4}";
   NSPredicate *emailTest = [NSPredicate predicateWithFormat:@"SELF MATCHES %@", emailRegex];
   return [emailTest evaluateWithObject:canidate];
+}
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
+  if([segue.identifier isEqualToString:@"registerSuccessSegue"]){
+    ContactIndexController *destViewController = segue.destinationViewController;
+    destViewController.firstLogin = @(true);
+  }
 }
 @end

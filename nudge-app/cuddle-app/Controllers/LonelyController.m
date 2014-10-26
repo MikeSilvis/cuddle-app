@@ -15,6 +15,10 @@
 	[super viewDidLoad];
 	self.screenName = @"Lonely Screen";
 	self.navigationItem.hidesBackButton = YES;
+  [self.navigationController.navigationBar setBackgroundImage:[UIImage new] forBarMetrics:UIBarMetricsDefault];
+  self.navigationController.navigationBar.shadowImage = [UIImage new];
+  self.navigationController.navigationBar.translucent = YES;
+
   self.view.backgroundColor = [UIColor colorWithRed:(175.0/255) green:(218.0/255) blue:(255.0/255) alpha:1.0];
 }
 

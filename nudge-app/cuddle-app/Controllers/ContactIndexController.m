@@ -44,9 +44,13 @@
 
 - (void)viewDidAppear:(BOOL)animated{
   [super viewDidDisappear:YES];
-  [self watchNotifications];
-  [self loadObjects];
-  [self pushUser];
+  if (self.firstLogin) {
+    [self performSegueWithIdentifier:@"lonelySegue" sender:self];
+  } else {
+    [self watchNotifications];
+    [self loadObjects];
+    [self pushUser];
+  }
 }
 
 - (void)viewDidLoad{
@@ -56,6 +60,7 @@
   self.navigationItem.titleView = [self titleView];
   [self savePushChannel];
 }
+
 - (void)watchNotifications{
   [[NSNotificationCenter defaultCenter] addObserver:self
    selector:@selector(selectPersonFromPicker)
