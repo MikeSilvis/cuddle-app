@@ -7,6 +7,7 @@
 //
 
 #import "ContactIndexController.h"
+#import "FrequencyPickerController.h"
 
 
 @interface ContactIndexController ()
@@ -14,8 +15,6 @@
 @end
 
 @implementation ContactIndexController
-
-@synthesize addressesTable;
 
 - (id)initWithCoder:(NSCoder *)aCoder {
   self = [super initWithCoder:aCoder];
@@ -38,7 +37,8 @@
   PFQuery *query = [PFQuery queryWithClassName:@"Colleague"];
   [query whereKey:@"user" equalTo:[PFUser currentUser]];
   [query includeKey:@"ContactHistory"];
-  [query orderByAscending:@"lastContactDate,updatedAt"];
+  [query orderByAscending:@"lastContactDate"];
+  [query orderByDescending:@"updatedAt"];
   return query;
 }
 
@@ -79,7 +79,7 @@
 - (void)objectsDidLoad:(NSError *)error{
   [super objectsDidLoad:error];
   if (self.parseDidLoad == false) {
-    if ([addressesTable numberOfRowsInSection:0] == 0){
+    if ([self.addressesTable numberOfRowsInSection:0] == 0){
       [self performSegueWithIdentifier:@"lonelySegue" sender:self];
     }
     [self setParseDidLoad:YES];
@@ -149,6 +149,11 @@
   
   return cell;
 }
+
+-(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
+  return 60;
+}
+
 - (IBAction)showPeoplePicker{
   [self selectPersonFromPicker];
 }
@@ -185,10 +190,9 @@
   NSDictionary *dimensions = @{@"contactAdded":@"true"};
   [PFAnalytics trackEvent:@"contactAdded" dimensions:dimensions];
 
-  [self dismissViewControllerAnimated:YES completion:nil];
+//  [self dismissViewControllerAnimated:YES completion:nil];
 
-  [self performSegueWithIdentifier:@"contactShowSegue" sender:self];
-
+  [self performSegueWithIdentifier:@"frequencyPicker" sender:self];
 }
 
 - (void)peoplePickerNavigationControllerDidCancel: (ABPeoplePickerNavigationController *)peoplePicker {
@@ -202,9 +206,6 @@
   return NO;
 }
 
--(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
-  return 60;
-}
 
 -(void) prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender{
   if([segue.identifier isEqualToString:@"contactShowSegue"]){
@@ -212,10 +213,14 @@
     ContactShowViewController *destViewController = segue.destinationViewController;
     [self removeNotifications];
     if (indexPath){
+      [self.tableView deselectRowAtIndexPath:indexPath animated:NO];
       destViewController.contact = (self.objects)[indexPath.row];
     } else if (self.lastAddedColleague != nil){
       destViewController.contact = self.lastAddedColleague;
     }
+  } else if ([segue.identifier isEqualToString:@"frequencyPicker"]) {
+      FrequencyPickerController *destViewController = segue.destinationViewController;
+      destViewController.contact = self.lastAddedColleague;
   }
 }
 - (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath {

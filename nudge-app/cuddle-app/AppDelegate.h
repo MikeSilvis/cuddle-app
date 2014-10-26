@@ -10,9 +10,9 @@
 #import <Parse/Parse.h>
 #import "ContactShowViewController.h"
 #import <Parse/Parse.h>
-#import <Crashlytics/Crashlytics.h>
 #import "WelcomeController.h"
 #import "GAI.h"
+
 #define IS_IPHONE5 (([[UIScreen mainScreen] bounds].size.height-568)?NO:YES)
 
 //#ifdef DEBUG

@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6250" systemVersion="14A388a" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="RzY-qC-cMf">
     <dependencies>
-        <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6244"/>
     </dependencies>
     <scenes>
@@ -157,7 +156,7 @@
                         <outlet property="loginButton" destination="OzR-RK-NYp" id="fdE-Gu-Jf2"/>
                         <outlet property="passwordField" destination="rOq-ji-7M9" id="kSF-rg-5VG"/>
                         <outlet property="seeYouAgain" destination="bC1-XY-2Le" id="w6J-ch-Oha"/>
-                        <segue destination="b8Q-sT-juJ" kind="custom" identifier="loginSuccessSegue" customClass="LoginSegue" id="67z-qR-seE"/>
+                        <segue destination="b8Q-sT-juJ" kind="custom" identifier="loginSuccessSegue" customClass="LoginSegue" id="ERo-GN-6MS"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="4" sceneMemberID="firstResponder"/>
@@ -204,12 +203,6 @@
                                     <action selector="editingPasswordField:" destination="kDV-Vv-6JX" eventType="editingDidBegin" id="rl9-tt-e20"/>
                                 </connections>
                             </textField>
-                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" misplaced="YES" text="Create your account" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="T0x-KA-F6C">
-                                <rect key="frame" x="0.0" y="47" width="320" height="29"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="24"/>
-                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
                             <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Already have an account?" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="v0W-L7-Gw8">
                                 <rect key="frame" x="0.0" y="511" width="320" height="20"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="16"/>
@@ -228,6 +221,12 @@
                                     <segue destination="2" kind="push" id="COU-Jr-zcR"/>
                                 </connections>
                             </button>
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Create your account" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="T0x-KA-F6C">
+                                <rect key="frame" x="0.0" y="91" width="320" height="29"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="24"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <gestureRecognizers/>
@@ -260,7 +259,7 @@
                         <outlet property="neverDrift" destination="T0x-KA-F6C" id="f9n-xz-a9p"/>
                         <outlet property="passwordField" destination="bcV-cF-oB4" id="Yhf-au-ifA"/>
                         <outlet property="registerButton" destination="irt-8E-uoQ" id="LC9-90-P8n"/>
-                        <segue destination="b8Q-sT-juJ" kind="custom" identifier="registerSuccessSegue" customClass="LonelySegue" id="kwV-ey-FKD"/>
+                        <segue destination="lQ5-KZ-oi9" kind="custom" identifier="registerSuccessSegue" customClass="RegisterSegue" id="rWc-7h-KBU"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="XH6-vD-PVL" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -328,6 +327,7 @@
                     <connections>
                         <outlet property="addressesTable" destination="Edb-cn-l04" id="qla-gY-wlG"/>
                         <segue destination="lQ5-KZ-oi9" kind="custom" identifier="lonelySegue" customClass="LonelySegue" id="U7p-aW-0RZ"/>
+                        <segue destination="dby-KP-TPU" kind="push" identifier="frequencyPicker" id="bfP-K2-4eA"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="AES-uZ-hag" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -346,22 +346,13 @@
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
-                            <pickerView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="snR-LV-JZk">
+                            <pickerView contentMode="scaleToFill" ambiguous="YES" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="snR-LV-JZk">
                                 <rect key="frame" x="0.0" y="406" width="320" height="162"/>
                                 <connections>
                                     <outlet property="delegate" destination="ch2-x5-YvJ" id="mgJ-UF-xGM"/>
                                 </connections>
                             </pickerView>
-                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" text="How often should Panda nudge you?" textAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="1IH-wG-srV">
-                                <rect key="frame" x="20" y="70" width="280" height="128"/>
-                                <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="128" id="Wm7-2A-AF6"/>
-                                </constraints>
-                                <fontDescription key="fontDescription" name="AmericanTypewriter" family="American Typewriter" pointSize="20"/>
-                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
-                            </textView>
-                            <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="OtP-z8-zYr">
+                            <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="OtP-z8-zYr">
                                 <rect key="frame" x="0.0" y="524" width="320" height="44"/>
                                 <items>
                                     <barButtonItem title="Save" width="303" id="68q-z4-nJT">
@@ -373,30 +364,40 @@
                                 </items>
                                 <color key="barTintColor" cocoaTouchSystemColor="darkTextColor"/>
                             </toolbar>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="How often should Panda nudge you?" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="kJT-qa-2rb">
+                                <rect key="frame" x="68" y="91" width="185" height="78"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="About John Smith" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="FfM-2e-mUf">
+                                <rect key="frame" x="0.0" y="159" width="320" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="1IH-wG-srV" firstAttribute="centerX" secondItem="OtP-z8-zYr" secondAttribute="centerX" id="2jU-uK-Ptx"/>
                             <constraint firstItem="snR-LV-JZk" firstAttribute="trailing" secondItem="OtP-z8-zYr" secondAttribute="trailing" id="8t2-BC-rky"/>
                             <constraint firstItem="OtP-z8-zYr" firstAttribute="leading" secondItem="b0K-bu-NZD" secondAttribute="leading" id="9hl-nJ-bCg"/>
-                            <constraint firstItem="1IH-wG-srV" firstAttribute="leading" secondItem="b0K-bu-NZD" secondAttribute="leading" constant="20" id="IeN-a1-QxH"/>
-                            <constraint firstItem="1IH-wG-srV" firstAttribute="centerX" secondItem="b0K-bu-NZD" secondAttribute="centerX" id="K48-oc-AcY"/>
-                            <constraint firstItem="1IH-wG-srV" firstAttribute="top" secondItem="3tz-5I-5ro" secondAttribute="bottom" constant="50" id="Rin-EB-4dk"/>
                             <constraint firstItem="snR-LV-JZk" firstAttribute="leading" secondItem="OtP-z8-zYr" secondAttribute="trailing" constant="-320" id="dUw-sT-H3v"/>
                             <constraint firstItem="snR-LV-JZk" firstAttribute="bottom" secondItem="OtP-z8-zYr" secondAttribute="top" constant="44" id="gLV-ae-rJ1"/>
                             <constraint firstItem="90J-1P-mgd" firstAttribute="top" secondItem="OtP-z8-zYr" secondAttribute="bottom" id="j3a-X4-B7T"/>
                         </constraints>
                     </view>
                     <toolbarItems/>
+                    <navigationItem key="navigationItem" id="ka0-v6-zSn"/>
                     <nil key="simulatedBottomBarMetrics"/>
                     <connections>
-                        <outlet property="frequencyLabel" destination="1IH-wG-srV" id="1fi-YA-UUV"/>
+                        <outlet property="nameLabel" destination="FfM-2e-mUf" id="CXH-pv-JYh"/>
                         <outlet property="picker" destination="snR-LV-JZk" id="K9Q-1P-ydd"/>
+                        <segue destination="Z9q-Du-0x5" kind="push" identifier="contactShowSegue" id="ifP-wh-feI"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="5Qg-pf-rkt" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2710" y="885"/>
+            <point key="canvasLocation" x="3242" y="885"/>
         </scene>
         <!--Lonely Controller-->
         <scene sceneID="ikj-Qb-UEX">
@@ -426,6 +427,7 @@
                         <barButtonItem key="rightBarButtonItem" systemItem="add" id="iSD-Nb-6se">
                             <connections>
                                 <action selector="showPeoplePicker:" destination="lQ5-KZ-oi9" id="qcd-U7-rrg"/>
+                                <segue destination="b8Q-sT-juJ" kind="push" id="XOc-wB-eHU"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
@@ -433,7 +435,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ocX-aj-Ys6" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3261" y="-836"/>
+            <point key="canvasLocation" x="2455" y="-700"/>
         </scene>
         <!--Contact-->
         <scene sceneID="PSb-Y5-NJK">
@@ -543,8 +545,7 @@
                         <outlet property="seeMore" destination="xkN-tp-2dt" id="XnH-i9-S4b"/>
                         <outlet property="tableView" destination="07s-ip-jfe" id="fxi-PR-D2v"/>
                         <outlet property="text" destination="ODu-pw-oGM" id="U2y-xL-se2"/>
-                        <segue destination="ch2-x5-YvJ" kind="custom" identifier="frequencyPicker" customClass="FrequencySegue" id="MNL-xA-COH"/>
-                        <segue destination="ch2-x5-YvJ" kind="custom" identifier="frequencyPickerNoAnimation" customClass="RegisterSegue" id="csJ-3A-qn8"/>
+                        <segue destination="dby-KP-TPU" kind="modal" identifier="frequencyPicker" id="MNL-xA-COH"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="wrS-B9-Js3" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -613,6 +614,25 @@
             </objects>
             <point key="canvasLocation" x="185" y="98"/>
         </scene>
+        <!--Frequency Picker Navigation Controller View Controller-->
+        <scene sceneID="qFB-i0-qgi">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="dby-KP-TPU" customClass="FrequencyPickerNavigationControllerViewController" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <navigationItem key="navigationItem" id="4Ap-CQ-1nO"/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="n32-ve-ZX7">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="ch2-x5-YvJ" kind="relationship" relationship="rootViewController" id="2SM-m4-xnJ"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="tTX-zx-fqF" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2710" y="885"/>
+        </scene>
     </scenes>
     <resources>
         <image name="Nudge Tooltips" width="640" height="900"/>
@@ -631,8 +651,10 @@
         <simulatedScreenMetrics key="destination" type="retina4"/>
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
-        <segue reference="jop-c1-Tif"/>
-        <segue reference="Y0w-iZ-Nqi"/>
-        <segue reference="csJ-3A-qn8"/>
+        <segue reference="U7p-aW-0RZ"/>
+        <segue reference="XOc-wB-eHU"/>
+        <segue reference="bfP-K2-4eA"/>
+        <segue reference="ifP-wh-feI"/>
+        <segue reference="COU-Jr-zcR"/>
     </inferredMetricsTieBreakers>
 </document>

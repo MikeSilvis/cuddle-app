@@ -9,7 +9,7 @@
 #import "AppDelegate.h"
 #import "Colleague.h"
 #import "User.h"
-#import <Crashlytics/Crashlytics.h>
+//#import <Crashlytics/Crashlytics.h>
 
 @implementation AppDelegate
 
@@ -18,7 +18,7 @@
   [Parse setApplicationId:PARSEAPPLICATIONID clientKey:PARSECLIENTKEY];
   [PFAnalytics trackAppOpenedWithLaunchOptions:launchOptions];
 
-  [Crashlytics startWithAPIKey:@"2c4de91dd9eef6b63fa865a54c345433bebc795a"];
+//  [Crashlytics startWithAPIKey:@"2c4de91dd9eef6b63fa865a54c345433bebc795a"];
 
   [Colleague registerSubclass];
   [User registerSubclass];

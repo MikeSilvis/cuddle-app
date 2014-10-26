@@ -7,6 +7,7 @@
 //
 
 #import "ContactShowViewController.h"
+#import "FrequencyPickerNavigationControllerViewController.h"
 #import <FontAwesomeKit/FAKFontAwesome.h>
 
 @implementation ContactShowViewController
@@ -255,7 +256,7 @@
     destViewController.contact = self.contact;
   }
   if([segue.identifier isEqualToString:@"frequencyPicker"]){
-    FrequencyPickerController *destViewController = segue.destinationViewController;
+    FrequencyPickerNavigationControllerViewController *destViewController = segue.destinationViewController;
     destViewController.contact = self.contact;
   }
 }

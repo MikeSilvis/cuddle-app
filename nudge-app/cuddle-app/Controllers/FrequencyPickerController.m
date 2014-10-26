@@ -12,14 +12,18 @@
 @implementation FrequencyPickerController
 
 - (void)viewDidLoad{
+  FrequencyPickerNavigationControllerViewController *rootController = (FrequencyPickerNavigationControllerViewController *)self.navigationController;
+  self.contact = rootController.contact;
+
   [super viewDidLoad];
   self.navigationItem.hidesBackButton = YES;
-  self.navigationItem.titleView = [self titleView];  
+  self.navigationItem.titleView = [self titleView];
   NSArray *arrayToLoadPicker = @[@"Weekly",@"Biweekly",@"Monthly"];
   self.pickerViewArray = arrayToLoadPicker;
   self.frequencyLabel = [UITextView cuddleStyleWithTextView:self.frequencyLabel];
   [self defaultFrequency];
   self.screenName = @"Frequency Selection";
+  self.nameLabel.text = [NSString stringWithFormat:@"About %@", self.contact.name];
 }
 - (UIView *)titleView {
   CGFloat navBarHeight = self.navigationController.navigationBar.frame.size.height;
@@ -69,13 +73,7 @@
     [self updateContactFrequency:@28];
   }
   
-  CATransition* transition = [CATransition animation];
-  transition.duration = 0.5;
-  transition.type = kCATransitionMoveIn;
-  transition.subtype = kCATransitionFromTop;
-
-  [self.navigationController.view.layer addAnimation:transition forKey:@"popController"];
-  [self.navigationController popViewControllerAnimated:NO];
+  [self dismissViewControllerAnimated:YES completion:nil];
 }
 - (void)updateContactFrequency:(NSNumber *)days{
   (self.contact)[@"frequency"] = days;

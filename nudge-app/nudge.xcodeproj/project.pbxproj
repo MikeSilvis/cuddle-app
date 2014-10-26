@@ -13,6 +13,7 @@
 		1151750E18A7815100BD7A69 /* UILabel+Nudge.m in Sources */ = {isa = PBXBuildFile; fileRef = 1151750D18A7815100BD7A69 /* UILabel+Nudge.m */; };
 		1151751418A7858800BD7A69 /* UITextField+Nudge.m in Sources */ = {isa = PBXBuildFile; fileRef = 1151751318A7858800BD7A69 /* UITextField+Nudge.m */; };
 		1151751718A86FC400BD7A69 /* UITextView.m in Sources */ = {isa = PBXBuildFile; fileRef = 1151751618A86FC400BD7A69 /* UITextView.m */; };
+		116B9B3019FD5D91008C74E1 /* FrequencyPickerNavigationControllerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 116B9B2F19FD5D91008C74E1 /* FrequencyPickerNavigationControllerViewController.m */; };
 		116E022318A08F3C00A371A1 /* Media.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 116E022218A08F3C00A371A1 /* Media.xcassets */; };
 		11B71B3A18A9E88E00FC93A6 /* RegisterSegue.m in Sources */ = {isa = PBXBuildFile; fileRef = 11B71B3918A9E88E00FC93A6 /* RegisterSegue.m */; };
 		36232B4516E286390029A175 /* MessageUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 36232B4416E286390029A175 /* MessageUI.framework */; };
@@ -66,6 +67,8 @@
 		1151751318A7858800BD7A69 /* UITextField+Nudge.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "UITextField+Nudge.m"; path = "cuddle-app/UI/UITextField+Nudge.m"; sourceTree = SOURCE_ROOT; };
 		1151751518A86FC400BD7A69 /* UITextView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UITextView.h; sourceTree = "<group>"; };
 		1151751618A86FC400BD7A69 /* UITextView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UITextView.m; sourceTree = "<group>"; };
+		116B9B2E19FD5D91008C74E1 /* FrequencyPickerNavigationControllerViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FrequencyPickerNavigationControllerViewController.h; sourceTree = "<group>"; };
+		116B9B2F19FD5D91008C74E1 /* FrequencyPickerNavigationControllerViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FrequencyPickerNavigationControllerViewController.m; sourceTree = "<group>"; };
 		116E022218A08F3C00A371A1 /* Media.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Media.xcassets; path = Resources/Media.xcassets; sourceTree = "<group>"; };
 		11B71B3818A9E88E00FC93A6 /* RegisterSegue.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RegisterSegue.h; sourceTree = "<group>"; };
 		11B71B3918A9E88E00FC93A6 /* RegisterSegue.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RegisterSegue.m; sourceTree = "<group>"; };
@@ -194,22 +197,24 @@
 		362D55F716C8667F00A3423D /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
-				36FDEF5916EA9C2F00488113 /* WelcomeController.h */,
-				36FDEF5A16EA9C2F00488113 /* WelcomeController.m */,
 				36A6605016E457F5003D3C99 /* ContactHistoryController.h */,
 				36A6605116E457F5003D3C99 /* ContactHistoryController.m */,
+				362D55FB16C8674B00A3423D /* ContactIndexController.h */,
+				362D55FC16C8674B00A3423D /* ContactIndexController.m */,
 				362D55FE16C86FD400A3423D /* ContactShowViewController.h */,
 				362D55FF16C86FD400A3423D /* ContactShowViewController.m */,
 				3641707916FA809B001B1893 /* FrequencyPickerController.h */,
 				3641707A16FA809B001B1893 /* FrequencyPickerController.m */,
-				362D55FB16C8674B00A3423D /* ContactIndexController.h */,
-				362D55FC16C8674B00A3423D /* ContactIndexController.m */,
+				116B9B2E19FD5D91008C74E1 /* FrequencyPickerNavigationControllerViewController.h */,
+				116B9B2F19FD5D91008C74E1 /* FrequencyPickerNavigationControllerViewController.m */,
 				36FFBF6E16C85DDF00CC3140 /* LoginViewController.h */,
 				36FFBF6F16C85DDF00CC3140 /* LoginViewController.m */,
-				DA36C78D16CB5D6E001D7889 /* RegisterViewController.h */,
-				DA36C78E16CB5D6F001D7889 /* RegisterViewController.m */,
 				366917D616D7143500DF21E9 /* LonelyController.h */,
 				366917D716D7143500DF21E9 /* LonelyController.m */,
+				DA36C78D16CB5D6E001D7889 /* RegisterViewController.h */,
+				DA36C78E16CB5D6F001D7889 /* RegisterViewController.m */,
+				36FDEF5916EA9C2F00488113 /* WelcomeController.h */,
+				36FDEF5A16EA9C2F00488113 /* WelcomeController.m */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -370,7 +375,6 @@
 				36FFBF4A16C85DDF00CC3140 /* Frameworks */,
 				36FFBF4B16C85DDF00CC3140 /* Resources */,
 				70B8F35BA243472BB50A70E2 /* Copy Pods Resources */,
-				1129527C19FC1E2C00EDEE2F /* ShellScript */,
 			);
 			buildRules = (
 			);
@@ -432,20 +436,6 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		1129527C19FC1E2C00EDEE2F /* ShellScript */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "./Crashlytics.framework/run 2c4de91dd9eef6b63fa865a54c345433bebc795a f2c077a7ba4dd3074bbe966df8ebb9f52bfb88a9766299b7cd956fad37b1812d";
-			showEnvVarsInLog = 0;
-		};
 		70B8F35BA243472BB50A70E2 /* Copy Pods Resources */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -493,6 +483,7 @@
 				DA58A56F16C8BFD6006D7F55 /* Colleague.m in Sources */,
 				1151751418A7858800BD7A69 /* UITextField+Nudge.m in Sources */,
 				DA36C78F16CB5D6F001D7889 /* RegisterViewController.m in Sources */,
+				116B9B3019FD5D91008C74E1 /* FrequencyPickerNavigationControllerViewController.m in Sources */,
 				1151750E18A7815100BD7A69 /* UILabel+Nudge.m in Sources */,
 				366917D816D7143500DF21E9 /* LonelyController.m in Sources */,
 				1151750B18A77C7C00BD7A69 /* UIButton+Nudge.m in Sources */,
