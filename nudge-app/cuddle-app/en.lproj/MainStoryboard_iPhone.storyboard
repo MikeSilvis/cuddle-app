@@ -326,7 +326,6 @@
                     <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" barStyle="black" prompted="NO"/>
                     <connections>
                         <outlet property="addressesTable" destination="Edb-cn-l04" id="qla-gY-wlG"/>
-                        <segue destination="lQ5-KZ-oi9" kind="custom" identifier="lonelySegue" customClass="LonelySegue" id="U7p-aW-0RZ"/>
                         <segue destination="dby-KP-TPU" kind="modal" identifier="frequencyPicker" modalTransitionStyle="flipHorizontal" id="bfP-K2-4eA"/>
                     </connections>
                 </tableViewController>
@@ -393,52 +392,11 @@
                         <outlet property="nameLabel" destination="FfM-2e-mUf" id="CXH-pv-JYh"/>
                         <outlet property="picker" destination="snR-LV-JZk" id="K9Q-1P-ydd"/>
                         <segue destination="Z9q-Du-0x5" kind="push" identifier="contactShowSegue" id="ifP-wh-feI"/>
-                        <segue destination="b8Q-sT-juJ" kind="custom" identifier="frequencyPickerComplete" customClass="FrequencySegue" id="pNE-3s-H2s"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="5Qg-pf-rkt" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3242" y="885"/>
-        </scene>
-        <!--Lonely Controller-->
-        <scene sceneID="ikj-Qb-UEX">
-            <objects>
-                <viewController id="lQ5-KZ-oi9" customClass="LonelyController" sceneMemberID="viewController">
-                    <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="EhR-CU-KUx"/>
-                        <viewControllerLayoutGuide type="bottom" id="C6h-B8-bZ5"/>
-                    </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="Iwe-IT-fyb">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
-                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                        <subviews>
-                            <imageView userInteractionEnabled="NO" contentMode="center" fixedFrame="YES" image="lonely" translatesAutoresizingMaskIntoConstraints="NO" id="p52-u8-PR1">
-                                <rect key="frame" x="0.0" y="-32" width="320" height="640"/>
-                            </imageView>
-                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" fixedFrame="YES" text="Never drift apart again." textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="uWM-PL-mwo">
-                                <rect key="frame" x="10" y="-91" width="320" height="33"/>
-                                <fontDescription key="fontDescription" name="Avenir-Medium" family="Avenir" pointSize="24"/>
-                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                        </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
-                    </view>
-                    <navigationItem key="navigationItem" id="fBF-lB-AaE">
-                        <barButtonItem key="rightBarButtonItem" systemItem="add" id="iSD-Nb-6se">
-                            <connections>
-                                <action selector="showPeoplePicker:" destination="lQ5-KZ-oi9" id="qcd-U7-rrg"/>
-                            </connections>
-                        </barButtonItem>
-                    </navigationItem>
-                    <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" barStyle="black" prompted="NO"/>
-                    <connections>
-                        <segue destination="dby-KP-TPU" kind="modal" identifier="LonelyFrequencyPickerSegue" id="gyf-H2-bVo"/>
-                    </connections>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="ocX-aj-Ys6" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="2455" y="-700"/>
+            <point key="canvasLocation" x="3210" y="885"/>
         </scene>
         <!--Contact-->
         <scene sceneID="PSb-Y5-NJK">
@@ -548,7 +506,7 @@
                         <outlet property="seeMore" destination="xkN-tp-2dt" id="XnH-i9-S4b"/>
                         <outlet property="tableView" destination="07s-ip-jfe" id="fxi-PR-D2v"/>
                         <outlet property="text" destination="ODu-pw-oGM" id="U2y-xL-se2"/>
-                        <segue destination="dby-KP-TPU" kind="modal" identifier="frequencyPicker" id="MNL-xA-COH"/>
+                        <segue destination="dby-KP-TPU" kind="modal" identifier="frequencyPicker" modalTransitionStyle="flipHorizontal" id="MNL-xA-COH"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="wrS-B9-Js3" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -634,7 +592,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="tTX-zx-fqF" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2710" y="885"/>
+            <point key="canvasLocation" x="2462" y="885"/>
         </scene>
     </scenes>
     <resources>
@@ -643,7 +601,6 @@
         <image name="contact_without_image" width="70" height="70"/>
         <image name="email" width="24" height="16"/>
         <image name="header" width="320" height="150"/>
-        <image name="lonely" width="320" height="480"/>
         <image name="phone" width="24" height="24"/>
         <image name="phone-gray" width="24" height="24"/>
         <image name="sms" width="24" height="22"/>
@@ -654,9 +611,9 @@
         <simulatedScreenMetrics key="destination" type="retina4"/>
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
-        <segue reference="pNE-3s-H2s"/>
-        <segue reference="bfP-K2-4eA"/>
-        <segue reference="ifP-wh-feI"/>
         <segue reference="COU-Jr-zcR"/>
+        <segue reference="jop-c1-Tif"/>
+        <segue reference="ifP-wh-feI"/>
+        <segue reference="MNL-xA-COH"/>
     </inferredMetricsTieBreakers>
 </document>

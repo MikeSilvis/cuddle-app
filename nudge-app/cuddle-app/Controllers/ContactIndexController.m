@@ -25,6 +25,7 @@
   }
   return self;
 }
+
 - (void)savePushChannel {
   PFInstallation *currentInstallation = [PFInstallation currentInstallation];
   NSString *userChannel = [NSString stringWithFormat: @"user_%@", [PFUser currentUser].objectId];
@@ -45,7 +46,7 @@
 - (void)viewDidAppear:(BOOL)animated{
   [super viewDidDisappear:YES];
   if (self.firstLogin) {
-    [self performSegueWithIdentifier:@"lonelySegue" sender:self];
+//    [self performSegueWithIdentifier:@"lonelySegue" sender:self];
     self.firstLogin = false;
   } else {
     [self watchNotifications];
@@ -72,21 +73,23 @@
    name:@"openedFromNotification"
    object:nil];
 }
+
 - (void)removeNotifications{
   [[NSNotificationCenter defaultCenter] removeObserver:self name:@"openedFromNotification" object:nil];
   [[NSNotificationCenter defaultCenter] removeObserver:self name:UIApplicationWillEnterForegroundNotification object:nil];
 
 }
-- (void)objectsDidLoad:(NSError *)error{
-  [super objectsDidLoad:error];
-  if (self.parseDidLoad == false) {
-    if ([self.addressesTable numberOfRowsInSection:0] == 0){
-      [self performSegueWithIdentifier:@"lonelySegue" sender:self];
-    }
-    [self setParseDidLoad:YES];
-  }
 
-}
+//- (void)objectsDidLoad:(NSError *)error{
+//  [super objectsDidLoad:error];
+//  if (self.parseDidLoad == false) {
+//    if ([self.addressesTable numberOfRowsInSection:0] == 0){
+////      [self performSegueWithIdentifier:@"lonelySegue" sender:self];
+//    }
+//    [self setParseDidLoad:YES];
+//  }
+//}
+
 - (AppDelegate *)appDelegate{
   return (AppDelegate*)[[UIApplication sharedApplication] delegate];
 }
@@ -223,6 +226,7 @@
       destViewController.contact = self.lastAddedColleague;
   }
 }
+
 - (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath {
   if (editingStyle == UITableViewCellEditingStyleDelete) {
     [SVProgressHUD showWithStatus:@"Removing Contact..." maskType:SVProgressHUDMaskTypeBlack];
