@@ -11,23 +11,29 @@
 
 @implementation UIImage (ContactMethod)
 
++ (NSDictionary *)icons {
+  return  @{
+            @"call" : [FAKFontAwesome phoneIconWithSize:self.fontSize],
+            @"sms"  : [FAKFontAwesome commentIconWithSize:self.fontSize],
+            @"email": [FAKFontAwesome envelopeIconWithSize:self.fontSize],
+            @"contacted" : [FAKFontAwesome thumbsUpIconWithSize:self.fontSize],
+           };
+}
+
++ (CGFloat)fontSize {
+  return 24;
+}
+
 + (UIImage *)imageFromMethodOfContact:(NSString *)method {
   FAKFontAwesome *icon;
-  CGFloat fontSize = 24;
-  NSDictionary *methods = @{
-                            @"call" : [FAKFontAwesome phoneIconWithSize:fontSize],
-                            @"sms"  : [FAKFontAwesome commentIconWithSize:fontSize],
-                            @"email": [FAKFontAwesome envelopeIconWithSize:fontSize],
-                            @"contacted" : [FAKFontAwesome thumbsUpIconWithSize:fontSize],
-                           };
 
-  if (methods[method]) {
-    icon = methods[method];
+  if (self.icons[method]) {
+    icon = self.icons[method];
   } else {
-    icon = [FAKFontAwesome frownOIconWithSize:fontSize];
+    icon = [FAKFontAwesome frownOIconWithSize:self.fontSize];
   }
 
-  return [icon imageWithSize:CGSizeMake(fontSize, fontSize)];
+  return [icon imageWithSize:CGSizeMake(self.fontSize, self.fontSize)];
 }
 
 @end

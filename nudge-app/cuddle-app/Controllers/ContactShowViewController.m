@@ -9,7 +9,9 @@
 #import "ContactShowViewController.h"
 #import "FrequencyPickerNavigationControllerViewController.h"
 #import <FontAwesomeKit/FAKFontAwesome.h>
+#import "NSDate+English.h"
 #import "ContactHistory.h"
+#import "UIImage+ContactMethod.h"
 
 @implementation ContactShowViewController
 
@@ -51,19 +53,10 @@
   self.contactPhoto.layer.borderWidth = 2.0;
 
   // Toolbar
-  CGFloat fontSize = 24;
-  CGSize imageSize = CGSizeMake(24, 24);
-  FAKFontAwesome *callIcon = [FAKFontAwesome phoneIconWithSize:fontSize];
-  self.call.image = [callIcon imageWithSize:imageSize];
-  
-  FAKFontAwesome *textIcon = [FAKFontAwesome commentIconWithSize:fontSize];
-  self.text.image = [textIcon imageWithSize:imageSize];
-
-  FAKFontAwesome *emailIcon = [FAKFontAwesome envelopeIconWithSize:fontSize];
-  self.email.image = [emailIcon imageWithSize:imageSize];
-
-  FAKFontAwesome *plusIcon = [FAKFontAwesome thumbsUpIconWithSize:fontSize];
-  self.plus.image = [plusIcon imageWithSize:imageSize];
+  self.call.image = [UIImage imageFromMethodOfContact:@"call"];
+  self.text.image = [UIImage imageFromMethodOfContact:@"sms"];
+  self.email.image = [UIImage imageFromMethodOfContact:@"email"];
+  self.plus.image = [UIImage imageFromMethodOfContact:@"contacted"];
 }
 - (void)checkFrequency{
   if (!contact.frequency){
@@ -159,8 +152,6 @@
 }
 
 -(void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex {
-
-
   if ([actionSheet.title isEqual: @"Method of Communication"]){
     switch (buttonIndex) {
       case 0:
@@ -211,7 +202,6 @@
 }
 
 - (void)saveCommunication:(NSString *)methodOfContact{
-  
   // Save the relationship
   ContactHistory *newNetwork = [[ContactHistory alloc] init];
   newNetwork.colleague = contact;
@@ -236,7 +226,6 @@
   [PFAnalytics trackEvent:@"Contacted" dimensions:dimensions];
 }
 
-
 -(void) prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender{
   if([segue.identifier isEqualToString:@"contactHistorySegue"]){
     ContactHistoryController *destViewController = segue.destinationViewController;
@@ -253,7 +242,6 @@
     query.cachePolicy = kPFCachePolicyCacheThenNetwork;
     [query whereKey:@"colleague" equalTo:self.contact];
     [query orderByDescending:@"createdAt"];
-    query.limit = 3;
     [query findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
       if (!error) {
         if (objects.count == 0){
@@ -290,14 +278,14 @@
     cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:nil];
   }
   
-  cell.textLabel.text = [self formatDate:history.createdAt];
+  cell.textLabel.text = [NSDate makeEnglishDate:history.createdAt];
   cell.textLabel.backgroundColor = [UIColor clearColor];
   cell.imageView.image = history.lastContactImage;
 
   return cell;
 }
-- (NSString *)formatDate:(NSDate *)date
-{
+
+- (NSString *)formatDate:(NSDate *)date {
   NSDateFormatter *prefixDateFormatter = [[NSDateFormatter alloc] init];
   [prefixDateFormatter setFormatterBehavior:NSDateFormatterBehavior10_4];
   [prefixDateFormatter setDateFormat:@"MMMM d"];

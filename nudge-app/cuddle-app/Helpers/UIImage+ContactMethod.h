@@ -9,5 +9,6 @@
 @interface UIImage (ContactMethod)
 
 + (UIImage *)imageFromMethodOfContact:(NSString *)method;
++ (NSDictionary *)icons;
 
 @end

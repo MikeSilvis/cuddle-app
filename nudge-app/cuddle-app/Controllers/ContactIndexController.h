@@ -18,7 +18,7 @@
 #import "AppDelegate.h"
 #import "GAITrackedViewController.h"
 
-@interface ContactIndexController : PFQueryTableViewController <ABPeoplePickerNavigationControllerDelegate>
+@interface ContactIndexController : UITableViewController <ABPeoplePickerNavigationControllerDelegate, UITableViewDataSource, UITableViewDelegate>
 
 - (IBAction)showPeoplePicker;
 
@@ -28,5 +28,7 @@
 @property (nonatomic, retain) UIView *logoView;
 @property (nonatomic, retain) UIView *lonelyView;
 @property (nonatomic, retain) UIColor *separatorColor;
+
+@property (nonatomic, retain) NSMutableArray *objects;
 
 @end

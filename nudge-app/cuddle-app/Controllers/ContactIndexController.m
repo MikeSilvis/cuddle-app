@@ -16,16 +16,6 @@
 
 @implementation ContactIndexController
 
-- (id)initWithCoder:(NSCoder *)aCoder {
-  self = [super initWithCoder:aCoder];
-  if (self) {
-    self.pullToRefreshEnabled = NO;
-    self.paginationEnabled = YES;
-    self.objectsPerPage = 100;
-  }
-  return self;
-}
-
 - (void)savePushChannel {
   PFInstallation *currentInstallation = [PFInstallation currentInstallation];
   NSString *userChannel = [NSString stringWithFormat: @"user_%@", [PFUser currentUser].objectId];
@@ -44,17 +34,38 @@
   }
 }
 
-- (PFQuery *)queryForTable {
+- (void)queryForTable {
   PFQuery *query = [Colleague query];
   query.cachePolicy = kPFCachePolicyCacheThenNetwork;
   [query whereKey:@"user" equalTo:[PFUser currentUser]];
   [query includeKey:@"ContactHistory"];
   [query orderByAscending:@"lastContactDate"];
-  return query;
+
+  [query findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
+    self.objects = [NSMutableArray arrayWithArray:objects];
+    [self setUpTableOrLonely];
+  }];
 }
 
 - (void)setUpTableOrLonely {
   [self addLonelyView];
+  NSArray *sortedArray;
+  sortedArray = [self.objects sortedArrayUsingComparator:^NSComparisonResult(Colleague *colleague1, Colleague *colleague2) {
+    NSDate *first = colleague1.lastContactDate;
+    NSDate *second = colleague2.lastContactDate;
+    return [first compare:second];
+  }];
+  self.objects = [NSMutableArray arrayWithArray:sortedArray];
+  [self.tableView reloadData];
+
+  if (self.objects.count > 0) {
+    [[PFUser currentUser] setObject:@(true) forKey:@"hasPeeps"];
+  } else {
+    [[PFUser currentUser] setObject:@(false) forKey:@"hasPeeps"];
+  }
+
+  // TODO: This should not ALWAYS save
+  [[PFUser currentUser] saveEventually];
   bool hasPeeps = [[PFUser currentUser][@"hasPeeps"] boolValue];
 
   // Assume if nil, that they do have peeps
@@ -77,18 +88,24 @@
 
 - (void)viewDidLoad{
   [super viewDidLoad];
+  // Navigation bar
   self.navigationItem.titleView = self.titleView;
   self.separatorColor = self.tableView.separatorColor;
   [self.navigationController setNavigationBarHidden:NO];
   self.navigationItem.hidesBackButton = YES;
+
+  // Data
+  self.tableView.delegate = self;
+  self.tableView.dataSource = self;
+  [self queryForTable];
+
   [self savePushChannel];
   [self watchNotifications];
   [self pushUser];
 }
 
--(void)viewWillAppear:(BOOL)animated {
-  [super viewWillAppear:animated];
-  [self loadObjects];
+- (void)viewDidAppear:(BOOL)animated {
+  [super viewDidAppear:animated];
   [self setUpTableOrLonely];
 }
 
@@ -97,6 +114,7 @@
                                            selector:@selector(handleOpenedFromPush:)
                                                name:UIApplicationWillEnterForegroundNotification
                                              object:nil];
+
   [[NSNotificationCenter defaultCenter] addObserver:self
                                            selector:@selector(handleOpenedFromPush:)
                                                name:@"openedFromNotification"
@@ -108,19 +126,6 @@
 
   [[NSNotificationCenter defaultCenter] removeObserver:self name:@"openedFromNotification" object:nil];
   [[NSNotificationCenter defaultCenter] removeObserver:self name:UIApplicationWillEnterForegroundNotification object:nil];
-}
-
-- (void)objectsDidLoad:(NSError *)error{
-  [super objectsDidLoad:error];
-
-  if (self.objects.count > 0) {
-    [[PFUser currentUser] setObject:@(true) forKey:@"hasPeeps"];
-  } else {
-    [[PFUser currentUser] setObject:@(false) forKey:@"hasPeeps"];
-  }
-
-  [[PFUser currentUser] saveEventually];
-  [self setUpTableOrLonely];
 }
 
 - (AppDelegate *)appDelegate{
@@ -160,9 +165,17 @@
   return self.logoView;
 }
 # pragma mark - Table List
-- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath object:(Colleague *)friend {
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
+
+  static NSString *simpleTableIdentifier = @"contactInfoCell";
   
-  ContactInfoCell *cell = (ContactInfoCell *)[tableView dequeueReusableCellWithIdentifier:@"contactInfoCell"];
+  ContactInfoCell *cell = [tableView dequeueReusableCellWithIdentifier:simpleTableIdentifier];
+  Colleague *friend = self.objects[indexPath.row];
+
+  if (cell == nil) {
+    cell = [[ContactInfoCell alloc] init];
+  }
+
   cell.userName.text = friend.name;
   
   cell.userPicture.clipsToBounds = YES;
@@ -183,12 +196,14 @@
   } else {
     cell.userLastContact.text = @"Never contacted from nudge";
   }
-  
   return cell;
 }
 
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
   return 60;
+}
+-(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
+  return self.objects.count;
 }
 
 - (IBAction)showPeoplePicker{
@@ -207,7 +222,7 @@
 }
 
 - (void)peoplePickerNavigationController:(ABPeoplePickerNavigationController *)peoplePicker didSelectPerson:(ABRecordRef)person property:(ABPropertyID)property identifier:(ABMultiValueIdentifier)identifier {
-  [SVProgressHUD showWithStatus:@"Saving Contact" maskType:SVProgressHUDMaskTypeBlack];
+//  [SVProgressHUD showWithStatus:@"Saving Contact" maskType:SVProgressHUDMaskTypeBlack];
 
   NSNumber *recordID  =  [NSNumber numberWithInt:ABRecordGetRecordID(person)];
   self.lastAddedColleague = nil;
@@ -222,8 +237,11 @@
     self.lastAddedColleague = [[Colleague alloc] initWithABPerson:person];
   }
 
-  [SVProgressHUD dismiss];
-  
+  [self.objects insertObject:self.lastAddedColleague atIndex:0];
+  [self setUpTableOrLonely];
+
+//  [SVProgressHUD dismiss];
+
   NSDictionary *dimensions = @{@"contactAdded":@"true"};
   [PFAnalytics trackEvent:@"contactAdded" dimensions:dimensions];
 
@@ -249,7 +267,7 @@
     ContactShowViewController *destViewController = segue.destinationViewController;
     if (indexPath){
       [self.tableView deselectRowAtIndexPath:indexPath animated:NO];
-      destViewController.contact = (self.objects)[indexPath.row];
+      destViewController.contact = self.objects[indexPath.row];
     } else if (self.lastAddedColleague != nil){
       destViewController.contact = self.lastAddedColleague;
     }
@@ -261,12 +279,11 @@
 
 - (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath {
   if (editingStyle == UITableViewCellEditingStyleDelete) {
-    [SVProgressHUD showWithStatus:@"Removing Contact..." maskType:SVProgressHUDMaskTypeBlack];
-    PFObject *object = (self.objects)[indexPath.row];
-    [object deleteInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
-      [SVProgressHUD dismiss];
-      [self loadObjects];
-    }];
+//    [SVProgressHUD showSuccessWithStatus:@"Removed Contact"];
+    Colleague *colleague = self.objects[indexPath.row];
+    [colleague deleteEventually];
+    [self.objects removeObjectAtIndex:indexPath.row];
+    [self setUpTableOrLonely];
   }
 }
 @end

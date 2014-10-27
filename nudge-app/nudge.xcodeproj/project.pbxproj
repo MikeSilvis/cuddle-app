@@ -18,6 +18,7 @@
 		118C4F3D19FDDC7A00906FF1 /* ContactHistory.m in Sources */ = {isa = PBXBuildFile; fileRef = 118C4F3C19FDDC7A00906FF1 /* ContactHistory.m */; };
 		118C4F4019FDDCFE00906FF1 /* UIImage+ContactMethod.m in Sources */ = {isa = PBXBuildFile; fileRef = 118C4F3F19FDDCFE00906FF1 /* UIImage+ContactMethod.m */; };
 		11B71B3A18A9E88E00FC93A6 /* RegisterSegue.m in Sources */ = {isa = PBXBuildFile; fileRef = 11B71B3918A9E88E00FC93A6 /* RegisterSegue.m */; };
+		11FFDF0419FE0C540033B432 /* NSDate+English.m in Sources */ = {isa = PBXBuildFile; fileRef = 11FFDF0319FE0C540033B432 /* NSDate+English.m */; };
 		36232B4516E286390029A175 /* MessageUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 36232B4416E286390029A175 /* MessageUI.framework */; };
 		36232B6C16E2B3FA0029A175 /* ContactHistoryCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 36232B6B16E2B3FA0029A175 /* ContactHistoryCell.m */; };
 		362D55FA16C866B000A3423D /* ContactInfoCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 362D55F916C866B000A3423D /* ContactInfoCell.m */; };
@@ -78,6 +79,8 @@
 		11B71B3818A9E88E00FC93A6 /* RegisterSegue.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RegisterSegue.h; sourceTree = "<group>"; };
 		11B71B3918A9E88E00FC93A6 /* RegisterSegue.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RegisterSegue.m; sourceTree = "<group>"; };
 		11ED3BD418A7456400797B41 /* Crashlytics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Crashlytics.framework; sourceTree = "<group>"; };
+		11FFDF0219FE0C540033B432 /* NSDate+English.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSDate+English.h"; sourceTree = "<group>"; };
+		11FFDF0319FE0C540033B432 /* NSDate+English.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSDate+English.m"; sourceTree = "<group>"; };
 		1E92FD45C900177C31B3C03D /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
 		36232B4416E286390029A175 /* MessageUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MessageUI.framework; path = System/Library/Frameworks/MessageUI.framework; sourceTree = SDKROOT; };
 		36232B6A16E2B3FA0029A175 /* ContactHistoryCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ContactHistoryCell.h; path = ../Cells/ContactHistoryCell.h; sourceTree = "<group>"; };
@@ -244,6 +247,8 @@
 				36940A6316ECEA12008CFBAC /* NSDateTimeAgo.m */,
 				118C4F3E19FDDCFE00906FF1 /* UIImage+ContactMethod.h */,
 				118C4F3F19FDDCFE00906FF1 /* UIImage+ContactMethod.m */,
+				11FFDF0219FE0C540033B432 /* NSDate+English.h */,
+				11FFDF0319FE0C540033B432 /* NSDate+English.m */,
 			);
 			path = Helpers;
 			sourceTree = "<group>";
@@ -494,6 +499,7 @@
 				1151751718A86FC400BD7A69 /* UITextView.m in Sources */,
 				366917DD16D714E600DF21E9 /* LonelySegue.m in Sources */,
 				115174BE18A75AF900BD7A69 /* LoginSegue.m in Sources */,
+				11FFDF0419FE0C540033B432 /* NSDate+English.m in Sources */,
 				365D019F16DC38780091CBA6 /* User.m in Sources */,
 				118C4F3D19FDDC7A00906FF1 /* ContactHistory.m in Sources */,
 				36F7E59616E05A62007BB7A6 /* CuddleNavBar.m in Sources */,
