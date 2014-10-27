@@ -69,6 +69,7 @@
   }
   return self;
 }
+
 - (UIImage *)avatarPhotoImage {
   if (!self.avatarPhoto) {
     ABAddressBookRef addressBook = ABAddressBookCreateWithOptions(NULL, nil);

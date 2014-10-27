@@ -289,7 +289,7 @@
                                             <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                             <color key="highlightedColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         </label>
-                                        <imageView userInteractionEnabled="NO" contentMode="redraw" fixedFrame="YES" image="contact_without_image" translatesAutoresizingMaskIntoConstraints="NO" id="b8w-7C-eFG" customClass="PFImageView">
+                                        <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" fixedFrame="YES" image="contact_without_image" translatesAutoresizingMaskIntoConstraints="NO" id="b8w-7C-eFG" customClass="PFImageView">
                                             <rect key="frame" x="5" y="10" width="40" height="40"/>
                                         </imageView>
                                         <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" fixedFrame="YES" text="never contacted from nudge" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="R6O-Gw-ozs">
