@@ -2,6 +2,7 @@
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6250" systemVersion="14A388a" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="RzY-qC-cMf">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6244"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <scenes>
         <!--Welcome-->
@@ -344,13 +345,13 @@
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
-                            <pickerView contentMode="scaleToFill" ambiguous="YES" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="snR-LV-JZk">
+                            <pickerView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="snR-LV-JZk">
                                 <rect key="frame" x="0.0" y="406" width="320" height="162"/>
                                 <connections>
                                     <outlet property="delegate" destination="ch2-x5-YvJ" id="mgJ-UF-xGM"/>
                                 </connections>
                             </pickerView>
-                            <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="OtP-z8-zYr">
+                            <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="OtP-z8-zYr">
                                 <rect key="frame" x="0.0" y="524" width="320" height="44"/>
                                 <items>
                                     <barButtonItem title="Save" width="303" id="68q-z4-nJT">
@@ -362,14 +363,20 @@
                                 </items>
                                 <color key="barTintColor" cocoaTouchSystemColor="darkTextColor"/>
                             </toolbar>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="How often should Panda nudge you?" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="kJT-qa-2rb">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="How often should Panda nudge you?" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="kJT-qa-2rb">
                                 <rect key="frame" x="68" y="91" width="185" height="78"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="78" id="5oS-9t-qLG"/>
+                                </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="20"/>
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="About John Smith" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="FfM-2e-mUf">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="About John Smith" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="FfM-2e-mUf">
                                 <rect key="frame" x="0.0" y="159" width="320" height="21"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="21" id="thl-Xc-Pkm"/>
+                                </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="20"/>
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <nil key="highlightedColor"/>
@@ -377,11 +384,18 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <constraints>
+                            <constraint firstItem="OtP-z8-zYr" firstAttribute="leading" secondItem="FfM-2e-mUf" secondAttribute="leading" id="3XA-cF-w9u"/>
+                            <constraint firstItem="kJT-qa-2rb" firstAttribute="leading" secondItem="b0K-bu-NZD" secondAttribute="leadingMargin" constant="52" id="41x-pI-NbD"/>
+                            <constraint firstItem="kJT-qa-2rb" firstAttribute="top" secondItem="3tz-5I-5ro" secondAttribute="bottom" constant="27" id="87l-ez-6Qt"/>
                             <constraint firstItem="snR-LV-JZk" firstAttribute="trailing" secondItem="OtP-z8-zYr" secondAttribute="trailing" id="8t2-BC-rky"/>
                             <constraint firstItem="OtP-z8-zYr" firstAttribute="leading" secondItem="b0K-bu-NZD" secondAttribute="leading" id="9hl-nJ-bCg"/>
+                            <constraint firstItem="OtP-z8-zYr" firstAttribute="leading" secondItem="snR-LV-JZk" secondAttribute="leading" id="ILw-02-J8J"/>
                             <constraint firstItem="snR-LV-JZk" firstAttribute="leading" secondItem="OtP-z8-zYr" secondAttribute="trailing" constant="-320" id="dUw-sT-H3v"/>
+                            <constraint firstItem="OtP-z8-zYr" firstAttribute="trailing" secondItem="FfM-2e-mUf" secondAttribute="trailing" id="euJ-Hu-cDt"/>
                             <constraint firstItem="snR-LV-JZk" firstAttribute="bottom" secondItem="OtP-z8-zYr" secondAttribute="top" constant="44" id="gLV-ae-rJ1"/>
                             <constraint firstItem="90J-1P-mgd" firstAttribute="top" secondItem="OtP-z8-zYr" secondAttribute="bottom" id="j3a-X4-B7T"/>
+                            <constraint firstItem="OtP-z8-zYr" firstAttribute="centerX" secondItem="kJT-qa-2rb" secondAttribute="centerX" id="k11-Sf-jfj"/>
+                            <constraint firstItem="FfM-2e-mUf" firstAttribute="top" secondItem="3tz-5I-5ro" secondAttribute="bottom" constant="95" id="z63-Oj-EuF"/>
                         </constraints>
                     </view>
                     <toolbarItems/>
