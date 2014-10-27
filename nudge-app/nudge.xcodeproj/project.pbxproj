@@ -24,7 +24,6 @@
 		3641707B16FA809B001B1893 /* FrequencyPickerController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3641707A16FA809B001B1893 /* FrequencyPickerController.m */; };
 		3641707E16FA83D1001B1893 /* FrequencySegue.m in Sources */ = {isa = PBXBuildFile; fileRef = 3641707D16FA83D1001B1893 /* FrequencySegue.m */; };
 		365D019F16DC38780091CBA6 /* User.m in Sources */ = {isa = PBXBuildFile; fileRef = 365D019E16DC38780091CBA6 /* User.m */; };
-		366917D816D7143500DF21E9 /* LonelyController.m in Sources */ = {isa = PBXBuildFile; fileRef = 366917D716D7143500DF21E9 /* LonelyController.m */; };
 		366917DD16D714E600DF21E9 /* LonelySegue.m in Sources */ = {isa = PBXBuildFile; fileRef = 366917DC16D714E600DF21E9 /* LonelySegue.m */; };
 		36940A6416ECEA12008CFBAC /* NSDateTimeAgo.m in Sources */ = {isa = PBXBuildFile; fileRef = 36940A6316ECEA12008CFBAC /* NSDateTimeAgo.m */; };
 		36A6605216E457F5003D3C99 /* ContactHistoryController.m in Sources */ = {isa = PBXBuildFile; fileRef = 36A6605116E457F5003D3C99 /* ContactHistoryController.m */; };
@@ -89,8 +88,6 @@
 		3641707D16FA83D1001B1893 /* FrequencySegue.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FrequencySegue.m; sourceTree = "<group>"; };
 		365D019D16DC38780091CBA6 /* User.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = User.h; sourceTree = "<group>"; };
 		365D019E16DC38780091CBA6 /* User.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = User.m; sourceTree = "<group>"; };
-		366917D616D7143500DF21E9 /* LonelyController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LonelyController.h; sourceTree = "<group>"; };
-		366917D716D7143500DF21E9 /* LonelyController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LonelyController.m; sourceTree = "<group>"; };
 		366917DB16D714E600DF21E9 /* LonelySegue.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LonelySegue.h; sourceTree = "<group>"; };
 		366917DC16D714E600DF21E9 /* LonelySegue.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LonelySegue.m; sourceTree = "<group>"; };
 		367EB9C716EE4CDA006828BE /* Crashlytics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Crashlytics.framework; sourceTree = "<group>"; };
@@ -209,8 +206,6 @@
 				116B9B2F19FD5D91008C74E1 /* FrequencyPickerNavigationControllerViewController.m */,
 				36FFBF6E16C85DDF00CC3140 /* LoginViewController.h */,
 				36FFBF6F16C85DDF00CC3140 /* LoginViewController.m */,
-				366917D616D7143500DF21E9 /* LonelyController.h */,
-				366917D716D7143500DF21E9 /* LonelyController.m */,
 				DA36C78D16CB5D6E001D7889 /* RegisterViewController.h */,
 				DA36C78E16CB5D6F001D7889 /* RegisterViewController.m */,
 				36FDEF5916EA9C2F00488113 /* WelcomeController.h */,
@@ -485,7 +480,6 @@
 				DA36C78F16CB5D6F001D7889 /* RegisterViewController.m in Sources */,
 				116B9B3019FD5D91008C74E1 /* FrequencyPickerNavigationControllerViewController.m in Sources */,
 				1151750E18A7815100BD7A69 /* UILabel+Nudge.m in Sources */,
-				366917D816D7143500DF21E9 /* LonelyController.m in Sources */,
 				1151750B18A77C7C00BD7A69 /* UIButton+Nudge.m in Sources */,
 				1151751718A86FC400BD7A69 /* UITextView.m in Sources */,
 				366917DD16D714E600DF21E9 /* LonelySegue.m in Sources */,
