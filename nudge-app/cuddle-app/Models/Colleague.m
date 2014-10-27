@@ -9,6 +9,7 @@
 #import "Colleague.h"
 #import <Parse/PFObject+Subclass.h>
 #import <FontAwesomeKit/FAKFontAwesome.h>
+#import "UIImage+ContactMethod.h"
 
 @implementation Colleague
 
@@ -115,22 +116,9 @@
     (self.numbers)[phoneLabel] = cleanedNumber;
   }
 }
-- (UIImage *) lastContactImage{
-  FAKFontAwesome *icon;
-  CGFloat fontSize = 24;
 
-  if ([self.methodOfLastContact isEqual:@"call"]) {
-    icon = [FAKFontAwesome phoneIconWithSize:fontSize];
-  } else if ([self.methodOfLastContact isEqual:@"sms"]) {
-    icon = [FAKFontAwesome commentIconWithSize:fontSize];
-  } else if ([self.methodOfLastContact isEqual:@"email"]) {
-    icon = [FAKFontAwesome envelopeIconWithSize:fontSize];
-  } else if ([self.methodOfLastContact isEqual:@"contacted"]) {
-    icon = [FAKFontAwesome thumbsUpIconWithSize:fontSize];
-  } else {
-    icon = [FAKFontAwesome frownOIconWithSize:fontSize];
-  }
-
-  return [icon imageWithSize:CGSizeMake(24, 24)];
+- (UIImage *)lastContactImage{
+  return [UIImage imageFromMethodOfContact:self.methodOfLastContact];
 }
+
 @end

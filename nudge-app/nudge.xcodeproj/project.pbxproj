@@ -15,6 +15,8 @@
 		1151751718A86FC400BD7A69 /* UITextView.m in Sources */ = {isa = PBXBuildFile; fileRef = 1151751618A86FC400BD7A69 /* UITextView.m */; };
 		116B9B3019FD5D91008C74E1 /* FrequencyPickerNavigationControllerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 116B9B2F19FD5D91008C74E1 /* FrequencyPickerNavigationControllerViewController.m */; };
 		116E022318A08F3C00A371A1 /* Media.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 116E022218A08F3C00A371A1 /* Media.xcassets */; };
+		118C4F3D19FDDC7A00906FF1 /* ContactHistory.m in Sources */ = {isa = PBXBuildFile; fileRef = 118C4F3C19FDDC7A00906FF1 /* ContactHistory.m */; };
+		118C4F4019FDDCFE00906FF1 /* UIImage+ContactMethod.m in Sources */ = {isa = PBXBuildFile; fileRef = 118C4F3F19FDDCFE00906FF1 /* UIImage+ContactMethod.m */; };
 		11B71B3A18A9E88E00FC93A6 /* RegisterSegue.m in Sources */ = {isa = PBXBuildFile; fileRef = 11B71B3918A9E88E00FC93A6 /* RegisterSegue.m */; };
 		36232B4516E286390029A175 /* MessageUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 36232B4416E286390029A175 /* MessageUI.framework */; };
 		36232B6C16E2B3FA0029A175 /* ContactHistoryCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 36232B6B16E2B3FA0029A175 /* ContactHistoryCell.m */; };
@@ -69,6 +71,10 @@
 		116B9B2E19FD5D91008C74E1 /* FrequencyPickerNavigationControllerViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FrequencyPickerNavigationControllerViewController.h; sourceTree = "<group>"; };
 		116B9B2F19FD5D91008C74E1 /* FrequencyPickerNavigationControllerViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FrequencyPickerNavigationControllerViewController.m; sourceTree = "<group>"; };
 		116E022218A08F3C00A371A1 /* Media.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Media.xcassets; path = Resources/Media.xcassets; sourceTree = "<group>"; };
+		118C4F3B19FDDC7A00906FF1 /* ContactHistory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ContactHistory.h; sourceTree = "<group>"; };
+		118C4F3C19FDDC7A00906FF1 /* ContactHistory.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ContactHistory.m; sourceTree = "<group>"; };
+		118C4F3E19FDDCFE00906FF1 /* UIImage+ContactMethod.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+ContactMethod.h"; sourceTree = "<group>"; };
+		118C4F3F19FDDCFE00906FF1 /* UIImage+ContactMethod.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+ContactMethod.m"; sourceTree = "<group>"; };
 		11B71B3818A9E88E00FC93A6 /* RegisterSegue.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RegisterSegue.h; sourceTree = "<group>"; };
 		11B71B3918A9E88E00FC93A6 /* RegisterSegue.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RegisterSegue.m; sourceTree = "<group>"; };
 		11ED3BD418A7456400797B41 /* Crashlytics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Crashlytics.framework; sourceTree = "<group>"; };
@@ -185,6 +191,8 @@
 			children = (
 				DA58A56D16C8BFD6006D7F55 /* Colleague.h */,
 				DA58A56E16C8BFD6006D7F55 /* Colleague.m */,
+				118C4F3B19FDDC7A00906FF1 /* ContactHistory.h */,
+				118C4F3C19FDDC7A00906FF1 /* ContactHistory.m */,
 				365D019D16DC38780091CBA6 /* User.h */,
 				365D019E16DC38780091CBA6 /* User.m */,
 			);
@@ -234,6 +242,8 @@
 			children = (
 				36940A6216ECEA12008CFBAC /* NSDateTimeAgo.h */,
 				36940A6316ECEA12008CFBAC /* NSDateTimeAgo.m */,
+				118C4F3E19FDDCFE00906FF1 /* UIImage+ContactMethod.h */,
+				118C4F3F19FDDCFE00906FF1 /* UIImage+ContactMethod.m */,
 			);
 			path = Helpers;
 			sourceTree = "<group>";
@@ -485,6 +495,7 @@
 				366917DD16D714E600DF21E9 /* LonelySegue.m in Sources */,
 				115174BE18A75AF900BD7A69 /* LoginSegue.m in Sources */,
 				365D019F16DC38780091CBA6 /* User.m in Sources */,
+				118C4F3D19FDDC7A00906FF1 /* ContactHistory.m in Sources */,
 				36F7E59616E05A62007BB7A6 /* CuddleNavBar.m in Sources */,
 				36232B6C16E2B3FA0029A175 /* ContactHistoryCell.m in Sources */,
 				36A6605216E457F5003D3C99 /* ContactHistoryController.m in Sources */,
@@ -492,6 +503,7 @@
 				36940A6416ECEA12008CFBAC /* NSDateTimeAgo.m in Sources */,
 				3641707B16FA809B001B1893 /* FrequencyPickerController.m in Sources */,
 				3641707E16FA83D1001B1893 /* FrequencySegue.m in Sources */,
+				118C4F4019FDDCFE00906FF1 /* UIImage+ContactMethod.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

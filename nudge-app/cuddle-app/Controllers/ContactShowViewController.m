@@ -9,6 +9,7 @@
 #import "ContactShowViewController.h"
 #import "FrequencyPickerNavigationControllerViewController.h"
 #import <FontAwesomeKit/FAKFontAwesome.h>
+#import "ContactHistory.h"
 
 @implementation ContactShowViewController
 
@@ -212,9 +213,9 @@
 - (void)saveCommunication:(NSString *)methodOfContact{
   
   // Save the relationship
-  PFObject *newNetwork = [[PFObject alloc] initWithClassName:@"ContactHistory"];
-  newNetwork[@"colleague"] = contact;
-  newNetwork[@"method"] = methodOfContact;
+  ContactHistory *newNetwork = [[ContactHistory alloc] init];
+  newNetwork.colleague = contact;
+  newNetwork.method = methodOfContact;
   [newNetwork saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
     if (succeeded){
       // Update the app to respect todays communication
@@ -222,9 +223,9 @@
     }
   }];
   
-    // Save last contact
-  contact[@"methodOfLastContact"] = methodOfContact;
-  contact[@"lastContactDate"] = [NSDate date];
+  // Save last contact
+  contact.methodOfLastContact = methodOfContact;
+  contact.lastContactDate = [NSDate date];
   contact[@"notifiedSincePush"] = @YES;
   [contact saveEventually];
 
@@ -248,7 +249,8 @@
 }
 - (void)queryParseHistory{
   if (self.contact.objectId) {
-    PFQuery *query = [PFQuery queryWithClassName:@"ContactHistory"];
+    PFQuery *query = [ContactHistory query];
+    query.cachePolicy = kPFCachePolicyCacheThenNetwork;
     [query whereKey:@"colleague" equalTo:self.contact];
     [query orderByDescending:@"createdAt"];
     query.limit = 3;
@@ -282,30 +284,16 @@
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
   static NSString *cellIdentifier = @"contactShowCell";
   UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:cellIdentifier];
-  PFObject *history = (self.contactHistory)[indexPath.row];
+
+  ContactHistory *history = (self.contactHistory)[indexPath.row];
   if (!cell) {
     cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:nil];
   }
+  
   cell.textLabel.text = [self formatDate:history.createdAt];
   cell.textLabel.backgroundColor = [UIColor clearColor];
+  cell.imageView.image = history.lastContactImage;
 
-  FAKFontAwesome *icon;
-  CGFloat fontSize = 24;
-
-  if ([history[@"method"] isEqual:@"call"]) {
-    icon = [FAKFontAwesome phoneIconWithSize:fontSize];
-  } else if ([history[@"method"] isEqual:@"sms"]) {
-    icon = [FAKFontAwesome commentIconWithSize:fontSize];
-  } else if ([history[@"method"] isEqual:@"email"]) {
-    icon = [FAKFontAwesome envelopeIconWithSize:fontSize];
-  } else if ([history[@"method"] isEqual:@"contacted"]) {
-    icon = [FAKFontAwesome thumbsUpIconWithSize:fontSize];
-  }
-
-  if (icon) {
-    cell.imageView.image = [icon imageWithSize:CGSizeMake(24, 24)];
-  }
-  
   return cell;
 }
 - (NSString *)formatDate:(NSDate *)date

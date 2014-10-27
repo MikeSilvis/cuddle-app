@@ -7,7 +7,7 @@
 //
 
 #import "ContactHistoryController.h"
-#import <FontAwesomeKit/FAKFontAwesome.h>
+#import "ContactHistory.h"
 
 @implementation ContactHistoryController
 
@@ -27,32 +27,26 @@
   self.title = @"Contact History";
 }
 - (PFQuery *)queryForTable {
-  PFQuery *query = [PFQuery queryWithClassName:@"ContactHistory"];
+  PFQuery *query = [ContactHistory query];
+  query.cachePolicy = kPFCachePolicyCacheThenNetwork;
   [query whereKey:@"colleague" equalTo:self.contact];
   [query orderByDescending:@"updatedAt"];
   return query;
 }
-- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath object:(PFObject *)object {
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath object:(ContactHistory *)history {
   ContactHistoryCell *cell = (ContactHistoryCell *)[tableView dequeueReusableCellWithIdentifier:@"contactHistoryCell"];
+  cell.lastContactImage.image = history.lastContactImage;
 
-  FAKFontAwesome *icon;
-  CGFloat fontSize = 24;
-
-  if ([object[@"method"] isEqual:@"call"]) {
-    cell.lastContact.text = [@"Called on " stringByAppendingString:[self formatDate:object.createdAt]];
-    icon = [FAKFontAwesome phoneIconWithSize:fontSize];
-  } else if ([object[@"method"] isEqual:@"sms"]) {
-    cell.lastContact.text = [@"Texted on " stringByAppendingString:[self formatDate:object.createdAt]];;
-    icon = [FAKFontAwesome commentIconWithSize:fontSize];
-  } else if ([object[@"method"] isEqual:@"email"]) {
-    cell.lastContact.text = [@"Emailed on " stringByAppendingString:[self formatDate:object.createdAt]];
-    icon = [FAKFontAwesome envelopeIconWithSize:fontSize];
-  } else if ([object[@"method"] isEqual:@"contacted"]) {
-    cell.lastContact.text = [@"Contacted on " stringByAppendingString:[self formatDate:object.createdAt]];
-    icon = [FAKFontAwesome thumbsUpIconWithSize:fontSize];
+  NSString *formattedDate = [self formatDate:history.createdAt];
+  if ([history[@"method"] isEqual:@"call"]) {
+    cell.lastContact.text = [@"Called on " stringByAppendingString:formattedDate];
+  } else if ([history[@"method"] isEqual:@"sms"]) {
+    cell.lastContact.text = [@"Texted on " stringByAppendingString:formattedDate];;
+  } else if ([history[@"method"] isEqual:@"email"]) {
+    cell.lastContact.text = [@"Emailed on " stringByAppendingString:formattedDate];
+  } else if ([history[@"method"] isEqual:@"contacted"]) {
+    cell.lastContact.text = [@"Contacted on " stringByAppendingString:formattedDate];
   }
-
-  cell.lastContactImage.image = [icon imageWithSize:CGSizeMake(24, 24)];
 
   return cell;
 }

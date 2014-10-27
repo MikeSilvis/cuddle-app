@@ -46,6 +46,7 @@
 
 - (PFQuery *)queryForTable {
   PFQuery *query = [Colleague query];
+  query.cachePolicy = kPFCachePolicyCacheThenNetwork;
   [query whereKey:@"user" equalTo:[PFUser currentUser]];
   [query includeKey:@"ContactHistory"];
   [query orderByAscending:@"lastContactDate"];
