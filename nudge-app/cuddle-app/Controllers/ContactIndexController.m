@@ -50,7 +50,6 @@
   [query whereKey:@"user" equalTo:[PFUser currentUser]];
   [query includeKey:@"ContactHistory"];
   [query orderByAscending:@"lastContactDate"];
-  [query orderByDescending:@"updatedAt"];
   return query;
 }
 
