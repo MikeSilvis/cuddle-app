@@ -67,7 +67,6 @@
   // TODO: This should not ALWAYS save
   [[PFUser currentUser] saveEventually];
   bool hasPeeps = [[PFUser currentUser][@"hasPeeps"] boolValue];
-
   // Assume if nil, that they do have peeps
   bool doesNotHavePeeps = (!hasPeeps && ([PFUser currentUser][@"hasPeeps"] != nil));
   if (self.firstLogin || doesNotHavePeeps) {

@@ -173,7 +173,7 @@
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
   if([segue.identifier isEqualToString:@"registerSuccessSegue"]){
     ContactIndexController *destViewController = segue.destinationViewController;
-    destViewController.firstLogin = @(true);
+    destViewController.firstLogin = true;
   }
 }
 @end

@@ -9,7 +9,8 @@
 #import "AppDelegate.h"
 #import "Colleague.h"
 #import "User.h"
-//#import <Crashlytics/Crashlytics.h>
+#import <Fabric/Fabric.h>
+#import <Crashlytics/Crashlytics.h>
 
 @implementation AppDelegate
 
@@ -18,7 +19,7 @@
   [Parse setApplicationId:PARSEAPPLICATIONID clientKey:PARSECLIENTKEY];
   [PFAnalytics trackAppOpenedWithLaunchOptions:launchOptions];
 
-//  [Crashlytics startWithAPIKey:@"2c4de91dd9eef6b63fa865a54c345433bebc795a"];
+  [Fabric with:@[CrashlyticsKit]];
 
   [Colleague registerSubclass];
   [User registerSubclass];
@@ -26,10 +27,12 @@
   
   [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleLightContent];
 
-  UIUserNotificationSettings* notificationSettings = [UIUserNotificationSettings settingsForTypes:UIUserNotificationTypeAlert | UIUserNotificationTypeBadge | UIUserNotificationTypeSound categories:nil];
-  [[UIApplication sharedApplication] registerUserNotificationSettings:notificationSettings];
-  [[UIApplication sharedApplication] registerForRemoteNotifications];  
-  
+  // Notifications
+  UIUserNotificationType userNotificationTypes = (UIUserNotificationTypeAlert|UIUserNotificationTypeBadge|UIUserNotificationTypeSound);
+  UIUserNotificationSettings *settings = [UIUserNotificationSettings settingsForTypes:userNotificationTypes categories:nil];
+  [application registerUserNotificationSettings:settings];
+  [application registerForRemoteNotifications];
+
   return YES;
 }
 - (void)addGoogleAnalytics {
